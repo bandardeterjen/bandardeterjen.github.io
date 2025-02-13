@@ -75,6 +75,21 @@ body {
     background-color: #FF5349;
 }
 
+.links3 .link {
+    display: block;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.links3 .link:hover {
+    background-color: #FFF000;
+}
+
 .social-media {
     margin-top: 20px;
 }
