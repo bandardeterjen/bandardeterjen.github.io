@@ -26,11 +26,11 @@
                     marked.parse(text);
             })
             .catch(error => console.error('Error loading content:', error));
-        // Load footer
-        fetch('footer.html')
+        // Load link mp
+        fetch('link-mp.html')
             .then(response => response.text())
             .then(html => {
-                document.getElementById('footer-container').innerHTML = html;
+                document.getElementById('link-container').innerHTML = html;
             })
             .catch(error => console.error('Error loading footer:', error));
       </script>
