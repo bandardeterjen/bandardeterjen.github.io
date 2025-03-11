@@ -15,14 +15,6 @@
         <section id="markdown-content">
         </section>
      </div>
-
-
-<div class="frame">
-  <button class="custom-btn btn-1"><a href="https://tokopedia.com">Tokopedia</a></button>
-  <button class="custom-btn btn-5"><span><a href="https://shopee.co.id">Shopee</a></span></button>
-  <p style="font-family: Andale Mono, monospace;">
-    Selamat Berbelanja</p>
-</div>
         
     <script>
         // Load and render Markdown content
@@ -33,6 +25,13 @@
                     marked.parse(text);
             })
             .catch(error => console.error('Error loading content:', error));
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            })
+            .catch(error => console.error('Error loading footer:', error));
       </script>
      <script src="../waform.js"></script>
 </body>
