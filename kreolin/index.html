@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreolin Karbol Hitam</title>
+    <link rel="stylesheet" href="../lp.css">
+    <link href="../button.css" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+       <!-- Markdown Content Section -->
+        <section id="markdown-content">
+        </section>
+     </div>
+
+    <header>
+   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+   <link href="/button.css" rel="stylesheet"> 
+</header>
+
+
+<div class="frame">
+  <button class="custom-btn btn-11"><a href="https://tokopedia.com">Tokopedia</a><div class="dot"></div></button>
+  <button class="custom-btn btn-12"><span><a href="https://tokopedia.com">Shopee</a></span><span>Shopee</span></button>
+  <p style="font-family: Andale Mono, monospace;">
+    Selamat Berbelanja</p>
+</div>
+        
+    <script>
+        // Load and render Markdown content
+        fetch('kreolin.md')
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('markdown-content').innerHTML = 
+                    marked.parse(text);
+            })
+            .catch(error => console.error('Error loading content:', error));
+      </script>
+     <script src="../waform.js"></script>
+</body>
+</html>
