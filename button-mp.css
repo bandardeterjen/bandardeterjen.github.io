@@ -6,6 +6,9 @@
 button {
   margin: 20px;
 }
+button a {
+  color: #fff;
+}
 .custom-btn {
   width: 130px;
   height: 40px;
