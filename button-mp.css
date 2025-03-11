@@ -35,9 +35,7 @@ button {
    background: rgb(0,3,255);
 background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
 }
-.btn-1 a {
-color: ffffff;
-}
+
 /* 2 */
 .btn-2 {
   background: rgb(96,9,240);
@@ -240,6 +238,4 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
   width:100%;
   transition:800ms ease all;
 }
-.btn-5 a {
-color: ffffff;
-}  
+ 
