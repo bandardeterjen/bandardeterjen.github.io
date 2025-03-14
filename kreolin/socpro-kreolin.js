@@ -6,8 +6,8 @@
 // 1 liter dan 500 ml https://www.tokopedia.com/lapaklaundry/kreolin-pembersih-lantai-toilet
 // 5 liter https://www.tokopedia.com/lapaklaundry/kreolin-5-liter-pembersih-lantai
 // Link Shopee
-// 1 liter dan 500 ml
-// 5 liter
+// 1 liter dan 500 ml https://shopee.co.id/product/96503208/23854886734/
+// 5 liter https://shopee.co.id/product/96503208/23180375712/
 
 // Array of social proof data
 const socialProofData = [
