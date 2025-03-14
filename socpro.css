@@ -1,0 +1,44 @@
+#social-proof-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#social-proof-notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.5s ease-in-out;
+}
+
+#social-proof-notification.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#notification-text {
+  font-size: 14px;
+  color: #333;
+}
+
+#notification-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#notification-text a:hover {
+  text-decoration: underline;
+}
