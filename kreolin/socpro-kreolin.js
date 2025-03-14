@@ -13,27 +13,27 @@
 const socialProofData = [
   {
     userName: "Azmi",
-    productName: "Kreolin 5 Liter",
-    productLink: "https://ratakan.com/cart/direct/202402261156470A0FC508C1060A360216?aff=bezimeni.id@gmail.com",
-    productImage: "https://ratakan.com/uploads/prd-49ece041a6.jpg"
+    productName: "Kreolin 5 Liter di Tokopedia",
+    productLink: "https://www.tokopedia.com/lapaklaundry/kreolin-5-liter-pembersih-lantai",
+    productImage: "https://images.tokopedia.net/img/cache/100-square/VqbcmM/2022/3/23/bcb74036-e640-4645-af10-14c15e50e17e.jpg.webp?ect=4g"
   },
   {
     userName: "Supriatinu",
-    productName: "Kreolin 1 Liter",
-    productLink: "https://ratakan.com/cart/direct/20250130182559C4593FD3D03F0ADEAF52?aff=bezimeni.id@gmail.com",
-    productImage: "https://ratakan.com/uploads/prd-6eeaa60c6d.png"
+    productName: "Kreolin 500 ml botol di Shopee",
+    productLink: "https://shopee.co.id/product/96503208/23854886734/",
+    productImage: "https://images.tokopedia.net/img/cache/100-square/VqbcmM/2022/3/23/000ef776-141f-424a-a529-e203159836f0.jpg.webp?ect=4g"
   },
   {
     userName: "Enok",
-    productName: "Kreolin 5 Liter",
-    productLink: "https://ratakan.com/cart/direct/202404091749138437B92A72B9620F449B?aff=bezimeni.id@gmail.com",
-    productImage: "https://ratakan.com/uploads/prd-8d7f39d27f.jpg"
+    productName: "Kreolin 1 Liter jerigen di Tokopedia",
+    productLink: "https://www.tokopedia.com/lapaklaundry/kreolin-pembersih-lantai-toilet",
+    productImage: "https://images.tokopedia.net/img/cache/100-square/VqbcmM/2022/3/23/a6d3ce8e-533f-41f1-ade4-279595bdc469.jpg.webp?ect=4g"
   },
   {
     userName: "Agus",
-    productName: "Kreolin 1 Liter",
-    productLink: "https://ratakan.com/cart/direct/20240311132703B5F989D27C3843E729A3?aff=bezimeni.id@gmail.com",
-    productImage: "https://ratakan.com/uploads/prd-e4c6a0fdb3.jpg"
+    productName: "Kreolin 1 Liter botol di Shopee",
+    productLink: "https://shopee.co.id/product/96503208/23854886734/",
+    productImage: "https://images.tokopedia.net/img/cache/100-square/VqbcmM/2022/3/23/663ea769-d2d5-4d39-8701-463e5f77fa8c.jpg.webp?ect=4g"
   }
 ];
 
