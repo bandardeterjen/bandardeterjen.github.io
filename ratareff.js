@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const articles = [
 	 { title: 'Resep Sabun', 
      description: 'Tingkatkan keahlian Anda dalam membuat sabun dengan kumpulan resep sabun teruji yang kami tawarkan. Pelajari cara membuat berbagai jenis sabun, dari sabun laundry ekonomis hingga sabun pembersih kamar mandi premium.', 
-     productUrl: 'https://ratakan.com/product/resep-sabun-D25' },
+     productUrl: 'https://ratakan.com/product/resep-sabun-lengkap-955' },
 	 { title: 'Resep Otomotif', 
      description: 'Dapatkan Resep Otomotif Lengkap untuk membuat berbagai produk perawatan mobil dan motor Anda sendiri! Dengan resep teruji dan sudah dipraktekkan,', 
      productUrl: 'https://ratakan.com/product/resep-lengkap-otomotif--710' },
