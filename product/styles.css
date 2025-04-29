@@ -284,13 +284,19 @@ header {
     object-fit: cover;
 }
 
-.post-body {
+.post-body p {
+    margin-bottom: 1.5rem;
     line-height: 1.8;
-    margin-bottom: 2rem;
 }
 
-.post-body p {
-    margin-bottom: 1rem;
+.post-body p:last-child {
+    margin-bottom: 0;
+}
+
+.post-body br {
+    display: block;
+    content: "";
+    margin: 0.5rem 0;
 }
 
 .back-link {
@@ -397,3 +403,4 @@ footer {
         padding: 1.5rem;
     }
 }
+
