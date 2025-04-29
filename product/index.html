@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Dynamic SEO Meta Tags -->
+    <title id="post-title">Bandar Deterjen | Home</title>
+    <meta id="meta-description" name="description" content="Blog about laundry products including detergents, softeners, and equipment">
+    <meta id="meta-keywords" name="keywords" content="laundry, detergent, softener, perfume, equipment">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" id="og-url" content="">
+    <meta property="og:title" id="og-title" content="">
+    <meta property="og:description" id="og-description" content="">
+    <meta property="og:image" id="og-image" content="">
+    
+    <link rel="stylesheet" href="/produk/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/produk/">Bandar Deterjen</a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="/produk">Beranda</a></li>
+                        <li><a href="/produk/about.html">Tentang</a></li>
+                        <li><a href="/produk/contact.html">Kontak</a></li>
+                        <li><a href="/produk/belanja">Belanja</a></li>
+                    </ul>
+                    <div class="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Container -->
+    <div class="search-container-wrapper">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search articles...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div id="blog-grid" class="blog-grid"></div>
+        <div id="pagination" class="pagination"></div>
+        <article id="post-content" class="single-post" style="display: none;">
+            <div class="loading">Loading post...</div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Welcome to our blog where we share interesting articles about laundry products.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/bandardeterjen"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.x.com/bandardeterjen"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/bandardeterjen"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/bandardeterjen"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/produk">Beranda</a></li>
+                        <li><a href="/produk/about.html">Tentang</a></li>
+                        <li><a href="/produk/contact.html">Kontak</a></li>
+                        <li><a href="/produk/belanja">Belanja</a></li>
+                        <li><a href="/produk/tool">Tool</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +62 857-7300-9666</li>
+                        <li><i class="fas fa-envelope"></i> bandardeterjen@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bandar Deterjen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/produk/script.js"></script>
+    <script>
+        if (window.location.pathname.includes('404.html') && window.location.hash) {
+            const [year, month, day, slug] = window.location.hash.substring(1).split('/');
+            const prettyUrl = `/${year}/${month}/${day}/${slug}.html`;
+            window.history.replaceState(null, null, prettyUrl);
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
