@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /produk/
+    
+    # Handle single post URLs
+    RewriteRule ^(\d{4})/(\d{2})/(\d{2})/([^/]+)\.html$ index.html?year=$1&month=$2&day=$3&slug=$4 [L,QSA]
+    
+    # Handle other routes
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . index.html [L]
+</IfModule>
