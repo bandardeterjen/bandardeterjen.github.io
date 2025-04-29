@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plain Text to JSON Converter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .input-section, .output-section {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            font-family: monospace;
+        }
+        
+        .output-section textarea {
+            background-color: #f9f9f9;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .copy-btn {
+            background-color: #27ae60;
+        }
+        
+        .copy-btn:hover {
+            background-color: #219653;
+        }
+        
+        .clear-btn {
+            background-color: #e74c3c;
+        }
+        
+        .clear-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Plain Text to JSON Converter</h1>
+        
+        <div class="input-section">
+            <label for="article-input">Input Text:</label>
+            <textarea id="article-input" placeholder="Paste your text here..."></textarea>
+        </div>
+        
+        <div class="button-group">
+            <button id="convert-btn">Convert to JSON</button>
+            <button id="copy-btn" class="copy-btn">Copy Result</button>
+            <button id="clear-btn" class="clear-btn">Clear All</button>
+        </div>
+        
+        <div class="output-section">
+            <label for="json-output">JSON Output:</label>
+            <textarea id="json-output" readonly placeholder="Your JSON output will appear here..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const articleInput = document.getElementById('article-input');
+            const jsonOutput = document.getElementById('json-output');
+            const convertBtn = document.getElementById('convert-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            
+            convertBtn.addEventListener('click', convertToJson);
+            copyBtn.addEventListener('click', copyToClipboard);
+            clearBtn.addEventListener('click', clearAll);
+            
+            function convertToJson() {
+                let text = articleInput.value.trim();
+                
+                if (!text) {
+                    alert('Please enter some text to convert');
+                    return;
+                }
+                
+                // Preserve the original line breaks and formatting
+                // Replace multiple newlines with double newlines for paragraphs
+                let formattedText = text.replace(/\n\s*\n/g, '\n\n');
+                
+                // Create JSON object with just the description
+                const jsonResult = {
+                    description: formattedText
+                };
+                
+                // Display formatted JSON
+                jsonOutput.value = JSON.stringify(jsonResult, null, 2);
+            }
+            
+            function copyToClipboard() {
+                if (!jsonOutput.value) {
+                    alert('No content to copy!');
+                    return;
+                }
+                
+                jsonOutput.select();
+                document.execCommand('copy');
+                
+                // Visual feedback
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            }
+            
+            function clearAll() {
+                articleInput.value = '';
+                jsonOutput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
