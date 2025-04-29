@@ -27,12 +27,12 @@ function handleRouting() {
     }
 }
 
-// Initialize search and random post button
 function initSearch() {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
     const randomButton = document.getElementById('random-post-button');
     const searchResults = document.getElementById('search-results');
+    const searchContainer = document.querySelector('.search-container');
     
     if (!searchInput || !searchResults) return;
     
@@ -47,6 +47,7 @@ function initSearch() {
         
         try {
             const response = await fetch('/produk/blog_data.json');
+            if (!response.ok) throw new Error('Network response was not ok');
             const posts = await response.json();
             
             const results = posts.filter(post => 
@@ -79,6 +80,7 @@ function initSearch() {
     randomButton.addEventListener('click', async () => {
         try {
             const response = await fetch('/produk/blog_data.json');
+            if (!response.ok) throw new Error('Network response was not ok');
             const posts = await response.json();
             
             if (posts.length > 0) {
@@ -92,6 +94,7 @@ function initSearch() {
             }
         } catch (error) {
             console.error('Error loading random post:', error);
+            alert('Failed to load a random post. Please try again.');
         }
     });
     
@@ -113,20 +116,16 @@ function initSearch() {
     });
 }
 
-// Make sure to update your existing cleanDescription, createSlug, and other functions as shown previously
-
 function cleanDescription(text, maxLength = 100) {
+    if (!text) return '';
     // First remove any HTML tags if they exist
     let cleaned = text.replace(/<[^>]*>/g, ' ');
-    
     // Collapse multiple spaces and newlines
     cleaned = cleaned.replace(/\s+/g, ' ').trim();
-    
     // Truncate if needed
     if (maxLength && cleaned.length > maxLength) {
         cleaned = cleaned.substring(0, maxLength) + '...';
     }
-    
     return cleaned;
 }
 
@@ -135,6 +134,7 @@ function isPostPage() {
 }
 
 function createSlug(title) {
+    if (!title) return '';
     return title.toLowerCase()
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '-')
@@ -145,7 +145,8 @@ function createSlug(title) {
 
 async function loadBlogPosts() {
     try {
-        const response = await fetch('/product/blog_data.json');
+        const response = await fetch('/produk/blog_data.json');
+        if (!response.ok) throw new Error('Network response was not ok');
         const allPosts = await response.json();
         
         // Sort by date (newest first)
@@ -170,18 +171,18 @@ async function loadBlogPosts() {
                 const month = String(postDate.getMonth() + 1).padStart(2, '0');
                 const day = String(postDate.getDate()).padStart(2, '0');
                 const slug = createSlug(post.title);
-                const postUrl = `/product/${year}/${month}/${day}/${slug}.html`;
+                const postUrl = `/produk/${year}/${month}/${day}/${slug}.html`;
                 
                 return `
                     <article class="blog-card">
                         <div class="card-image">
                             <a href="${postUrl}" data-navigo>
-                                <img src="${post.image}" alt="${post.title}">
+                                <img src="${post.image}" alt="${post.title}" onerror="this.src='https://via.placeholder.com/600x400?text=Image+Not+Available'">
                             </a>
                         </div>
                         <div class="card-content">
                             <div class="post-meta">
-                                <span>By ${post.author}</span>
+                                <span>By ${post.author || 'Unknown'}</span>
                                 <span>•</span>
                                 <span>${postDate.toLocaleDateString()}</span>
                             </div>
@@ -201,18 +202,18 @@ async function loadBlogPosts() {
             let paginationHTML = '';
             
             if (currentPage > 1) {
-                paginationHTML += `<a href="/product/index.html?page=${currentPage - 1}" data-navigo>← Previous</a>`;
+                paginationHTML += `<a href="/produk/index.html?page=${currentPage - 1}" data-navigo>← Previous</a>`;
             }
             
             const startPage = Math.max(1, currentPage - 1);
             const endPage = Math.min(totalPages, currentPage + 1);
             
             for (let i = startPage; i <= endPage; i++) {
-                paginationHTML += `<a href="/product/index.html?page=${i}" ${i === currentPage ? 'class="active"' : ''} data-navigo>${i}</a>`;
+                paginationHTML += `<a href="/produk/index.html?page=${i}" ${i === currentPage ? 'class="active"' : ''} data-navigo>${i}</a>`;
             }
             
             if (currentPage < totalPages) {
-                paginationHTML += `<a href="/product/index.html?page=${currentPage + 1}" data-navigo>Next →</a>`;
+                paginationHTML += `<a href="/produk/index.html?page=${currentPage + 1}" data-navigo>Next →</a>`;
             }
             
             pagination.innerHTML = paginationHTML;
@@ -231,6 +232,7 @@ async function loadBlogPosts() {
             grid.innerHTML = `
                 <div class="error-message">
                     <p>Failed to load blog posts. Please try again later.</p>
+                    <p>${error.message}</p>
                 </div>
             `;
         }
@@ -242,13 +244,14 @@ async function loadSinglePost() {
         const pathMatch = window.location.pathname.match(/\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/);
         
         if (!pathMatch) {
-            window.location.href = '/product/index.html';
+            window.location.href = '/produk/index.html';
             return;
         }
         
         const [_, year, month, day, slug] = pathMatch;
         
-        const response = await fetch('/product/blog_data.json');
+        const response = await fetch('/produk/blog_data.json');
+        if (!response.ok) throw new Error('Network response was not ok');
         const posts = await response.json();
         
         const post = posts.find(p => {
@@ -284,24 +287,24 @@ async function loadSinglePost() {
                 postContent.innerHTML = `
                     <h1>${post.title}</h1>
                     <div class="post-meta">
-                        <span>By ${post.author}</span>
+                        <span>By ${post.author || 'Unknown'}</span>
                         <span>•</span>
                         <span>${new Date(post.date).toLocaleDateString()}</span>
                     </div>
                     <div class="featured-image">
-                        <img src="${post.image}" alt="${post.title}">
+                        <img src="${post.image}" alt="${post.title}" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Not+Available'">
                     </div>
                     <div class="post-body">
                         ${formatPostContent(post.description)}
                     </div>
-                    <a href="/product/index.html" class="back-link" data-navigo>← Back to Blog</a>
+                    <a href="/produk/index.html" class="back-link" data-navigo>← Back to Blog</a>
                 `;
             }
             
             // Initialize link handling
             initLinkInterception();
         } else {
-            window.location.href = '/product/index.html';
+            window.location.href = '/produk/index.html';
         }
     } catch (error) {
         console.error('Error loading post:', error);
@@ -309,7 +312,8 @@ async function loadSinglePost() {
         if (postContent) {
             postContent.innerHTML = `
                 <div class="error-message">
-                    <p>Post not found. <a href="/product/index.html" data-navigo>Return to blog</a></p>
+                    <p>Post not found. <a href="/produk/index.html" data-navigo>Return to blog</a></p>
+                    <p>${error.message}</p>
                 </div>
             `;
         }
@@ -317,15 +321,35 @@ async function loadSinglePost() {
 }
 
 function formatPostContent(text) {
+    if (!text) return '<p>No content available</p>';
+    
     // First split into paragraphs by double newlines
     let paragraphs = text.split(/\n\s*\n/);
     
     // Process each paragraph
     return paragraphs.map(para => {
+        // Skip empty paragraphs
+        if (!para.trim()) return '';
+        
         // Replace single newlines with <br> except after bullet points
         para = para.replace(/([^\n])\n([^\n•\-*\d])/g, '$1<br>$2');
-        // Wrap in <p> tags
-        return `<p>${para}</p>`;
+        
+        // Convert bullet points and numbered lists
+        para = para.replace(/^(\s*[\-*•]\s+)/gm, '<li>');
+        para = para.replace(/^(\s*\d+\.\s+)/gm, '<li>');
+        
+        // If we found list items, wrap them in <ul>
+        if (para.includes('<li>')) {
+            para = para.replace(/<li>/g, '</li><li>').replace('</li>', '');
+            para = `<ul>${para}</ul>`;
+        }
+        
+        // Wrap in <p> tags if not a list
+        if (!para.startsWith('<ul>')) {
+            para = `<p>${para}</p>`;
+        }
+        
+        return para;
     }).join('');
 }
 
