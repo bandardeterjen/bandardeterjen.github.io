@@ -27,14 +27,18 @@ function handleRouting() {
     }
 }
 
+// Initialize search and random post button
 function initSearch() {
     const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const randomButton = document.getElementById('random-post-button');
     const searchResults = document.getElementById('search-results');
     
     if (!searchInput || !searchResults) return;
     
-    searchInput.addEventListener('input', async function() {
-        const query = this.value.trim().toLowerCase();
+    // Search functionality
+    const performSearch = async () => {
+        const query = searchInput.value.trim().toLowerCase();
         
         if (query.length < 2) {
             searchResults.style.display = 'none';
@@ -42,26 +46,26 @@ function initSearch() {
         }
         
         try {
-            const response = await fetch('https://bandardeterjen.github.io/product/blog_data.json');
+            const response = await fetch('/produk/blog_data.json');
             const posts = await response.json();
             
             const results = posts.filter(post => 
                 post.title.toLowerCase().includes(query) || 
                 post.excerpt.toLowerCase().includes(query) ||
                 cleanDescription(post.description).toLowerCase().includes(query)
-            ).slice(0, 5);
+            ).slice(0, 10);
             
             if (results.length > 0) {
                 searchResults.innerHTML = results.map(post => {
                     const postDate = new Date(post.date);
                     const slug = createSlug(post.title);
-                    const url = `/product/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
+                    const url = `/produk/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
                     
                     return `<a href="${url}" data-navigo>${post.title} <small>(${postDate.toLocaleDateString()})</small></a>`;
                 }).join('');
                 searchResults.style.display = 'block';
             } else {
-                searchResults.innerHTML = '<div class="no-results">No articles found</div>';
+                searchResults.innerHTML = '<div class="no-results">No articles found. Try different keywords.</div>';
                 searchResults.style.display = 'block';
             }
         } catch (error) {
@@ -69,15 +73,47 @@ function initSearch() {
             searchResults.innerHTML = '<div class="no-results">Error loading search results</div>';
             searchResults.style.display = 'block';
         }
+    };
+    
+    // Random post functionality
+    randomButton.addEventListener('click', async () => {
+        try {
+            const response = await fetch('/produk/blog_data.json');
+            const posts = await response.json();
+            
+            if (posts.length > 0) {
+                const randomPost = posts[Math.floor(Math.random() * posts.length)];
+                const postDate = new Date(randomPost.date);
+                const slug = createSlug(randomPost.title);
+                const url = `/produk/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
+                
+                window.history.pushState(null, null, url);
+                handleRouting();
+            }
+        } catch (error) {
+            console.error('Error loading random post:', error);
+        }
+    });
+    
+    // Event listeners
+    searchInput.addEventListener('input', performSearch);
+    searchButton.addEventListener('click', performSearch);
+    
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
     });
     
     // Hide results when clicking elsewhere
     document.addEventListener('click', function(e) {
-        if (e.target !== searchInput) {
+        if (!searchContainer.contains(e.target)) {
             searchResults.style.display = 'none';
         }
     });
 }
+
+// Make sure to update your existing cleanDescription, createSlug, and other functions as shown previously
 
 function cleanDescription(text, maxLength = 100) {
     // First remove any HTML tags if they exist
