@@ -127,7 +127,7 @@ async function loadSinglePost() {
         <div class="post-body">
             ${formatPostContent(post.description)}
         </div>
-        <a href="/produk/index.html" class="back-link" data-navigo>← Back to Blog</a>
+        <a href="/product/index.html" class="back-link" data-navigo>← Back to Blog</a>
     `;
     // ... (rest of single post code)
 }
