@@ -12,13 +12,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize search functionality
     initSearch();
     
-    // Check if we're on a post page
+    // Check URL and load appropriate content
+    handleRouting();
+    
+    // Handle back/forward navigation
+    window.addEventListener('popstate', handleRouting);
+});
+
+function handleRouting() {
     if (isPostPage()) {
         loadSinglePost();
     } else {
         loadBlogPosts();
     }
-});
+}
 
 function initSearch() {
     const searchInput = document.getElementById('search-input');
@@ -72,15 +79,20 @@ function initSearch() {
     });
 }
 
-function cleanDescription(html) {
-    // Remove <p> tags and convert <br> to spaces
-    return html.replace(/<p>/g, '').replace(/<\/p>/g, ' ').replace(/<br\s*\/?>/g, ' ')
-               .replace(/<\/?[^>]+(>|$)/g, '').replace(/\s+/g, ' ').trim();
+function cleanDescription(html, maxLength = 100) {
+    // Remove HTML tags
+    let text = html.replace(/<[^>]*>/g, ' ');
+    // Collapse multiple spaces
+    text = text.replace(/\s+/g, ' ').trim();
+    // Truncate if needed
+    if (maxLength && text.length > maxLength) {
+        text = text.substring(0, maxLength) + '...';
+    }
+    return text;
 }
 
 function isPostPage() {
-    return window.location.pathname.includes('404.html') || 
-           /\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/.test(window.location.pathname);
+    return /\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/.test(window.location.pathname);
 }
 
 function createSlug(title) {
@@ -112,6 +124,7 @@ async function loadBlogPosts() {
         // Display posts
         const grid = document.getElementById('blog-grid');
         if (grid) {
+            grid.style.display = 'grid';
             grid.innerHTML = paginatedPosts.map(post => {
                 const postDate = new Date(post.date);
                 const year = postDate.getFullYear();
@@ -123,7 +136,7 @@ async function loadBlogPosts() {
                 return `
                     <article class="blog-card">
                         <div class="card-image">
-                            <a href="${postUrl}">
+                            <a href="${postUrl}" data-navigo>
                                 <img src="${post.image}" alt="${post.title}">
                             </a>
                         </div>
@@ -133,9 +146,9 @@ async function loadBlogPosts() {
                                 <span>•</span>
                                 <span>${postDate.toLocaleDateString()}</span>
                             </div>
-                            <h2><a href="${postUrl}">${post.title}</a></h2>
-                            <p>${post.excerpt}</p>
-                            <a href="${postUrl}" class="read-more">Read More →</a>
+                            <h2><a href="${postUrl}" data-navigo>${post.title}</a></h2>
+                            <p>${cleanDescription(post.excerpt, 100)}</p>
+                            <a href="${postUrl}" class="read-more" data-navigo>Read More →</a>
                         </div>
                     </article>
                 `;
@@ -145,25 +158,33 @@ async function loadBlogPosts() {
         // Display pagination
         const pagination = document.getElementById('pagination');
         if (pagination && totalPages > 1) {
+            pagination.style.display = 'flex';
             let paginationHTML = '';
             
             if (currentPage > 1) {
-                paginationHTML += `<a href="/product/index.html?page=${currentPage - 1}">← Previous</a>`;
+                paginationHTML += `<a href="/product/index.html?page=${currentPage - 1}" data-navigo>← Previous</a>`;
             }
             
             const startPage = Math.max(1, currentPage - 1);
             const endPage = Math.min(totalPages, currentPage + 1);
             
             for (let i = startPage; i <= endPage; i++) {
-                paginationHTML += `<a href="/product/index.html?page=${i}" ${i === currentPage ? 'class="active"' : ''}>${i}</a>`;
+                paginationHTML += `<a href="/product/index.html?page=${i}" ${i === currentPage ? 'class="active"' : ''} data-navigo>${i}</a>`;
             }
             
             if (currentPage < totalPages) {
-                paginationHTML += `<a href="/product/index.html?page=${currentPage + 1}">Next →</a>`;
+                paginationHTML += `<a href="/product/index.html?page=${currentPage + 1}" data-navigo>Next →</a>`;
             }
             
             pagination.innerHTML = paginationHTML;
         }
+        
+        // Hide single post container
+        const postContent = document.getElementById('post-content');
+        if (postContent) postContent.style.display = 'none';
+        
+        // Initialize link handling
+        initLinkInterception();
     } catch (error) {
         console.error('Error loading posts:', error);
         document.getElementById('blog-grid').innerHTML = `
@@ -176,17 +197,14 @@ async function loadBlogPosts() {
 
 async function loadSinglePost() {
     try {
-        let year, month, day, slug;
-        
         const pathMatch = window.location.pathname.match(/\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/);
         
-        if (pathMatch) {
-            [year, month, day, slug] = pathMatch.slice(1);
-        } else if (window.location.hash) {
-            [year, month, day, slug] = window.location.hash.substring(1).split('/');
-        } else {
-            throw new Error('Invalid post URL');
+        if (!pathMatch) {
+            window.location.href = '/product/index.html';
+            return;
         }
+        
+        const [_, year, month, day, slug] = pathMatch;
         
         const response = await fetch('/product/blog_data.json');
         const posts = await response.json();
@@ -232,8 +250,11 @@ async function loadSinglePost() {
                 <div class="post-body">
                     ${cleanDescription(post.description)}
                 </div>
-                <a href="/product/index.html" class="back-link">← Back to Blog</a>
+                <a href="/product/index.html" class="back-link" data-navigo>← Back to Blog</a>
             `;
+            
+            // Initialize link handling
+            initLinkInterception();
         } else {
             window.location.href = '/product/index.html';
         }
@@ -241,10 +262,22 @@ async function loadSinglePost() {
         console.error('Error loading post:', error);
         document.getElementById('post-content').innerHTML = `
             <div class="error-message">
-                <p>Post not found. <a href="/product/index.html">Return to blog</a></p>
+                <p>Post not found. <a href="/product/index.html" data-navigo>Return to blog</a></p>
             </div>
         `;
     }
+}
+
+function initLinkInterception() {
+    // Handle internal navigation
+    document.querySelectorAll('[data-navigo]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            window.history.pushState(null, null, href);
+            handleRouting();
+        });
+    });
 }
 
 function getPageNumber() {
