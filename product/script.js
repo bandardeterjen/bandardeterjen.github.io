@@ -20,9 +20,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function handleRouting() {
-    if (isPostPage()) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const year = urlParams.get('year');
+    const month = urlParams.get('month');
+    const day = urlParams.get('day');
+    const slug = urlParams.get('slug');
+    
+    if (year && month && day && slug) {
+        // Convert to pretty URL and load post
+        const prettyUrl = `/${year}/${month}/${day}/${slug}.html`;
+        window.history.replaceState(null, null, prettyUrl);
         loadSinglePost();
-    } else {
+    } 
+    else if (isPostPage()) {
+        loadSinglePost();
+    } 
+    else {
         loadBlogPosts();
     }
 }
@@ -60,9 +73,10 @@ function initSearch() {
                 searchResults.innerHTML = results.map(post => {
                     const postDate = new Date(post.date);
                     const slug = createSlug(post.title);
-                    const url = `/product/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
+                    const prettyUrl = `/product/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
+                    const paramUrl = `/product/index.html?year=${postDate.getFullYear()}&month=${String(postDate.getMonth() + 1).padStart(2, '0')}&day=${String(postDate.getDate()).padStart(2, '0')}&slug=${slug}`;
                     
-                    return `<a href="${url}" data-navigo>${post.title} <small>(${postDate.toLocaleDateString()})</small></a>`;
+                    return `<a href="${paramUrl}" data-navigo data-fallback="${prettyUrl}">${post.title} <small>(${postDate.toLocaleDateString()})</small></a>`;
                 }).join('');
                 searchResults.style.display = 'block';
             } else {
@@ -87,9 +101,10 @@ function initSearch() {
                 const randomPost = posts[Math.floor(Math.random() * posts.length)];
                 const postDate = new Date(randomPost.date);
                 const slug = createSlug(randomPost.title);
-                const url = `/product/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
+                const prettyUrl = `/product/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
                 
-                window.history.pushState(null, null, url);
+                // For random button, we'll always use client-side navigation
+                window.history.pushState(null, null, prettyUrl);
                 handleRouting();
             }
         } catch (error) {
@@ -118,11 +133,8 @@ function initSearch() {
 
 function cleanDescription(text, maxLength = 100) {
     if (!text) return '';
-    // First remove any HTML tags if they exist
     let cleaned = text.replace(/<[^>]*>/g, ' ');
-    // Collapse multiple spaces and newlines
     cleaned = cleaned.replace(/\s+/g, ' ').trim();
-    // Truncate if needed
     if (maxLength && cleaned.length > maxLength) {
         cleaned = cleaned.substring(0, maxLength) + '...';
     }
@@ -130,7 +142,8 @@ function cleanDescription(text, maxLength = 100) {
 }
 
 function isPostPage() {
-    return /\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/.test(window.location.pathname);
+    return /\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/.test(window.location.pathname) ||
+           /\?year=\d{4}&month=\d{2}&day=\d{2}&slug=.+$/.test(window.location.search);
 }
 
 function createSlug(title) {
@@ -149,10 +162,8 @@ async function loadBlogPosts() {
         if (!response.ok) throw new Error('Network response was not ok');
         const allPosts = await response.json();
         
-        // Sort by date (newest first)
         allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
         
-        // Pagination - 6 posts per page
         const postsPerPage = 6;
         const currentPage = getPageNumber();
         const totalPages = Math.ceil(allPosts.length / postsPerPage);
@@ -161,7 +172,6 @@ async function loadBlogPosts() {
             currentPage * postsPerPage
         );
         
-        // Display posts
         const grid = document.getElementById('blog-grid');
         if (grid) {
             grid.style.display = 'grid';
@@ -171,12 +181,13 @@ async function loadBlogPosts() {
                 const month = String(postDate.getMonth() + 1).padStart(2, '0');
                 const day = String(postDate.getDate()).padStart(2, '0');
                 const slug = createSlug(post.title);
-                const postUrl = `/product/${year}/${month}/${day}/${slug}.html`;
+                const prettyUrl = `/product/${year}/${month}/${day}/${slug}.html`;
+                const paramUrl = `/product/index.html?year=${year}&month=${month}&day=${day}&slug=${slug}`;
                 
                 return `
                     <article class="blog-card">
                         <div class="card-image">
-                            <a href="${postUrl}" data-navigo>
+                            <a href="${paramUrl}" data-navigo data-fallback="${prettyUrl}">
                                 <img src="${post.image}" alt="${post.title}" onerror="this.src='https://via.placeholder.com/600x400?text=Image+Not+Available'">
                             </a>
                         </div>
@@ -186,16 +197,15 @@ async function loadBlogPosts() {
                                 <span>•</span>
                                 <span>${postDate.toLocaleDateString()}</span>
                             </div>
-                            <h2><a href="${postUrl}" data-navigo>${post.title}</a></h2>
+                            <h2><a href="${paramUrl}" data-navigo data-fallback="${prettyUrl}">${post.title}</a></h2>
                             <p>${cleanDescription(post.excerpt, 100)}</p>
-                            <a href="${postUrl}" class="read-more" data-navigo>Read More →</a>
+                            <a href="${paramUrl}" class="read-more" data-navigo data-fallback="${prettyUrl}">Read More →</a>
                         </div>
                     </article>
                 `;
             }).join('');
         }
         
-        // Display pagination
         const pagination = document.getElementById('pagination');
         if (pagination && totalPages > 1) {
             pagination.style.display = 'flex';
@@ -219,11 +229,9 @@ async function loadBlogPosts() {
             pagination.innerHTML = paginationHTML;
         }
         
-        // Hide single post container
         const postContent = document.getElementById('post-content');
         if (postContent) postContent.style.display = 'none';
         
-        // Initialize link handling
         initLinkInterception();
     } catch (error) {
         console.error('Error loading posts:', error);
@@ -241,14 +249,23 @@ async function loadBlogPosts() {
 
 async function loadSinglePost() {
     try {
+        let year, month, day, slug;
+        
         const pathMatch = window.location.pathname.match(/\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/);
         
-        if (!pathMatch) {
-            window.location.href = '/product/index.html';
-            return;
+        if (pathMatch) {
+            [year, month, day, slug] = pathMatch.slice(1);
+        } else {
+            const urlParams = new URLSearchParams(window.location.search);
+            year = urlParams.get('year');
+            month = urlParams.get('month');
+            day = urlParams.get('day');
+            slug = urlParams.get('slug');
+            
+            if (!year || !month || !day || !slug) {
+                throw new Error('Invalid post URL');
+            }
         }
-        
-        const [_, year, month, day, slug] = pathMatch;
         
         const response = await fetch('/product/blog_data.json');
         if (!response.ok) throw new Error('Network response was not ok');
@@ -264,18 +281,15 @@ async function loadSinglePost() {
         });
 
         if (post) {
-            // Update SEO meta tags
             document.getElementById('post-title').textContent = `${post.title} | Bandar Deterjen`;
             document.getElementById('meta-description').content = post.excerpt;
             document.getElementById('meta-keywords').content = `laundry, ${post.title.toLowerCase().split(' ').join(', ')}, ${post.author}`;
             
-            // Update Open Graph tags
             document.getElementById('og-url').content = window.location.href;
             document.getElementById('og-title').content = post.title;
             document.getElementById('og-description').content = post.excerpt;
             document.getElementById('og-image').content = post.image;
             
-            // Show single post and hide blog grid
             const grid = document.getElementById('blog-grid');
             const pagination = document.getElementById('pagination');
             const postContent = document.getElementById('post-content');
@@ -301,7 +315,6 @@ async function loadSinglePost() {
                 `;
             }
             
-            // Initialize link handling
             initLinkInterception();
         } else {
             window.location.href = '/product/index.html';
@@ -323,28 +336,20 @@ async function loadSinglePost() {
 function formatPostContent(text) {
     if (!text) return '<p>No content available</p>';
     
-    // First split into paragraphs by double newlines
     let paragraphs = text.split(/\n\s*\n/);
     
-    // Process each paragraph
     return paragraphs.map(para => {
-        // Skip empty paragraphs
         if (!para.trim()) return '';
         
-        // Replace single newlines with <br> except after bullet points
         para = para.replace(/([^\n])\n([^\n•\-*\d])/g, '$1<br>$2');
-        
-        // Convert bullet points and numbered lists
         para = para.replace(/^(\s*[\-*•]\s+)/gm, '<li>');
         para = para.replace(/^(\s*\d+\.\s+)/gm, '<li>');
         
-        // If we found list items, wrap them in <ul>
         if (para.includes('<li>')) {
             para = para.replace(/<li>/g, '</li><li>').replace('</li>', '');
             para = `<ul>${para}</ul>`;
         }
         
-        // Wrap in <p> tags if not a list
         if (!para.startsWith('<ul>')) {
             para = `<p>${para}</p>`;
         }
@@ -354,14 +359,24 @@ function formatPostContent(text) {
 }
 
 function initLinkInterception() {
-    // Handle internal navigation
     document.querySelectorAll('[data-navigo]').forEach(link => {
+        // Update href for right-click/open in new tab
+        const fallback = link.getAttribute('data-fallback');
+        if (fallback) {
+            link.setAttribute('href', fallback);
+        }
+        
         link.addEventListener('click', function(e) {
             if (this.hasAttribute('data-navigo')) {
                 e.preventDefault();
-                const href = this.getAttribute('href');
-                window.history.pushState(null, null, href);
-                handleRouting();
+                const href = this.getAttribute('data-fallback') || this.getAttribute('href');
+                
+                if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) {
+                    window.open(href, '_blank');
+                } else {
+                    window.history.pushState(null, null, href);
+                    handleRouting();
+                }
             }
         });
     });
