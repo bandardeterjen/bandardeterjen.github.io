@@ -46,7 +46,7 @@ function initSearch() {
         }
         
         try {
-            const response = await fetch('/produk/blog_data.json');
+            const response = await fetch('/product/blog_data.json');
             if (!response.ok) throw new Error('Network response was not ok');
             const posts = await response.json();
             
@@ -60,7 +60,7 @@ function initSearch() {
                 searchResults.innerHTML = results.map(post => {
                     const postDate = new Date(post.date);
                     const slug = createSlug(post.title);
-                    const url = `/produk/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
+                    const url = `/product/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
                     
                     return `<a href="${url}" data-navigo>${post.title} <small>(${postDate.toLocaleDateString()})</small></a>`;
                 }).join('');
@@ -79,7 +79,7 @@ function initSearch() {
     // Random post functionality
     randomButton.addEventListener('click', async () => {
         try {
-            const response = await fetch('/produk/blog_data.json');
+            const response = await fetch('/product/blog_data.json');
             if (!response.ok) throw new Error('Network response was not ok');
             const posts = await response.json();
             
@@ -87,7 +87,7 @@ function initSearch() {
                 const randomPost = posts[Math.floor(Math.random() * posts.length)];
                 const postDate = new Date(randomPost.date);
                 const slug = createSlug(randomPost.title);
-                const url = `/produk/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
+                const url = `/product/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${slug}.html`;
                 
                 window.history.pushState(null, null, url);
                 handleRouting();
@@ -145,7 +145,7 @@ function createSlug(title) {
 
 async function loadBlogPosts() {
     try {
-        const response = await fetch('/produk/blog_data.json');
+        const response = await fetch('/product/blog_data.json');
         if (!response.ok) throw new Error('Network response was not ok');
         const allPosts = await response.json();
         
@@ -171,7 +171,7 @@ async function loadBlogPosts() {
                 const month = String(postDate.getMonth() + 1).padStart(2, '0');
                 const day = String(postDate.getDate()).padStart(2, '0');
                 const slug = createSlug(post.title);
-                const postUrl = `/produk/${year}/${month}/${day}/${slug}.html`;
+                const postUrl = `/product/${year}/${month}/${day}/${slug}.html`;
                 
                 return `
                     <article class="blog-card">
@@ -202,18 +202,18 @@ async function loadBlogPosts() {
             let paginationHTML = '';
             
             if (currentPage > 1) {
-                paginationHTML += `<a href="/produk/index.html?page=${currentPage - 1}" data-navigo>← Previous</a>`;
+                paginationHTML += `<a href="/product/index.html?page=${currentPage - 1}" data-navigo>← Previous</a>`;
             }
             
             const startPage = Math.max(1, currentPage - 1);
             const endPage = Math.min(totalPages, currentPage + 1);
             
             for (let i = startPage; i <= endPage; i++) {
-                paginationHTML += `<a href="/produk/index.html?page=${i}" ${i === currentPage ? 'class="active"' : ''} data-navigo>${i}</a>`;
+                paginationHTML += `<a href="/product/index.html?page=${i}" ${i === currentPage ? 'class="active"' : ''} data-navigo>${i}</a>`;
             }
             
             if (currentPage < totalPages) {
-                paginationHTML += `<a href="/produk/index.html?page=${currentPage + 1}" data-navigo>Next →</a>`;
+                paginationHTML += `<a href="/product/index.html?page=${currentPage + 1}" data-navigo>Next →</a>`;
             }
             
             pagination.innerHTML = paginationHTML;
@@ -244,13 +244,13 @@ async function loadSinglePost() {
         const pathMatch = window.location.pathname.match(/\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/);
         
         if (!pathMatch) {
-            window.location.href = '/produk/index.html';
+            window.location.href = '/product/index.html';
             return;
         }
         
         const [_, year, month, day, slug] = pathMatch;
         
-        const response = await fetch('/produk/blog_data.json');
+        const response = await fetch('/product/blog_data.json');
         if (!response.ok) throw new Error('Network response was not ok');
         const posts = await response.json();
         
@@ -297,14 +297,14 @@ async function loadSinglePost() {
                     <div class="post-body">
                         ${formatPostContent(post.description)}
                     </div>
-                    <a href="/produk/index.html" class="back-link" data-navigo>← Back to Blog</a>
+                    <a href="/product/index.html" class="back-link" data-navigo>← Back to Blog</a>
                 `;
             }
             
             // Initialize link handling
             initLinkInterception();
         } else {
-            window.location.href = '/produk/index.html';
+            window.location.href = '/product/index.html';
         }
     } catch (error) {
         console.error('Error loading post:', error);
@@ -312,7 +312,7 @@ async function loadSinglePost() {
         if (postContent) {
             postContent.innerHTML = `
                 <div class="error-message">
-                    <p>Post not found. <a href="/produk/index.html" data-navigo>Return to blog</a></p>
+                    <p>Post not found. <a href="/product/index.html" data-navigo>Return to blog</a></p>
                     <p>${error.message}</p>
                 </div>
             `;
