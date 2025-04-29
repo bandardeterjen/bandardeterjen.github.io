@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plain Text to JSON Converter</title>
+    <title>Text to JSON Line Converter</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -108,7 +108,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Plain Text to JSON Converter</h1>
+        <h1>Text to JSON Line Converter</h1>
         
         <div class="input-section">
             <label for="article-input">Input Text:</label>
@@ -116,7 +116,7 @@
         </div>
         
         <div class="button-group">
-            <button id="convert-btn">Convert to JSON</button>
+            <button id="convert-btn">Convert to JSON Line</button>
             <button id="copy-btn" class="copy-btn">Copy Result</button>
             <button id="clear-btn" class="clear-btn">Clear All</button>
         </div>
@@ -147,17 +147,19 @@
                     return;
                 }
                 
-                // Preserve the original line breaks and formatting
-                // Replace multiple newlines with double newlines for paragraphs
-                let formattedText = text.replace(/\n\s*\n/g, '\n\n');
+                // Escape special characters for JSON
+                let jsonText = text
+                    .replace(/\\/g, '\\\\')  // escape backslashes
+                    .replace(/"/g, '\\"')     // escape quotes
+                    .replace(/\n/g, '\\n')    // escape newlines
+                    .replace(/\r/g, '\\r')    // escape carriage returns
+                    .replace(/\t/g, '\\t');   // escape tabs
                 
-                // Create JSON object with just the description
-                const jsonResult = {
-                    description: formattedText
-                };
+                // Create the exact output format requested
+                const jsonLine = `"description": "${jsonText}",`;
                 
-                // Display formatted JSON
-                jsonOutput.value = JSON.stringify(jsonResult, null, 2);
+                // Display the result
+                jsonOutput.value = jsonLine;
             }
             
             function copyToClipboard() {
