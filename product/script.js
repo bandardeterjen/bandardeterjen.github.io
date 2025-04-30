@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function handleRouting() {
+    // Check for single post URLs first
     const urlParams = new URLSearchParams(window.location.search);
     const year = urlParams.get('year');
     const month = urlParams.get('month');
@@ -27,19 +28,47 @@ function handleRouting() {
     const slug = urlParams.get('slug');
     
     if (year && month && day && slug) {
-        // Convert to pretty URL and load post
         const prettyUrl = `/${year}/${month}/${day}/${slug}.html`;
         window.history.replaceState(null, null, prettyUrl);
         loadSinglePost();
     } 
     else if (isPostPage()) {
         loadSinglePost();
-    } 
+    }
+    // Add these lines to handle about and contact pages
+    else if (window.location.pathname.includes('about.html')) {
+        document.querySelector('.nav-links a[href*="about.html"]').classList.add('active');
+    }
+    else if (window.location.pathname.includes('contact.html')) {
+        document.querySelector('.nav-links a[href*="contact.html"]').classList.add('active');
+        initContactForm();
+    }
     else {
         loadBlogPosts();
     }
 }
 
+// Add this new function for contact form handling
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            
+            if (!name || !email || !subject) {
+                alert('Silakan lengkapi semua field yang wajib diisi');
+                return;
+            }
+            
+            alert(`Terima kasih ${name}! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda melalui email ${email}.`);
+            this.reset();
+        });
+    }
+}
 function initSearch() {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
