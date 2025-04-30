@@ -88,7 +88,7 @@ function initSearch() {
         }
         
         try {
-            const response = await fetch('/product/blog_data.json');
+            const response = await fetch('https://bandardeterjen.github.io/product/blog_data.json');
             if (!response.ok) throw new Error('Network response was not ok');
             const posts = await response.json();
             
