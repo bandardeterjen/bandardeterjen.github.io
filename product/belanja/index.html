@@ -856,7 +856,7 @@
         
         // Load products from CSV
         function loadProducts() {
-            fetch('https://bandardeterjen.github.io/product/belanja/daftarproduct.csv')
+            fetch('https://bandardeterjen.github.io/product/belanja/daftarproduk.csv')
                 .then(response => response.text())
                 .then(csvText => {
                     allProducts = parseCSV(csvText);
