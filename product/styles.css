@@ -613,3 +613,15 @@ footer {
         padding: 1rem;
     }
 }
+.submit-btn i {
+    margin-right: 8px;
+}
+
+/* WhatsApp color scheme */
+.submit-btn {
+    background: #25D366;
+}
+
+.submit-btn:hover {
+    background: #128C7E;
+}
