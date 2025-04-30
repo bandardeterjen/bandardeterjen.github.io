@@ -68,41 +68,42 @@
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <h2>Kirim Pesan</h2>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Nomor Telepon</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subjek</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Pilih Subjek</option>
-                                <option value="product">Pertanyaan product</option>
-                                <option value="order">Status Pesanan</option>
-                                <option value="complaint">Keluhan</option>
-                                <option value="partnership">Kemitraan</option>
-                                <option value="other">Lainnya</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Pesan</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Kirim Pesan</button>
-                    </form>
-                </div>
-            </div>
-            
+              <div class="contact-form">
+    <h2>Kirim Pesan</h2>
+    <form id="contactForm" onsubmit="sendToWhatsApp(event)">
+        <div class="form-group">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="phone">Nomor Telepon</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="subject">Subjek</label>
+            <select id="subject" name="subject" required>
+                <option value="">Pilih Subjek</option>
+                <option value="product">Pertanyaan Produk</option>
+                <option value="order">Status Pesanan</option>
+                <option value="complaint">Keluhan</option>
+                <option value="partnership">Kemitraan</option>
+                <option value="other">Lainnya</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="message">Pesan</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+       <button type="submit" class="submit-btn">
+    <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
+</button>
+    </form>
+</div>
+   
             <div class="contact-map">
                 <h2>Lokasi Kami</h2>
                 <div class="map-container">
@@ -150,30 +151,43 @@
         </div>
     </footer>
 
-    <script src="/product/script.js"></script>
+  
     <script>
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            
-            // Simple validation
-            if (!name || !email || !subject) {
-                alert('Silakan lengkapi semua field yang wajib diisi');
-                return;
-            }
-            
-            // Here you would typically send the form data to a server
-            // For this example, we'll just show a success message
-            alert(`Terima kasih ${name}! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda melalui email ${email}.`);
-            
-            // Reset form
-            this.reset();
-        });
-    </script>
+    function sendToWhatsApp(event) {
+        event.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Validate required fields
+        if (!name || !phone || !subject || !message) {
+            alert('Silakan lengkapi semua field yang wajib diisi');
+            return;
+        }
+        
+        // Create WhatsApp message
+        const whatsappMessage = `Halo Bandar Deterjen,\n\nSaya ${name} (${phone}) ingin bertanya tentang:\n\n*Subjek:* ${document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text}\n*Pesan:* ${message}\n\n${email ? `Email: ${email}` : ''}`;
+        
+        // Encode message for URL
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        
+        // Create WhatsApp URL
+        const whatsappUrl = `https://wa.me/6285773009666?text=${encodedMessage}`;
+        
+        // Open WhatsApp in new tab
+        window.open(whatsappUrl, '_blank');
+        
+        // Optional: Reset form after submission
+        // event.target.reset();
+    }
+        document.getElementById('phone').addEventListener('input', function(e) {
+    this.value = this.value.replace(/\D/g, '');
+});
+</script>
+      <script src="/product/script.js"></script>
 </body>
 </html>
