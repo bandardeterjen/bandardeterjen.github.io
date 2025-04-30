@@ -595,8 +595,8 @@
             <!-- Desktop Navigation -->
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="https://bandardeterjen.github.io/produk">Beranda</a></li>
-                    <li><a href="#" class="nav-link active" data-page="home">Produk</a></li>
+                    <li><a href="https://bandardeterjen.github.io/product">Beranda</a></li>
+                    <li><a href="#" class="nav-link active" data-page="home">product</a></li>
                     <li><a href="#" class="nav-link" data-page="guide">Cara Belanja</a></li>
                     <li><a href="#" class="nav-link" data-page="contact">Kontak</a></li>
                 </ul>
@@ -614,8 +614,8 @@
         <span class="close-menu" id="closeMenu">&times;</span>
         <h3>Menu</h3>
         <ul>
-            <li><a href="https://bandardeterjen.github.io/produk" <i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-shopping-cart"></i> Produk</a></li>
+            <li><a href="https://bandardeterjen.github.io/product" <i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-shopping-cart"></i> product</a></li>
             <li><a href="#" class="nav-link" data-page="guide"><i class="fas fa-shopping-bag"></i> Cara Belanja</a></li>
             <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-phone-alt"></i> Kontak</a></li>
         </ul>
@@ -667,7 +667,7 @@
         <!-- Home Page (Products) -->
         <div class="page" id="homePage">
             <div class="search-container">
-                <input type="text" id="search" placeholder="Cari produk...">
+                <input type="text" id="search" placeholder="Cari product...">
             </div>
             
             <div class="products" id="productContainer">
@@ -685,10 +685,10 @@
             <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
                 <h3>Langkah-langkah berbelanja:</h3>
                 <ol style="margin-top: 15px; padding-left: 20px;">
-                    <li style="margin-bottom: 10px;">Pilih produk yang ingin dibeli</li>
+                    <li style="margin-bottom: 10px;">Pilih product yang ingin dibeli</li>
                     <li style="margin-bottom: 10px;">Klik tombol "Tambah ke Keranjang"</li>
                     <li style="margin-bottom: 10px;">Klik ikon keranjang di pojok kiri atas</li>
-                    <li style="margin-bottom: 10px;">Periksa produk di keranjang belanja</li>
+                    <li style="margin-bottom: 10px;">Periksa product di keranjang belanja</li>
                     <li style="margin-bottom: 10px;">Isi formulir checkout dengan data lengkap</li>
                     <li style="margin-bottom: 10px;">Klik "Checkout via WhatsApp"</li>
                     <li style="margin-bottom: 10px;">Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan</li>
@@ -856,7 +856,7 @@
         
         // Load products from CSV
         function loadProducts() {
-            fetch('https://bandardeterjen.github.io/produk/belanja/daftarproduk.csv')
+            fetch('https://bandardeterjen.github.io/product/belanja/daftarproduct.csv')
                 .then(response => response.text())
                 .then(csvText => {
                     allProducts = parseCSV(csvText);
@@ -866,7 +866,7 @@
                 .catch(error => {
                     console.error('Error loading products:', error);
                     productContainer.innerHTML = 
-                        '<div class="no-results">Gagal memuat produk. Silakan coba lagi nanti.</div>';
+                        '<div class="no-results">Gagal memuat product. Silakan coba lagi nanti.</div>';
                 });
         }
         
@@ -900,7 +900,7 @@
             const paginatedProducts = products.slice(startIndex, startIndex + productsPerPage);
             
             if (paginatedProducts.length === 0) {
-                productContainer.innerHTML = '<div class="no-results">Produk tidak ditemukan</div>';
+                productContainer.innerHTML = '<div class="no-results">product tidak ditemukan</div>';
                 return;
             }
 
@@ -911,7 +911,7 @@
                              onerror="this.src='https://via.placeholder.com/300x200?text=Gambar+Tidak+Tersedia'">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">${product.title || 'Produk Tanpa Nama'}</h3>
+                        <h3 class="product-title">${product.title || 'product Tanpa Nama'}</h3>
                         <div class="product-price">${formatRupiah(product.price)}</div>
                         <p class="product-description">${product.description || 'Deskripsi tidak tersedia'}</p>
                         <button class="add-to-cart" data-id="${product.id}">
@@ -1188,7 +1188,7 @@
             }
             
             // Format WhatsApp message
-            let message = `Halo, saya ingin memesan produk berikut:\n\n`;
+            let message = `Halo, saya ingin memesan product berikut:\n\n`;
             message += `Nama: ${name}\n`;
             message += `WhatsApp: ${whatsapp}\n`;
             message += `Alamat: ${address}\n\n`;
