@@ -1081,7 +1081,7 @@
 
         const headers = lines[0].split(',').map(h => h.trim());
         return lines.slice(1).map(line => {
-            const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$/);
             return headers.reduce((obj, header, i) => {
                 let value = values[i] ? values[i].trim() : '';
                 if (value.startsWith('"') && value.endsWith('"')) {
@@ -1143,8 +1143,6 @@
         const selectedResellerNumber = selectedOption.value || defaultWhatsAppNumber;
 
         alert(`Terimakasih, Anda telah memilih ${selectedResellerName} untuk bertransaksi.`);
-
-        // Send order to selected reseller
         sendOrder(selectedResellerNumber);
     }
 
