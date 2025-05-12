@@ -791,7 +791,7 @@
     }
 
     function loadProducts() {
-        fetch('https://bandardeterjen.github.io/product/belanja/daftarproduk.csv ')
+        fetch('https://bandardeterjen.github.io/product/belanja/daftarproduk.csv')
             .then(response => response.text())
             .then(csvText => {
                 allProducts = parseCSV(csvText);
@@ -1061,7 +1061,7 @@
 
     // RESELLER LOADING
     function loadResellers() {
-        fetch('https://bandardeterjen.github.io/product/belanja/daftarreseller.csv ')
+        fetch('https://bandardeterjen.github.io/product/belanja/daftarreseller.csv')
             .then(response => response.text())
             .then(csvText => {
                 resellers = parseResellerCSV(csvText);
