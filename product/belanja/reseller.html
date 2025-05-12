@@ -1040,7 +1040,7 @@
 
     // RESELLER LOADING
     function loadResellers() {
-        fetch('https://bandardeterjen.github.io/product/daftarreseller.csv ')
+        fetch('https://bandardeterjen.github.io/product/belanja/daftarreseller.csv ')
             .then(response => response.text())
             .then(csvText => {
                 resellers = parseResellerCSV(csvText);
