@@ -694,8 +694,30 @@
     const navLinks = document.querySelectorAll('.nav-link');
     const desktopNavLinks = document.querySelectorAll('.desktop-nav .nav-link');
 
-    const resellerSection = document.getElementById('resellerSection');
-    const resellerList = document.getElementById('resellerList');
+    // Create Reseller Select Element
+    const resellerSection = document.createElement('div');
+    resellerSection.className = 'form-group';
+    resellerSection.id = 'resellerSection';
+    resellerSection.style.display = 'none';
+
+    const resellerLabel = document.createElement('label');
+    resellerLabel.setAttribute('for', 'resellerSelect');
+    resellerLabel.textContent = 'Pilih Reseller:';
+    resellerSection.appendChild(resellerLabel);
+
+    const resellerSelect = document.createElement('select');
+    resellerSelect.id = 'resellerSelect';
+    resellerSelect.name = 'reseller';
+    resellerSelect.className = 'form-control';
+    resellerSection.appendChild(resellerSelect);
+
+    // Insert reseller section after address field
+    window.addEventListener('DOMContentLoaded', () => {
+        const addressField = document.querySelector('#customerAddress');
+        if (addressField && !document.getElementById('resellerSection')) {
+            addressField.parentNode.insertBefore(resellerSection, addressField.nextSibling);
+        }
+    });
 
     // Initialize the page
     document.addEventListener('DOMContentLoaded', function () {
@@ -1044,10 +1066,12 @@
             .then(response => response.text())
             .then(csvText => {
                 resellers = parseResellerCSV(csvText);
+                populateResellerDropdown();
             })
             .catch(error => {
                 console.error('Error loading resellers:', error);
                 resellers = [];
+                populateResellerDropdown();
             });
     }
 
@@ -1069,6 +1093,38 @@
         }).filter(r => r.resellernumber && r.resellercity && r.resellername);
     }
 
+    function populateResellerDropdown() {
+        const select = document.getElementById('resellerSelect');
+        select.innerHTML = '';
+
+        if (resellers.length === 0) {
+            const option = document.createElement('option');
+            option.value = defaultWhatsAppNumber;
+            option.textContent = 'Bandar Deterjen (Default)';
+            option.selected = true;
+            select.appendChild(option);
+            resellerSection.style.display = 'none';
+            return;
+        }
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '-- Pilih Reseller --';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        select.appendChild(defaultOption);
+
+        resellers.forEach(reseller => {
+            const option = document.createElement('option');
+            option.value = reseller.resellernumber;
+            option.setAttribute('data-name', reseller.resellername);
+            option.textContent = `${reseller.resellername} (${reseller.resellercity})`;
+            select.appendChild(option);
+        });
+
+        resellerSection.style.display = 'block';
+    }
+
     // CHECKOUT PROCESS WITH RESELLER SELECTION
     function processCheckout(e) {
         e.preventDefault();
@@ -1081,40 +1137,21 @@
             return;
         }
 
-        window.checkoutData = { name, whatsapp, address };
+        const resellerSelect = document.getElementById('resellerSelect');
+        const selectedOption = resellerSelect.options[resellerSelect.selectedIndex];
+        const selectedResellerName = selectedOption.getAttribute('data-name') || 'Bandar Deterjen';
+        const selectedResellerNumber = selectedOption.value || defaultWhatsAppNumber;
 
-        if (resellers.length === 0) {
-            sendOrder(defaultWhatsAppNumber);
-        } else {
-            showResellerOptions();
-        }
-    }
+        alert(`Terimakasih, Anda telah memilih ${selectedResellerName} untuk bertransaksi.`);
 
-    function showResellerOptions() {
-        resellerList.innerHTML = '';
-        resellerSection.style.display = 'block';
-
-        resellers.forEach(reseller => {
-            const html = `
-                <label style="display:block;margin-bottom:10px;">
-                    <input type="radio" name="reseller" value="${reseller.resellernumber}" data-name="${reseller.resellername}">
-                    ${reseller.resellername} (${reseller.resellercity})
-                </label>`;
-            resellerList.innerHTML += html;
-        });
-    }
-
-    function getSelectedReseller() {
-        const selected = document.querySelector('input[name="reseller"]:checked');
-        if (!selected) return null;
-        return {
-            number: selected.value,
-            name: selected.getAttribute('data-name')
-        };
+        // Send order to selected reseller
+        sendOrder(selectedResellerNumber);
     }
 
     function sendOrder(toNumber) {
-        const { name, whatsapp, address } = window.checkoutData;
+        const name = document.getElementById('customerName').value;
+        const whatsapp = document.getElementById('customerWhatsApp').value;
+        const address = document.getElementById('customerAddress').value;
 
         let message = `Halo, saya ingin memesan produk berikut:\n`;
         message += `Nama: ${name}\n`;
