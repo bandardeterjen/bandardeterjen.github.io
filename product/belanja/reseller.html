@@ -791,7 +791,7 @@
     }
 
     function loadProducts() {
-        fetch('https://bandardeterjen.github.io/product/belanja/daftarproduk.csv')
+        fetch('https://bandardeterjen.github.io/product/belanja/daftarproduk.csv ')
             .then(response => response.text())
             .then(csvText => {
                 allProducts = parseCSV(csvText);
@@ -805,16 +805,18 @@
     }
 
     function parseCSV(csv) {
-        const lines = csv.split('\n').filter(line => line.trim() !== '');
+        csv = csv.trim(); // Trim leading/trailing whitespace
+        const lines = csv.split(/\r?\n/).filter(line => line.trim());
         if (lines.length <= 1) return [];
 
         const headers = lines[0].split(',').map(h => h.trim());
+
         return lines.slice(1).map(line => {
-            const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            const values = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
             return headers.reduce((obj, header, i) => {
                 let value = values[i] ? values[i].trim() : '';
-                if (value.startsWith('"') && value.endsWith('"')) {
-                    value = value.slice(1, -1);
+                if (/^".*"$/.test(value)) {
+                    value = value.substring(1, value.length - 1); // Remove quotes
                 }
                 obj[header] = value;
                 return obj;
@@ -834,6 +836,7 @@
             productContainer.innerHTML = '<div class="no-results">Produk tidak ditemukan</div>';
             return;
         }
+
         productContainer.innerHTML = paginatedProducts.map(product => `
             <div class="product">
                 <div class="product-img-container">
@@ -870,36 +873,8 @@
         prevBtn.addEventListener('click', () => changePage(currentPage - 1));
         pagination.appendChild(prevBtn);
 
-        let startPage, endPage;
-        const halfVisible = Math.floor(maxVisiblePages / 2);
-
-        if (pageCount <= maxVisiblePages) {
-            startPage = 1;
-            endPage = pageCount;
-        } else {
-            if (currentPage <= halfVisible + 1) {
-                startPage = 1;
-                endPage = maxVisiblePages;
-            } else if (currentPage >= pageCount - halfVisible) {
-                startPage = pageCount - maxVisiblePages + 1;
-                endPage = pageCount;
-            } else {
-                startPage = currentPage - halfVisible;
-                endPage = currentPage + halfVisible;
-            }
-        }
-
-        if (startPage > 1) {
-            const firstPageBtn = document.createElement('button');
-            firstPageBtn.textContent = 1;
-            firstPageBtn.addEventListener('click', () => changePage(1));
-            pagination.appendChild(firstPageBtn);
-            if (startPage > 2) {
-                const ellipsis = document.createElement('span');
-                ellipsis.textContent = '...';
-                pagination.appendChild(ellipsis);
-            }
-        }
+        let startPage = Math.max(1, currentPage - 1);
+        let endPage = Math.min(pageCount, currentPage + 1);
 
         for (let i = startPage; i <= endPage; i++) {
             const pageBtn = document.createElement('button');
@@ -907,18 +882,6 @@
             if (i === currentPage) pageBtn.classList.add('active');
             pageBtn.addEventListener('click', () => changePage(i));
             pagination.appendChild(pageBtn);
-        }
-
-        if (endPage < pageCount) {
-            if (endPage < pageCount - 1) {
-                const ellipsis = document.createElement('span');
-                ellipsis.textContent = '...';
-                pagination.appendChild(ellipsis);
-            }
-            const lastPageBtn = document.createElement('button');
-            lastPageBtn.textContent = pageCount;
-            lastPageBtn.addEventListener('click', () => changePage(pageCount));
-            pagination.appendChild(lastPageBtn);
         }
 
         const nextBtn = document.createElement('button');
@@ -1061,7 +1024,7 @@
 
     // RESELLER LOADING
     function loadResellers() {
-        fetch('https://bandardeterjen.github.io/product/belanja/daftarreseller.csv')
+        fetch('https://bandardeterjen.github.io/product/belanja/daftarreseller.csv ')
             .then(response => response.text())
             .then(csvText => {
                 resellers = parseResellerCSV(csvText);
@@ -1075,16 +1038,17 @@
     }
 
     function parseResellerCSV(csv) {
-        const lines = csv.split('\n').filter(line => line.trim() !== '');
+        csv = csv.trim();
+        const lines = csv.split(/\r?\n/).filter(line => line.trim());
         if (lines.length <= 1) return [];
 
         const headers = lines[0].split(',').map(h => h.trim());
         return lines.slice(1).map(line => {
-            const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$/);
+            const values = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
             return headers.reduce((obj, header, i) => {
                 let value = values[i] ? values[i].trim() : '';
-                if (value.startsWith('"') && value.endsWith('"')) {
-                    value = value.slice(1, -1);
+                if (/^".*"$/.test(value)) {
+                    value = value.substring(1, value.length - 1);
                 }
                 obj[header] = value;
                 return obj;
@@ -1124,7 +1088,6 @@
         resellerSection.style.display = 'block';
     }
 
-    // CHECKOUT PROCESS WITH RESELLER SELECTION
     function processCheckout(e) {
         e.preventDefault();
         const name = document.getElementById('customerName').value;
@@ -1142,6 +1105,7 @@
         const selectedResellerNumber = selectedOption.value || defaultWhatsAppNumber;
 
         alert(`Terimakasih, Anda telah memilih ${selectedResellerName} untuk bertransaksi.`);
+
         sendOrder(selectedResellerNumber);
     }
 
@@ -1174,5 +1138,6 @@
         resellerSection.style.display = 'none';
     }
 </script>
+    
 </body>
 </html>
