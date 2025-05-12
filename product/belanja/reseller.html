@@ -694,22 +694,8 @@
     const navLinks = document.querySelectorAll('.nav-link');
     const desktopNavLinks = document.querySelectorAll('.desktop-nav .nav-link');
 
-    const resellerSection = document.createElement('div');
-    resellerSection.className = 'form-group';
-    resellerSection.id = 'resellerSection';
-    resellerSection.style.display = 'none';
-
-    const resellerList = document.createElement('div');
-    resellerList.id = 'resellerList';
-    resellerSection.appendChild(resellerList);
-
-    // Insert reseller section after address field
-    window.addEventListener('DOMContentLoaded', () => {
-        const addressField = document.querySelector('#customerAddress');
-        if (addressField && !document.getElementById('resellerSection')) {
-            addressField.parentNode.insertBefore(resellerSection, addressField.nextSibling);
-        }
-    });
+    const resellerSection = document.getElementById('resellerSection');
+    const resellerList = document.getElementById('resellerList');
 
     // Initialize the page
     document.addEventListener('DOMContentLoaded', function () {
@@ -1108,30 +1094,23 @@
         resellerList.innerHTML = '';
         resellerSection.style.display = 'block';
 
-        const label = document.createElement('label');
-        label.textContent = 'Pilih Reseller:';
-        resellerList.appendChild(label);
-
         resellers.forEach(reseller => {
-            const container = document.createElement('div');
-            container.style.marginBottom = '10px';
-            container.innerHTML = `
-                <label style="display:block;">
+            const html = `
+                <label style="display:block;margin-bottom:10px;">
                     <input type="radio" name="reseller" value="${reseller.resellernumber}" data-name="${reseller.resellername}">
                     ${reseller.resellername} (${reseller.resellercity})
                 </label>`;
-            resellerList.appendChild(container);
+            resellerList.innerHTML += html;
         });
+    }
 
-        // Automatically submit after selection
-        resellerList.addEventListener('change', function () {
-            const selected = document.querySelector('input[name="reseller"]:checked');
-            if (!selected) return;
-
-            const resellerName = selected.getAttribute('data-name');
-            alert(`Terimakasih, Anda telah memilih ${resellerName} untuk bertransaksi.`);
-            sendOrder(selected.value);
-        });
+    function getSelectedReseller() {
+        const selected = document.querySelector('input[name="reseller"]:checked');
+        if (!selected) return null;
+        return {
+            number: selected.value,
+            name: selected.getAttribute('data-name')
+        };
     }
 
     function sendOrder(toNumber) {
