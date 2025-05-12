@@ -806,6 +806,8 @@
 
     function parseCSV(csv) {
         const lines = csv.split('\n').filter(line => line.trim() !== '');
+        if (lines.length <= 1) return [];
+
         const headers = lines[0].split(',').map(h => h.trim());
         return lines.slice(1).map(line => {
             const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
@@ -937,13 +939,10 @@
 
     function filterProducts() {
         const searchTerm = searchInput.value.toLowerCase();
-        const filtered = allProducts.filter(product =>
+        return allProducts.filter(product =>
             (product.title && product.title.toLowerCase().includes(searchTerm)) ||
             (product.description && product.description.toLowerCase().includes(searchTerm))
         );
-        displayProducts(filtered, 1);
-        setupPagination(filtered);
-        return filtered;
     }
 
     // CART FUNCTIONS
@@ -1168,7 +1167,6 @@
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/ ${toNumber}?text=${encodedMessage}`, '_blank');
 
-        // Clear cart
         cart = [];
         localStorage.removeItem('cart');
         updateCartUI();
