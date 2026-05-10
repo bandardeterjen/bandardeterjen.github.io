@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Katalog Resep Industri Kreatif</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+        
+        /* Transitions */
+        #sidebar { transition: width 0.3s ease-in-out; }
+        .sidebar-closed #sidebar { width: 0; overflow: hidden; border-right-width: 0; }
+        .sidebar-closed #toggle-icon { transform: rotate(0deg); }
+        #toggle-icon { transform: rotate(180deg); transition: transform 0.3s; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <div id="app" class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-80 bg-white border-r border-slate-200 flex flex-col shrink-0">
+            <div class="p-4 border-b border-slate-100 bg-white sticky top-0 z-10">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-indigo-600 p-2 rounded-lg text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </div>
+                    <h1 class="font-bold text-lg text-slate-800 tracking-tight">E-Katalog Resep</h1>
+                </div>
+                <div class="relative">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        placeholder="Cari resep..." 
+                        class="w-full pl-10 pr-4 py-2 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 transition-all outline-none"
+                    >
+                </div>
+            </div>
+
+            <div id="recipe-list" class="flex-1 overflow-y-auto py-2 custom-scrollbar">
+                <!-- List items injected here -->
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col min-w-0 relative">
+            <!-- Header -->
+            <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-20">
+                <button id="sidebar-toggle" class="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors">
+                    <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <div id="header-label" class="text-xs font-medium text-slate-400 uppercase tracking-widest">
+                    Instruksi Detail
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div id="content-area" class="flex-1 overflow-y-auto p-6 md:p-10 scroll-smooth">
+                <div id="recipe-container" class="max-w-3xl mx-auto">
+                    <!-- Recipe Content injected here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const ALL_TITLES = [
+            "Cara Membuat Air Aki Isi Ulang", "Cara Membuat Air Aki Zuur", "Cara Membuat Anti Noda Pakaian Vanish",
+            "Cara Membuat Asam Cuka dari Air Kelapa", "Cara Membuat Astringent Lotion", "Cara Membuat Balsam Gosok",
+            "Cara Membuat Bedak Powder", "Cara Membuat Bedak Salicyl", "Cara Membuat Bibit Nata de Coco",
+            "Cara Membuat Blau Padat", "Cara Membuat Cat Dinding", "Cara Membuat Cat Kayu dan Besi",
+            "Cara Membuat Cetakan Sabun Dari Silicon Rubber", "Cara Membuat Compound Mobil Wangi",
+            "Cara Membuat Conditoner Rambut", "Cara Membuat Crayon Pewarna", "Cara Membuat Cream Obat Gosok",
+            "Cara Membuat Day Cream", "Cara Membuat Dempul Kayu", "Cara Membuat Deterjen Bubuk",
+            "Cara Membuat Deterjen Cair Oxyclean", "Cara Membuat Deterjen Cair Serbaguna",
+            "Cara Membuat Extoliating Gel Body Spa awww", "Cara Membuat Extoliating Spray",
+            "Cara Membuat Gel Rambut", "Cara Membuat Hand & Body Lotion 1", "Cara Membuat Hand & Body Lotion 2",
+            "Cara Membuat Hand Sanitizer Gel", "Cara Membuat Hari And Body Mist", "Cara Membuat Jelly Parfum Ruangan",
+            "Cara Membuat Karbel Sereh Putih Susu", "Cara Membuat Karbol Wangi", "Cara Membuat Lem Kertas",
+            "Cara Membuat Lem Lalat", "Cara Membuat Lem Putih", "Cara Membuat Lem Sol Sepatu",
+            "Cara Membuat Lem Tikus", "Cara Membuat Lilin Aroma dari Jelantah", "Cara Membuat Lotion Anti Nyamuk",
+            "Cara Membuat Lulur Mandi", "Cara Membuat Masker Gelatin Charcoal", "Cara Membuat Masker Rambut",
+            "Cara Membuat Masker Wajah", "Cara Membuat Meni Cat Dasar", "Cara Membuat Minyak Angin Freshcare",
+            "Cara Membuat Minyak Pijat", "Cara Membuat Minyak Rambut Kemiri", "Cara Membuat Minyak Rambut Pomade",
+            "Cara Membuat Minyak Rambut Pomade Wax", "Cara Membuat Minyak Telon", "Cara Membuat Molto Pelembut Pewangi Cucian",
+            "Cara Membuat Nata de Coco Tanpa Urea", "Cara Membuat Night Cream", "Cara Membuat Obat Anti Bau Badan",
+            "Cara Membuat Obat Kumur", "Cara Membuat Obat Kutu Rambut", "Cara Membuat Obat Nyamuk Bakar",
+            "Cara Membuat Obat Nyamuk Cair", "Cara Membuat Parfum Badan Non Alkohol", "Cara Membuat Parfum Laundry",
+            "Cara Membuat Parfum Mobil", "Cara Membuat Parfum Oles", "Cara Membuat Parfum Oles Roll On",
+            "Cara Membuat Parfum Pakaian", "Cara Membuat Pasir Warna", "Cara Membuat Pasta Anti Air Untuk Sepatu",
+            "Cara Membuat Pasta Gigi Odol", "Cara Membuat Peeling Cream", "Cara Membuat Pelicin Setrika Bening",
+            "Cara Membuat Pelicin Setrika Putih Susu", "Cara Membuat Pembersih Kaca", "Cara Membuat Pembersih Kerak Kamar Mandi",
+            "Cara Membuat Pembersih Mesin Cuci", "Cara Membuat Pemutih Pakaian Sejenis B@yclin",
+            "Cara Membuat Pengelupas Cat", "Cara Membuat Pengharum Pengusir Tikus", "Cara Membuat Penghilang Kutek Kuku",
+            "Cara Membuat Penghitam Dashboard dan Ban", "Cara Membuat Pengkilap Mobil", "Cara Membuat Pengkilap Mobil Tanpa Silicon Emulsi",
+            "Cara Membuat Pengusir Serangga", "Cara Membuat Plastisin Mainan", "Cara Membuat Plitur",
+            "Cara Membuat Power-X Pembersih Perlengkapan Rumah Tangga", "Cara Membuat Sabun Anti Jerawat",
+            "Cara Membuat Sabun Batangan Pembersih Angus Perabotan Dapur", "Cara Membuat Sabun Bubuk Untuk Tandon Dan Galon Air",
+            "Cara Membuat Sabun Cair untuk Wajah Fresh Cool", "Cara Membuat Sabun Charcoal", "Cara Membuat Sabun Colek",
+            "Cara Membuat Sabun Jelly Krim", "Cara Membuat Sabun Mandi Batang Transparan", "Cara Membuat Sabun Transparan",
+            "Cara Membuat Sanitizer Cair Spray", "Cara Membuat Sanitizer Non Alkohol", "Cara Membuat Semir Ban Mijel",
+            "Cara Membuat Semir Jaket dan Tas Kulit", "Cara Membuat Semir Sepatu Cair", "Cara Membuat Semir Sepatu Padat",
+            "Cara Membuat Serum Wajah", "Cara Membuat Shampo Hewan Piaraan", "Cara Membuat Shampo Rambut",
+            "Cara Membuat Shampoo Mobil Ice Cream", "Cara Membuat Shower Gel", "Cara Membuat Skin Tonic Lotion",
+            "Cara Membuat Soap Base", "Cara Membuat Softergent Deterjen Plus Pelembut Pakaian",
+            "Cara Membuat Soothing Skin Care", "Cara Membuat Sterno Spiritus Padat", "Cara Membuat Sun Block Tabir Surya",
+            "Cara Membuat Super Pel Lantai", "Cara Membuat Un-yellowing Midsole Sepatu",
+            "Cara Membuat Vanishing Cream Glowing", "Cara Membuat Water Coolant Radiator"
+        ];
+
+        const RECIPE_DETAILS = {
+            "Cara Membuat Air Aki Isi Ulang": {
+                subtitle: "Botol Bertutup dan Berstiker Biru",
+                bahan: ["Aqua DM 300 ml", "Air isi ulang 700 ml", "EDTA 2 gr"],
+                alat: ["Ember", "Pengaduk"],
+                steps: [
+                    "Masukkan Aqua DM ke dalam wadah",
+                    "Tambahkan Air isi ulang secara perlahan sambil diaduk hingga rata",
+                    "Masukkan EDTA sambil diaduk perlahan hingga rata",
+                    "Biarkan hasil larutan selama 2-3 jam agar terjadi penyatuan antar bahan secara sempurna",
+                    "Kemas dengan botol bertutup and berstiker warna biru"
+                ],
+                footer: "(Resep 1)"
+            },
+            "Cara Membuat Air Aki Zuur": {
+                subtitle: "Botol Bertutup dan Berstiker Merah",
+                bahan: ["Air isi ulang 640 ml", "Asam sulfat 360 ml", "EDTA 2 gr"],
+                alat: ["Ember", "Pengaduk"],
+                steps: [
+                    "Masukkan air isi ulang ke dalam wadah",
+                    "Tambahkan Asam sulfat secara perlahan sambil diaduk hingga rata",
+                    "Masukkan EDTA sambil diaduk perlahan hingga rata",
+                    "Biarkan hasil larutan selama 2-3 jam agar terjadi penyatuan antar bahan secara sempurna",
+                    "Kemas dengan botol bertutup dan berstiker warna merah"
+                ],
+                note: "Menggunakan aquadest lebih bagus dibanding air isi ulang",
+                footer: "(Resep 2)"
+            },
+            "Cara Membuat Anti Noda Pakaian Vanish": {
+                bahan: [
+                    "H202 50 persen 1 L (pengangkat noda & antiseptik)",
+                    "NP 10 100 ml (pencampur parfum dengan air)",
+                    "Bibit parfum 50 ml (pengharum)",
+                    "Air 10 L"
+                ],
+                alat: ["Bak air ukuran 20 liter", "Gelas", "Pengaduk kayu", "Sendok"],
+                steps: [
+                    "Larutkan H202 dengan air 10 liter dalam bak air, aduk sampai benar-benar larut",
+                    "Campurkan NP-10 dengan parfum dalam gelas, aduk rata",
+                    "Campurkan larutan parfum ke bak air utama, aduk rata",
+                    "KEMAS DENGAN BOTOL SEJENIS JERIGEN AGAR LEBIH KUAT"
+                ],
+                warning: "BAHAN BERBAHAYA, JANGAN TERKENA TANGAN DAN BAGIAN TUBUH LAINNYA",
+                footer: "(Resep 3)"
+            },
+            "Cara Membuat Asam Cuka dari Air Kelapa": {
+                bahan: ["Air kelapa tua 5 liter", "Starter mikroba (fermipan) 10 gr", "Gula pasir 1 kg"],
+                alat: ["Panci", "Pengaduk", "Toples kaca bertutup steril", "PH meter", "Kompor"],
+                steps: [
+                    "Siapkan 5 liter air kelapa yang telah saring, kemudian rebus hingga mendidih.",
+                    "Biarkan menjadi dingin.",
+                    "Tambahkan gula pasir, aduk hingga larut",
+                    "Masukkan starter mikroba, aduk hingga rata",
+                    "Simpan di toples kaca bertutup untuk difermentasikan.",
+                    "Letakkan di tempat gelap (selama 4 hari tidak boleh dibuka tutupnya)",
+                    "Hari ke 5 buka tutupnya selama 5 menit untuk menambah oksigen, tutup lagi untuk melanjutkan fermentasi",
+                    "Hari ke 9 bahan diukur dengan PH meter. Jika kadar asam asetat > 1, cuka berhasil.",
+                    "Kemas dengan botol yang steril (higienis)"
+                ],
+                benefits: ["Melezatkan makanan", "Mengontrol gula darah", "Menurunkan kolesterol", "Membasmi bakteri"],
+                footer: "(Resep 4)"
+            },
+            "Cara Membuat Astringent Lotion": {
+                bahan: [
+                    "Sulfat zinc 4 gr (menghilangkan jerawat)",
+                    "Glycerin 40 cc (melembabkan, anti-keriput, mencerahkan)",
+                    "Tawas 3 gr (menyerap kotoran dan racun)",
+                    "Air panas 300 cc",
+                    "Alkohol 70% 40 cc",
+                    "Bibit minyak wangi 5 cc"
+                ],
+                alat: ["Mangkok", "Panci kecil", "Sendok makan"],
+                steps: [
+                    "Sulfat zinc dilarutkan dengan Glycerin (a)",
+                    "Tawas dihancurkan sampai halus, larutkan dalam air (b)",
+                    "Campurkan larutan (a) dan (b), aduk rata (c)",
+                    "Larutkan Bibit minyak wangi dengan Alkohol (d)",
+                    "Campurkan (c) dan (d), aduk rata",
+                    "Diamkan 1-2 jam untuk proses penyatuan",
+                    "Kemas dengan botol fliptop"
+                ],
+                usage: "Tuang di kapas, oleskan ke wajah dengan ditepuk-tepuk. Tunggu kering sebelum skincare lain.",
+                footer: "(Resep 5)"
+            },
+            "Cara Membuat Balsam Gosok": {
+                subtitle: "Sejenis Caplang",
+                bahan: [
+                    "Vaselin putih (petroleum jelly) 200 gr",
+                    "Menthol Kristal 10 gr",
+                    "Kamper Kristal 10 gr",
+                    "Minyak Gandapura 50 cc",
+                    "Minyak Pepermint 10 cc",
+                    "Bibit Minyak Wangi 10 cc"
+                ],
+                alat: ["Panci besar", "Panci kecil (untuk tim)", "Sendok", "Gelas", "Kain tipis"],
+                steps: [
+                    "Cairkan vaselin putih dengan cara ditim (a)",
+                    "Tumbuk Menthol & Kamper Kristal sampai halus dalam gelas (b)",
+                    "Larutkan Minyak Pepermint pada Minyak Gandapura (c)",
+                    "Masukkan campuran (b) dan (c) ke larutan (a), tetap ditim sambil diaduk",
+                    "Angkat, masukkan bibit parfum saat masih panas, aduk rata",
+                    "Saring dengan kain tipis, masukkan ke cepuk bedak / stoples mini",
+                    "Biarkan dingin dan padat"
+                ],
+                warning: "Untuk anak < 7 tahun, buat tanpa Minyak Pepermint (sejenis Vicks Vaporub).",
+                footer: "(Resep 6)"
+            },
+            "Cara Membuat Bedak Powder": {
+                bahan: [
+                    "Magnesium carbonat 50 gr (elastisitas kulit)",
+                    "Bibit minyak wangi 10 cc",
+                    "Caoline 200 gr (mencerahkan, anti-iritasi)",
+                    "Titaan dioxid 50 gr (perlindungan UV)",
+                    "Bahan warna bedak secukupnya",
+                    "Tepung talc 600 gr (mencegah ruam)"
+                ],
+                alat: ["Mangkok", "Panci kecil", "Sendok makan"],
+                steps: [
+                    "Campur Magnesium carbonat dengan bibit wangi (a)",
+                    "Campur Caoline, Titan dioxid, dan pewarna sampai rata (b)",
+                    "Masukkan hasil (a) ke (b)",
+                    "Masukkan tepung talc sambil diaduk hingga merata",
+                    "Kemas"
+                ],
+                note: "Magnesium carbonat juga bisa untuk pasta gigi. Caoline juga untuk pengental sabun cream.",
+                footer: "(Resep 8)"
+            },
+            "Cara Membuat Bedak Salicyl": {
+                bahan: [
+                    "Asam salisilat 3 gr (mengatasi biang keringat)",
+                    "Talc 97 gr (menjaga kulit kering)",
+                    "Alkohol 70% 90 ml (meredakan nyeri)",
+                    "Menthol oil 1 tetes (pendinginan)"
+                ],
+                alat: ["Ember", "Pengaduk", "Ayakan halus (ukuran 60)"],
+                steps: [
+                    "Timbang talc 97 gram",
+                    "Larutkan Asam salisilat dengan alkohol, campur dengan sedikit talc",
+                    "Aduk sampai benar-benar kering dan homogen",
+                    "Campurkan sisa talc, aduk rata",
+                    "Tambahkan menthol oil, aduk rata",
+                    "Ayak dengan ayakan paling halus",
+                    "Kemas dalam cepuk bedak"
+                ],
+                usage: "Taburkan 1-2 kali sehari pada kulit gatal atau biang keringat.",
+                footer: "(Resep 9)"
+            },
+            "Cara Membuat Bibit Nata de Coco": {
+                subtitle: "Sebagai starter atau biang",
+                bahan: ["Nanas matang kupas 600 gr", "Air masak 300 gr", "Gula pasir 100 gr"],
+                alat: ["Blender", "Saringan", "Corong", "Baskom", "Botol kaca bening", "Kain bersih"],
+                steps: [
+                    "Kupas nanas, cuci, potong kecil-kecil",
+                    "Blender nanas sampai halus",
+                    "Saring jus nanas, peras sampai kering (ampas bisa untuk selai)",
+                    "Campur sari nanas dengan air dan gula, aduk rata",
+                    "Tuang ke botol bening menggunakan corong",
+                    "Tutup mulut botol dengan kain bersih, ikat kuat",
+                    "Simpan di suhu ruang selama 2-3 minggu",
+                    "Cek: Jika ada lapisan putih di atas, bibit sudah jadi"
+                ],
+                footer: "(Resep 10)"
+            }
+        };
+
+        // State
+        let state = {
+            searchTerm: "",
+            selectedTitle: ALL_TITLES[0],
+            isSidebarOpen: true
+        };
+
+        // DOM Elements
+        const recipeListEl = document.getElementById('recipe-list');
+        const recipeContainerEl = document.getElementById('recipe-container');
+        const searchInputEl = document.getElementById('search-input');
+        const sidebarToggleBtn = document.getElementById('sidebar-toggle');
+        const headerLabelEl = document.getElementById('header-label');
+
+        function renderList() {
+            const filtered = ALL_TITLES.filter(t => t.toLowerCase().includes(state.searchTerm.toLowerCase()));
+            recipeListEl.innerHTML = '';
+            
+            if (filtered.length === 0) {
+                recipeListEl.innerHTML = `<div class="p-8 text-center text-slate-400 text-sm">Tidak ada hasil ditemukan.</div>`;
+                return;
+            }
+
+            filtered.forEach(title => {
+                const btn = document.createElement('button');
+                const isActive = state.selectedTitle === title;
+                const hasData = !!RECIPE_DETAILS[title];
+
+                btn.className = `w-full text-left px-4 py-3 text-sm flex items-center justify-between transition-colors
+                    ${isActive ? 'bg-indigo-50 text-indigo-700 font-semibold border-r-4 border-indigo-600' : 'text-slate-600 hover:bg-slate-50'}`;
+                
+                btn.innerHTML = `
+                    <span class="truncate pr-2">${title.replace("Cara Membuat ", "")}</span>
+                    ${hasData ? '<div class="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0"></div>' : ''}
+                `;
+                
+                btn.onclick = () => {
+                    state.selectedTitle = title;
+                    renderContent();
+                    renderList();
+                };
+                recipeListEl.appendChild(btn);
+            });
+        }
+
+        function renderContent() {
+            const data = RECIPE_DETAILS[state.selectedTitle];
+            headerLabelEl.innerText = data ? 'Instruksi Detail' : 'Coming Soon';
+
+            if (!data) {
+                recipeContainerEl.innerHTML = `
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2 leading-tight">${state.selectedTitle}</h2>
+                    <div class="mt-20 flex flex-col items-center justify-center text-center p-10 bg-white rounded-[3rem] shadow-sm border border-slate-100">
+                        <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6 text-slate-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-700 mb-2">Konten Belum Tersedia</h3>
+                        <p class="text-slate-400 text-sm max-w-sm">
+                            Resep untuk <span class="font-semibold text-slate-500">"${state.selectedTitle}"</span> sedang dalam tahap penyusunan.
+                        </p>
+                        <div class="mt-8">
+                            <button onclick="gotoSample()" class="px-6 py-2 bg-indigo-600 text-white rounded-full text-sm font-semibold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                                Buka Resep Contoh
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            recipeContainerEl.innerHTML = `
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2 leading-tight">${state.selectedTitle}</h2>
+                <div class="space-y-8 mt-6">
+                    ${data.subtitle ? `
+                        <p class="text-xl text-indigo-600 font-medium italic border-l-4 border-indigo-200 pl-4 py-1">"${data.subtitle}"</p>
+                    ` : ''}
+
+                    ${data.warning ? `
+                        <div class="flex items-start gap-4 p-4 bg-red-50 border border-red-100 rounded-2xl text-red-700">
+                            <svg class="w-5 h-5 shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <div class="text-sm font-semibold">${data.warning}</div>
+                        </div>
+                    ` : ''}
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <section class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                            <div class="flex items-center gap-2 mb-4 text-indigo-600">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h15"></path><path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3"></path><path d="M6 14h12"></path></svg>
+                                <h3 class="font-bold uppercase text-xs tracking-widest">Bahan-Bahan</h3>
+                            </div>
+                            <ul class="space-y-3">
+                                ${data.bahan.map((item, idx) => `
+                                    <li class="text-slate-600 text-sm flex gap-3">
+                                        <span class="w-5 h-5 bg-indigo-50 rounded-full flex items-center justify-center text-[10px] font-bold text-indigo-600 shrink-0 mt-0.5">${idx + 1}</span>
+                                        ${item}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </section>
+
+                        <section class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                            <div class="flex items-center gap-2 mb-4 text-emerald-600">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.77 3.77z"></path></svg>
+                                <h3 class="font-bold uppercase text-xs tracking-widest">Alat</h3>
+                            </div>
+                            <ul class="space-y-3">
+                                ${data.alat.map(item => `
+                                    <li class="text-slate-600 text-sm flex items-center gap-3">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+                                        ${item}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </section>
+                    </div>
+
+                    <section class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100">
+                        <div class="flex items-center gap-2 mb-6 text-slate-800">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                            <h3 class="font-bold uppercase text-xs tracking-widest">Langkah Pembuatan</h3>
+                        </div>
+                        <div class="space-y-6">
+                            ${data.steps.map((step, idx) => `
+                                <div class="flex gap-4 group">
+                                    <div class="relative">
+                                        <div class="w-8 h-8 rounded-xl bg-slate-100 text-slate-500 font-bold text-sm flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                                            ${idx + 1}
+                                        </div>
+                                        ${idx !== data.steps.length - 1 ? '<div class="absolute top-8 left-1/2 -translate-x-1/2 w-0.5 h-full bg-slate-100 mt-2"></div>' : ''}
+                                    </div>
+                                    <p class="text-slate-600 text-sm md:text-base pt-1 flex-1 leading-relaxed">${step}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    ${(data.note || data.usage || data.benefits) ? `
+                        <div class="grid gap-6">
+                            ${data.note ? `
+                                <div class="bg-amber-50 p-4 rounded-2xl border border-amber-100 flex gap-3 text-amber-800">
+                                    <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                    <p class="text-sm italic"><span class="font-bold">Catatan:</span> ${data.note}</p>
+                                </div>
+                            ` : ''}
+                            ${data.usage ? `
+                                <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100">
+                                    <h4 class="font-bold text-blue-800 text-xs uppercase tracking-widest mb-2">Cara Pakai</h4>
+                                    <p class="text-sm text-blue-700 leading-relaxed">${data.usage}</p>
+                                </div>
+                            ` : ''}
+                            ${data.benefits ? `
+                                <div class="bg-indigo-50 p-5 rounded-2xl border border-indigo-100">
+                                    <h4 class="font-bold text-indigo-800 text-xs uppercase tracking-widest mb-2">Manfaat & Kegunaan</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${data.benefits.map(b => `<span class="px-3 py-1 bg-white rounded-full text-xs font-medium text-indigo-600 shadow-sm">${b}</span>`).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+
+                    <div class="text-center py-10 opacity-30 select-none">
+                        <div class="h-px bg-slate-300 w-full mb-4"></div>
+                        <p class="text-xs font-mono">${data.footer}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function gotoSample() {
+            state.selectedTitle = "Cara Membuat Air Aki Isi Ulang";
+            renderList();
+            renderContent();
+        }
+
+        // Event Listeners
+        searchInputEl.oninput = (e) => {
+            state.searchTerm = e.target.value;
+            renderList();
+        };
+
+        sidebarToggleBtn.onclick = () => {
+            state.isSidebarOpen = !state.isSidebarOpen;
+            document.body.classList.toggle('sidebar-closed', !state.isSidebarOpen);
+        };
+
+        // Initialize
+        renderList();
+        renderContent();
+    </script>
+</body>
+</html>
