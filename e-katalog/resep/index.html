@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Katalog Resep Industri Kreatif</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+        
+        /* Transitions */
+        #sidebar { transition: width 0.3s ease-in-out; }
+        .sidebar-closed #sidebar { width: 0; overflow: hidden; border-right-width: 0; }
+        .sidebar-closed #toggle-icon { transform: rotate(0deg); }
+        #toggle-icon { transform: rotate(180deg); transition: transform 0.3s; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <div id="app" class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-80 bg-white border-r border-slate-200 flex flex-col shrink-0">
+            <div class="p-4 border-b border-slate-100 bg-white sticky top-0 z-10">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-indigo-600 p-2 rounded-lg text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </div>
+                    <h1 class="font-bold text-lg text-slate-800 tracking-tight">E-Katalog Resep</h1>
+                </div>
+                <div class="relative">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        placeholder="Cari resep..." 
+                        class="w-full pl-10 pr-4 py-2 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 transition-all outline-none"
+                    >
+                </div>
+            </div>
+
+            <div id="recipe-list" class="flex-1 overflow-y-auto py-2 custom-scrollbar">
+                <!-- List resep -->
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col min-w-0 relative">
+            <!-- Header -->
+            <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-20">
+                <button id="sidebar-toggle" class="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors">
+                    <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <div id="header-label" class="text-xs font-medium text-slate-400 uppercase tracking-widest">
+                    Instruksi Detail
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div id="content-area" class="flex-1 overflow-y-auto p-6 md:p-10 scroll-smooth">
+                <div id="recipe-container" class="max-w-3xl mx-auto">
+                    <!-- Konten resep -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const ALL_TITLES = [
+            "Cara Membuat Air Aki Isi Ulang", "Cara Membuat Air Aki Zuur", "Cara Membuat Anti Noda Pakaian Vanish",
+            "Cara Membuat Asam Cuka dari Air Kelapa", "Cara Membuat Astringent Lotion", "Cara Membuat Balsam Gosok",
+            "Cara Membuat Bedak Powder", "Cara Membuat Bedak Salicyl", "Cara Membuat Bibit Nata de Coco",
+            "Cara Membuat Blau Padat", "Cara Membuat Cat Dinding", "Cara Membuat Cat Kayu dan Besi",
+            "Cara Membuat Cetakan Sabun Dari Silicon Rubber", "Cara Membuat Compound Mobil Wangi",
+            "Cara Membuat Conditoner Rambut", "Cara Membuat Crayon Pewarna", "Cara Membuat Cream Obat Gosok",
+            "Cara Membuat Day Cream", "Cara Membuat Dempul Kayu", "Cara Membuat Deterjen Bubuk",
+            "Cara Membuat Deterjen Cair Oxyclean", "Cara Membuat Deterjen Cair Serbaguna",
+            "Cara Membuat Extoliating Gel Body Spa awww", "Cara Membuat Extoliating Spray",
+            "Cara Membuat Gel Rambut", "Cara Membuat Hand & Body Lotion 1", "Cara Membuat Hand & Body Lotion 2",
+            "Cara Membuat Hand Sanitizer Gel", "Cara Membuat Hari And Body Mist", "Cara Membuat Jelly Parfum Ruangan",
+            "Cara Membuat Karbel Sereh Putih Susu", "Cara Membuat Karbol Wangi", "Cara Membuat Lem Kertas",
+            "Cara Membuat Lem Lalat", "Cara Membuat Lem Putih", "Cara Membuat Lem Sol Sepatu",
+            "Cara Membuat Lem Tikus", "Cara Membuat Lilin Aroma dari Jelantah", "Cara Membuat Lotion Anti Nyamuk",
+            "Cara Membuat Lulur Mandi", "Cara Membuat Masker Gelatin Charcoal", "Cara Membuat Masker Rambut",
+            "Cara Membuat Masker Wajah", "Cara Membuat Meni Cat Dasar", "Cara Membuat Minyak Angin Freshcare",
+            "Cara Membuat Minyak Pijat", "Cara Membuat Minyak Rambut Kemiri", "Cara Membuat Minyak Rambut Pomade",
+            "Cara Membuat Minyak Rambut Pomade Wax", "Cara Membuat Minyak Telon", "Cara Membuat Molto Pelembut Pewangi Cucian",
+            "Cara Membuat Nata de Coco Tanpa Urea", "Cara Membuat Night Cream", "Cara Membuat Obat Anti Bau Badan",
+            "Cara Membuat Obat Kumur", "Cara Membuat Obat Kutu Rambut", "Cara Membuat Obat Nyamuk Bakar",
+            "Cara Membuat Obat Nyamuk Cair", "Cara Membuat Parfum Badan Non Alkohol", "Cara Membuat Parfum Laundry",
+            "Cara Membuat Parfum Mobil", "Cara Membuat Parfum Oles", "Cara Membuat Parfum Oles Roll On",
+            "Cara Membuat Parfum Pakaian", "Cara Membuat Pasir Warna", "Cara Membuat Pasta Anti Air Untuk Sepatu",
+            "Cara Membuat Pasta Gigi Odol", "Cara Membuat Peeling Cream", "Cara Membuat Pelicin Setrika Bening",
+            "Cara Membuat Pelicin Setrika Putih Susu", "Cara Membuat Pembersih Kaca", "Cara Membuat Pembersih Kerak Kamar Mandi",
+            "Cara Membuat Pembersih Mesin Cuci", "Cara Membuat Pemutih Pakaian Sejenis B@yclin",
+            "Cara Membuat Pengelupas Cat", "Cara Membuat Pengharum Pengusir Tikus", "Cara Membuat Penghilang Kutek Kuku",
+            "Cara Membuat Penghitam Dashboard dan Ban", "Cara Membuat Pengkilap Mobil", "Cara Membuat Pengkilap Mobil Tanpa Silicon Emulsi",
+            "Cara Membuat Pengusir Serangga", "Cara Membuat Plastisin Mainan", "Cara Membuat Plitur",
+            "Cara Membuat Sabun Anti Jerawat",
+            "Cara Membuat Sabun Batangan Pembersih Angus Perabotan Dapur", "Cara Membuat Sabun Bubuk Untuk Tandon Dan Galon Air",
+            "Cara Membuat Sabun Cair untuk Wajah Fresh Cool", "Cara Membuat Sabun Charcoal", "Cara Membuat Sabun Colek",
+            "Cara Membuat Sabun Colek Bening Jelly Krim", "Cara Membuat Sabun Mandi Batang Transparan", "Cara Membuat Sabun Transparan",
+            "Cara Membuat Sanitizer Cair Spray", "Cara Membuat Sanitizer Non Alkohol", "Cara Membuat Semir Ban Mijel",
+            "Cara Membuat Semir Jaket dan Tas Kulit", "Cara Membuat Semir Sepatu Cair", "Cara Membuat Semir Sepatu Padat",
+            "Cara Membuat Serum Wajah", "Cara Membuat Shampo Hewan Piaraan", "Cara Membuat Shampo Rambut",
+            "Cara Membuat Shampoo Mobil Ice Cream", "Cara Membuat Shower Gel", "Cara Membuat Skin Tonic Lotion",
+            "Cara Membuat Soap Base", "Cara Membuat Softergent Deterjen Plus Pelembut Pakaian",
+            "Cara Membuat Soothing Skin Care", "Cara Membuat Sterno Spiritus Padat", "Cara Membuat Sun Block Tabir Surya",
+            "Cara Membuat Super Pel Lantai", "Cara Membuat Un-yellowing Midsole Sepatu",
+            "Cara Membuat Vanishing Cream Glowing", "Cara Membuat Water Coolant Radiator"
+        ];
+
+        const RECIPE_DETAILS = {
+            "Cara Membuat Air Aki Isi Ulang": {
+                bahan: ["Aqua DM 300 ml", "Air isi ulang 700 ml", "EDTA 2 gr"],
+                steps: ["Masukkan Aqua DM ke wadah", "Tambahkan Air isi ulang perlahan, aduk rata", "Masukkan EDTA, aduk rata", "Diamkan 2-3 jam", "Kemas botol biru"],
+                footer: "(Resep 1)"
+            },
+            "Cara Membuat Air Aki Zuur": {
+                bahan: ["Air isi ulang 640 ml", "Asam sulfat 360 ml", "EDTA 2 gr"],
+                steps: ["Masukkan air isi ulang ke dalam wadah", "Tambahkan Asam sulfat perlahan, aduk rata", "Masukkan EDTA, aduk rata", "Diamkan 2-3 jam", "Kemas botol merah"],
+                footer: "(Resep 2)"
+            },
+            "Cara Membuat Anti Noda Pakaian Vanish": {
+                bahan: ["H202 50% 1 L", "NP 10 100 ml", "Bibit parfum 50 ml", "Air 10 L"],
+                steps: ["Larutkan H202 dengan air, aduk rata (Hati-hati!)", "Campurkan NP-10 dengan parfum dalam gelas", "Satukan larutan parfum ke bak utama, aduk rata", "Kemas dengan botol jerigen kuat"],
+                warning: "BAHAN BERBAHAYA, JANGAN TERKENA TANGAN DAN BAGIAN TUBUH LAINNYA",
+                footer: "(Resep 3)"
+            },
+            "Cara Membuat Asam Cuka dari Air Kelapa": {
+                bahan: ["Air kelapa tua 5 L", "Starter mikroba (fermipan) 10 gr", "Gula pasir 1 kg"],
+                steps: ["Rebus air kelapa, dinginkan", "Tambah gula pasir, aduk larut", "Masukkan mikroba, aduk rata", "Fermentasi di tempat gelap (4 hari tutup, hari ke-5 buka 5 mnt)", "Hari ke-9 cek PH > 1", "Kemas botol steril"],
+                footer: "(Resep 4)"
+            },
+            "Cara Membuat Astringent Lotion": {
+                bahan: ["Sulfat zinc 4 gr", "Glycerin 40 cc", "Tawas 3 gr", "Air panas 300 cc", "Alkohol 70% 40 cc", "Bibit wangi 5 cc"],
+                steps: ["Larutkan Sulfat zinc dengan Glycerin", "Tumbuk tawas halus, larutkan ke air panas", "Satukan larutan zinc dan tawas, aduk rata", "Larutkan bibit parfum ke alkohol", "Satukan semua, aduk rata", "Diamkan 1-2 jam", "Kemas botol fliptop"],
+                footer: "(Resep 5)"
+            },
+            "Cara Membuat Balsam Gosok": {
+                bahan: ["Vaselin putih 200 gr", "Menthol Kristal 10 gr", "Kamper 10 gr", "Minyak Gandapura 50 cc", "Minyak Pepermint 10 cc", "Bibit wangi 10 cc"],
+                steps: ["Tim vaselin sampai cair", "Tumbuk Menthol & Kamper halus", "Larutkan Pepermint ke Gandapura", "Satukan semua saat di-tim, aduk rata", "Angkat, beri parfum", "Saring kain tipis, kemas"],
+                footer: "(Resep 6)"
+            },
+            "Cara Membuat Bedak Powder": {
+                bahan: ["Magnesium carbonat 50 gr", "Caoline 200 gr", "Titan dioxid 50 gr", "Tepung talc 600 gr", "Pewarna & Parfum"],
+                steps: ["Campur Magnesium + parfum", "Campur Caoline + Titan + Warna", "Satukan kedua campuran", "Tambah Talc, aduk rata", "Kemas"],
+                footer: "(Resep 8)"
+            },
+            "Cara Membuat Bedak Salicyl": {
+                bahan: ["Asam salisilat 3 gr", "Talc 97 gr", "Alkohol 70% 90 ml", "Menthol oil 1 tetes"],
+                steps: ["Larutkan asam salisilat dengan alkohol, tambah sedikit talc", "Aduk sampai benar-benar kering", "Tambah sisa talc, aduk homogen", "Tambah menthol oil", "Ayak halus, kemas"],
+                footer: "(Resep 9)"
+            },
+            "Cara Membuat Bibit Nata de Coco": {
+                bahan: ["Nanas matang 600 gr", "Air masak 300 gr", "Gula 100 gr"],
+                steps: ["Blender nanas halus", "Saring & peras airnya", "Campur air nanas + air masak + gula", "Tuang botol bening", "Tutup kain, ikat kuat", "Simpan suhu ruang 2-3 minggu"],
+                footer: "(Resep 10)"
+            },
+            "Cara Membuat Blau Padat": {
+                bahan: ["Pewarna biru 250 g", "Sodium bikarbonat 2 kg", "Dextrin 250 g", "Soda ash 1 kg", "Air 250 ml"],
+                steps: ["Campur semua bahan kering", "Tambah air sedikit demi sedikit", "Cetak kotak", "Kering anginkan lalu jemur matahari", "Kemas"],
+                footer: "(Resep 10-B)"
+            },
+            "Cara Membuat Cat Dinding": {
+                bahan: ["Air 1 L", "Pine Oil 50 cc", "Resin Styrene Acrylic 1 kg", "Kaolin 1 kg", "Titan 200 gr", "Calcium Carbonate 2 kg", "Antifoam & Warna"],
+                steps: ["Campur Calcium + Resin + Air, mixer", "Tambah pewarna bertahap", "Tambah Kaolin, Antifoam, Pine Oil", "Diamkan 2-3 jam", "Kemas"],
+                footer: "(Resep 11)"
+            },
+            "Cara Membuat Cat Kayu dan Besi": {
+                bahan: ["Acrylic Resin 100 gr", "BOP 20 ml", "Toluena 100 ml", "MEK 100 ml", "Butyl Acetat", "Talc 100 gr", "Lithopon"],
+                steps: ["Masukkan Resin", "Masukkan pelarut perlahan sambil mixer", "Masukkan Talc & Pewarna perlahan", "Kemas"],
+                footer: "(Resep 12)"
+            },
+            "Cara Membuat Cetakan Sabun Dari Silicon Rubber": {
+                bahan: ["Model master 2 bh", "Silikon RTV-48 1000 cc", "Katalis 250 cc"],
+                steps: ["Rekat master di loyang", "Campur silikon + katalis, aduk rata", "Tuang ke loyang berisi master", "Hilangkan gelembung pakai tusuk gigi", "Diamkan sampai membeku", "Lepas master"],
+                footer: "(Resep 13)"
+            },
+            "Cara Membuat Compound Mobil Wangi": {
+                bahan: ["Stearic acid 100 gr", "Carnauba wax 100 gr", "Silicon oil 100 ml", "NP-10 100 ml", "Parfum & Aquadest"],
+                steps: ["Lelehkan Stearic + Carnauba", "Tambah silicon oil", "Campur NP-10 + parfum", "Satukan semua, tambah aquadest", "Biarkan dingin dan memadat"],
+                footer: "(Resep 14)"
+            },
+            "Cara Membuat Conditoner Rambut": {
+                bahan: ["Laurex 30 gr", "Lexemul 5 gr", "Parafin Liquid 20 cc", "MPG 10 cc", "Armotan/Empigen", "Aquadest 1 L"],
+                steps: ["Wadah A: Lelehkan Laurex, Lexemul, Parafin, Paraben", "Wadah B: Campur Empigen, Armotan, MPG + Air panas", "Satukan A ke B, mixer sampai homogen", "Tambah parfum & pewarna"],
+                footer: "(Resep 15)"
+            },
+            "Cara Membuat Crayon Pewarna": {
+                bahan: ["Parafin wax 250 gr", "Pewarna Oil base", "Stearic acid 50 gr"],
+                steps: ["Tim parafin sampai 60-65°C", "Masukkan Stearic acid, aduk", "Bagi cairan ke gelas warna", "Cetak silinder", "Biarkan dingin"],
+                footer: "(Resep 16)"
+            },
+            "Cara Membuat Cream Obat Gosok": {
+                bahan: ["Parafin liquid 20 ml", "Stearic acid 15 ml", "TEA & Borax", "Aquadest 40 ml", "Minyak gandopuro", "Camphora & Mentol"],
+                steps: ["Wadah A: Larutkan TEA + Borax + Air (panas)", "Wadah B: Lelehkan Parafin + Stearic", "Satukan A ke B, aduk homogen", "Tambah Camphora, Mentol, Pepermint", "Kemas"],
+                footer: "(Resep 17)"
+            },
+            "Cara Membuat Day Cream": {
+                bahan: ["Stearic Acid 60 gr", "Lexemul 20 gr", "Beeswax 20 gr", "Aquadest 900 cc", "Aloe Vera & UV B"],
+                steps: ["Wadah A: Lelehkan fase minyak", "Wadah B: Emulgent+MPG+Air panas", "Satukan B ke A, aduk homogen", "Tambah Aloe Vera & UV B", "Kemas fliptop"],
+                footer: "(Resep 18)"
+            },
+            "Cara Membuat Dempul Kayu": {
+                bahan: ["Resin BR 106 60 gr", "Thinner 100 ml", "Kaolin/Bentonit/Lithopon", "Oker (Pewarna)"],
+                steps: ["Larutkan resin dengan thinner", "Tambah Kaolin, Bentonit, Lithopon, aduk halus", "Tambah Oker, aduk homogen", "Kemas"],
+                footer: "(Resep 19)"
+            },
+            "Cara Membuat Deterjen Bubuk": {
+                bahan: ["Texaphon pasta 300 gr", "Sodium sulfat 3 kg", "Soda ash 500 gr", "Talk 3 kg", "Biolite aktif", "Parfum"],
+                steps: ["Campur bahan kering (Sulfat, Ash, Talk)", "Tambah Texaphon, aduk rata", "Semprot parfum, angin-anginkan", "Ayak, tambah bintik biru", "Kemas"],
+                footer: "(Resep 20)"
+            },
+            "Cara Membuat Deterjen Cair Oxyclean": {
+                bahan: ["Texapon 1.5 kg", "Garam 1.75 kg", "Asam citrit", "Parfum", "Air 20 L", "H202 50%"],
+                steps: ["Campur Texapon + Garam + 1L Air sampai putih", "Tambah air 50%", "Tambah Citrit, Pewarna, Parfum", "Tambah sisa air & H202", "Saring, diamkan semalam"],
+                footer: "(Resep 21)"
+            },
+            "Cara Membuat Deterjen Cair Serbaguna": {
+                bahan: ["Texapon 4.5 kg", "Garam 4.5 kg", "Camperlan", "Acid/EDTA", "PG & Parfum", "Air 80 L"],
+                steps: ["Aduk Texapon + Garam + air sampai putih", "Tambah air bertahap", "Tambah Camperlan, Citrit, EDTA, warna", "Campur PG+Parfum, masukkan", "Tambah sisa air, diamkan semalam"],
+                footer: "(Resep 22)"
+            },
+            "Cara Membuat Extoliating Gel Body Spa awww": {
+                bahan: ["Aqua DM 800 ml", "Lactic Acid 200 gr", "Carbomer 10 gr", "TEA 5 ml", "Collagen/Caffein"],
+                steps: ["Panaskan Air + PG, larutkan Carbomer", "Tambah TEA (jadi gel), angkat", "Campur Parfum+Etanol, masukkan", "Tambah Lactic Acid & bahan aktif", "Diamkan 1-2 jam, kemas"],
+                footer: "(Resep 23)"
+            },
+            "Cara Membuat Extoliating Spray": {
+                bahan: ["Aqua DM 2.5 L", "Lactic Acid 200 gr", "Etanol/PEG-40", "Alantoin/EDTA/Collagen"],
+                steps: ["Campur Parfum+Etanol+PEG-40", "Masukkan ke Aqua DM", "Tambah Lactic Acid, Alantoin, Chloride", "Masukkan Collagen & EDTA", "Kemas botol spray"],
+                footer: "(Resep 24)"
+            },
+            "Cara Membuat Gel Rambut": {
+                bahan: ["Air 1 L", "Carbomer 20 gr", "PG 50 ml", "TEA 10 ml", "Vitamin E", "Parfum"],
+                steps: ["Panaskan Air + PG, larutkan Carbomer", "Tambah TEA (jadi gel), angkat", "Tambah parfum, vit E, pewarna", "Dinginkan 1-2 jam"],
+                footer: "(Resep 25)"
+            },
+            "Cara Membuat Hand & Body Lotion 1": {
+                bahan: ["Zaitun/Kelapa/Jojoba", "Lilin Lebah 100 gr", "TEA 50 ml", "Parfum & Gliserin"],
+                steps: ["Wadah A: Larutkan TEA+Parfum+Gliserin", "Wadah B: Panaskan semua minyak+lilin", "Tuang A ke B perlahan, mixer kencang", "Diamkan 2-3 jam, kemas"],
+                footer: "(Resep 26)"
+            },
+            "Cara Membuat Hand & Body Lotion 2": {
+                bahan: ["Lexemul CS 25 gr", "Dimethicone 5 gr", "Titanium dioksida 2 gr", "Aquadest panas & dingin"],
+                steps: ["Lelehkan fase minyak", "Wadah B: Campur Titan+MPG+Air panas", "Tambah air dingin & parfum ke B", "Satukan B ke A, aduk homogen"],
+                footer: "(Resep 27)"
+            },
+            "Cara Membuat Hand Sanitizer Gel": {
+                bahan: ["Air 2 L", "Alkohol 96% 5 L", "Carbomer 100 gr", "PG 100 ml", "TEA 20 ml"],
+                steps: ["Panaskan Air + PG, larutkan Carbomer", "Tambah TEA (jadi gel), angkat", "Larutkan parfum ke alkohol, tuang ke gel", "Aduk 15 menit, diamkan 1-2 jam"],
+                footer: "(Resep 28)"
+            },
+            "Cara Membuat Hari And Body Mist": {
+                bahan: ["Gliserin 50 ml", "Vit E 5 ml", "Aqua DM 1 L", "Parfum 50 ml", "NP-10 50 ml"],
+                steps: ["Siapkan Aqua DM", "Campur Parfum+NP-10, masukkan", "Tambah Gliserin & Vit E", "Diamkan sampai jernih"],
+                footer: "(Resep 29)"
+            },
+            "Cara Membuat Jelly Parfum Ruangan": {
+                bahan: ["Nutrijel 8 bks", "Agar-agar 8 bks", "EDTA 10 gr", "Parfum 100 ml", "Air 2.5 L"],
+                steps: ["Larutkan Nutrijel & Agar ke air, masak", "Tambah garam, didihkan, tuang ember", "Campur NP-10, Parfum, EDTA", "Tuang cetakan, biarkan padat"],
+                footer: "(Resep 30)"
+            },
+            "Cara Membuat Karbel Sereh Putih Susu": {
+                bahan: ["Laurex 200 gr", "Stearic acid 200 gr", "Tween-80 100 cc", "Minyak sereh 200 cc"],
+                steps: ["Wadah A: Lelehkan Laurex + 100g Stearic + Sereh", "Wadah B: Seduh 100g Stearic + Tween panas", "Satukan B ke A, aduk 4 menit", "Tambah air dingin bertahap"],
+                footer: "(Resep 31)"
+            },
+            "Cara Membuat Karbol Wangi": {
+                bahan: ["Arpus 1 kg", "NaOH 100 gr", "Kapur barus 100 gr", "Pine Oil 500 ml", "Air 75 L"],
+                steps: ["Larutkan NaOH ke 5L air", "Tumbuk Arpus, campur ke NaOH, diamkan 1 jam", "Tumbuk Kapur barus, larutkan ke Pine Oil", "Satukan semua, tambah sisa air"],
+                footer: "(Resep 32)"
+            },
+            "Cara Membuat Lem Kertas": {
+                bahan: ["Tepung kanji 160 gr", "Air 240 gr", "Tawas 8 gr", "Gliserine 16 ml", "TEA 8 ml"],
+                steps: ["Larutkan tawas ke air dingin", "Tuang ke tepung kanji, aduk rata", "Masak api kecil sampai kental, angkat", "Aduk cepat, tambah Gliserine & TEA"],
+                footer: "(Resep 33)"
+            },
+            "Cara Membuat Lem Lalat": {
+                bahan: ["Arpus 400 gr", "Minyak kelapa 350 gr", "Latex 200 gr", "Metil Eugenol 50 gr"],
+                steps: ["Panaskan Arpus + 200g minyak kelapa", "Tambah sisa minyak", "Masukkan Latex bertahap, aduk kencang", "Tambah Metil Eugenol, didihkan"],
+                footer: "(Resep 34)"
+            },
+            "Cara Membuat Lem Putih": {
+                bahan: ["PVAC 873 gr", "PVA 108 gr", "Natrosol 327 gr", "Resol 765 gr", "Air 927 gr"],
+                steps: ["Masak Natrosol + air (70°C)", "Tambah sisa air, PVA, PVAc bertahap", "Masukkan Resol, aduk rata, dinginkan"],
+                footer: "(Resep 35)"
+            },
+            "Cara Membuat Lem Sol Sepatu": {
+                bahan: ["Toluena 500 ml", "Crepe rubber 100 gr", "Mastic vernis 18 gr"],
+                steps: ["Rendam rubber ke Toluena sampai jadi bubur", "Masukkan Mastic vernis, aduk rata", "Tutup rapat sampai menyatu"],
+                footer: "(Resep 36)"
+            },
+            "Cara Membuat Lem Tikus": {
+                bahan: ["Arpus 400 gr", "Minyak kelapa 350 gr", "Latex 200 gr", "Essense cokelat 50 gr"],
+                steps: ["Panaskan Arpus + 200g minyak kelapa", "Tambah sisa minyak & Latex", "Tambah essense, didihkan, dinginkan"],
+                footer: "(Resep 37)"
+            },
+            "Cara Membuat Lilin Aroma dari Jelantah": {
+                bahan: ["Lilin balok 200 gr", "Jelantah 150 gr", "Sumbu 1 m", "Parfum apel 50 ml"],
+                steps: ["Tim Lilin + Jelantah + Krayon sampai leleh", "Tunggu suhu 60°C, masukkan parfum", "Tuang ke gelas berisi sumbu", "Biarkan memadat"],
+                footer: "(Resep 38)"
+            },
+            "Cara Membuat Lotion Anti Nyamuk": {
+                bahan: ["Lexemul/Laurex/IPM (A)", "MPG/Aquadest/Cyclomethicone (B)", "Moskitox 10 gr"],
+                steps: ["Lelehkan Bahan A", "Campur MPG + air panas, tuang A", "Aduk kental, tambah sisa air", "Tambah Cyclomethicone, Moskitox, parfum"],
+                footer: "(Resep 39)"
+            },
+            "Cara Membuat Lulur Mandi": {
+                bahan: ["Stearic/Lilin/Minyak (A)", "Emulgent/PG/Aquadest (B)", "Scrub 100 gr"],
+                steps: ["Lelehkan A (kecuali parfum/scrub)", "Larutkan B ke air panas", "Tuang B ke A bertahap sampai jadi gel", "Tambah parfum & scrub, aduk rata"],
+                footer: "(Resep 40)"
+            },
+            "Cara Membuat Masker Gelatin Charcoal": {
+                bahan: ["Gelatin 1/2 sdt", "Bentonite clay 1/2 sdt", "Charcoal 1/2 sdt", "Air panas 2 sdm"],
+                steps: ["Campur bahan kering", "Tambah air panas perlahan", "Aduk rata, siap pakai"],
+                footer: "(Resep 41)"
+            },
+            "Cara Membuat Masker Rambut": {
+                bahan: ["Lilin lebah 250 gr", "NP-10 20 ml", "Gliserin 20 ml", "Parfum 30 ml", "Air 500 ml"],
+                steps: ["Lelehkan lilin lebah", "Campur NP-10 + parfum, tuang lilin", "Tambah gliserin & air perlahan", "Biarkan memadat"],
+                footer: "(Resep 42)"
+            },
+            "Cara Membuat Masker Wajah": {
+                bahan: ["Kamper 4 gr", "Talc 400 gr", "Zaitun 300 ml", "Gliserin 100 ml", "Parfum 10 cc"],
+                steps: ["Tumbuk kamper, larutkan talc ke gliserin", "Campur kamper, talc, & zaitun", "Tambah parfum, kemas"],
+                footer: "(Resep 43)"
+            },
+            "Cara Membuat Meni Cat Dasar": {
+                bahan: ["Phenol resin 100 gr", "Toluen/MEK/SMT", "Iron Oxide 150 gr", "Talc 100 gr"],
+                steps: ["Masukkan Resin + pelarut, mixer", "Tambah Iron Oxide, Talc, & Linseed Oil", "Aduk halus & homogen"],
+                footer: "(Resep 44)"
+            },
+            "Cara Membuat Minyak Angin Freshcare": {
+                bahan: ["Menthol 30 gr", "Kamper 10 gr", "Gandapura 300 cc", "Pepermint 10 cc"],
+                steps: ["Tumbuk Menthol & Kamper", "Larutkan Pepermint ke Gandapura", "Satukan semua, tambah parfum", "Saring kain tipis, kemas roll-on"],
+                footer: "(Resep 45)"
+            },
+            "Cara Membuat Minyak Pijat": {
+                bahan: ["Vaselin 70 gr", "Bees Wax 100 gr", "Parafin oil 270 gr", "Olive oil 70 gr"],
+                steps: ["Lelehkan Vaselin, Wax, & Parafin (70°C)", "Tambah Olive oil, Nipagin, BHT", "Aduk kuat sampai jadi cream", "Tambah parfum, kemas"],
+                footer: "(Resep 46)"
+            },
+            "Cara Membuat Minyak Rambut Kemiri": {
+                bahan: ["Kemiri 300 ml", "Kelapa 200 ml", "TEA 10 ml", "Gliserin 40 ml", "Vit E"],
+                steps: ["Panaskan kemiri & kelapa (70°C)", "Larutkan TEA + Gliserin", "Satukan, tambah Vit E & parfum", "Dinginkan, kemas fliptop"],
+                footer: "(Resep 47)"
+            },
+            "Cara Membuat Minyak Rambut Pomade Wax": {
+                bahan: ["Bees Wax 300 gr", "Linseed oil 50 gr", "Zaitun 25 ml", "Gliserin 25 ml"],
+                steps: ["Lelehkan wax", "Tambah linseed, zaitun, gliserin", "Angkat, beri parfum, tuang wadah"],
+                footer: "(Resep 48)"
+            },
+            "Cara Membuat Minyak Rambut Pomade": {
+                bahan: ["Vaselin 250 gr", "Stearic acid 25 gr", "Parfum 30 cc"],
+                steps: ["Campur Vaselin + Stearic, panaskan", "Tambah parfum, angkat, saring kassa", "Biarkan padat"],
+                footer: "(Resep 49)"
+            },
+            "Cara Membuat Minyak Telon": {
+                bahan: ["Minyak kayu putih 500 ml", "Minyak Adas 300 ml", "Minyak Kelapa 200 ml"],
+                steps: ["Campurkan ketiga bahan", "Aduk perlahan sampai homogen", "Kemas botol roll on/fliptop"],
+                footer: "(Resep 50)"
+            },
+            "Cara Membuat Molto Pelembut Pewangi Cucian": {
+                bahan: ["Supersoft 10 kg", "Bibit parfum 150 ml", "Methanol 500 ml", "Air 80 L"],
+                steps: ["Larutkan supersoft", "Campur parfum + methanol", "Masukkan ke supersoft, tambah air warna"],
+                footer: "(Resep 51)"
+            },
+            "Cara Membuat Nata de Coco Tanpa Urea": {
+                bahan: ["Air kelapa 5 L", "Gula 250 gr", "Tauge 10 gr", "Cuka 50 cc", "Bibit 100 ml"],
+                steps: ["Masak air kelapa dkk sampai didih, saring", "Tuang loyang 2cm, campur bibit saat dingin", "Simpan 7-10 hari tutup koran", "Bilas & rendam air 2 hari"],
+                footer: "(Resep 52)"
+            },
+            "Cara Membuat Night Cream": {
+                bahan: ["Lexemul/Cosmo wax", "MPG/Glycerin", "Olive oil", "Ekstrak Cammomile/Aloe"],
+                steps: ["Masak bahan dasar sampai emulsi", "Tambah Ekstrak & Acids (Lactic dkk)", "Tambah parfum, dinginkan, kemas"],
+                footer: "(Resep 53)"
+            },
+            "Cara Membuat Obat Anti Bau Badan": {
+                bahan: ["Tawas 40 gr", "Bibit parfum 5 cc", "Glyserin 6 cc", "Aquadest 200 cc"],
+                steps: ["Hancurkan tawas, larutkan air", "Campur glyserin & parfum, satukan", "Ambil jernihnya, kemas spray gelap"],
+                footer: "(Resep 54)"
+            },
+            "Cara Membuat Obat Kumur": {
+                bahan: ["Eucalyptol/Menthol/Thymol", "Alkohol 200 ml", "Sorbitol/Saccharin"],
+                steps: ["Wadah A: Minyak esensial + Alkohol + air", "Wadah B: Air hangat + Pewarna + Sorbitol", "Satukan A ke B perlahan, biarkan jernih"],
+                footer: "(Resep 55)"
+            },
+            "Cara Membuat Obat Kutu Rambut": {
+                bahan: ["Tea tree oil 5 ml", "Mineral oil 100 ml", "Zaitun 120 ml", "Parfum"],
+                steps: ["Campur semua bahan", "Aduk rata menyatu", "Usap ke rambut, jangan dibilas"],
+                footer: "(Resep 56)"
+            },
+            "Cara Membuat Obat Nyamuk Bakar": {
+                bahan: ["Serbuk kayu 250 gr", "Kalium Nitrat 5 gr", "Insect powder 10 gr", "Lem 75 gr"],
+                steps: ["Tumbuk serbuk kayu & insect powder, ayak", "Campur Air + Lem + Serei + Tepung", "Cetak, kering anginkan"],
+                footer: "(Resep 57)"
+            },
+            "Cara Membuat Obat Nyamuk Cair": {
+                bahan: ["Minyak kayu putih 50 cc", "Minyak serai 50 cc", "Bensin 250 cc", "Kerosin 250 cc"],
+                steps: ["Wadah A: Kerosin + Bensin", "Wadah B: Serai + Kayu Putih", "Satukan A & B, saring kain halus"],
+                footer: "(Resep 58)"
+            },
+            "Cara Membuat Parfum Badan Non Alkohol": {
+                bahan: ["Parfum 50 ml", "NP-10 50 ml", "PG/Gliserin/Fixolite", "Air 1.5 L"],
+                steps: ["Parfum + NP-10, tambah air bertahap", "Tambah PG & Gliserin", "Tambah Fixolite sampai bening"],
+                footer: "(Resep 59)"
+            },
+            "Cara Membuat Parfum Laundry": {
+                bahan: ["Methanol 5 L", "Bibit parfum 150 ml", "PG 150 ml", "BKC 50 ml"],
+                steps: ["Campur methanol + parfum", "Tambah PG & BKC, tambah air", "Aduk rata, kemas"],
+                footer: "(Resep 60)"
+            },
+            "Cara Membuat Parfum Mobil": {
+                bahan: ["Parfum kopi 100 ml", "PG 100 ml"],
+                steps: ["Campurkan bahan", "Kemas botol gantung 10 ml"],
+                footer: "(Resep 61)"
+            },
+            "Cara Membuat Parfum Oles Roll On": {
+                bahan: ["Bibit parfum 100 ml", "PG 100 ml"],
+                steps: ["Campur bibit + PG 1:1", "Kocok rata di botol roll on"],
+                footer: "(Resep 62)"
+            },
+            "Cara Membuat Parfum Oles": {
+                bahan: ["Beeswax 300 gr", "Bibit parfum 50 ml", "PG 50 ml"],
+                steps: ["Lelehkan beeswax", "Campur parfum & PG", "Satukan saat cair, biarkan padat"],
+                footer: "(Resep 63)"
+            },
+            "Cara Membuat Parfum Pakaian": {
+                bahan: ["Bibit lily 100 ml", "Methanol 100 ml", "PG 100 ml"],
+                steps: ["Campur parfum & methanol", "Tambah PG, kemas spray"],
+                footer: "(Resep 64)"
+            },
+            "Cara Membuat Pasir Warna": {
+                bahan: ["Terigu kasar 250 gr", "Warna makanan", "Kalsium propionat", "Minyak"],
+                steps: ["Campur terigu & warna", "Tambah pengawet & minyak", "Aduk sampai tekstur pasir"],
+                footer: "(Resep 65)"
+            },
+            "Cara Membuat Pasta Anti Air Untuk Sepatu": {
+                bahan: ["Beeswax 150 ml", "Terpentine 75 ml", "Linseed oil 75 ml"],
+                steps: ["Lelehkan beeswax", "Tambah linseed & terpentine", "Biarkan padat"],
+                footer: "(Resep 66)"
+            },
+            "Cara Membuat Pasta Gigi Odol": {
+                bahan: ["NAF 0.05 gr", "Aluminium Phosphat 100 gr", "Alginat 25 gr", "Gliserin"],
+                steps: ["Campur Alginat & Gliserin", "Campur Air & Benzoat", "Satukan semua bahan perlahan"],
+                footer: "(Resep 67)"
+            },
+            "Cara Membuat Peeling Cream": {
+                bahan: ["Lexemul CS 20", "Titanium diokside", "AHA", "Scrub 60 gr"],
+                steps: ["Lelehkan fase minyak", "Buat emulsi dengan air", "Tambah AHA & scrub, dinginkan"],
+                footer: "(Resep 68)"
+            },
+            "Cara Membuat Pelicin Setrika Bening": {
+                bahan: ["Magnasoft 100 ml", "Parfum 100 ml", "Fixolite 100 ml", "Air 20 L"],
+                steps: ["Campur parfum, methanol, magnasoft", "Tambah air & penjernih"],
+                footer: "(Resep 69)"
+            },
+            "Cara Membuat Pelicin Setrika Putih Susu": {
+                bahan: ["Silikon emulsi 1 L", "Air 25 L", "Bibit lily 200 ml", "Metanol 300 ml"],
+                steps: ["Blender silikon emulsi + 1L air", "Campur parfum + metanol", "Satukan semua, tambah sisa air"],
+                footer: "(Resep 70)"
+            },
+            "Cara Membuat Pembersih Kaca": {
+                bahan: ["Methanol 3 L", "Acid 10 gr", "Dewisil 10 ml", "Air 20 L"],
+                steps: ["Methanol + air", "Tambah warna & deterjen", "Tambah acid & dewisil, biarkan sehari"],
+                footer: "(Resep 71)"
+            },
+            "Cara Membuat Pembersih Kerak Kamar Mandi": {
+                bahan: ["HCL 4 L", "Air panas 20 L", "Warna kuning"],
+                steps: ["Panaskan air", "Masukkan HCL & warna, aduk rata"],
+                footer: "(Resep 72)"
+            },
+            "Cara Membuat Pembersih Mesin Cuci": {
+                bahan: ["Asam karbonat 400 gr", "Karbon aktif 300 gr", "Shea butter/Oil"],
+                steps: ["Campur karbonat + karbon aktif", "Campur Shea butter + oil", "Satukan, keringanginkan, ayak"],
+                footer: "(Resep 73)"
+            },
+            "Cara Membuat Pemutih Pakaian Sejenis B@yclin": {
+                bahan: ["Soda Ash Light 1 kg", "Hypochlorit 1 kg", "Air 17 L"],
+                steps: ["Soda ash + air", "Tambah Hypochlorit + sisa air", "Diamkan semalam, ambil jernihnya"],
+                footer: "(Resep 74)"
+            },
+            "Cara Membuat Pengelupas Cat": {
+                bahan: ["Toluena 350 cc", "Butanol 50 cc", "Butil Asetat 100 cc"],
+                steps: ["Campur semua bahan perlahan", "Aduk hingga rata, kemas"],
+                footer: "(Resep 75)"
+            },
+            "Cara Membuat Pengharum Pengusir Tikus": {
+                bahan: ["Kapur barus 200 gr", "Karbol 1 L", "Air 3 L"],
+                steps: ["Haluskan kapur barus", "Campur karbol + kapur barus", "Tambah air perlahan"],
+                footer: "(Resep 76)"
+            },
+            "Cara Membuat Penghilang Kutek Kuku": {
+                bahan: ["Aseton 330 ml", "Amil Asetat 100 ml", "Gliserin 30 ml"],
+                steps: ["Campur Aseton + Amil + Gliserin", "Tambah warna, Aqua DM, & parfum"],
+                footer: "(Resep 77)"
+            },
+            "Cara Membuat Penghitam Dashboard dan Ban": {
+                bahan: ["Stearic 100 gr", "Parafin 100 gr", "Silicon oil 200 ml", "Nigrosin 50 gr"],
+                steps: ["Tim Stearic+Parafin+Oil+Air", "Wadah 2: Nigrosin+Linseed+Terpentin", "Satukan 2 ke 1 (api kecil)"],
+                footer: "(Resep 78)"
+            },
+            "Cara Membuat Pengkilap Mobil Tanpa Silicon Emulsi": {
+                bahan: ["Silicon oil 20 ml", "Stearic 50 gr", "Borax 5 gr", "TEA 5 ml"],
+                steps: ["Wadah 1: Borax + TEA + Air", "Wadah 2: Oil + Stearic + Parafin", "Tuang 1 ke 2 bertahap, mixer kental"],
+                footer: "(Resep 79)"
+            },
+            "Cara Membuat Pengkilap Mobil": {
+                bahan: ["Silicon Emulsi 250 ml", "Silicon Oil 200 ml", "Aquadest 750 ml"],
+                steps: ["Campur emulsi + oil", "Tambah air perlahan, aduk homogen"],
+                footer: "(Resep 80)"
+            },
+            "Cara Membuat Pengusir Serangga": {
+                bahan: ["Parfum melati 50 ml", "NP-10 100 ml", "Air hangat 1.3 L", "Boraks 10 gr"],
+                steps: ["Campur parfum + NP-10", "Larutkan boraks ke air hangat", "Satukan semua, diamkan 2 jam"],
+                footer: "(Resep 81)"
+            },
+            "Cara Membuat Plastisin Mainan": {
+                bahan: ["Terigu 250 gr", "Garam 250 gr", "Pengawet 5 gr", "Minyak 2 sdm"],
+                steps: ["Campur terigu + garam", "Beri air bertahap, aduk", "Tambah minyak & pengawet, beri warna"],
+                footer: "(Resep 82)"
+            },
+            "Cara Membuat Plitur": {
+                bahan: ["Spiritus 300 ml", "Amonia 30 ml", "Thinner 50 ml", "Sirlak 30 gr"],
+                steps: ["Campur spiritus, amonia, thinner", "Masukkan sirlak & warna, aduk"],
+                footer: "(Resep 83)"
+            },
+            "Cara Membuat Sabun Anti Jerawat": {
+                bahan: ["Soap Base 200 gr", "Tea tree oil 5 ml", "Alkohol 50 ml"],
+                steps: ["Tim soap base leleh", "Suhu 60°C: tambah tea tree & warna", "Cetak, semprot alkohol"],
+                footer: "(Resep 85)"
+            },
+            "Cara Membuat Sabun Batangan Pembersih Angus Perabotan Dapur": {
+                bahan: ["NaOH 225 gr", "Minyak kelapa 620 cc", "Soda Ash 150 gr"],
+                steps: ["Larutkan NaOH, diamkan 12 jam", "Campur NaOH ke minyak kelapa, aduk kental", "Tambah serai & soda ash, cetak"],
+                footer: "(Resep 86)"
+            },
+            "Cara Membuat Sabun Bubuk Untuk Tandon Dan Galon Air": {
+                bahan: ["Texapon powder 100 gr", "Soda Ash 200 gr", "TSP 80 gr"],
+                steps: ["Campur Soda Ash, TSP, Metaphosphate", "Masukkan Texapon bertahap, ayak"],
+                footer: "(Resep 87)"
+            },
+            "Cara Membuat Sabun Cair untuk Wajah Fresh Cool": {
+                bahan: ["SLS 200 gr", "Betaine 100 gr", "Garam 50 gr", "Salicylic Acid 3 gr"],
+                steps: ["SLS + Garam + Air panas, aduk kental", "Tambah Betaine & bahan aktif", "Tambah sisa air, warna, & TEA"],
+                footer: "(Resep 88)"
+            },
+            "Cara Membuat Sabun Charcoal": {
+                bahan: ["Soap Base 200 gr", "Karbon Aktif 20 gr", "Parfum 20 ml"],
+                steps: ["Tim soap base leleh", "Masukkan charcoal & parfum, cetak"],
+                footer: "(Resep 89)"
+            },
+            "Cara Membuat Sabun Colek Bening Jelly Krim": {
+                bahan: [
+                    "Bahan 1: Texapon 1.5 kg, Garam 100 gr, Air 1 liter, STPP 30 gr, EDTA 30 gr, Parfum Lime Star 100 ml, Pewarna kuning",
+                    "Bahan 2: Natrosol 300 gr, Air dingin 5 liter, Gliserin 100 ml, Air panas 20 liter"
+                ],
+                alat: ["Bak air 50L", "Bak air 25L", "Pengaduk kayu"],
+                steps: [
+                    "Campuran 1: Larutkan Texapon dengan garam pada bak 25 liter, aduk rata",
+                    "Tambahkan air 1 liter ke Campuran 1, aduk rata",
+                    "Tambahkan parfum, aduk rata",
+                    "Masukkan STPP dan EDTA, aduk rata",
+                    "Tambahkan pewarna, aduk rata. Diamkan selama 1-2 jam",
+                    "Campuran 2: Campurkan air dingin dengan gliserin pada bak 50 liter, aduk rata",
+                    "Masukkan natrosol sedikit demi sedikit sambil diaduk rata",
+                    "Tambahkan air panas sedikit demi sedikit sambil diaduk rata sampai benar-benar larut dan mengental",
+                    "Pencampuran Akhir: Campurkan Campuran 1 ke dalam Campuran 2, aduk hingga menyatu sempurna",
+                    "Kemas dalam plastik ukuran 500 gram atau mangkok sabun colek"
+                ],
+                footer: "(Resep 90)"
+            },
+            "Cara Membuat Sabun Colek": {
+                bahan: ["Caustic soda 100 gr", "STTP 100 gr", "CMC 200 gr", "ABS 1.000 gr", "Oat 1.000 gr"],
+                steps: ["Wadah 1: Larutkan CMC + ABS", "Wadah 2: Larutkan Caustic, STTP, Soda ash", "Campur wadah 2 ke 1, tambah Oat & parfum"],
+                footer: "(Resep 91)"
+            },
+            "Cara Membuat Sabun Mandi Batang Transparan": {
+                bahan: ["Minyak kelapa 200 ml", "NaOH 65 gr", "Asam stearat 70 gr", "Gliserin 50 ml", "Susu 100 ml"],
+                steps: ["Panaskan kelapa + larutan NaOH susu", "Tambah lelehan stearat (90°C)", "Tambah alkohol, TEA, gliserin", "Tambah warna & parfum, cetak"],
+                footer: "(Resep 92)"
+            },
+            "Cara Membuat Sabun Transparan": {
+                bahan: ["Cip Soap 200 gr", "Madu 2 sdm", "Sari bengkoang 10 ml"],
+                steps: ["Tim soap base leleh", "Tambah sari bengkoang, madu, parfum, cetak"],
+                footer: "(Resep 93)"
+            },
+            "Cara Membuat Sanitizer Cair Spray": {
+                bahan: ["Methanol 1 L", "Gliserin 50 ml", "H202 50 ml", "Air 100 ml"],
+                steps: ["Campur methanol, parfum, gliserin, H202", "Tambah air, aduk rata"],
+                footer: "(Resep 94)"
+            },
+            "Cara Membuat Sanitizer Non Alkohol": {
+                bahan: ["BKC 100 ml", "Parfum 50 ml", "NP-10 100 ml", "EDTA 10 gr"],
+                steps: ["Larutkan BKC ke air", "Campur parfum + NP-10", "Satukan semua, tambah EDTA"],
+                footer: "(Resep 95)"
+            },
+            "Cara Membuat Semir Ban Mijel": {
+                bahan: ["Jelantah 500 gr", "Parafin 100 gr", "NaOH 75 gr", "Silicon oil 100 cc"],
+                steps: ["Larutkan NaOH air warna", "Tambah jelantah, aduk kental", "Panaskan api kecil, tambah lilin, tambah oil"],
+                footer: "(Resep 96)"
+            },
+            "Cara Membuat Semir Jaket dan Tas Kulit": {
+                bahan: ["Beeswax 500 gr", "Linseed oil 50 gr", "Pine oil 100 ml"],
+                steps: ["Lelehkan beeswax", "Tambah linseed & pine oil, biarkan padat"],
+                footer: "(Resep 97)"
+            },
+            "Cara Membuat Semir Sepatu Cair": {
+                bahan: ["Borax 150 gr", "Beeswax 150 gr", "Carnauba wax 100 gr", "Terpentine 1 L"],
+                steps: ["Larutkan borax", "Lelehkan beeswax + carnauba", "Campur emulsi, tambah terpen & pigmen"],
+                footer: "(Resep 98)"
+            },
+            "Cara Membuat Semir Sepatu Padat": {
+                bahan: ["Malam Kuning 1 kg", "Pigmen 50 gr", "Terpentin 1 L"],
+                steps: ["W1: Leleh Malam Kuning", "W2: Campur Pigmen + Linseed + Terpentin", "Satukan W2 ke W1, cetak"],
+                footer: "(Resep 99)"
+            },
+            "Cara Membuat Serum Wajah": {
+                bahan: ["Aloe vera 100 gr", "Vit C 5 gr", "Essensial oil Chamomile/Rose/Lavender"],
+                steps: ["Campur semua bahan", "Simpan kulkas, kemas botol kaca"],
+                footer: "(Resep 100)"
+            },
+            "Cara Membuat Shampo Hewan Piaraan": {
+                bahan: ["Texafon 100 gr", "Asuntol 2 gr", "Glycerin & Parfum"],
+                steps: ["Masak Natrosol", "Lelehkan Texafon+Glycerin", "Satukan, tambah NaCl & Asuntol"],
+                footer: "(Resep 101)"
+            },
+            "Cara Membuat Shampo Rambut": {
+                bahan: ["SLES 120 gr", "Polyquat 50 ml", "Acid 30 gr", "Lexgard 3 ml"],
+                steps: ["SLES + NaCl + Air", "Tambah Polyquat, Lexgard, & Acid", "Tambah parfum & warna"],
+                footer: "(Resep 102)"
+            },
+            "Cara Membuat Shampoo Mobil Ice Cream": {
+                bahan: ["Texapon 2 kg", "Garam 1.5 kg", "Camperlan 100 ml", "Gliserin 100 ml"],
+                steps: ["Aduk Texapon + Garam + Air", "Tambah Camperlan & Gliserin", "Tambah warna & parfum, saring"],
+                footer: "(Resep 103)"
+            },
+            "Cara Membuat Shower Gel": {
+                bahan: ["SLES 200 gr", "Oat 100 gr", "Vit E 20 gr"],
+                steps: ["Wadah A: SLES+DEA+Paraben", "Wadah B: Larutkan NaCl air panas", "Satukan A ke B, tambah Oat & Vit E"],
+                footer: "(Resep 104)"
+            },
+            "Cara Membuat Skin Tonic Lotion": {
+                bahan: ["TEA 40 ml", "Glyserin 200 ml", "Mentol 4 gr", "Alkohol 200 ml"],
+                steps: ["Wadah A: Mentol + TEA + Air", "Wadah B: Glyserin + Alkohol", "Satukan, tambah talc & parfum"],
+                footer: "(Resep 105)"
+            },
+            "Cara Membuat Soap Base": {
+                bahan: ["Sabun parut 750 gr", "Stearat 250 gr", "Etanol 400 ml", "Gliserin 400 ml"],
+                steps: ["Lelehkan stearat", "Tambah sabun, etanol, gliserin", "Mixer halus, cetak"],
+                footer: "(Resep 106)"
+            },
+            "Cara Membuat Softergent Deterjen Plus Pelembut Pakaian": {
+                bahan: ["Texapon 1.5 kg", "Garam 1.75 kg", "Magnasoft 20 ml", "STPP 100 gr"],
+                steps: ["Aduk Texapon + Garam + Air", "Tambah STPP, Magnasoft, warna, parfum"],
+                footer: "(Resep 107)"
+            },
+            "Cara Membuat Soothing Skin Care": {
+                bahan: ["Air 1 L", "Vit C 1000 mg", "Vit E 2 butir", "Carbomer 20 gr"],
+                steps: ["Buat gel Carbomer + TEA", "Larutkan parfum alkohol, masuk gel", "Tambah Vit C & Vit E"],
+                footer: "(Resep 108)"
+            },
+            "Cara Membuat Sterno Spiritus Padat": {
+                bahan: ["Stearic 10 gr", "Soda api 14 ml", "Alkohol 7 ml", "Methanol 200 ml"],
+                steps: ["P1: Leleh Stearic + Soda api + Alkohol", "P2: Methanol 50°C", "Satukan P2 ke P1, cetak"],
+                footer: "(Resep 109)"
+            },
+            "Cara Membuat Sun Block Tabir Surya": {
+                bahan: ["Stearic 60 gr", "Titanium Dioxide 50 gr", "Anti UV A/B"],
+                steps: ["Lelehkan fase minyak (A)", "Campur fase air (B) panas", "Satukan B ke A, tambah UV & Cyclomethicone"],
+                footer: "(Resep 110)"
+            },
+            "Cara Membuat Super Pel Lantai": {
+                bahan: ["Natrosol 500 gr", "Deterjen 100 ml", "BKC 100 ml", "Parfum 200 ml"],
+                steps: ["Larutkan Natrosol air hangat", "Campur BKC + parfum, satukan ke Natrosol", "Tambah sisa air & pewarna"],
+                footer: "(Resep 111)"
+            },
+            "Cara Membuat Un-yellowing Midsole Sepatu": {
+                bahan: ["Oxalic acid 100 gr", "Baking soda 100 gr", "STPP 50 gr", "Enzim AR 50 gr"],
+                steps: ["Campur serbuk (1)", "Campur parfum + NP-10 + air (2)", "Satukan 1 dan 2"],
+                footer: "(Resep 112)"
+            },
+            "Cara Membuat Vanishing Cream Glowing": {
+                bahan: ["Stearic 50 gr", "Baking soda 5 gr", "Glycerin 15 cc"],
+                steps: ["Lelehkan Stearic", "Campur Baking soda + Glycerin, tuang Stearic", "Tambah air, dinginkan, beri parfum"],
+                footer: "(Resep 113)"
+            },
+            "Cara Membuat Water Coolant Radiator": {
+                bahan: ["Propilen glikol 100 ml", "Aquadest 1 L", "Fluorescein 1 gr"],
+                steps: ["Propilen glikol + larutan warna", "Aduk rata, saring, kemas"],
+                footer: "(Resep 114)"
+            }
+        };
+
+        // State
+        let state = {
+            searchTerm: "",
+            selectedTitle: ALL_TITLES[0],
+            isSidebarOpen: true
+        };
+
+        // DOM Elements
+        const recipeListEl = document.getElementById('recipe-list');
+        const recipeContainerEl = document.getElementById('recipe-container');
+        const searchInputEl = document.getElementById('search-input');
+        const sidebarToggleBtn = document.getElementById('sidebar-toggle');
+        const headerLabelEl = document.getElementById('header-label');
+
+        function renderList() {
+            const filtered = ALL_TITLES.filter(t => t.toLowerCase().includes(state.searchTerm.toLowerCase()));
+            recipeListEl.innerHTML = '';
+            
+            if (filtered.length === 0) {
+                recipeListEl.innerHTML = `<div class="p-8 text-center text-slate-400 text-sm">Tidak ada hasil ditemukan.</div>`;
+                return;
+            }
+
+            filtered.forEach(title => {
+                const btn = document.createElement('button');
+                const isActive = state.selectedTitle === title;
+                const hasData = !!RECIPE_DETAILS[title];
+
+                btn.className = `w-full text-left px-4 py-3 text-sm flex items-center justify-between transition-colors
+                    ${isActive ? 'bg-indigo-50 text-indigo-700 font-semibold border-r-4 border-indigo-600' : 'text-slate-600 hover:bg-slate-50'}`;
+                
+                btn.innerHTML = `
+                    <span class="truncate pr-2">${title.replace("Cara Membuat ", "")}</span>
+                    ${hasData ? '<div class="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0"></div>' : ''}
+                `;
+                
+                btn.onclick = () => {
+                    state.selectedTitle = title;
+                    renderContent();
+                    renderList();
+                    if (window.innerWidth < 768) {
+                        state.isSidebarOpen = false;
+                        document.body.classList.add('sidebar-closed');
+                    }
+                };
+                recipeListEl.appendChild(btn);
+            });
+        }
+
+        function renderContent() {
+            const data = RECIPE_DETAILS[state.selectedTitle];
+            headerLabelEl.innerText = data ? 'Instruksi Detail' : 'Coming Soon';
+
+            if (!data) {
+                recipeContainerEl.innerHTML = `
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2 leading-tight">${state.selectedTitle}</h2>
+                    <div class="mt-20 flex flex-col items-center justify-center text-center p-10 bg-white rounded-[3rem] shadow-sm border border-slate-100">
+                        <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6 text-slate-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-700 mb-2">Konten Belum Tersedia</h3>
+                        <p class="text-slate-400 text-sm max-w-sm">
+                            Resep untuk <span class="font-semibold text-slate-500">"${state.selectedTitle}"</span> sedang dalam tahap penyusunan.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            recipeContainerEl.innerHTML = `
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2 leading-tight">${state.selectedTitle}</h2>
+                <div class="space-y-8 mt-6">
+                    ${data.subtitle ? `
+                        <p class="text-xl text-indigo-600 font-medium italic border-l-4 border-indigo-200 pl-4 py-1">"${data.subtitle}"</p>
+                    ` : ''}
+
+                    ${data.warning ? `
+                        <div class="flex items-start gap-4 p-4 bg-red-50 border border-red-100 rounded-2xl text-red-700">
+                            <svg class="w-5 h-5 shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <div class="text-sm font-semibold">${data.warning}</div>
+                        </div>
+                    ` : ''}
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        ${data.bahan ? `
+                        <section class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                            <div class="flex items-center gap-2 mb-4 text-indigo-600">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h15"></path><path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3"></path><path d="M6 14h12"></path></svg>
+                                <h3 class="font-bold uppercase text-xs tracking-widest">Bahan-Bahan</h3>
+                            </div>
+                            <ul class="space-y-3">
+                                ${data.bahan.map((item, idx) => `
+                                    <li class="text-slate-600 text-sm flex gap-3">
+                                        <span class="w-5 h-5 bg-indigo-50 rounded-full flex items-center justify-center text-[10px] font-bold text-indigo-600 shrink-0 mt-0.5">${idx + 1}</span>
+                                        ${item}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </section>` : ''}
+
+                        ${data.alat ? `
+                        <section class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                            <div class="flex items-center gap-2 mb-4 text-emerald-600">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.77 3.77z"></path></svg>
+                                <h3 class="font-bold uppercase text-xs tracking-widest">Alat</h3>
+                            </div>
+                            <ul class="space-y-3">
+                                ${data.alat.map(item => `
+                                    <li class="text-slate-600 text-sm flex items-center gap-3">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+                                        ${item}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </section>` : ''}
+                    </div>
+
+                    ${data.steps ? `
+                    <section class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100">
+                        <div class="flex items-center gap-2 mb-6 text-slate-800">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                            <h3 class="font-bold uppercase text-xs tracking-widest">Langkah Pembuatan</h3>
+                        </div>
+                        <div class="space-y-6">
+                            ${data.steps.map((step, idx) => `
+                                <div class="flex gap-4 group">
+                                    <div class="relative">
+                                        <div class="w-8 h-8 rounded-xl bg-slate-100 text-slate-500 font-bold text-sm flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                                            ${idx + 1}
+                                        </div>
+                                        ${idx !== data.steps.length - 1 ? '<div class="absolute top-8 left-1/2 -translate-x-1/2 w-0.5 h-full bg-slate-100 mt-2"></div>' : ''}
+                                    </div>
+                                    <p class="text-slate-600 text-sm md:text-base pt-1 flex-1 leading-relaxed">${step}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>` : ''}
+
+                    ${(data.note || data.usage || data.benefits) ? `
+                        <div class="grid gap-6">
+                            ${data.note ? `
+                                <div class="bg-amber-50 p-4 rounded-2xl border border-amber-100 flex gap-3 text-amber-800">
+                                    <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                    <p class="text-sm italic"><span class="font-bold">Catatan:</span> ${data.note}</p>
+                                </div>
+                            ` : ''}
+                            ${data.usage ? `
+                                <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100">
+                                    <h4 class="font-bold text-blue-800 text-xs uppercase tracking-widest mb-2">Cara Pakai</h4>
+                                    <p class="text-sm text-blue-700 leading-relaxed">${data.usage}</p>
+                                </div>
+                            ` : ''}
+                            ${data.benefits ? `
+                                <div class="bg-indigo-50 p-5 rounded-2xl border border-indigo-100">
+                                    <h4 class="font-bold text-indigo-800 text-xs uppercase tracking-widest mb-2">Manfaat & Kegunaan</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${data.benefits.map(b => `<span class="px-3 py-1 bg-white rounded-full text-xs font-medium text-indigo-600 shadow-sm">${b}</span>`).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+
+                    <div class="text-center py-10 opacity-30 select-none">
+                        <div class="h-px bg-slate-300 w-full mb-4"></div>
+                        <p class="text-xs font-mono">${data.footer}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Event Listeners
+        searchInputEl.oninput = (e) => {
+            state.searchTerm = e.target.value;
+            renderList();
+        };
+
+        sidebarToggleBtn.onclick = () => {
+            state.isSidebarOpen = !state.isSidebarOpen;
+            document.body.classList.toggle('sidebar-closed', !state.isSidebarOpen);
+        };
+
+        // Initialize
+        renderList();
+        renderContent();
+    </script>
+</body>
+</html>
