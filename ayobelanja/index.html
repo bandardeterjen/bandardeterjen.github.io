@@ -43,7 +43,7 @@
             min-height: 100vh;
         }
 
-        /* Top Notification Bar */
+        /* Topbar */
         .topbar {
             background: var(--black);
             color: var(--white);
@@ -133,7 +133,6 @@
             justify-content: center;
         }
 
-        /* Container */
         .container {
             max-width: var(--max-w);
             margin: 0 auto;
@@ -169,7 +168,7 @@
         }
         .hero .btn-cta:hover { background: var(--orange-hover); }
 
-        /* Search & Filter */
+        /* Search */
         .search-box {
             position: relative;
             max-width: 600px;
@@ -193,7 +192,6 @@
             color: var(--gray-dark);
         }
 
-        /* Section Header */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -297,7 +295,7 @@
         }
         .btn-cart-add:hover { background: var(--orange-hover); }
 
-        /* Pagination Controls */
+        /* Pagination */
         .pagination-container {
             display: flex;
             justify-content: center;
@@ -324,7 +322,7 @@
             cursor: not-allowed;
         }
 
-        /* Detail Page Layout */
+        /* Detail Layout */
         .detail-layout {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -387,17 +385,7 @@
             font-weight: 500;
         }
 
-        /* Reseller Matching Card */
-        .reseller-box {
-            background: #fffbeb;
-            border: 1px solid #fde68a;
-            border-radius: 8px;
-            padding: 12px 16px;
-            margin: 15px 0;
-            font-size: 0.85rem;
-        }
-
-        /* Wilayah & Blog Sections */
+        /* Wilayah & Blog */
         .wilayah-browser, .blog-section {
             background: var(--white);
             padding: 24px;
@@ -506,9 +494,32 @@
             cursor: pointer;
         }
         .cart-footer {
-            padding: 20px;
+            padding: 16px 20px;
             border-top: 1px solid var(--border-color);
             background: var(--gray-light);
+        }
+        .checkout-reseller-selector {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+        .checkout-reseller-selector label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #92400e;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .checkout-reseller-selector select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #d97706;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: white;
         }
         .checkout-wa-btn {
             background: #22c55e;
@@ -524,7 +535,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-top: 12px;
         }
         .checkout-wa-btn:hover { background: #16a34a; }
 
@@ -572,12 +582,10 @@
 </head>
 <body>
 
-    <!-- Topbar Info CS -->
     <div class="topbar">
         <span><i class="fas fa-bullhorn"></i> CS Pusat: <a href="https://wa.me/6285773009666" target="_blank">0857-7300-9666</a> | CS Khusus Jakarta: <a href="https://wa.me/6288808181008" target="_blank">0888-0818-1008</a></span>
     </div>
 
-    <!-- Header Navigation -->
     <header>
         <div class="header-container">
             <a href="#" class="logo">
@@ -600,12 +608,9 @@
         </div>
     </header>
 
-    <!-- App Container -->
-    <main class="container" id="app">
-        <!-- Rendered by Hash Router -->
-    </main>
+    <main class="container" id="app"></main>
 
-    <!-- Cart Sidebar -->
+    <!-- Cart Drawer with Reseller Matching -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
             <h3><i class="fas fa-shopping-bag"></i> Keranjang Belanja</h3>
@@ -617,18 +622,23 @@
                 <span>Total:</span>
                 <span id="cartGrandTotal" style="color:var(--royal-blue)">Rp0</span>
             </div>
-            <div style="font-size:0.8rem; color:var(--gray-dark); margin-bottom:8px;">
-                <i class="fas fa-map-marker-alt"></i> Routing CS Order: <strong id="cartTargetCS">Pusat (085773009666)</strong>
+
+            <!-- Reseller Selection Box -->
+            <div class="checkout-reseller-selector">
+                <label><i class="fas fa-user-check"></i> Pilih CS / Agen Reseller Tujuan:</label>
+                <select id="checkoutResellerSelect">
+                    <!-- Populated dynamically based on location -->
+                </select>
             </div>
+
             <button class="checkout-wa-btn" id="btnCheckoutWA">
-                <i class="fab fa-whatsapp"></i> Checkout Pesanan via WhatsApp
+                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp Reseller
             </button>
         </div>
     </div>
 
     <div class="overlay" id="overlay"></div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
@@ -651,14 +661,11 @@
         </div>
     </footer>
 
-    <!-- App Engine -->
     <script>
-        // URLs External Data
         const CSV_PRODUCTS_URL = 'https://bandardeterjen.github.io/product/belanja/daftarproduk.csv';
         const CSV_RESELLERS_URL = 'https://bandardeterjen.github.io/product/belanja/daftarreseller.csv';
         const JSON_BLOG_URL = 'https://bandardeterjen.github.io/product/blog_data.json';
 
-        // Hierarchy Data Wilayah
         const REGION_DATA = {
             "dki-jakarta": {
                 name: "DKI Jakarta",
@@ -724,7 +731,6 @@
             }
         };
 
-        // State Holders
         let ALL_PRODUCTS = [];
         let ALL_RESELLERS = [];
         let ALL_BLOGS = [];
@@ -744,7 +750,6 @@
         const PHONE_DEFAULT = "085773009666";
         const PHONE_JAKARTA = "088808181008";
 
-        // Helpers
         function formatRupiah(num) {
             return 'Rp ' + Number(num || 0).toLocaleString('id-ID');
         }
@@ -753,24 +758,12 @@
             return (text || '').toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').substring(0, 50).replace(/-$/, '');
         }
 
-        function getCSPhone(isJakarta, districtKey) {
-            // Check Reseller matching
-            if (districtKey) {
-                const matched = ALL_RESELLERS.find(r => r.asalKota.toLowerCase().includes(districtKey.replace('kab-', '').replace('kota-', '').replace('-', ' ')));
-                if (matched && matched.nomorWA) {
-                    return matched.nomorWA;
-                }
-            }
-            return isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT;
-        }
-
         function getRawWhatsApp(phone) {
             let p = String(phone).replace(/\D/g, '');
             if (p.startsWith('0')) p = '62' + p.substring(1);
             return p;
         }
 
-        // CSV Parser
         function parseCSV(text) {
             const lines = text.split('\n').filter(l => l.trim() !== '');
             if (lines.length === 0) return [];
@@ -786,7 +779,6 @@
             });
         }
 
-        // Fetch Remote Datasets
         async function initData() {
             try {
                 const [pRes, rRes, bRes] = await Promise.allSettled([
@@ -820,7 +812,6 @@
             renderCartUI();
         }
 
-        // Router
         function parseHash() {
             const hash = window.location.hash.replace(/^#\/?/, '');
             const parts = hash.split('/').filter(p => p.trim() !== '');
@@ -851,7 +842,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 1. Home View
         function renderHomePage(container) {
             document.getElementById('meta-title').innerText = "Bandar Product | Distributor Sabun Laundry & Pembersih";
             
@@ -975,7 +965,6 @@
             pagBox.innerHTML = html;
         }
 
-        // 2. Detail Product & Wilayah Routing
         function renderProductDetailPage(container, productSlug, regionSlug, subregionSlug) {
             let product = ALL_PRODUCTS.find(p => p.slug === productSlug) || ALL_PRODUCTS[0];
             if (!product) return;
@@ -988,7 +977,7 @@
             if (subregionSlug) activeSubdistrict = subregionSlug.replace('kecamatan-', '');
 
             const isJakarta = activeDistrict.includes('jakarta');
-            const targetCSPhone = getCSPhone(isJakarta, activeDistrict);
+            const targetCSPhone = isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT;
 
             document.getElementById('meta-title').innerText = `Jual ${product.title} - Wilayah ${activeDistrict.toUpperCase()} | Bandar Product`;
 
@@ -1090,6 +1079,8 @@
                 lblLokasi.innerText = `Kecamatan ${subKey.toUpperCase()}, Kelurahan ${villKey} (${distKey.toUpperCase()})`;
                 const newHash = `produk/${productSlug}/kecamatan-${subKey}/kelurahan-${villKey.toLowerCase().replace(/\s+/g, '-')}`;
                 history.replaceState(null, null, `#${newHash}`);
+
+                renderCartUI();
             }
 
             distSelect.addEventListener('change', updateSubdistricts);
@@ -1099,7 +1090,6 @@
             updateSubdistricts();
         }
 
-        // 3. Blog Article View
         function renderBlogPage(container, blogSlug) {
             const blog = ALL_BLOGS.find(b => createSlug(b.title) === blogSlug) || ALL_BLOGS[0];
             if (!blog) return;
@@ -1122,10 +1112,9 @@
             `;
         }
 
-        // 4. Region Based Catalog View
         function renderRegionCatalogPage(container, districtSlug, subdistrictSlug) {
             const isJakarta = (districtSlug || '').includes('jakarta');
-            const targetPhone = getCSPhone(isJakarta, districtSlug);
+            const targetPhone = isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT;
 
             container.innerHTML = `
                 <div style="margin-bottom:16px;">
@@ -1143,7 +1132,6 @@
             renderPaginatedProducts(1);
         }
 
-        // Cart & Checkout
         function addToCartById(productId, openDrawer = false) {
             const p = ALL_PRODUCTS.find(item => item.id === productId);
             if (!p) return;
@@ -1177,11 +1165,12 @@
             renderCartUI();
         }
 
+        // Render Cart & Update Reseller Dropdown
         function renderCartUI() {
             const cartList = document.getElementById('cartList');
             const cartBadge = document.getElementById('cartBadge');
             const cartTotal = document.getElementById('cartGrandTotal');
-            const cartTargetCS = document.getElementById('cartTargetCS');
+            const resellerSelect = document.getElementById('checkoutResellerSelect');
 
             const totalQty = CartState.reduce((sum, i) => sum + i.qty, 0);
             const grandTotal = CartState.reduce((sum, i) => sum + (i.price * i.qty), 0);
@@ -1189,9 +1178,40 @@
             cartBadge.innerText = totalQty;
             cartTotal.innerText = formatRupiah(grandTotal);
 
-            const isJkt = CurrentSelectedLocation.isJakarta;
-            const csPhone = getCSPhone(isJkt, CurrentSelectedLocation.city);
-            cartTargetCS.innerText = `${isJkt ? 'Jakarta' : 'Pusat/Agen'} (${csPhone})`;
+            // Populate Reseller Options in Checkout
+            if (resellerSelect) {
+                const currentDistName = (CurrentSelectedLocation.city || '').replace('kab-', '').replace('kota-', '').replace('-', ' ').toLowerCase();
+                
+                let matchingResellers = ALL_RESELLERS.filter(r => r.asalKota && r.asalKota.toLowerCase().includes(currentDistName));
+                let otherResellers = ALL_RESELLERS.filter(r => !matchingResellers.includes(r));
+
+                let optionsHTML = '';
+
+                // Opsi Default CS Berdasarkan Wilayah
+                const defaultCS = CurrentSelectedLocation.isJakarta 
+                    ? { name: "CS Jakarta (Pusat)", phone: PHONE_JAKARTA }
+                    : { name: "CS Pusat (Nasional)", phone: PHONE_DEFAULT };
+
+                optionsHTML += `<option value="${defaultCS.phone}">${defaultCS.name} - ${defaultCS.phone}</option>`;
+
+                if (matchingResellers.length > 0) {
+                    optionsHTML += `<optgroup label="Reseller Terdekat (${CurrentSelectedLocation.city.toUpperCase()})">`;
+                    matchingResellers.forEach(r => {
+                        optionsHTML += `<option value="${r.nomorWA}" selected>⭐ ${r.namaReseller} (${r.asalKota}) - ${r.nomorWA}</option>`;
+                    });
+                    optionsHTML += `</optgroup>`;
+                }
+
+                if (otherResellers.length > 0) {
+                    optionsHTML += `<optgroup label="Reseller Wilayah Lain">`;
+                    otherResellers.forEach(r => {
+                        optionsHTML += `<option value="${r.nomorWA}">${r.namaReseller} (${r.asalKota}) - ${r.nomorWA}</option>`;
+                    });
+                    optionsHTML += `</optgroup>`;
+                }
+
+                resellerSelect.innerHTML = optionsHTML;
+            }
 
             if (CartState.length === 0) {
                 cartList.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">Keranjang belanja kosong.</div>`;
@@ -1228,25 +1248,33 @@
 
         function directOrderWA(productId) {
             const p = ALL_PRODUCTS.find(item => item.id === productId);
-            const targetPhone = getRawWhatsApp(getCSPhone(CurrentSelectedLocation.isJakarta, CurrentSelectedLocation.city));
-            const msg = `Halo Bandar Product,\n\nSaya ingin memesan:\n*${p.title}*\nHarga: ${formatRupiah(p.price)}\n\nTujuan Pengiriman:\n- Wilayah: ${CurrentSelectedLocation.city.toUpperCase()}\n- Kecamatan: ${CurrentSelectedLocation.district.toUpperCase()}\n- Kelurahan: ${CurrentSelectedLocation.village}\n\nMohon info ketersediaan stok & ongkirnya. Terima kasih.`;
+            const resellerSelect = document.getElementById('checkoutResellerSelect');
+            const targetPhone = getRawWhatsApp(resellerSelect && resellerSelect.value ? resellerSelect.value : (CurrentSelectedLocation.isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT));
+
+            const msg = `Halo Bandar Product / Reseller,\n\nSaya ingin memesan:\n*${p.title}*\nHarga: ${formatRupiah(p.price)}\n\nTujuan Pengiriman:\n- Wilayah: ${CurrentSelectedLocation.city.toUpperCase()}\n- Kecamatan: ${CurrentSelectedLocation.district.toUpperCase()}\n- Kelurahan: ${CurrentSelectedLocation.village}\n\nMohon info ketersediaan stok & ongkirnya. Terima kasih.`;
             window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
+        // WhatsApp Checkout Handler
         document.getElementById('btnCheckoutWA').addEventListener('click', () => {
             if (CartState.length === 0) {
                 alert('Keranjang belanja masih kosong.');
                 return;
             }
-            const targetPhone = getRawWhatsApp(getCSPhone(CurrentSelectedLocation.isJakarta, CurrentSelectedLocation.city));
+
+            const resellerSelect = document.getElementById('checkoutResellerSelect');
+            const selectedPhone = resellerSelect ? resellerSelect.value : (CurrentSelectedLocation.isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT);
+            const selectedResellerName = resellerSelect ? resellerSelect.options[resellerSelect.selectedIndex].text : "CS Bandar Product";
+            const targetPhone = getRawWhatsApp(selectedPhone);
+
             const grandTotal = CartState.reduce((sum, i) => sum + (i.price * i.qty), 0);
 
-            let msg = `Halo Bandar Product, saya ingin checkout dari website:\n\n*DAFTAR PESANAN:*\n`;
+            let msg = `Halo *${selectedResellerName}*,\nSaya ingin melakukan checkout pesanan dari website Bandar Product:\n\n*DAFTAR PESANAN:*\n`;
             CartState.forEach((item, idx) => {
                 msg += `${idx + 1}. ${item.title} (${item.qty}x) = ${formatRupiah(item.price * item.qty)}\n`;
             });
             msg += `\n*Total Belanja:* ${formatRupiah(grandTotal)}\n`;
-            msg += `*Tujuan Kirim:* ${CurrentSelectedLocation.village}, Kec. ${CurrentSelectedLocation.district.toUpperCase()}, ${CurrentSelectedLocation.city.toUpperCase()}\n\nMohon petunjuk pembayaran & total ongkos kirim. Terima kasih.`;
+            msg += `*Tujuan Kirim:* ${CurrentSelectedLocation.village}, Kec. ${CurrentSelectedLocation.district.toUpperCase()}, ${CurrentSelectedLocation.city.toUpperCase()}\n\nMohon konfirmasi ketersediaan stok, total transfer, dan estimasi ongkos kirim. Terima kasih!`;
 
             window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
         });
