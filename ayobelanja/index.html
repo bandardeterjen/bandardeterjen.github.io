@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="meta-title">Bandar Product | Pusat Sabun Laundry, Karbol & Kimia Industri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="meta-title">085773009666 Bandar Product | Pusat Sabun Laundry & Kimia Industri</title>
     <meta id="meta-desc" name="description" content="Pusat distributor dan formulasi produk sabun laundry, karbol, deterjen berkualitas. Hubungi 085773009666.">
     
     <!-- Google Fonts & Font Awesome -->
@@ -32,6 +32,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -43,15 +44,15 @@
             min-height: 100vh;
         }
 
-        /* Topbar */
+        /* Topbar Info */
         .topbar {
             background: var(--black);
             color: var(--white);
-            font-size: 0.85rem;
-            padding: 7px 0;
+            font-size: 0.8rem;
+            padding: 6px 12px;
             text-align: center;
         }
-        .topbar a { color: var(--orange); text-decoration: none; font-weight: 600; }
+        .topbar a { color: var(--orange); text-decoration: none; font-weight: 700; }
 
         /* Header */
         header {
@@ -66,27 +67,27 @@
         .header-container {
             max-width: var(--max-w);
             margin: 0 auto;
-            padding: 12px 20px;
+            padding: 10px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: var(--royal-blue);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .logo span { color: var(--orange); }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 16px;
             align-items: center;
         }
 
@@ -94,7 +95,7 @@
             text-decoration: none;
             color: var(--gray-dark);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: color 0.2s;
         }
         .nav-links a:hover, .nav-links a.active {
@@ -106,14 +107,14 @@
             background: var(--royal-blue-light);
             border: none;
             color: var(--royal-blue);
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: 0.2s;
         }
         .cart-btn:hover { background: var(--royal-blue); color: var(--white); }
@@ -125,8 +126,8 @@
             color: var(--white);
             font-size: 0.75rem;
             font-weight: 700;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -136,57 +137,58 @@
         .container {
             max-width: var(--max-w);
             margin: 0 auto;
-            padding: 24px 20px;
+            padding: 16px;
             flex: 1;
+            width: 100%;
         }
 
         /* Hero */
         .hero {
             background: linear-gradient(135deg, var(--royal-blue) 0%, #172554 100%);
             color: var(--white);
-            padding: 40px 30px;
-            border-radius: 16px;
-            margin-bottom: 30px;
+            padding: 30px 20px;
+            border-radius: 14px;
+            margin-bottom: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
-        .hero h1 { font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
-        .hero p { color: #cbd5e1; font-size: 1.05rem; max-width: 650px; margin-bottom: 20px; }
+        .hero h1 { font-size: 1.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 8px; }
+        .hero p { color: #cbd5e1; font-size: 0.95rem; max-width: 650px; margin-bottom: 16px; }
         .hero .btn-cta {
             background: var(--orange);
             color: var(--white);
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 8px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.9rem;
             transition: 0.2s;
         }
-        .hero .btn-cta:hover { background: var(--orange-hover); }
 
         /* Search */
         .search-box {
             position: relative;
             max-width: 600px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 24px auto;
         }
         .search-box input {
             width: 100%;
-            padding: 14px 20px 14px 48px;
+            padding: 12px 18px 12px 44px;
             border-radius: 30px;
             border: 2px solid var(--border-color);
             outline: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: 0.2s;
         }
         .search-box input:focus { border-color: var(--royal-blue); }
         .search-box i {
             position: absolute;
-            left: 18px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--gray-dark);
@@ -196,18 +198,18 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
-        .section-title { font-size: 1.5rem; font-weight: 800; color: var(--black); }
+        .section-title { font-size: 1.3rem; font-weight: 800; color: var(--black); }
         .section-title span { color: var(--royal-blue); }
 
         /* Product Grid */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
             margin-bottom: 20px;
         }
         .product-card {
@@ -220,13 +222,13 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
         }
         .product-img-box {
             position: relative;
             width: 100%;
-            height: 180px;
+            height: 170px;
             background: #f1f5f9;
         }
         .product-img-box img {
@@ -235,13 +237,13 @@
             object-fit: cover;
         }
         .product-body {
-            padding: 16px;
+            padding: 14px;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
         .product-name {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 700;
             color: var(--black);
             margin-bottom: 6px;
@@ -250,15 +252,15 @@
             overflow: hidden;
         }
         .product-price {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--royal-blue);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .product-desc {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--gray-dark);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             height: 3.4em;
             overflow: hidden;
             display: -webkit-box;
@@ -268,48 +270,48 @@
         .card-actions {
             margin-top: auto;
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
         .btn-detail {
             flex: 1;
-            padding: 8px 12px;
+            padding: 8px 10px;
             border-radius: 6px;
             border: 1px solid var(--royal-blue);
             color: var(--royal-blue);
             font-weight: 600;
             text-align: center;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
         .btn-detail:hover { background: var(--royal-blue-light); }
         .btn-cart-add {
             background: var(--orange);
             color: var(--white);
             border: none;
-            padding: 8px 14px;
+            padding: 8px 12px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.85rem;
-            transition: 0.2s;
+            font-size: 0.82rem;
         }
-        .btn-cart-add:hover { background: var(--orange-hover); }
 
         /* Pagination */
         .pagination-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
-            margin: 30px 0 50px;
+            gap: 6px;
+            margin: 20px 0 40px;
+            flex-wrap: wrap;
         }
         .pagination-btn {
             background: var(--white);
             border: 1px solid var(--border-color);
-            padding: 8px 14px;
+            padding: 7px 12px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.85rem;
             color: var(--gray-dark);
         }
         .pagination-btn.active {
@@ -317,130 +319,172 @@
             color: var(--white);
             border-color: var(--royal-blue);
         }
-        .pagination-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
 
         /* Detail Layout */
         .detail-layout {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
             background: var(--white);
-            padding: 30px;
-            border-radius: 16px;
+            padding: 24px;
+            border-radius: 14px;
             border: 1px solid var(--border-color);
         }
         .detail-img-box {
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             border: 1px solid var(--border-color);
         }
         .detail-img-box img {
             width: 100%;
-            max-height: 420px;
+            max-height: 380px;
             object-fit: cover;
             display: block;
         }
-        .detail-info h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; color: var(--black); }
-        .detail-price { font-size: 1.6rem; font-weight: 800; color: var(--royal-blue); margin-bottom: 16px; }
+        .detail-info h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+        .detail-info h1 span.highlight-wa {
+            color: #16a34a;
+            display: block;
+            font-size: 1.15rem;
+            margin-bottom: 4px;
+        }
+        .detail-info h1 span.highlight-loc {
+            color: var(--royal-blue);
+        }
+        .detail-price { font-size: 1.5rem; font-weight: 800; color: var(--royal-blue); margin-bottom: 14px; }
+        
         .routing-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             background: #dcfce7;
             color: #15803d;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
-        .region-selector-box {
+
+        /* Section Pilih Wilayah (Teks / Chip Based) */
+        .region-text-box {
             background: var(--royal-blue-light);
             border: 1px solid #bfdbfe;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 18px 0;
         }
-        .region-selector-box h4 {
+        .region-text-box h3 {
             color: var(--royal-blue);
             font-size: 0.95rem;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
-        .region-selects {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-        }
-        .region-selects select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
-            background: var(--white);
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Wilayah & Blog */
-        .wilayah-browser, .blog-section {
-            background: var(--white);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 40px;
-        }
-        .wilayah-list {
+        .region-breadcrumb {
+            font-size: 0.82rem;
+            color: var(--gray-dark);
+            margin-bottom: 12px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 6px;
+            align-items: center;
         }
-        .wilayah-chip {
-            padding: 8px 14px;
-            border-radius: 30px;
-            background: var(--gray-light);
-            border: 1px solid var(--border-color);
+        .region-breadcrumb a {
+            color: var(--royal-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .text-region-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding: 4px 0;
+        }
+        .text-region-btn {
+            background: var(--white);
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
             color: var(--black);
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
             transition: 0.2s;
+            cursor: pointer;
         }
-        .wilayah-chip:hover, .wilayah-chip.active {
+        .text-region-btn:hover, .text-region-btn.active {
             background: var(--royal-blue);
             color: var(--white);
             border-color: var(--royal-blue);
         }
 
+        /* Wilayah Browser (Halaman Utama) */
+        .wilayah-browser, .blog-section {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        .wilayah-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .wilayah-chip {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: var(--gray-light);
+            border: 1px solid var(--border-color);
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .wilayah-chip:hover {
+            background: var(--royal-blue);
+            color: var(--white);
+            border-color: var(--royal-blue);
+        }
+
+        /* Blog Section */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
         }
         .blog-card {
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             background: var(--white);
             display: flex;
             flex-direction: column;
         }
-        .blog-card img { height: 180px; width: 100%; object-fit: cover; }
-        .blog-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
-        .blog-card-body h3 { font-size: 1.05rem; margin-bottom: 8px; font-weight: 700; }
-        .blog-card-body p { font-size: 0.85rem; color: var(--gray-dark); margin-bottom: 12px; flex: 1; }
+        .blog-card img { height: 160px; width: 100%; object-fit: cover; }
+        .blog-card-body { padding: 14px; flex: 1; display: flex; flex-direction: column; }
+        .blog-card-body h3 { font-size: 0.95rem; margin-bottom: 6px; font-weight: 700; }
+        .blog-card-body p { font-size: 0.8rem; color: var(--gray-dark); margin-bottom: 10px; flex: 1; }
 
         /* Cart Drawer */
         .cart-drawer {
             position: fixed;
             top: 0;
             right: -420px;
-            width: 400px;
+            width: 380px;
             height: 100vh;
             background: var(--white);
             box-shadow: -5px 0 25px rgba(0,0,0,0.15);
@@ -451,7 +495,7 @@
         }
         .cart-drawer.open { right: 0; }
         .cart-header {
-            padding: 20px;
+            padding: 16px;
             background: var(--royal-blue);
             color: var(--white);
             display: flex;
@@ -461,40 +505,39 @@
         .cart-body {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 16px;
         }
         .cart-item {
             display: flex;
-            gap: 12px;
-            padding-bottom: 12px;
-            margin-bottom: 12px;
+            gap: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
             border-bottom: 1px solid var(--border-color);
         }
         .cart-item-img {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 6px;
             object-fit: cover;
         }
         .cart-item-info { flex: 1; }
-        .cart-item-title { font-size: 0.85rem; font-weight: 700; }
-        .cart-item-price { color: var(--royal-blue); font-weight: 700; font-size: 0.85rem; }
+        .cart-item-title { font-size: 0.82rem; font-weight: 700; line-height: 1.3; }
+        .cart-item-price { color: var(--royal-blue); font-weight: 700; font-size: 0.82rem; margin: 3px 0; }
         .cart-controls {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 6px;
+            gap: 6px;
         }
         .cart-controls button {
             background: var(--gray-light);
             border: 1px solid var(--border-color);
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 4px;
             cursor: pointer;
         }
         .cart-footer {
-            padding: 16px 20px;
+            padding: 14px 16px;
             border-top: 1px solid var(--border-color);
             background: var(--gray-light);
         }
@@ -503,10 +546,10 @@
             border: 1px solid #fde68a;
             border-radius: 8px;
             padding: 10px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .checkout-reseller-selector label {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: #92400e;
             display: block;
@@ -517,7 +560,7 @@
             padding: 8px;
             border-radius: 6px;
             border: 1px solid #d97706;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
             background: white;
         }
@@ -528,13 +571,13 @@
             width: 100%;
             padding: 12px;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
         .checkout-wa-btn:hover { background: #16a34a; }
 
@@ -551,32 +594,34 @@
         footer {
             background: var(--black);
             color: var(--white);
-            padding: 40px 20px 20px;
+            padding: 30px 16px 20px;
             margin-top: auto;
         }
         .footer-grid {
             max-width: var(--max-w);
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            padding-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding-bottom: 20px;
             border-bottom: 1px solid #334155;
         }
-        .footer-col h4 { color: var(--orange); margin-bottom: 14px; font-size: 1.1rem; }
-        .footer-col p, .footer-col li { color: #94a3b8; font-size: 0.9rem; margin-bottom: 8px; }
+        .footer-col h4 { color: var(--orange); margin-bottom: 10px; font-size: 1rem; }
+        .footer-col p, .footer-col li { color: #94a3b8; font-size: 0.85rem; margin-bottom: 6px; }
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 16px;
             color: #64748b;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; }
-            .detail-layout { grid-template-columns: 1fr; }
-            .region-selects { grid-template-columns: 1fr; }
+            .hero { flex-direction: column; text-align: center; padding: 24px 16px; }
+            .hero h1 { font-size: 1.45rem; }
+            .detail-layout { grid-template-columns: 1fr; padding: 16px; gap: 16px; }
             .cart-drawer { width: 100%; right: -100%; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -595,12 +640,12 @@
                 <ul class="nav-links">
                     <li><a href="#" id="nav-home">Beranda</a></li>
                     <li><a href="#katalog">Katalog Produk</a></li>
-                    <li><a href="#wilayah">Wilayah Distribusi</a></li>
+                    <li><a href="#wilayah">Cakupan Wilayah</a></li>
                     <li><a href="#blog">Blog & Edukasi</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
-                <button class="cart-btn" id="openCartBtn">
+                <button class="cart-btn" id="openCartBtn" aria-label="Buka Keranjang">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-badge" id="cartBadge">0</span>
                 </button>
@@ -610,7 +655,7 @@
 
     <main class="container" id="app"></main>
 
-    <!-- Cart Drawer with Reseller Matching -->
+    <!-- Cart Drawer -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
             <h3><i class="fas fa-shopping-bag"></i> Keranjang Belanja</h3>
@@ -618,21 +663,18 @@
         </div>
         <div class="cart-body" id="cartList"></div>
         <div class="cart-footer">
-            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.1rem; margin-bottom:12px;">
+            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.05rem; margin-bottom:10px;">
                 <span>Total:</span>
                 <span id="cartGrandTotal" style="color:var(--royal-blue)">Rp0</span>
             </div>
 
-            <!-- Reseller Selection Box -->
             <div class="checkout-reseller-selector">
-                <label><i class="fas fa-user-check"></i> Pilih CS / Agen Reseller Tujuan:</label>
-                <select id="checkoutResellerSelect">
-                    <!-- Populated dynamically based on location -->
-                </select>
+                <label><i class="fas fa-user-check"></i> CS / Agen Reseller Tujuan:</label>
+                <select id="checkoutResellerSelect"></select>
             </div>
 
             <button class="checkout-wa-btn" id="btnCheckoutWA">
-                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp Reseller
+                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
             </button>
         </div>
     </div>
@@ -666,11 +708,20 @@
         const CSV_RESELLERS_URL = 'https://bandardeterjen.github.io/product/belanja/daftarreseller.csv';
         const JSON_BLOG_URL = 'https://bandardeterjen.github.io/product/blog_data.json';
 
+        // Master Data Wilayah Lengkap & Berjenjang
         const REGION_DATA = {
             "dki-jakarta": {
                 name: "DKI Jakarta",
                 isJakarta: true,
                 districts: {
+                    "jakarta-utara": {
+                        name: "Jakarta Utara",
+                        subdistricts: {
+                            "tanjung-priok": ["Sunterjaya", "Tanjung Priok", "Kebon Bawang", "Sungai Bambu", "Papanggo", "Warakas", "Sunter Agung"],
+                            "kelapa-gading": ["Kelapa Gading Barat", "Kelapa Gading Timur", "Pegangsaan Dua"],
+                            "penjaringan": ["Penjaringan", "Pluit", "Pejagalan", "Kapuk Muara", "Kamal Muara"]
+                        }
+                    },
                     "jakarta-selatan": {
                         name: "Jakarta Selatan",
                         subdistricts: {
@@ -691,6 +742,13 @@
                         subdistricts: {
                             "menteng": ["Menteng", "Pegangsaan", "Cikini", "Gondangdia", "Kebon Sirih"],
                             "tanah-abang": ["Bendungan Hilir", "Karet Tengsin", "Kebon Melati", "Kebon Kacang", "Kampung Bali", "Petamburan", "Gelora"]
+                        }
+                    },
+                    "jakarta-barat": {
+                        name: "Jakarta Barat",
+                        subdistricts: {
+                            "kebon-jeruk": ["Duri Kepa", "Kedoya Selatan", "Kedoya Utara", "Kebon Jeruk", "Sukabumi Utara", "Kelapa Dua"],
+                            "grogol-petamburan": ["Tomang", "Grogol", "Jelambar", "Wijaya Kusuma", "Tanjung Duren"]
                         }
                     }
                 }
@@ -739,16 +797,11 @@
         let CurrentPage = 1;
         const ProductsPerPage = 6;
 
-        let CurrentSelectedLocation = {
-            city: 'dki-jakarta',
-            district: 'jakarta-selatan',
-            subdistrict: 'tebet',
-            village: 'Menteng Dalam',
-            isJakarta: true
-        };
-
         const PHONE_DEFAULT = "085773009666";
         const PHONE_JAKARTA = "088808181008";
+
+        // Global Target Location State (null by default)
+        let ActiveLocationState = null;
 
         function formatRupiah(num) {
             return 'Rp ' + Number(num || 0).toLocaleString('id-ID');
@@ -806,20 +859,21 @@
                     ALL_BLOGS = bRes.value;
                 }
             } catch (err) {
-                console.error("Gagal memuat dataset eksternal:", err);
+                console.error("Gagal memuat data eksternal:", err);
             }
             handleRoute();
             renderCartUI();
         }
 
+        // Hash Routing
         function parseHash() {
             const hash = window.location.hash.replace(/^#\/?/, '');
             const parts = hash.split('/').filter(p => p.trim() !== '');
             return {
                 module: parts[0] || 'home',
-                param1: parts[1] || null,
-                param2: parts[2] || null,
-                param3: parts[3] || null
+                param1: parts[1] || null, // slug-produk
+                param2: parts[2] || null, // kota / kecamatan
+                param3: parts[3] || null  // kelurahan
             };
         }
 
@@ -828,6 +882,7 @@
             const app = document.getElementById('app');
 
             if (r.module === 'home' || r.module === '') {
+                ActiveLocationState = null;
                 renderHomePage(app);
             } else if (r.module === 'produk') {
                 renderProductDetailPage(app, r.param1, r.param2, r.param3);
@@ -842,9 +897,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // 1. Home Page View
         function renderHomePage(container) {
-            document.getElementById('meta-title').innerText = "Bandar Product | Distributor Sabun Laundry & Pembersih";
-            
+            document.getElementById('meta-title').innerText = "085773009666 Bandar Product | Pusat Sabun Laundry & Kimia Industri";
+            document.getElementById('meta-desc').innerText = "Pusat distributor deterjen laundry, softener, karbol sereh, dan formula pembersih. Hubungi 085773009666.";
+
             let wilayahChipsHTML = '';
             for (const [provKey, provData] of Object.entries(REGION_DATA)) {
                 for (const [distKey, distData] of Object.entries(provData.districts)) {
@@ -894,7 +951,7 @@
                     <h2 class="section-title">Jelajahi <span>Wilayah & Agen Terdekat</span></h2>
                 </div>
                 <div class="wilayah-browser">
-                    <p style="color:var(--gray-dark); font-size:0.95rem;">Pilih kecamatan dan kelurahan Anda untuk layanan agen pengiriman terdekat dan routing CS WhatsApp otomatis:</p>
+                    <p style="color:var(--gray-dark); font-size:0.85rem;">Pilih kecamatan dan kelurahan Anda untuk melihat katalog produk dan routing CS otomatis:</p>
                     <div class="wilayah-list">${wilayahChipsHTML}</div>
                 </div>
 
@@ -940,7 +997,7 @@
                         <div class="product-price">${formatRupiah(p.price)}</div>
                         <p class="product-desc">${p.description || 'Deskripsi produk siap pakai.'}</p>
                         <div class="card-actions">
-                            <a href="#produk/${p.slug}" class="btn-detail">Detail & Wilayah</a>
+                            <a href="#produk/${p.slug}" class="btn-detail">Detail Produk</a>
                             <button class="btn-cart-add" onclick="addToCartById(${p.id})">
                                 <i class="fas fa-plus"></i> Beli
                             </button>
@@ -965,25 +1022,86 @@
             pagBox.innerHTML = html;
         }
 
-        function renderProductDetailPage(container, productSlug, regionSlug, subregionSlug) {
+        // Helper Resolve Wilayah Object
+        function findLocationDetails(distKey, subKey, villName) {
+            for (const [provSlug, prov] of Object.entries(REGION_DATA)) {
+                if (prov.districts[distKey]) {
+                    const dist = prov.districts[distKey];
+                    const subList = dist.subdistricts[subKey] || [];
+                    return {
+                        isJakarta: prov.isJakarta,
+                        cityName: dist.name,
+                        districtKey: distKey,
+                        subdistrictKey: subKey,
+                        subdistrictName: subKey ? (subKey.charAt(0).toUpperCase() + subKey.slice(1)).replace('-', ' ') : '',
+                        villageName: villName || (subList[0] || ''),
+                        villages: subList
+                    };
+                }
+            }
+            return null;
+        }
+
+        // 2. Detail View Produk dengan Teks Wilayah Berjenjang & SEO Title Khusus
+        function renderProductDetailPage(container, productSlug, paramRegion1, paramRegion2) {
             let product = ALL_PRODUCTS.find(p => p.slug === productSlug) || ALL_PRODUCTS[0];
             if (!product) return;
 
-            let activeDistrict = "jakarta-selatan";
-            let activeSubdistrict = "tebet";
-            let activeVillage = "Menteng Dalam";
+            let selectedCityKey = null;
+            let selectedSubKey = null;
+            let selectedVillName = null;
 
-            if (regionSlug) activeDistrict = regionSlug.replace('kota-', '').replace('kab-', '');
-            if (subregionSlug) activeSubdistrict = subregionSlug.replace('kecamatan-', '');
+            if (paramRegion1) {
+                // Bisa berformat 'kota-jakarta-utara' atau 'jakarta-utara'
+                selectedCityKey = paramRegion1.replace('kota-', '').replace('kab-', '');
+            }
+            if (paramRegion2) {
+                // Bisa berupa kecamatan atau kelurahan
+                if (paramRegion2.startsWith('kecamatan-')) {
+                    selectedSubKey = paramRegion2.replace('kecamatan-', '');
+                } else if (paramRegion2.startsWith('kelurahan-')) {
+                    selectedVillName = paramRegion2.replace('kelurahan-', '').replace(/-/g, ' ');
+                } else {
+                    selectedSubKey = paramRegion2;
+                }
+            }
 
-            const isJakarta = activeDistrict.includes('jakarta');
-            const targetCSPhone = isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT;
+            let locInfo = null;
+            if (selectedCityKey) {
+                locInfo = findLocationDetails(selectedCityKey, selectedSubKey, selectedVillName);
+            }
 
-            document.getElementById('meta-title').innerText = `Jual ${product.title} - Wilayah ${activeDistrict.toUpperCase()} | Bandar Product`;
+            ActiveLocationState = locInfo;
+
+            // Penentuan Nomor WA & Title SEO
+            let activePhone = PHONE_DEFAULT;
+            let locationTitleStr = "";
+            let metaTitleText = "";
+
+            if (locInfo) {
+                if (locInfo.isJakarta) activePhone = PHONE_JAKARTA;
+                
+                // Format: 088808181008 (nomor wa) Judul Produk Di Kelurahan, Kecamatan, Kota
+                const villDisplay = locInfo.villageName ? `Di ${locInfo.villageName}, ` : '';
+                const subDisplay = locInfo.subdistrictName ? `${locInfo.subdistrictName}, ` : '';
+                const cityDisplay = locInfo.cityName || '';
+
+                locationTitleStr = `${villDisplay}${subDisplay}${cityDisplay}`.replace(/,\s*$/, '');
+                metaTitleText = `${activePhone} ${product.title} ${locationTitleStr}`;
+            } else {
+                // Default Nasional
+                metaTitleText = `${PHONE_DEFAULT} ${product.title} - Bandar Product`;
+            }
+
+            document.getElementById('meta-title').innerText = metaTitleText;
+            document.getElementById('meta-desc').innerText = `Jual ${product.title} ${locationTitleStr}. Hubungi WhatsApp ${activePhone} untuk pemesanan cepat.`;
+
+            // Render Navigasi Teks Wilayah Berjenjang
+            let wilayahSectionHTML = renderTextRegionPickerHTML(product.slug, selectedCityKey, selectedSubKey, selectedVillName);
 
             container.innerHTML = `
-                <div style="margin-bottom:16px;">
-                    <a href="#" style="color:var(--royal-blue); text-decoration:none; font-weight:600;"><i class="fas fa-arrow-left"></i> Kembali ke Katalog</a>
+                <div style="margin-bottom:14px;">
+                    <a href="#" style="color:var(--royal-blue); text-decoration:none; font-weight:600; font-size:0.9rem;"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
                 </div>
 
                 <div class="detail-layout">
@@ -993,137 +1111,133 @@
                         </div>
                     </div>
                     <div class="detail-info">
-                        <span class="routing-badge"><i class="fas fa-shield-halved"></i> CS Ready: ${targetCSPhone} (${isJakarta ? 'Khusus Area Jakarta' : 'Area Nasional / Reseller'})</span>
-                        <h2>${product.title}</h2>
-                        <div class="detail-price">${formatRupiah(product.price)}</div>
-                        <p style="color:var(--gray-dark); margin-bottom:20px;">${product.description}</p>
+                        <span class="routing-badge">
+                            <i class="fab fa-whatsapp"></i> CS Aktif: ${activePhone} ${locInfo ? (locInfo.isJakarta ? '(Area Jakarta)' : '(Luar Jakarta/Nasional)') : '(Layanan Pusat)'}
+                        </span>
 
-                        <div class="region-selector-box">
-                            <h4><i class="fas fa-map-location-dot"></i> Pilih Wilayah Pengiriman / Distributor:</h4>
-                            <div class="region-selects">
-                                <select id="selectDistrict">
-                                    <option value="jakarta-selatan" ${activeDistrict==='jakarta-selatan'?'selected':''}>Jakarta Selatan (DKI)</option>
-                                    <option value="jakarta-timur" ${activeDistrict==='jakarta-timur'?'selected':''}>Jakarta Timur (DKI)</option>
-                                    <option value="jakarta-pusat" ${activeDistrict==='jakarta-pusat'?'selected':''}>Jakarta Pusat (DKI)</option>
-                                    <option value="kab-bogor" ${activeDistrict==='kab-bogor'?'selected':''}>Kab. Bogor (Jabar)</option>
-                                    <option value="kab-banyumas" ${activeDistrict==='kab-banyumas'?'selected':''}>Kab. Banyumas (Jateng)</option>
-                                </select>
-                                <select id="selectSubdistrict"></select>
-                                <select id="selectVillage"></select>
-                            </div>
-                            <div style="margin-top:12px; font-size:0.85rem; color:var(--royal-blue); font-weight:600;" id="regionSelectedNotice">
-                                <i class="fas fa-truck-fast"></i> Pengiriman ditargetkan ke: <span id="lblLokasiTujuan">Kecamatan Tebet, Kelurahan Menteng Dalam</span>
-                            </div>
+                        <h1>
+                            <span class="highlight-wa">${activePhone}</span>
+                            ${product.title}
+                            ${locationTitleStr ? `<span class="highlight-loc"><br>${locationTitleStr}</span>` : ''}
+                        </h1>
+
+                        <div class="detail-price">${formatRupiah(product.price)}</div>
+                        <p style="color:var(--gray-dark); font-size:0.9rem; margin-bottom:16px;">${product.description}</p>
+
+                        <!-- Blok Navigasi Teks Wilayah -->
+                        <div class="region-text-box">
+                            <h3><i class="fas fa-map-location-dot"></i> Pilih Wilayah</h3>
+                            ${wilayahSectionHTML}
                         </div>
 
-                        <div style="display:flex; gap:12px; margin-top:20px;">
+                        <div style="display:flex; gap:10px; margin-top:16px;">
                             <button class="btn-cta" style="flex:1; border:none; cursor:pointer;" onclick="addToCartById(${product.id}, true)">
                                 <i class="fas fa-cart-shopping"></i> Tambah ke Keranjang
                             </button>
                             <button class="btn-cta" style="background:#22c55e; border:none; cursor:pointer;" onclick="directOrderWA(${product.id})">
-                                <i class="fab fa-whatsapp"></i> Chat CS Wilayah
+                                <i class="fab fa-whatsapp"></i> Chat WhatsApp
                             </button>
                         </div>
                     </div>
                 </div>
             `;
-
-            populateDynamicSelects(product.slug, activeDistrict, activeSubdistrict, activeVillage);
         }
 
-        function populateDynamicSelects(productSlug, currentDist, currentSub, currentVill) {
-            const distSelect = document.getElementById('selectDistrict');
-            const subSelect = document.getElementById('selectSubdistrict');
-            const villSelect = document.getElementById('selectVillage');
-            const lblLokasi = document.getElementById('lblLokasiTujuan');
+        // Teks Generator Wilayah (Level 1 Kota -> Level 2 Kec -> Level 3 Desa)
+        function renderTextRegionPickerHTML(productSlug, currentCityKey, currentSubKey, currentVillName) {
+            let breadcrumbs = `<div class="region-breadcrumb">
+                <a href="#produk/${productSlug}"><i class="fas fa-globe"></i> Semua Wilayah (Nasional)</a>`;
 
-            function getDistData(distKey) {
-                for (const prov of Object.values(REGION_DATA)) {
-                    if (prov.districts[distKey]) return { prov, dist: prov.districts[distKey] };
+            if (currentCityKey) {
+                breadcrumbs += ` <span>/</span> <a href="#produk/${productSlug}/${currentCityKey}">${currentCityKey.toUpperCase()}</a>`;
+            }
+            if (currentSubKey) {
+                breadcrumbs += ` <span>/</span> <a href="#produk/${productSlug}/${currentCityKey}/kecamatan-${currentSubKey}">KEC. ${currentSubKey.toUpperCase()}</a>`;
+            }
+            if (currentVillName) {
+                breadcrumbs += ` <span>/</span> <strong style="color:var(--black);">${currentVillName.toUpperCase()}</strong>`;
+            }
+            breadcrumbs += `</div>`;
+
+            let listHTML = '';
+
+            // Jika belum pilih Kota -> Tampilkan daftar Kota/Kabupaten
+            if (!currentCityKey) {
+                listHTML += `<p style="font-size:0.8rem; margin-bottom:6px; color:var(--gray-dark);">Silakan klik Kota/Kabupaten:</p><div class="text-region-list">`;
+                for (const [provKey, prov] of Object.entries(REGION_DATA)) {
+                    for (const [distKey, dist] of Object.entries(prov.districts)) {
+                        listHTML += `<a href="#produk/${productSlug}/${distKey}" class="text-region-btn"><i class="fas fa-city"></i> ${dist.name}</a>`;
+                    }
                 }
-                return { prov: REGION_DATA["dki-jakarta"], dist: REGION_DATA["dki-jakarta"].districts["jakarta-selatan"] };
+                listHTML += `</div>`;
+            } 
+            // Jika sudah pilih Kota tapi belum pilih Kecamatan -> Tampilkan daftar Kecamatan
+            else if (currentCityKey && !currentSubKey) {
+                const loc = findLocationDetails(currentCityKey, null, null);
+                const prov = Object.values(REGION_DATA).find(p => p.districts[currentCityKey]);
+                const dist = prov ? prov.districts[currentCityKey] : null;
+
+                listHTML += `<p style="font-size:0.8rem; margin-bottom:6px; color:var(--gray-dark);">Pilih Kecamatan di <strong>${dist ? dist.name : currentCityKey}</strong>:</p><div class="text-region-list">`;
+                if (dist) {
+                    for (const subKey of Object.keys(dist.subdistricts)) {
+                        listHTML += `<a href="#produk/${productSlug}/${currentCityKey}/kecamatan-${subKey}" class="text-region-btn"><i class="fas fa-map-pin"></i> Kec. ${subKey.toUpperCase()}</a>`;
+                    }
+                }
+                listHTML += `</div>`;
+            } 
+            // Jika sudah pilih Kecamatan -> Tampilkan daftar Kelurahan / Desa
+            else if (currentCityKey && currentSubKey) {
+                const loc = findLocationDetails(currentCityKey, currentSubKey, null);
+                const villages = loc ? loc.villages : [];
+
+                listHTML += `<p style="font-size:0.8rem; margin-bottom:6px; color:var(--gray-dark);">Pilih Kelurahan/Desa di <strong>Kec. ${currentSubKey.toUpperCase()}</strong>:</p><div class="text-region-list">`;
+                villages.forEach(v => {
+                    const vSlug = createSlug(v);
+                    const isAct = currentVillName && currentVillName.toLowerCase() === v.toLowerCase();
+                    listHTML += `<a href="#produk/${productSlug}/${currentCityKey}/kelurahan-${vSlug}" class="text-region-btn ${isAct ? 'active' : ''}"><i class="fas fa-building"></i> ${v}</a>`;
+                });
+                listHTML += `</div>`;
             }
 
-            function updateSubdistricts() {
-                const distKey = distSelect.value;
-                const { dist } = getDistData(distKey);
-                subSelect.innerHTML = Object.keys(dist.subdistricts).map(k => `<option value="${k}">${k.toUpperCase()}</option>`).join('');
-                if (dist.subdistricts[currentSub]) subSelect.value = currentSub;
-                updateVillages();
-            }
-
-            function updateVillages() {
-                const distKey = distSelect.value;
-                const subKey = subSelect.value;
-                const { dist } = getDistData(distKey);
-                const villages = dist.subdistricts[subKey] || ["Pusat"];
-
-                villSelect.innerHTML = villages.map(v => `<option value="${v}">${v}</option>`).join('');
-                if (villages.includes(currentVill)) villSelect.value = currentVill;
-                updateLabelAndHash();
-            }
-
-            function updateLabelAndHash() {
-                const distKey = distSelect.value;
-                const subKey = subSelect.value;
-                const villKey = villSelect.value;
-                const isJkt = distKey.includes('jakarta');
-
-                CurrentSelectedLocation = {
-                    city: distKey,
-                    district: subKey,
-                    village: villKey,
-                    isJakarta: isJkt
-                };
-
-                lblLokasi.innerText = `Kecamatan ${subKey.toUpperCase()}, Kelurahan ${villKey} (${distKey.toUpperCase()})`;
-                const newHash = `produk/${productSlug}/kecamatan-${subKey}/kelurahan-${villKey.toLowerCase().replace(/\s+/g, '-')}`;
-                history.replaceState(null, null, `#${newHash}`);
-
-                renderCartUI();
-            }
-
-            distSelect.addEventListener('change', updateSubdistricts);
-            subSelect.addEventListener('change', updateVillages);
-            villSelect.addEventListener('change', updateLabelAndHash);
-
-            updateSubdistricts();
+            return breadcrumbs + listHTML;
         }
 
+        // 3. Blog Reader View
         function renderBlogPage(container, blogSlug) {
             const blog = ALL_BLOGS.find(b => createSlug(b.title) === blogSlug) || ALL_BLOGS[0];
             if (!blog) return;
 
-            document.getElementById('meta-title').innerText = `${blog.title} | Blog Bandar Product`;
+            document.getElementById('meta-title').innerText = `${PHONE_DEFAULT} ${blog.title} | Bandar Product`;
 
             container.innerHTML = `
-                <div style="margin-bottom:16px;">
-                    <a href="#" style="color:var(--royal-blue); text-decoration:none; font-weight:600;"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+                <div style="margin-bottom:14px;">
+                    <a href="#" style="color:var(--royal-blue); text-decoration:none; font-weight:600; font-size:0.9rem;"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
                 </div>
-                <article style="background:white; padding:30px; border-radius:12px; border:1px solid var(--border-color); max-width:850px; margin:0 auto;">
-                    <h1 style="font-size:1.8rem; margin-bottom:10px;">${blog.title}</h1>
-                    <div style="font-size:0.85rem; color:var(--gray-dark); margin-bottom:20px;">
+                <article style="background:white; padding:24px; border-radius:12px; border:1px solid var(--border-color); max-width:800px; margin:0 auto;">
+                    <h1 style="font-size:1.6rem; margin-bottom:10px;">${blog.title}</h1>
+                    <div style="font-size:0.82rem; color:var(--gray-dark); margin-bottom:16px;">
                         <span><i class="fas fa-user"></i> ${blog.author || 'Wahyudi'}</span> | 
                         <span><i class="fas fa-calendar"></i> ${blog.date}</span>
                     </div>
-                    <img src="${blog.image}" alt="${blog.title}" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px; margin-bottom:20px;">
-                    <div style="white-space:pre-line; line-height:1.8; color:#334155;">${blog.description}</div>
+                    <img src="${blog.image}" alt="${blog.title}" style="width:100%; max-height:380px; object-fit:cover; border-radius:8px; margin-bottom:16px;">
+                    <div style="white-space:pre-line; line-height:1.8; color:#334155; font-size:0.95rem;">${blog.description}</div>
                 </article>
             `;
         }
 
+        // 4. Region Catalog Page
         function renderRegionCatalogPage(container, districtSlug, subdistrictSlug) {
             const isJakarta = (districtSlug || '').includes('jakarta');
             const targetPhone = isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT;
 
             container.innerHTML = `
-                <div style="margin-bottom:16px;">
-                    <a href="#" style="color:var(--royal-blue); text-decoration:none; font-weight:600;"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+                <div style="margin-bottom:14px;">
+                    <a href="#" style="color:var(--royal-blue); text-decoration:none; font-weight:600; font-size:0.9rem;"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
                 </div>
-                <div class="hero" style="padding: 24px;">
+                <div class="hero" style="padding: 20px;">
                     <div>
-                        <h2>Katalog Pengiriman Area: ${districtSlug ? districtSlug.toUpperCase() : 'NASIONAL'}</h2>
-                        <p>Kecamatan: <strong>${subdistrictSlug ? subdistrictSlug.toUpperCase() : 'Semua'}</strong> | CS Terhubung: <strong>${targetPhone}</strong></p>
+                        <h2 style="font-size:1.4rem;">Katalog Wilayah: ${districtSlug ? districtSlug.toUpperCase() : 'NASIONAL'}</h2>
+                        <p style="font-size:0.85rem; margin-bottom:0;">Kecamatan: <strong>${subdistrictSlug ? subdistrictSlug.toUpperCase() : 'Semua'}</strong> | CS WhatsApp: <strong>${targetPhone}</strong></p>
                     </div>
                 </div>
                 <div class="product-grid" id="mainProductGrid"></div>
@@ -1132,6 +1246,7 @@
             renderPaginatedProducts(1);
         }
 
+        // Cart Actions
         function addToCartById(productId, openDrawer = false) {
             const p = ALL_PRODUCTS.find(item => item.id === productId);
             if (!p) return;
@@ -1165,7 +1280,6 @@
             renderCartUI();
         }
 
-        // Render Cart & Update Reseller Dropdown
         function renderCartUI() {
             const cartList = document.getElementById('cartList');
             const cartBadge = document.getElementById('cartBadge');
@@ -1178,24 +1292,20 @@
             cartBadge.innerText = totalQty;
             cartTotal.innerText = formatRupiah(grandTotal);
 
-            // Populate Reseller Options in Checkout
+            // Populate CS / Reseller Options
             if (resellerSelect) {
-                const currentDistName = (CurrentSelectedLocation.city || '').replace('kab-', '').replace('kota-', '').replace('-', ' ').toLowerCase();
-                
-                let matchingResellers = ALL_RESELLERS.filter(r => r.asalKota && r.asalKota.toLowerCase().includes(currentDistName));
+                let currentCity = ActiveLocationState ? ActiveLocationState.cityName : '';
+                let matchingResellers = ALL_RESELLERS.filter(r => r.asalKota && currentCity && r.asalKota.toLowerCase().includes(currentCity.toLowerCase()));
                 let otherResellers = ALL_RESELLERS.filter(r => !matchingResellers.includes(r));
 
                 let optionsHTML = '';
+                const defaultPhone = (ActiveLocationState && ActiveLocationState.isJakarta) ? PHONE_JAKARTA : PHONE_DEFAULT;
+                const defaultLabel = (ActiveLocationState && ActiveLocationState.isJakarta) ? "CS Jakarta Pusat" : "CS Pusat Nasional";
 
-                // Opsi Default CS Berdasarkan Wilayah
-                const defaultCS = CurrentSelectedLocation.isJakarta 
-                    ? { name: "CS Jakarta (Pusat)", phone: PHONE_JAKARTA }
-                    : { name: "CS Pusat (Nasional)", phone: PHONE_DEFAULT };
-
-                optionsHTML += `<option value="${defaultCS.phone}">${defaultCS.name} - ${defaultCS.phone}</option>`;
+                optionsHTML += `<option value="${defaultPhone}">${defaultLabel} - ${defaultPhone}</option>`;
 
                 if (matchingResellers.length > 0) {
-                    optionsHTML += `<optgroup label="Reseller Terdekat (${CurrentSelectedLocation.city.toUpperCase()})">`;
+                    optionsHTML += `<optgroup label="Reseller Area ${currentCity}">`;
                     matchingResellers.forEach(r => {
                         optionsHTML += `<option value="${r.nomorWA}" selected>⭐ ${r.namaReseller} (${r.asalKota}) - ${r.nomorWA}</option>`;
                     });
@@ -1203,7 +1313,7 @@
                 }
 
                 if (otherResellers.length > 0) {
-                    optionsHTML += `<optgroup label="Reseller Wilayah Lain">`;
+                    optionsHTML += `<optgroup label="Reseller Lainnya">`;
                     otherResellers.forEach(r => {
                         optionsHTML += `<option value="${r.nomorWA}">${r.namaReseller} (${r.asalKota}) - ${r.nomorWA}</option>`;
                     });
@@ -1214,7 +1324,7 @@
             }
 
             if (CartState.length === 0) {
-                cartList.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">Keranjang belanja kosong.</div>`;
+                cartList.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b; font-size:0.85rem;">Keranjang belanja kosong.</div>`;
                 return;
             }
 
@@ -1226,7 +1336,7 @@
                         <div class="cart-item-price">${formatRupiah(item.price)}</div>
                         <div class="cart-controls">
                             <button onclick="updateCartQty(${item.id}, -1)">-</button>
-                            <span style="font-size:0.85rem; font-weight:700;">${item.qty}</span>
+                            <span style="font-size:0.82rem; font-weight:700;">${item.qty}</span>
                             <button onclick="updateCartQty(${item.id}, 1)">+</button>
                         </div>
                     </div>
@@ -1249,13 +1359,16 @@
         function directOrderWA(productId) {
             const p = ALL_PRODUCTS.find(item => item.id === productId);
             const resellerSelect = document.getElementById('checkoutResellerSelect');
-            const targetPhone = getRawWhatsApp(resellerSelect && resellerSelect.value ? resellerSelect.value : (CurrentSelectedLocation.isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT));
+            const targetPhone = getRawWhatsApp(resellerSelect && resellerSelect.value ? resellerSelect.value : ((ActiveLocationState && ActiveLocationState.isJakarta) ? PHONE_JAKARTA : PHONE_DEFAULT));
 
-            const msg = `Halo Bandar Product / Reseller,\n\nSaya ingin memesan:\n*${p.title}*\nHarga: ${formatRupiah(p.price)}\n\nTujuan Pengiriman:\n- Wilayah: ${CurrentSelectedLocation.city.toUpperCase()}\n- Kecamatan: ${CurrentSelectedLocation.district.toUpperCase()}\n- Kelurahan: ${CurrentSelectedLocation.village}\n\nMohon info ketersediaan stok & ongkirnya. Terima kasih.`;
+            let locStr = ActiveLocationState 
+                ? `Wilayah: ${ActiveLocationState.villageName || '-'}, Kec. ${ActiveLocationState.subdistrictName || '-'}, ${ActiveLocationState.cityName || '-'}`
+                : 'Wilayah: Nasional / Belum Ditentukan';
+
+            const msg = `Halo Bandar Product,\n\nSaya ingin memesan produk:\n*${p.title}*\nHarga: ${formatRupiah(p.price)}\n\n${locStr}\n\nMohon info ketersediaan stok & ongkirnya. Terima kasih.`;
             window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // WhatsApp Checkout Handler
         document.getElementById('btnCheckoutWA').addEventListener('click', () => {
             if (CartState.length === 0) {
                 alert('Keranjang belanja masih kosong.');
@@ -1263,18 +1376,21 @@
             }
 
             const resellerSelect = document.getElementById('checkoutResellerSelect');
-            const selectedPhone = resellerSelect ? resellerSelect.value : (CurrentSelectedLocation.isJakarta ? PHONE_JAKARTA : PHONE_DEFAULT);
+            const selectedPhone = resellerSelect ? resellerSelect.value : ((ActiveLocationState && ActiveLocationState.isJakarta) ? PHONE_JAKARTA : PHONE_DEFAULT);
             const selectedResellerName = resellerSelect ? resellerSelect.options[resellerSelect.selectedIndex].text : "CS Bandar Product";
             const targetPhone = getRawWhatsApp(selectedPhone);
 
             const grandTotal = CartState.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            let locStr = ActiveLocationState 
+                ? `${ActiveLocationState.villageName || '-'}, Kec. ${ActiveLocationState.subdistrictName || '-'}, ${ActiveLocationState.cityName || '-'}`
+                : 'Nasional / Pengiriman Reguler';
 
-            let msg = `Halo *${selectedResellerName}*,\nSaya ingin melakukan checkout pesanan dari website Bandar Product:\n\n*DAFTAR PESANAN:*\n`;
+            let msg = `Halo *${selectedResellerName}*,\nSaya ingin order produk dari website Bandar Product:\n\n*DAFTAR PESANAN:*\n`;
             CartState.forEach((item, idx) => {
                 msg += `${idx + 1}. ${item.title} (${item.qty}x) = ${formatRupiah(item.price * item.qty)}\n`;
             });
             msg += `\n*Total Belanja:* ${formatRupiah(grandTotal)}\n`;
-            msg += `*Tujuan Kirim:* ${CurrentSelectedLocation.village}, Kec. ${CurrentSelectedLocation.district.toUpperCase()}, ${CurrentSelectedLocation.city.toUpperCase()}\n\nMohon konfirmasi ketersediaan stok, total transfer, dan estimasi ongkos kirim. Terima kasih!`;
+            msg += `*Tujuan Kirim:* ${locStr}\n\nMohon informasi ongkos kirim dan nomor rekening pembayaran. Terima kasih!`;
 
             window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
         });
