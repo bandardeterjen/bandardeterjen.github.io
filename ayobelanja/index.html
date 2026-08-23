@@ -96,9 +96,7 @@
             font-size: 0.9rem;
             transition: color 0.2s;
         }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--royal-blue);
-        }
+        .nav-links a:hover, .nav-links a.active { color: var(--royal-blue); }
 
         .cart-btn {
             position: relative;
@@ -164,7 +162,6 @@
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
-            transition: 0.2s;
         }
 
         .search-box {
@@ -179,7 +176,6 @@
             border: 2px solid var(--border-color);
             outline: none;
             font-size: 0.95rem;
-            transition: 0.2s;
         }
         .search-box input:focus { border-color: var(--royal-blue); }
         .search-box i {
@@ -314,7 +310,7 @@
             border-color: var(--royal-blue);
         }
 
-        /* Detail Page */
+        /* Detail Layout */
         .detail-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -348,9 +344,7 @@
             font-size: 1.15rem;
             margin-bottom: 4px;
         }
-        .detail-info h1 span.highlight-loc {
-            color: var(--royal-blue);
-        }
+        .detail-info h1 span.highlight-loc { color: var(--royal-blue); }
         .detail-price { font-size: 1.5rem; font-weight: 800; color: var(--royal-blue); margin-bottom: 14px; }
         
         .routing-badge {
@@ -366,7 +360,7 @@
             margin-bottom: 14px;
         }
 
-        /* Pilih Wilayah Block */
+        /* Region Box */
         .region-text-box {
             background: var(--royal-blue-light);
             border: 1px solid #bfdbfe;
@@ -391,11 +385,7 @@
             gap: 6px;
             align-items: center;
         }
-        .region-breadcrumb a {
-            color: var(--royal-blue);
-            text-decoration: none;
-            font-weight: 600;
-        }
+        .region-breadcrumb a { color: var(--royal-blue); text-decoration: none; font-weight: 600; }
         .text-region-list {
             display: flex;
             flex-wrap: wrap;
@@ -428,11 +418,6 @@
             background: #fff7ed;
             border-color: #fdba74;
             color: var(--orange-hover);
-        }
-        .text-region-btn.btn-all-indo:hover {
-            background: var(--orange);
-            color: var(--white);
-            border-color: var(--orange);
         }
 
         .wilayah-browser, .blog-section {
@@ -507,11 +492,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .cart-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
-        }
+        .cart-body { flex: 1; overflow-y: auto; padding: 16px; }
         .cart-item {
             display: flex;
             gap: 10px;
@@ -528,11 +509,7 @@
         .cart-item-info { flex: 1; }
         .cart-item-title { font-size: 0.82rem; font-weight: 700; line-height: 1.3; }
         .cart-item-price { color: var(--royal-blue); font-weight: 700; font-size: 0.82rem; margin: 3px 0; }
-        .cart-controls {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .cart-controls { display: flex; align-items: center; gap: 6px; }
         .cart-controls button {
             background: var(--gray-light);
             border: 1px solid var(--border-color);
@@ -709,54 +686,63 @@
     <script>
         const CSV_PRODUCTS_URL = 'https://bandardeterjen.github.io/product/belanja/daftarproduk.csv';
         const CSV_RESELLERS_URL = 'https://bandardeterjen.github.io/product/belanja/daftarreseller.csv';
+        const CSV_WILAYAH_URL = 'https://bandardeterjen.github.io/product/belanja/daftarwilayah.csv';
         const JSON_BLOG_URL = 'https://bandardeterjen.github.io/product/blog_data.json';
-        const API_WILAYAH_BASE = 'https://emsifa.github.io/api-wilayah-indonesia/api';
 
-        // Shortcut Data Wilayah Utama (Pra-isi & Cepat)
-        const PRIMARY_REGIONS = {
-            "jakarta": {
-                name: "DKI Jakarta",
-                isJakarta: true,
-                cities: {
-                    "3171": { name: "Kota Jakarta Selatan", slug: "jakarta-selatan" },
-                    "3172": { name: "Kota Jakarta Timur", slug: "jakarta-timur" },
-                    "3173": { name: "Kota Jakarta Pusat", slug: "jakarta-pusat" },
-                    "3174": { name: "Kota Jakarta Barat", slug: "jakarta-barat" },
-                    "3175": { name: "Kota Jakarta Utara", slug: "jakarta-utara" },
-                    "3101": { name: "Kab. Kepulauan Seribu", slug: "kepulauan-seribu" }
-                }
-            },
-            "bekasi": {
-                name: "Bekasi (Kota/Kabupaten)",
-                isJakarta: false,
-                cities: {
-                    "3275": { name: "Kota Bekasi", slug: "kota-bekasi" },
-                    "3216": { name: "Kabupaten Bekasi", slug: "kabupaten-bekasi" }
-                }
-            },
-            "bogor": {
-                name: "Bogor (Kota/Kabupaten)",
-                isJakarta: false,
-                cities: {
-                    "3271": { name: "Kota Bogor", slug: "kota-bogor" },
-                    "3201": { name: "Kabupaten Bogor", slug: "kabupaten-bogor" }
-                }
-            },
-            "banyumas": {
-                name: "Banyumas (Kabupaten)",
-                isJakarta: false,
-                cities: {
-                    "3302": { name: "Kabupaten Banyumas", slug: "kabupaten-banyumas" }
-                }
-            }
-        };
+        // EMBEDDED FALLBACK DATASET WILAYAH (100% Offline / Reliable Fallback)
+        const FALLBACK_WILAYAH_ROWS = [
+            // Jakarta
+            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Tanjung Priok", kelurahan: "Sunter Jaya", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Tanjung Priok", kelurahan: "Sunter Agung", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Tanjung Priok", kelurahan: "Papanggo", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Kelapa Gading", kelurahan: "Kelapa Gading Barat", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Kelapa Gading", kelurahan: "Kelapa Gading Timur", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Tebet", kelurahan: "Menteng Dalam", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Tebet", kelurahan: "Tebet Barat", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Tebet", kelurahan: "Tebet Timur", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Kebayoran Baru", kelurahan: "Senayan", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Kebayoran Baru", kelurahan: "Melawai", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Timur", kecamatan: "Jatinegara", kelurahan: "Kampung Melayu", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Timur", kecamatan: "Jatinegara", kelurahan: "Bidaracina", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Timur", kecamatan: "Duren Sawit", kelurahan: "Pondok Bambu", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Pusat", kecamatan: "Menteng", kelurahan: "Cikini", isJakarta: "true" },
+            { provinsi: "DKI Jakarta", kota: "Jakarta Barat", kecamatan: "Kebon Jeruk", kelurahan: "Duri Kepa", isJakarta: "true" },
+            // Bogor
+            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cileungsi", kelurahan: "Cileungsi Kidul", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cileungsi", kelurahan: "Limusnunggal", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cileungsi", kelurahan: "Mekarsari", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Gunung Putri", kelurahan: "Bojong Nangka", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Gunung Putri", kelurahan: "Tlajung Udik", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cibinong", kelurahan: "Pakansari", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kota Bogor", kecamatan: "Bogor Tengah", kelurahan: "Pabaton", isJakarta: "false" },
+            // Bekasi
+            { provinsi: "Jawa Barat", kota: "Kota Bekasi", kecamatan: "Bekasi Barat", kelurahan: "Kranji", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kota Bekasi", kecamatan: "Bekasi Barat", kelurahan: "Kota Baru", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kota Bekasi", kecamatan: "Bantargebang", kelurahan: "Cikiwul", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kabupaten Bekasi", kecamatan: "Cikarang Pusat", kelurahan: "Sukamahi", isJakarta: "false" },
+            { provinsi: "Jawa Barat", kota: "Kabupaten Bekasi", kecamatan: "Tambun Selatan", kelurahan: "Setiadarma", isJakarta: "false" },
+            // Banyumas
+            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Sokaraja", kelurahan: "Sokaraja Tengah", isJakarta: "false" },
+            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Sokaraja", kelurahan: "Sokaraja Kulon", isJakarta: "false" },
+            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Sokaraja", kelurahan: "Karangduren", isJakarta: "false" },
+            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Purwokerto Timur", kelurahan: "Purwokerto Wetan", isJakarta: "false" },
+            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Purwokerto Timur", kelurahan: "Sokanegara", isJakarta: "false" },
+            // Kota Lainnya di Indonesia
+            { provinsi: "Jawa Barat", kota: "Kota Bandung", kecamatan: "Coblong", kelurahan: "Dago", isJakarta: "false" },
+            { provinsi: "Jawa Tengah", kota: "Kota Semarang", kecamatan: "Semarang Tengah", kelurahan: "Pandansari", isJakarta: "false" },
+            { provinsi: "Jawa Tengah", kota: "Kota Surakarta", kecamatan: "Banjarsari", kelurahan: "Manahan", isJakarta: "false" },
+            { provinsi: "Jawa Timur", kota: "Kota Surabaya", kecamatan: "Wonokromo", kelurahan: "Darmo", isJakarta: "false" },
+            { provinsi: "Sumatera Utara", kota: "Kota Medan", kecamatan: "Medan Kota", kelurahan: "Pasar Baru", isJakarta: "false" },
+            { provinsi: "Sulawesi Selatan", kota: "Kota Makassar", kecamatan: "Ujung Pandang", kelurahan: "Lajangiru", isJakarta: "false" }
+        ];
 
         let ALL_PRODUCTS = [];
         let ALL_RESELLERS = [];
         let ALL_BLOGS = [];
-        let ALL_PROVINCES = []; // Loaded from API
+        let ALL_WILAYAH_RAW = [];
+        let STRUCTURED_WILAYAH = {};
+
         let CartState = JSON.parse(localStorage.getItem('bp_cart')) || [];
-        
         let CurrentPage = 1;
         const ProductsPerPage = 6;
 
@@ -794,13 +780,46 @@
             });
         }
 
+        // Membangun pohon relasi Wilayah dari Baris CSV
+        function buildStructuredWilayah(rows) {
+            const structure = {};
+            rows.forEach(r => {
+                if (!r.kota || !r.kecamatan || !r.kelurahan) return;
+                const citySlug = createSlug(r.kota);
+                const subSlug = createSlug(r.kecamatan);
+                const isJkt = (r.isJakarta === 'true' || String(r.kota).toLowerCase().includes('jakarta'));
+
+                if (!structure[citySlug]) {
+                    structure[citySlug] = {
+                        name: r.kota,
+                        isJakarta: isJkt,
+                        subdistricts: {}
+                    };
+                }
+                if (!structure[citySlug].subdistricts[subSlug]) {
+                    structure[citySlug].subdistricts[subSlug] = {
+                        name: r.kecamatan,
+                        villages: []
+                    };
+                }
+                if (!structure[citySlug].subdistricts[subSlug].villages.includes(r.kelurahan)) {
+                    structure[citySlug].subdistricts[subSlug].villages.push(r.kelurahan);
+                }
+            });
+            return structure;
+        }
+
         async function initData() {
+            // Gunakan Fallback data terlebih dahulu
+            ALL_WILAYAH_RAW = [...FALLBACK_WILAYAH_ROWS];
+            STRUCTURED_WILAYAH = buildStructuredWilayah(ALL_WILAYAH_RAW);
+
             try {
-                const [pRes, rRes, bRes, provRes] = await Promise.allSettled([
+                const [pRes, rRes, bRes, wRes] = await Promise.allSettled([
                     fetch(CSV_PRODUCTS_URL).then(r => r.text()),
                     fetch(CSV_RESELLERS_URL).then(r => r.text()),
                     fetch(JSON_BLOG_URL).then(r => r.json()),
-                    fetch(`${API_WILAYAH_BASE}/provinces.json`).then(r => r.json())
+                    fetch(CSV_WILAYAH_URL).then(r => r.text())
                 ]);
 
                 if (pRes.status === 'fulfilled') {
@@ -822,11 +841,15 @@
                     ALL_BLOGS = bRes.value;
                 }
 
-                if (provRes.status === 'fulfilled') {
-                    ALL_PROVINCES = provRes.value;
+                if (wRes.status === 'fulfilled') {
+                    const parsedWil = parseCSV(wRes.value);
+                    if (parsedWil && parsedWil.length > 0) {
+                        ALL_WILAYAH_RAW = parsedWil;
+                        STRUCTURED_WILAYAH = buildStructuredWilayah(ALL_WILAYAH_RAW);
+                    }
                 }
             } catch (err) {
-                console.error("Gagal inisialisasi data:", err);
+                console.warn("Menggunakan fallback cache dataset:", err);
             }
             handleRoute();
             renderCartUI();
@@ -838,9 +861,9 @@
             const parts = hash.split('/').filter(p => p.trim() !== '');
             return {
                 module: parts[0] || 'home',
-                param1: parts[1] || null, // slug-produk / slug-wilayah
-                param2: parts[2] || null, // kota ID / slug
-                param3: parts[3] || null  // kecamatan ID / slug
+                param1: parts[1] || null, // slug-produk / group-wilayah
+                param2: parts[2] || null, // slug-kota
+                param3: parts[3] || null  // slug-kecamatan
             };
         }
 
@@ -911,7 +934,7 @@
                         <a href="#wilayah/bekasi" class="wilayah-chip"><i class="fas fa-city"></i> Bekasi (Kota/Kab)</a>
                         <a href="#wilayah/bogor" class="wilayah-chip"><i class="fas fa-city"></i> Bogor (Kota/Kab)</a>
                         <a href="#wilayah/banyumas" class="wilayah-chip"><i class="fas fa-city"></i> Banyumas (Kabupaten)</a>
-                        <a href="#wilayah/lainnya" class="wilayah-chip" style="background:#fff7ed; border-color:#fdba74; color:#ea580c;"><i class="fas fa-globe"></i> Wilayah Lainnya (Seluruh Indonesia)</a>
+                        <a href="#wilayah/indonesia" class="wilayah-chip" style="background:#fff7ed; border-color:#fdba74; color:#ea580c;"><i class="fas fa-globe"></i> Wilayah Lainnya (Seluruh Indonesia)</a>
                     </div>
                 </div>
 
@@ -983,11 +1006,10 @@
         }
 
         // 2. Detail Produk & Navigasi Wilayah Berjenjang
-        async function renderProductDetailPage(container, productSlug, paramRegion1, paramRegion2) {
+        function renderProductDetailPage(container, productSlug, paramRegion1, paramRegion2) {
             let product = ALL_PRODUCTS.find(p => p.slug === productSlug) || ALL_PRODUCTS[0];
             if (!product) return;
 
-            // Render Kerangka Halaman
             container.innerHTML = `
                 <div style="margin-bottom:14px;">
                     <a href="#" style="color:var(--royal-blue); text-decoration:none; font-weight:600; font-size:0.9rem;"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
@@ -1012,13 +1034,11 @@
                         <div class="detail-price">${formatRupiah(product.price)}</div>
                         <p style="color:var(--gray-dark); font-size:0.9rem; margin-bottom:16px;">${product.description}</p>
 
-                        <!-- Box Pilih Wilayah -->
+                        <!-- Box Pilih Wilayah (Sinkron CSV) -->
                         <div class="region-text-box">
                             <h3><i class="fas fa-map-location-dot"></i> Pilih Wilayah</h3>
                             <div id="regionBreadcrumb" class="region-breadcrumb"></div>
-                            <div id="regionItemsContainer" class="text-region-list">
-                                <span style="font-size:0.8rem; color:#64748b;"><i class="fas fa-spinner fa-spin"></i> Memuat pilihan wilayah...</span>
-                            </div>
+                            <div id="regionItemsContainer" class="text-region-list"></div>
                         </div>
 
                         <div style="display:flex; gap:10px; margin-top:16px;">
@@ -1033,22 +1053,21 @@
                 </div>
             `;
 
-            // Muat Konten Wilayah Dinamis
-            await updateRegionStep(product, paramRegion1, paramRegion2);
+            updateRegionNavigation(product, paramRegion1, paramRegion2);
         }
 
-        // Logic Sinkronisasi Wilayah Dinamis
-        async function updateRegionStep(product, regKey1, regKey2) {
+        // Navigasi Berjenjang: Wilayah Ringkas -> Kota -> Kecamatan -> Kelurahan
+        function updateRegionNavigation(product, param1, param2) {
             const breadcrumbEl = document.getElementById('regionBreadcrumb');
             const itemsEl = document.getElementById('regionItemsContainer');
             if (!breadcrumbEl || !itemsEl) return;
 
-            // STEP 0: Belum ada wilayah yang dipilih -> Tampilkan 5 Pilihan Utama
-            if (!regKey1) {
+            // LEVEL 0: Tampilan Awal (5 Pilihan Utama yang Disederhanakan)
+            if (!param1) {
                 ActiveLocationState = null;
                 updateProductTitleAndSEO(product, null);
 
-                breadcrumbEl.innerHTML = `<span style="font-weight:600;"><i class="fas fa-globe"></i> Pilih Wilayah Pengiriman / SEO:</span>`;
+                breadcrumbEl.innerHTML = `<span style="font-weight:600;"><i class="fas fa-globe"></i> Pilih Wilayah:</span>`;
                 itemsEl.innerHTML = `
                     <a href="#produk/${product.slug}/jakarta" class="text-region-btn"><i class="fas fa-building"></i> DKI Jakarta</a>
                     <a href="#produk/${product.slug}/bekasi" class="text-region-btn"><i class="fas fa-city"></i> Bekasi (Kota/Kabupaten)</a>
@@ -1059,140 +1078,102 @@
                 return;
             }
 
-            // STEP 1A: Wilayah Lainnya -> Tampilkan Seluruh Provinsi
-            if (regKey1 === 'wilayah-lainnya') {
+            // LEVEL 1A: Klik Menu Utama Tertentu (Jakarta / Bekasi / Bogor / Banyumas / Wilayah Lainnya)
+            const isGroupJakarta = (param1 === 'jakarta');
+            const isGroupBekasi = (param1 === 'bekasi');
+            const isGroupBogor = (param1 === 'bogor');
+            const isGroupBanyumas = (param1 === 'banyumas');
+            const isGroupLainnya = (param1 === 'wilayah-lainnya');
+
+            if ((isGroupJakarta || isGroupBekasi || isGroupBogor || isGroupBanyumas || isGroupLainnya) && !param2) {
+                let filteredCities = Object.keys(STRUCTURED_WILAYAH);
+
+                if (isGroupJakarta) {
+                    filteredCities = filteredCities.filter(k => k.includes('jakarta') || STRUCTURED_WILAYAH[k].isJakarta);
+                } else if (isGroupBekasi) {
+                    filteredCities = filteredCities.filter(k => k.includes('bekasi'));
+                } else if (isGroupBogor) {
+                    filteredCities = filteredCities.filter(k => k.includes('bogor'));
+                } else if (isGroupBanyumas) {
+                    filteredCities = filteredCities.filter(k => k.includes('banyumas'));
+                }
+
+                let labelGroup = isGroupJakarta ? "DKI Jakarta" : (isGroupBekasi ? "Bekasi" : (isGroupBogor ? "Bogor" : (isGroupBanyumas ? "Banyumas" : "Seluruh Indonesia")));
+
                 breadcrumbEl.innerHTML = `
                     <a href="#produk/${product.slug}">Pilih Wilayah</a> <span>/</span> 
-                    <strong>Wilayah Lainnya (Provinsi)</strong>
+                    <strong>${labelGroup}</strong>
                 `;
-                itemsEl.innerHTML = ALL_PROVINCES.map(prov => `
-                    <a href="#produk/${product.slug}/prov-${prov.id}" class="text-region-btn"><i class="fas fa-map"></i> ${prov.name}</a>
+
+                itemsEl.innerHTML = filteredCities.map(cityKey => `
+                    <a href="#produk/${product.slug}/${cityKey}" class="text-region-btn">
+                        <i class="fas fa-city"></i> ${STRUCTURED_WILAYAH[cityKey].name}
+                    </a>
                 `).join('');
                 return;
             }
 
-            // STEP 1B: Memilih Provinsi Tertentu -> Tampilkan Seluruh Kota/Kab di Provinsi tsb
-            if (regKey1.startsWith('prov-')) {
-                const provId = regKey1.replace('prov-', '');
-                const provObj = ALL_PROVINCES.find(p => p.id == provId);
-                const provName = provObj ? provObj.name : "Provinsi";
+            // LEVEL 2: Kota Dipilih -> Tampilkan Seluruh Kecamatan di Kota tsb
+            const selectedCityKey = param1;
+            const cityObj = STRUCTURED_WILAYAH[selectedCityKey];
 
+            if (cityObj && !param2) {
                 breadcrumbEl.innerHTML = `
                     <a href="#produk/${product.slug}">Pilih Wilayah</a> <span>/</span> 
-                    <a href="#produk/${product.slug}/wilayah-lainnya">Provinsi</a> <span>/</span> 
-                    <strong>${provName}</strong>
+                    <strong>${cityObj.name}</strong>
                 `;
 
-                itemsEl.innerHTML = `<span style="font-size:0.8rem; color:#64748b;"><i class="fas fa-spinner fa-spin"></i> Mengambil daftar Kota/Kabupaten...</span>`;
-                try {
-                    const res = await fetch(`${API_WILAYAH_BASE}/regencies/${provId}.json`);
-                    const regencies = await res.json();
-                    itemsEl.innerHTML = regencies.map(reg => `
-                        <a href="#produk/${product.slug}/kota-${reg.id}" class="text-region-btn"><i class="fas fa-city"></i> ${reg.name}</a>
-                    `).join('');
-                } catch (e) {
-                    itemsEl.innerHTML = `<span style="color:red; font-size:0.8rem;">Gagal memuat kota. Silakan coba lagi.</span>`;
-                }
-                return;
-            }
-
-            // STEP 2: Wilayah Utama (Jakarta, Bekasi, Bogor, Banyumas)
-            if (PRIMARY_REGIONS[regKey1]) {
-                const regGroup = PRIMARY_REGIONS[regKey1];
-                breadcrumbEl.innerHTML = `
-                    <a href="#produk/${product.slug}">Pilih Wilayah</a> <span>/</span> 
-                    <strong>${regGroup.name}</strong>
-                `;
-                itemsEl.innerHTML = Object.entries(regGroup.cities).map(([cId, cData]) => `
-                    <a href="#produk/${product.slug}/kota-${cId}" class="text-region-btn"><i class="fas fa-city"></i> ${cData.name}</a>
+                const subKeys = Object.keys(cityObj.subdistricts);
+                itemsEl.innerHTML = subKeys.map(subKey => `
+                    <a href="#produk/${product.slug}/${selectedCityKey}/${subKey}" class="text-region-btn">
+                        <i class="fas fa-map-pin"></i> Kec. ${cityObj.subdistricts[subKey].name}
+                    </a>
                 `).join('');
+
+                ActiveLocationState = {
+                    isJakarta: cityObj.isJakarta,
+                    cityName: cityObj.name,
+                    subdistrictName: '',
+                    villageName: ''
+                };
+                updateProductTitleAndSEO(product, ActiveLocationState);
                 return;
             }
 
-            // STEP 3: Memilih Kota Tertentu (kota-[id]) -> Tampilkan Seluruh Kecamatan
-            if (regKey1.startsWith('kota-') && !regKey2) {
-                const regencyId = regKey1.replace('kota-', '');
-                itemsEl.innerHTML = `<span style="font-size:0.8rem; color:#64748b;"><i class="fas fa-spinner fa-spin"></i> Mengambil daftar Kecamatan...</span>`;
-                
-                try {
-                    const [cRes, dRes] = await Promise.all([
-                        fetch(`${API_WILAYAH_BASE}/regency/${regencyId}.json`).then(r => r.json()),
-                        fetch(`${API_WILAYAH_BASE}/districts/${regencyId}.json`).then(r => r.json())
-                    ]);
+            // LEVEL 3: Kecamatan Dipilih -> Tampilkan Seluruh Kelurahan / Desa
+            if (cityObj && param2) {
+                const selectedSubKey = param2;
+                const subObj = cityObj.subdistricts[selectedSubKey];
 
-                    const cityName = cRes.name || "Kota/Kabupaten";
+                if (subObj) {
                     breadcrumbEl.innerHTML = `
                         <a href="#produk/${product.slug}">Pilih Wilayah</a> <span>/</span> 
-                        <strong>${cityName}</strong>
+                        <a href="#produk/${product.slug}/${selectedCityKey}">${cityObj.name}</a> <span>/</span> 
+                        <strong>Kec. ${subObj.name}</strong>
                     `;
 
-                    itemsEl.innerHTML = dRes.map(dist => `
-                        <a href="#produk/${product.slug}/kota-${regencyId}/kecamatan-${dist.id}" class="text-region-btn">
-                            <i class="fas fa-map-pin"></i> Kec. ${dist.name}
-                        </a>
-                    `).join('');
-
-                    // Update State Parsial
-                    const isJkt = String(regencyId).startsWith('31');
-                    ActiveLocationState = {
-                        isJakarta: isJkt,
-                        cityName: cityName,
-                        subdistrictName: '',
-                        villageName: ''
-                    };
-                    updateProductTitleAndSEO(product, ActiveLocationState);
-                } catch (e) {
-                    itemsEl.innerHTML = `<span style="color:red; font-size:0.8rem;">Gagal memuat kecamatan.</span>`;
-                }
-                return;
-            }
-
-            // STEP 4: Memilih Kecamatan (kecamatan-[id]) -> Tampilkan Seluruh Kelurahan / Desa
-            if (regKey1.startsWith('kota-') && regKey2 && regKey2.startsWith('kecamatan-')) {
-                const regencyId = regKey1.replace('kota-', '');
-                const districtId = regKey2.replace('kecamatan-', '');
-
-                itemsEl.innerHTML = `<span style="font-size:0.8rem; color:#64748b;"><i class="fas fa-spinner fa-spin"></i> Mengambil daftar Kelurahan/Desa...</span>`;
-
-                try {
-                    const [cRes, dRes, vRes] = await Promise.all([
-                        fetch(`${API_WILAYAH_BASE}/regency/${regencyId}.json`).then(r => r.json()),
-                        fetch(`${API_WILAYAH_BASE}/district/${districtId}.json`).then(r => r.json()),
-                        fetch(`${API_WILAYAH_BASE}/villages/${districtId}.json`).then(r => r.json())
-                    ]);
-
-                    const cityName = cRes.name || "Kota/Kabupaten";
-                    const districtName = dRes.name || "Kecamatan";
-
-                    breadcrumbEl.innerHTML = `
-                        <a href="#produk/${product.slug}">Pilih Wilayah</a> <span>/</span> 
-                        <a href="#produk/${product.slug}/kota-${regencyId}">${cityName}</a> <span>/</span> 
-                        <strong>Kec. ${districtName}</strong>
-                    `;
-
-                    itemsEl.innerHTML = vRes.map(vill => `
-                        <button class="text-region-btn" onclick="selectFinalVillage('${product.slug}', '${regencyId}', '${districtId}', '${cityName}', '${districtName}', '${vill.name}')">
-                            <i class="fas fa-building"></i> ${vill.name}
+                    itemsEl.innerHTML = subObj.villages.map(villName => `
+                        <button class="text-region-btn" onclick="selectFinalVillage('${product.slug}', '${selectedCityKey}', '${selectedSubKey}', '${cityObj.name}', '${subObj.name}', '${villName}')">
+                            <i class="fas fa-building"></i> ${villName}
                         </button>
                     `).join('');
 
-                    const isJkt = String(regencyId).startsWith('31');
                     ActiveLocationState = {
-                        isJakarta: isJkt,
-                        cityName: cityName,
-                        subdistrictName: districtName,
+                        isJakarta: cityObj.isJakarta,
+                        cityName: cityObj.name,
+                        subdistrictName: subObj.name,
                         villageName: ''
                     };
                     updateProductTitleAndSEO(product, ActiveLocationState);
-                } catch (e) {
-                    itemsEl.innerHTML = `<span style="color:red; font-size:0.8rem;">Gagal memuat kelurahan.</span>`;
                 }
             }
         }
 
         // Pilihan Akhir Kelurahan / Desa
-        function selectFinalVillage(productSlug, regencyId, districtId, cityName, districtName, villageName) {
-            const isJkt = String(regencyId).startsWith('31');
+        function selectFinalVillage(productSlug, cityKey, subKey, cityName, districtName, villageName) {
+            const cityObj = STRUCTURED_WILAYAH[cityKey];
+            const isJkt = cityObj ? cityObj.isJakarta : false;
+
             ActiveLocationState = {
                 isJakarta: isJkt,
                 cityName: cityName,
@@ -1213,17 +1194,17 @@
                 }
             });
 
-            // Update Breadcrumb Info
+            // Update Breadcrumb
             const breadcrumbEl = document.getElementById('regionBreadcrumb');
             breadcrumbEl.innerHTML = `
                 <a href="#produk/${productSlug}">Pilih Wilayah</a> <span>/</span> 
-                <a href="#produk/${productSlug}/kota-${regencyId}">${cityName}</a> <span>/</span> 
+                <a href="#produk/${productSlug}/${cityKey}">${cityName}</a> <span>/</span> 
                 <span>Kec. ${districtName}</span> <span>/</span> 
                 <strong style="color:var(--royal-blue);">${villageName}</strong>
             `;
         }
 
-        // Update Judul, Badge CS & Meta SEO
+        // Update Judul & SEO
         function updateProductTitleAndSEO(product, loc) {
             if (!product) return;
             const badgeEl = document.getElementById('productRoutingBadge');
@@ -1260,10 +1241,10 @@
             }
 
             document.getElementById('meta-title').innerText = metaTitleText;
-            document.getElementById('meta-desc').innerText = `Jual ${product.title} ${locationTitleStr}. Hubungi WhatsApp ${activePhone} untuk pemesanan & info reseller.`;
+            document.getElementById('meta-desc').innerText = `Jual ${product.title} ${locationTitleStr}. Hubungi WhatsApp ${activePhone} untuk pemesanan & info agen.`;
         }
 
-        // 3. Blog View
+        // 3. Blog Reader View
         function renderBlogPage(container, blogSlug) {
             const blog = ALL_BLOGS.find(b => createSlug(b.title) === blogSlug) || ALL_BLOGS[0];
             if (!blog) return;
@@ -1318,7 +1299,7 @@
             renderPaginatedProducts(1);
         }
 
-        // Cart Engine
+        // Cart Actions
         function addToCartById(productId, openDrawer = false) {
             const p = ALL_PRODUCTS.find(item => item.id === productId);
             if (!p) return;
