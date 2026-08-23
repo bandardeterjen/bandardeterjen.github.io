@@ -201,7 +201,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
         .product-card {
             background: var(--white);
@@ -291,7 +291,7 @@
             justify-content: center;
             align-items: center;
             gap: 6px;
-            margin: 20px 0 40px;
+            margin: 16px 0 36px;
             flex-wrap: wrap;
         }
         .pagination-btn {
@@ -455,6 +455,7 @@
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 16px;
             margin-top: 12px;
+            margin-bottom: 12px;
         }
         .blog-card {
             border: 1px solid var(--border-color);
@@ -689,54 +690,6 @@
         const CSV_WILAYAH_URL = 'https://bandardeterjen.github.io/product/belanja/daftarwilayah.csv';
         const JSON_BLOG_URL = 'https://bandardeterjen.github.io/product/blog_data.json';
 
-        // EMBEDDED FALLBACK DATASET WILAYAH (100% Offline & Reliable)
-        const FALLBACK_WILAYAH_ROWS = [
-            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Tanjung Priok", kelurahan: "Sunter Jaya", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Tanjung Priok", kelurahan: "Sunter Agung", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Tanjung Priok", kelurahan: "Papanggo", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Kelapa Gading", kelurahan: "Kelapa Gading Barat", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Utara", kecamatan: "Kelapa Gading", kelurahan: "Kelapa Gading Timur", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Tebet", kelurahan: "Menteng Dalam", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Tebet", kelurahan: "Tebet Barat", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Tebet", kelurahan: "Tebet Timur", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Kebayoran Baru", kelurahan: "Senayan", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Selatan", kecamatan: "Kebayoran Baru", kelurahan: "Melawai", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Timur", kecamatan: "Jatinegara", kelurahan: "Kampung Melayu", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Timur", kecamatan: "Jatinegara", kelurahan: "Bidaracina", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Timur", kecamatan: "Duren Sawit", kelurahan: "Pondok Bambu", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Pusat", kecamatan: "Menteng", kelurahan: "Cikini", isJakarta: "true" },
-            { provinsi: "DKI Jakarta", kota: "Jakarta Barat", kecamatan: "Kebon Jeruk", kelurahan: "Duri Kepa", isJakarta: "true" },
-            // Bogor
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cileungsi", kelurahan: "Limusnunggal", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cileungsi", kelurahan: "Cileungsi Kidul", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cileungsi", kelurahan: "Cileungsi", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cileungsi", kelurahan: "Mekarsari", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cileungsi", kelurahan: "Pasir Angin", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Gunung Putri", kelurahan: "Bojong Nangka", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Gunung Putri", kelurahan: "Tlajung Udik", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bogor", kecamatan: "Cibinong", kelurahan: "Pakansari", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kota Bogor", kecamatan: "Bogor Tengah", kelurahan: "Pabaton", isJakarta: "false" },
-            // Bekasi
-            { provinsi: "Jawa Barat", kota: "Kota Bekasi", kecamatan: "Bekasi Barat", kelurahan: "Kranji", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kota Bekasi", kecamatan: "Bekasi Barat", kelurahan: "Kota Baru", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kota Bekasi", kecamatan: "Bantargebang", kelurahan: "Cikiwul", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bekasi", kecamatan: "Cikarang Pusat", kelurahan: "Sukamahi", isJakarta: "false" },
-            { provinsi: "Jawa Barat", kota: "Kabupaten Bekasi", kecamatan: "Tambun Selatan", kelurahan: "Setiadarma", isJakarta: "false" },
-            // Banyumas
-            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Sokaraja", kelurahan: "Sokaraja Tengah", isJakarta: "false" },
-            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Sokaraja", kelurahan: "Sokaraja Kulon", isJakarta: "false" },
-            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Sokaraja", kelurahan: "Karangduren", isJakarta: "false" },
-            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Purwokerto Timur", kelurahan: "Purwokerto Wetan", isJakarta: "false" },
-            { provinsi: "Jawa Tengah", kota: "Kabupaten Banyumas", kecamatan: "Purwokerto Timur", kelurahan: "Sokanegara", isJakarta: "false" },
-            // Wilayah Lain
-            { provinsi: "Jawa Barat", kota: "Kota Bandung", kecamatan: "Coblong", kelurahan: "Dago", isJakarta: "false" },
-            { provinsi: "Jawa Tengah", kota: "Kota Semarang", kecamatan: "Semarang Tengah", kelurahan: "Pandansari", isJakarta: "false" },
-            { provinsi: "Jawa Tengah", kota: "Kota Surakarta", kecamatan: "Banjarsari", kelurahan: "Manahan", isJakarta: "false" },
-            { provinsi: "Jawa Timur", kota: "Kota Surabaya", kecamatan: "Wonokromo", kelurahan: "Darmo", isJakarta: "false" },
-            { provinsi: "Sumatera Utara", kota: "Kota Medan", kecamatan: "Medan Kota", kelurahan: "Pasar Baru", isJakarta: "false" },
-            { provinsi: "Sulawesi Selatan", kota: "Kota Makassar", kecamatan: "Ujung Pandang", kelurahan: "Lajangiru", isJakarta: "false" }
-        ];
-
         let ALL_PRODUCTS = [];
         let ALL_RESELLERS = [];
         let ALL_BLOGS = [];
@@ -744,8 +697,12 @@
         let STRUCTURED_WILAYAH = {};
 
         let CartState = JSON.parse(localStorage.getItem('bp_cart')) || [];
-        let CurrentPage = 1;
-        const ProductsPerPage = 6;
+        
+        let CurrentProductPage = 1;
+        const ProductsPerPage = 8; // Katalog produk 8 per halaman
+
+        let CurrentBlogPage = 1;
+        const BlogsPerPage = 4; // Blog 4 per halaman
 
         const PHONE_DEFAULT = "085773009666";
         const PHONE_JAKARTA = "088808181008";
@@ -787,7 +744,7 @@
                 if (!r.kota || !r.kecamatan || !r.kelurahan) return;
                 const citySlug = createSlug(r.kota);
                 const subSlug = createSlug(r.kecamatan);
-                const isJkt = (r.isJakarta === 'true' || String(r.kota).toLowerCase().includes('jakarta'));
+                const isJkt = (String(r.isJakarta).toLowerCase() === 'true' || String(r.kota).toLowerCase().includes('jakarta'));
 
                 if (!structure[citySlug]) {
                     structure[citySlug] = {
@@ -810,9 +767,6 @@
         }
 
         async function initData() {
-            ALL_WILAYAH_RAW = [...FALLBACK_WILAYAH_ROWS];
-            STRUCTURED_WILAYAH = buildStructuredWilayah(ALL_WILAYAH_RAW);
-
             try {
                 const [pRes, rRes, bRes, wRes] = await Promise.allSettled([
                     fetch(CSV_PRODUCTS_URL).then(r => r.text()),
@@ -848,13 +802,13 @@
                     }
                 }
             } catch (err) {
-                console.warn("Menggunakan fallback cache dataset:", err);
+                console.error("Gagal memuat dataset eksternal:", err);
             }
             handleRoute();
             renderCartUI();
         }
 
-        // Router Engine: Mendukung 4 Level (#[modul]/[slug-produk]/[slug-kota]/[slug-kec]/[slug-desa])
+        // Router Engine: 4 Level (#[modul]/[slug-produk]/[slug-kota]/[slug-kec]/[slug-desa])
         function parseHash() {
             const hash = window.location.hash.replace(/^#\/?/, '');
             const parts = hash.split('/').filter(p => p.trim() !== '');
@@ -892,17 +846,6 @@
             document.getElementById('meta-title').innerText = "085773009666 Bandar Product | Pusat Sabun Laundry & Kimia Industri";
             document.getElementById('meta-desc').innerText = "Pusat distributor deterjen laundry, softener, karbol sereh, dan formula pembersih. Hubungi 085773009666.";
 
-            let blogCardsHTML = ALL_BLOGS.slice(0, 3).map(b => `
-                <div class="blog-card">
-                    <img src="${b.image}" alt="${b.title}" onerror="this.src='https://via.placeholder.com/600x400?text=Blog+Image'">
-                    <div class="blog-card-body">
-                        <h3>${b.title}</h3>
-                        <p>${b.excerpt}</p>
-                        <a href="#blog/${createSlug(b.title)}" class="btn-detail" style="margin-top:auto;">Baca Selengkapnya →</a>
-                    </div>
-                </div>
-            `).join('');
-
             container.innerHTML = `
                 <section class="hero">
                     <div>
@@ -939,28 +882,32 @@
                 </div>
 
                 <div class="section-header" id="blog">
-                    <h2 class="section-title">Artikel & <span>Edukasi Bisnis Sabun</span></h2>
+                    <h2 class="section-title">Artikel & <span>Edukasi Bisnis Sabun (${ALL_BLOGS.length})</span></h2>
                 </div>
                 <div class="blog-section">
-                    <div class="blog-grid">${blogCardsHTML}</div>
+                    <div class="blog-grid" id="mainBlogGrid"></div>
+                    <div class="pagination-container" id="blogPagination"></div>
                 </div>
             `;
 
             renderPaginatedProducts(1);
+            renderPaginatedBlogs(1);
 
             document.getElementById('homeSearchInput').addEventListener('input', (e) => {
                 const q = e.target.value.toLowerCase();
                 const filtered = ALL_PRODUCTS.filter(p => p.title.toLowerCase().includes(q) || (p.description && p.description.toLowerCase().includes(q)));
                 renderProductGridOnly(filtered);
+                renderPaginationControls('productPagination', filtered.length, ProductsPerPage, 1, 'renderPaginatedProducts');
             });
         }
 
+        // Pagination Produk (8 Item)
         function renderPaginatedProducts(page) {
-            CurrentPage = page;
+            CurrentProductPage = page;
             const start = (page - 1) * ProductsPerPage;
             const paginated = ALL_PRODUCTS.slice(start, start + ProductsPerPage);
             renderProductGridOnly(paginated);
-            renderPaginationControls(ALL_PRODUCTS.length, page);
+            renderPaginationControls('productPagination', ALL_PRODUCTS.length, ProductsPerPage, page, 'renderPaginatedProducts');
         }
 
         function renderProductGridOnly(productsList) {
@@ -990,22 +937,51 @@
             `).join('');
         }
 
-        function renderPaginationControls(totalItems, currentPage) {
-            const pagBox = document.getElementById('productPagination');
+        // Pagination Blog (4 Item)
+        function renderPaginatedBlogs(page) {
+            CurrentBlogPage = page;
+            const start = (page - 1) * BlogsPerPage;
+            const paginated = ALL_BLOGS.slice(start, start + BlogsPerPage);
+            renderBlogGridOnly(paginated);
+            renderPaginationControls('blogPagination', ALL_BLOGS.length, BlogsPerPage, page, 'renderPaginatedBlogs');
+        }
+
+        function renderBlogGridOnly(blogsList) {
+            const grid = document.getElementById('mainBlogGrid');
+            if (!grid) return;
+            if (blogsList.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:#64748b;">Belum ada artikel.</div>`;
+                return;
+            }
+            grid.innerHTML = blogsList.map(b => `
+                <div class="blog-card">
+                    <img src="${b.image}" alt="${b.title}" onerror="this.src='https://via.placeholder.com/600x400?text=Blog+Image'">
+                    <div class="blog-card-body">
+                        <h3>${b.title}</h3>
+                        <p>${b.excerpt}</p>
+                        <a href="#blog/${createSlug(b.title)}" class="btn-detail" style="margin-top:auto;">Baca Selengkapnya →</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generic Pagination Controls Generator
+        function renderPaginationControls(containerId, totalItems, perPage, currentPage, callbackFnName) {
+            const pagBox = document.getElementById(containerId);
             if (!pagBox) return;
-            const totalPages = Math.ceil(totalItems / ProductsPerPage);
+            const totalPages = Math.ceil(totalItems / perPage);
             if (totalPages <= 1) { pagBox.innerHTML = ''; return; }
 
-            let html = `<button class="pagination-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="renderPaginatedProducts(${currentPage - 1})">« Prev</button>`;
+            let html = `<button class="pagination-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="${callbackFnName}(${currentPage - 1})">« Prev</button>`;
             for (let i = 1; i <= Math.min(5, totalPages); i++) {
-                html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="renderPaginatedProducts(${i})">${i}</button>`;
+                html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="${callbackFnName}(${i})">${i}</button>`;
             }
-            if (totalPages > 5) html += `<span>...</span><button class="pagination-btn" onclick="renderPaginatedProducts(${totalPages})">${totalPages}</button>`;
-            html += `<button class="pagination-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="renderPaginatedProducts(${currentPage + 1})">Next »</button>`;
+            if (totalPages > 5) html += `<span>...</span><button class="pagination-btn ${currentPage === totalPages ? 'active' : ''}" onclick="${callbackFnName}(${totalPages})">${totalPages}</button>`;
+            html += `<button class="pagination-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="${callbackFnName}(${currentPage + 1})">Next »</button>`;
             pagBox.innerHTML = html;
         }
 
-        // 2. Detail Produk & Navigasi Wilayah Berjenjang 4 Level
+        // 2. Detail Produk & Navigasi Wilayah Berjenjang
         function renderProductDetailPage(container, productSlug, paramCity, paramSub, paramVill) {
             let product = ALL_PRODUCTS.find(p => p.slug === productSlug) || ALL_PRODUCTS[0];
             if (!product) return;
@@ -1056,7 +1032,7 @@
             updateRegionNavigation(product, paramCity, paramSub, paramVill);
         }
 
-        // Logic Navigasi Berjenjang dengan Hash URL Lengkap
+        // Logic Navigasi Wilayah Berjenjang
         function updateRegionNavigation(product, paramCity, paramSub, paramVill) {
             const breadcrumbEl = document.getElementById('regionBreadcrumb');
             const itemsEl = document.getElementById('regionItemsContainer');
@@ -1089,7 +1065,7 @@
                 let filteredCities = Object.keys(STRUCTURED_WILAYAH);
 
                 if (isGroupJakarta) {
-                    filteredCities = filteredCities.filter(k => k.includes('jakarta') || STRUCTURED_WILAYAH[k].isJakarta);
+                    filteredCities = filteredCities.filter(k => k.includes('jakarta') || (STRUCTURED_WILAYAH[k] && STRUCTURED_WILAYAH[k].isJakarta));
                 } else if (isGroupBekasi) {
                     filteredCities = filteredCities.filter(k => k.includes('bekasi'));
                 } else if (isGroupBogor) {
@@ -1104,6 +1080,11 @@
                     <a href="#produk/${product.slug}">Pilih Wilayah</a> <span>/</span> 
                     <strong>${labelGroup}</strong>
                 `;
+
+                if (filteredCities.length === 0) {
+                    itemsEl.innerHTML = `<span style="font-size:0.85rem; color:#64748b;">Memuat data wilayah...</span>`;
+                    return;
+                }
 
                 itemsEl.innerHTML = filteredCities.map(cityKey => `
                     <a href="#produk/${product.slug}/${cityKey}" class="text-region-btn">
@@ -1144,7 +1125,6 @@
                 const subObj = cityObj.subdistricts[paramSub];
 
                 if (subObj) {
-                    // Cari nama kelurahan riil jika paramVill disuplai via URL
                     let matchedVill = null;
                     if (paramVill) {
                         matchedVill = subObj.villages.find(v => createSlug(v) === paramVill);
@@ -1178,7 +1158,7 @@
             }
         }
 
-        // Update Judul SEO & Badge Routing WA
+        // Update Judul SEO & Badge WA
         function updateProductTitleAndSEO(product, loc) {
             if (!product) return;
             const badgeEl = document.getElementById('productRoutingBadge');
@@ -1273,7 +1253,7 @@
             renderPaginatedProducts(1);
         }
 
-        // Cart Engine & WhatsApp
+        // Cart Actions
         function addToCartById(productId, openDrawer = false) {
             const p = ALL_PRODUCTS.find(item => item.id === productId);
             if (!p) return;
