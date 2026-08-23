@@ -1,0 +1,41 @@
+provinsi,kota,kecamatan,kelurahan,isJakarta
+DKI Jakarta,Jakarta Utara,Tanjung Priok,Sunter Jaya,true
+DKI Jakarta,Jakarta Utara,Tanjung Priok,Sunter Agung,true
+DKI Jakarta,Jakarta Utara,Tanjung Priok,Papanggo,true
+DKI Jakarta,Jakarta Utara,Kelapa Gading,Kelapa Gading Barat,true
+DKI Jakarta,Jakarta Utara,Kelapa Gading,Kelapa Gading Timur,true
+DKI Jakarta,Jakarta Selatan,Tebet,Menteng Dalam,true
+DKI Jakarta,Jakarta Selatan,Tebet,Tebet Barat,true
+DKI Jakarta,Jakarta Selatan,Tebet,Tebet Timur,true
+DKI Jakarta,Jakarta Selatan,Kebayoran Baru,Senayan,true
+DKI Jakarta,Jakarta Selatan,Kebayoran Baru,Melawai,true
+DKI Jakarta,Jakarta Timur,Jatinegara,Kampung Melayu,true
+DKI Jakarta,Jakarta Timur,Jatinegara,Bidaracina,true
+DKI Jakarta,Jakarta Timur,Duren Sawit,Pondok Bambu,true
+DKI Jakarta,Jakarta Pusat,Menteng,Cikini,true
+DKI Jakarta,Jakarta Pusat,Menteng,Gondangdia,true
+DKI Jakarta,Jakarta Barat,Kebon Jeruk,Duri Kepa,true
+DKI Jakarta,Jakarta Barat,Kebon Jeruk,Kedoya Selatan,true
+Jawa Barat,Kabupaten Bogor,Cileungsi,Cileungsi Kidul,false
+Jawa Barat,Kabupaten Bogor,Cileungsi,Limusnunggal,false
+Jawa Barat,Kabupaten Bogor,Cileungsi,Mekarsari,false
+Jawa Barat,Kabupaten Bogor,Gunung Putri,Bojong Nangka,false
+Jawa Barat,Kabupaten Bogor,Gunung Putri,Tlajung Udik,false
+Jawa Barat,Kabupaten Bogor,Cibinong,Pakansari,false
+Jawa Barat,Kota Bogor,Bogor Tengah,Pabaton,false
+Jawa Barat,Kota Bogor,Bogor Selatan,Batutulis,false
+Jawa Barat,Kota Bekasi,Bekasi Barat,Kranji,false
+Jawa Barat,Kota Bekasi,Bekasi Barat,Kota Baru,false
+Jawa Barat,Kota Bekasi,Bantargebang,Cikiwul,false
+Jawa Barat,Kabupaten Bekasi,Cikarang Pusat,Sukamahi,false
+Jawa Barat,Kabupaten Bekasi,Tambun Selatan,Setiadarma,false
+Jawa Tengah,Kabupaten Banyumas,Sokaraja,Sokaraja Tengah,false
+Jawa Tengah,Kabupaten Banyumas,Sokaraja,Sokaraja Kulon,false
+Jawa Tengah,Kabupaten Banyumas,Sokaraja,Karangduren,false
+Jawa Tengah,Kabupaten Banyumas,Purwokerto Timur,Purwokerto Wetan,false
+Jawa Tengah,Kabupaten Banyumas,Purwokerto Timur,Sokanegara,false
+Jawa Tengah,Kota Semarang,Semarang Tengah,Pandansari,false
+Jawa Tengah,Kota Surakarta,Banjarsari,Manahan,false
+Jawa Timur,Kota Surabaya,Wonokromo,Darmo,false
+Sumatera Utara,Kota Medan,Medan Kota,Pasar Baru,false
+Sulawesi Selatan,Kota Makassar,Ujung Pandang,Lajangiru,false
