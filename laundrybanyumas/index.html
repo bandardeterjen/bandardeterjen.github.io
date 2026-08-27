@@ -5,14 +5,12 @@
   <meta http-equiv="x-ua-compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <!-- Dynamic Meta Tags -->
   <title id="page-title">Pusat Sabun, Parfum & Perlengkapan Laundry Banyumas</title>
   <meta id="page-desc" name="description" content="Pusat suplai deterjen laundry, parfum grade A, softener, plastik packing, dan perlengkapan usaha laundry di Kabupaten Banyumas.">
   <meta name="keywords" content="parfum laundry banyumas, sabun laundry purwokerto, perlengkapan laundry banyumas, deterjen matic banyumas">
   <meta name="author" content="Bandar Deterjen">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- Open Graph Meta -->
   <meta property="og:type" content="website">
   <meta property="og:title" id="og-title" content="Pusat Sabun, Parfum & Perlengkapan Laundry Banyumas">
   <meta property="og:description" id="og-desc" content="Pusat suplai deterjen laundry, parfum grade A, softener, plastik packing, dan perlengkapan usaha laundry di Kabupaten Banyumas.">
@@ -20,17 +18,14 @@
   <meta property="og:image" id="og-image" content="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=800&q=80">
   <meta property="og:site_name" content="Banyumas Laundry Listing">
 
-  <!-- Twitter Card Meta -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" id="tw-title" content="Pusat Sabun, Parfum & Perlengkapan Laundry Banyumas">
   <meta name="twitter:description" id="tw-desc" content="Pusat suplai deterjen laundry, parfum grade A, softener, plastik packing, dan perlengkapan usaha laundry di Kabupaten Banyumas.">
   <meta name="twitter:image" id="tw-image" content="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=800&q=80">
 
-  <!-- Icons & Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -74,12 +69,12 @@
       top: 0;
       right: -100%;
       width: 100%;
-      max-width: 440px;
+      max-width: 480px;
       height: 100vh;
       background: #ffffff;
-      box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+      box-shadow: -10px 0 35px rgba(0,0,0,0.25);
       z-index: 99999;
-      transition: right 0.3s ease-in-out;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
     }
@@ -87,8 +82,8 @@
     .cart-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(2px);
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(3px);
       z-index: 99998;
       display: none;
     }
@@ -98,7 +93,6 @@
 
 <body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
 
-  <!-- TOP INFO BAR -->
   <div class="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
       <div class="flex items-center gap-6">
@@ -123,7 +117,6 @@
     </div>
   </div>
 
-  <!-- NAVBAR SECTION -->
   <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-0">
       
@@ -138,7 +131,6 @@
           </div>
         </a>
 
-        <!-- Desktop Menu Links -->
         <div class="hidden lg:flex items-center gap-7 text-sm font-bold text-slate-700">
           <a href="#" onclick="navigate(''); return false;" class="hover:text-royal-600 transition py-1">Beranda</a>
           <a href="#katalog-produk" class="hover:text-royal-600 transition py-1">Katalog Produk</a>
@@ -147,7 +139,6 @@
           <a href="#kontak" class="hover:text-royal-600 transition py-1">Kontak</a>
         </div>
 
-        <!-- Action Cart Button -->
         <div class="flex items-center gap-3">
           <button onclick="toggleCartDrawer(true)" class="relative bg-royal-50 hover:bg-royal-100 text-royal-800 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-royal-200 shadow-sm transition flex items-center gap-2 font-bold text-sm">
             <i class="fa-solid fa-cart-shopping text-base text-brandOrange-500"></i>
@@ -163,7 +154,6 @@
 
     </div>
 
-    <!-- Mobile Nav Dropdown -->
     <div id="mobile-nav" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-3 text-sm font-bold shadow-xl">
       <a href="#" onclick="navigate(''); toggleMobileNav(); return false;" class="block py-2 text-royal-900 border-b border-slate-50">Beranda</a>
       <a href="#katalog-produk" onclick="toggleMobileNav()" class="block py-2 text-slate-700 border-b border-slate-50">Katalog Produk</a>
@@ -173,12 +163,10 @@
     </div>
   </nav>
 
-  <!-- DYNAMIC VIEW CONTAINER -->
   <main id="app-root" class="flex-grow"></main>
 
-  <!-- SHOPPING CART DRAWER & CHECKOUT -->
   <div id="cart-drawer" class="cart-drawer">
-    <div class="bg-royal-900 text-white p-4 flex justify-between items-center border-b border-royal-800">
+    <div class="bg-royal-900 text-white p-4 flex justify-between items-center border-b border-royal-800 shrink-0">
       <div class="flex items-center gap-2.5">
         <i class="fa-solid fa-bag-shopping text-brandOrange-400 text-lg"></i>
         <h3 class="font-bold text-base">Keranjang Belanja</h3>
@@ -188,69 +176,72 @@
       </button>
     </div>
 
-    <!-- Cart Items List Container -->
-    <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 space-y-3 custom-scroll"></div>
-
-    <!-- Cart Footer & Checkout Form -->
-    <div class="bg-slate-50 border-t border-slate-200 p-4 space-y-3.5 shadow-inner">
-      <div class="flex justify-between items-center text-sm font-bold text-slate-900">
-        <span>Total Belanja:</span>
-        <span id="cart-total-price" class="text-lg font-black text-brandOrange-600">Rp 0</span>
+    <div class="flex-1 overflow-y-auto p-4 space-y-5 custom-scroll">
+      <div>
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Produk Terpilih</span>
+          <span id="cart-item-count-label" class="text-xs text-slate-500 font-medium">0 item</span>
+        </div>
+        <div id="cart-items-container" class="space-y-2.5"></div>
       </div>
 
-      <!-- Form Pengiriman -->
-      <form id="cart-checkout-form" class="space-y-2.5 text-xs">
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">Nama Pemesan <span class="text-rose-500">*</span></label>
-          <input type="text" id="co-nama" required placeholder="Nama lengkap Anda" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-royal-500 outline-none">
+      <div id="cart-checkout-wrapper" class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-4 shadow-sm">
+        <div class="flex justify-between items-center pb-3 border-b border-slate-200">
+          <span class="text-xs font-bold text-slate-700 uppercase">Subtotal Belanja:</span>
+          <span id="cart-total-price" class="text-xl font-black text-brandOrange-600">Rp 0</span>
         </div>
 
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">Nomor WhatsApp <span class="text-slate-400 font-normal">(Opsional)</span></label>
-          <input type="tel" id="co-wa" placeholder="Contoh: 08123456789" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-royal-500 outline-none">
-        </div>
-
-        <div class="grid grid-cols-2 gap-2">
+        <form id="cart-checkout-form" class="space-y-3 text-xs">
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">Kecamatan</label>
-            <select id="co-kecamatan" class="w-full px-2 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-royal-500 outline-none">
-              <option value="">Pilih Kecamatan</option>
-            </select>
+            <label class="block font-semibold text-slate-700 mb-1">Nama Pemesan <span class="text-rose-500">*</span></label>
+            <input type="text" id="co-nama" required placeholder="Nama lengkap Anda" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white">
           </div>
+
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">Desa/Kelurahan</label>
-            <select id="co-desa" class="w-full px-2 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-royal-500 outline-none">
-              <option value="">Pilih Desa</option>
-            </select>
+            <label class="block font-semibold text-slate-700 mb-1">Nomor WhatsApp <span class="text-slate-400 font-normal">(Opsional)</span></label>
+            <input type="tel" id="co-wa" placeholder="Contoh: 08123456789" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white">
           </div>
-        </div>
 
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">Alamat Lengkap <span class="text-rose-500">*</span></label>
-          <textarea id="co-alamat" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, patokan..." class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-royal-500 outline-none"></textarea>
-        </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Kecamatan</label>
+              <select id="co-kecamatan" class="w-full px-2.5 py-2.5 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-royal-500 outline-none">
+                <option value="">Pilih Kecamatan</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Desa/Kelurahan</label>
+              <select id="co-desa" class="w-full px-2.5 py-2.5 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-royal-500 outline-none">
+                <option value="">Pilih Desa</option>
+              </select>
+            </div>
+          </div>
 
-        <div class="bg-amber-50 border border-amber-200 rounded-lg p-2.5 text-[11px] text-amber-800 leading-relaxed">
-          <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i>
-          <strong>Catatan:</strong> Total belum termasuk ongkos kirim. CS/Seller kami akan menghitungkan ongkir berdasarkan pilihan ekspedisi/kurir dan jarak tempuh ke alamat Anda.
-        </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Alamat Lengkap <span class="text-rose-500">*</span></label>
+            <textarea id="co-alamat" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, patokan..." class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white"></textarea>
+          </div>
 
-        <button type="submit" id="btn-submit-cart" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
-          <i class="fa-brands fa-whatsapp text-lg"></i>
-          Checkout via WhatsApp
-        </button>
-      </form>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[11px] text-amber-900 leading-relaxed">
+            <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i>
+            <strong>Catatan:</strong> Total harga barang belum termasuk biaya pengiriman. CS/Seller kami akan mengkonfirmasi ongkos kirim berdasarkan pilihan ekspedisi/kurir dan jarak tempuh ke alamat tujuan.
+          </div>
+
+          <button type="submit" id="btn-submit-cart" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm mt-2">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            Checkout via WhatsApp
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 
   <div id="cart-overlay" onclick="toggleCartDrawer(false)" class="cart-overlay"></div>
 
-  <!-- FOOTER -->
   <footer id="kontak" class="bg-slate-950 text-slate-400 text-sm mt-20 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         
-        <!-- Brand Col -->
         <div class="space-y-4">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-royal-800 flex items-center justify-center text-white font-extrabold text-lg">
@@ -268,13 +259,11 @@
           </div>
         </div>
 
-        <!-- Quick Links -->
         <div>
           <h4 class="text-white font-bold mb-4 text-base border-l-4 border-brandOrange-500 pl-3">Katalog Produk</h4>
           <ul class="space-y-2 text-xs" id="footer-service-links"></ul>
         </div>
 
-        <!-- Operational Info -->
         <div>
           <h4 class="text-white font-bold mb-4 text-base border-l-4 border-royal-500 pl-3">Layanan & Distribusi</h4>
           <p class="text-xs text-slate-300 font-semibold mb-2">Buka Setiap Hari:</p>
@@ -287,7 +276,6 @@
           </div>
         </div>
 
-        <!-- Kontak Info -->
         <div>
           <h4 class="text-white font-bold mb-4 text-base border-l-4 border-brandOrange-500 pl-3">Hubungi CS Kami</h4>
           <ul class="space-y-3 text-xs">
@@ -317,13 +305,11 @@
 
       </div>
 
-      <!-- Area Wilayah Footer Grid (Hanya Nama Kecamatan Saja) -->
       <div class="mt-12 pt-8 border-t border-slate-900">
         <h5 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Area Distribusi Kecamatan di Kabupaten Banyumas:</h5>
         <div id="footer-districts-cloud" class="flex flex-wrap gap-x-2.5 gap-y-1.5 text-xs text-slate-500"></div>
       </div>
 
-      <!-- Copyright Section -->
       <div class="mt-10 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-3">
         <p>&copy; <span id="auto-copyright-year"></span> Banyumas Laundry Listing. Seluruh hak cipta dilindungi.</p>
         <div class="flex items-center gap-4">
@@ -333,19 +319,16 @@
     </div>
   </footer>
 
-  <!-- TOAST NOTIFICATION -->
   <div id="blg-toast" style="position:fixed; top:20px; right:20px; z-index:999999999; padding:12px 24px; color:#fff; border-radius:8px; display:none; font-weight:bold;" class="shadow-xl text-xs"></div>
 
-  <!-- APPLICATION ENGINE & SCRIPT -->
   <script>
-    /* 
-    ==========================================================================
+    /* ==========================================================================
       1. KONFIGURASI ENDPOINT CSV EKSTERNAL
     ==========================================================================
     */
     const CSV_PRODUCTS_URL = 'https://bandardeterjen.github.io/product/belanja/daftarproduk.csv';
-    const CSV_PHONE_URL    = 'https://bandardeterjen.github.io/laundrybanyumas/daftartelpon.csv';
-    const CSV_WILAYAH_URL  = 'https://bandardeterjen.github.io/laundrybanyumas/daftarwilayah.csv';
+    const CSV_PHONE_URL    = 'https://bandardeterjen.github.io/product/belanja/daftartelpon.csv';
+    const CSV_WILAYAH_URL  = 'https://bandardeterjen.github.io/product/belanja/daftarwilayah.csv';
 
     /* State Master Data Global */
     let DATA_PRODUK = [];
@@ -369,8 +352,7 @@
       villageName: null
     };
 
-    /* 
-    ==========================================================================
+    /* ==========================================================================
       2. HELPER FUNCTIONS & CSV PARSER
     ==========================================================================
     */
@@ -435,9 +417,8 @@
       setTimeout(() => { toast.style.display = 'none'; }, 3500);
     }
 
-    /* 
-    ==========================================================================
-      3. CART MANAGEMENT FUNCTIONS
+    /* ==========================================================================
+      3. CART MANAGEMENT FUNCTIONS (FULL BODY FLOW)
     ==========================================================================
     */
     function toggleCartDrawer(show) {
@@ -495,24 +476,31 @@
       const container = document.getElementById('cart-items-container');
       const badge = document.getElementById('nav-cart-badge');
       const totalEl = document.getElementById('cart-total-price');
+      const countLabel = document.getElementById('cart-item-count-label');
+      const checkoutWrapper = document.getElementById('cart-checkout-wrapper');
 
       const totalQty = CartState.reduce((sum, item) => sum + item.qty, 0);
       const grandTotal = CartState.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
       if (badge) badge.innerText = totalQty;
+      if (countLabel) countLabel.innerText = `${totalQty} item`;
       if (totalEl) totalEl.innerText = formatRupiah(grandTotal);
 
       if (!container) return;
 
       if (CartState.length === 0) {
         container.innerHTML = `
-          <div class="text-center py-12 text-slate-400 space-y-2">
+          <div class="text-center py-10 text-slate-400 space-y-2 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
             <i class="fa-solid fa-cart-arrow-down text-4xl text-slate-300"></i>
-            <p class="text-xs">Keranjang belanja Anda masih kosong.</p>
+            <p class="text-xs font-semibold">Keranjang belanja Anda masih kosong.</p>
+            <p class="text-[11px] text-slate-400">Silakan pilih produk dari katalog kami.</p>
           </div>
         `;
+        if (checkoutWrapper) checkoutWrapper.style.opacity = '0.5';
         return;
       }
+
+      if (checkoutWrapper) checkoutWrapper.style.opacity = '1';
 
       container.innerHTML = CartState.map(item => `
         <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-sm">
@@ -572,8 +560,7 @@
       }
     }
 
-    /* 
-    ==========================================================================
+    /* ==========================================================================
       4. FETCH DATA DARI CSV EKSTERNAL
     ==========================================================================
     */
@@ -642,8 +629,7 @@
       }
     }
 
-    /* 
-    ==========================================================================
+    /* ==========================================================================
       5. ROUTER & RENDER VIEWS
     ==========================================================================
     */
@@ -697,7 +683,6 @@
       );
 
       const html = `
-        <!-- HERO SECTION -->
         <section class="relative bg-royal-gradient text-white overflow-hidden py-16 md:py-24">
           <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -754,7 +739,6 @@
           </div>
         </section>
 
-        <!-- KEUNGGULAN SECTION -->
         <section class="py-14 bg-white border-b border-slate-100">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
@@ -794,7 +778,6 @@
           </div>
         </section>
 
-        <!-- KATALOG PRODUK POLOS & PAGINATION DINAMIS -->
         <section id="katalog-produk" class="py-16 bg-slate-50">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
@@ -810,15 +793,12 @@
               </div>
             </div>
 
-            <!-- Product Grid Polos -->
             <div id="home-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-            <!-- Pagination Dinamis -->
             <div id="home-pagination-container" class="mt-10 flex justify-center items-center gap-1.5 flex-wrap"></div>
           </div>
         </section>
 
-        <!-- DAFTAR WILAYAH KECAMATAN -->
         <section id="wilayah" class="py-16 bg-white border-t border-slate-200">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
@@ -846,7 +826,6 @@
           </div>
         </section>
 
-        <!-- FAQ SECTION -->
         <section id="faq" class="py-16 bg-slate-50 border-t border-slate-200">
           <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
@@ -869,7 +848,7 @@
                   <i class="fa-solid fa-circle-question text-royal-600"></i> Bagaimana penentuan biaya ongkos kirim?
                 </h4>
                 <p class="text-xs text-slate-600 leading-relaxed pl-6">
-                  Ongkos kirim akan dihitung secara langsung oleh seller kami setelah Anda mengirimkan daftar pesanan dan alamat lengkap via WhatsApp, disesuaikan dengan jenis ekspedisi/kurir dan jarak tempuh.
+                  Ongkos kirim akan dihitung secara langsung oleh CS/seller kami setelah Anda mengirimkan daftar pesanan dan alamat lengkap via WhatsApp, disesuaikan dengan jenis ekspedisi/kurir dan jarak tempuh.
                 </p>
               </div>
             </div>
@@ -1112,7 +1091,6 @@
               </div>
             </div>
 
-            <!-- SIDEBAR ORDER -->
             <div class="lg:col-span-4 space-y-6">
               <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xl sticky top-28 space-y-5">
                 <div class="border-b pb-4">
@@ -1143,7 +1121,6 @@
                 </div>
               </div>
 
-              <!-- Produk Lainnya -->
               <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
                 <h4 class="font-bold text-sm text-slate-900 mb-3">Produk Lainnya</h4>
                 <div class="space-y-2">
@@ -1234,7 +1211,6 @@
                   Pilih produk di bawah ini dan masukkan ke keranjang belanja Anda:
                 </p>
 
-                <!-- DAFTAR PRODUK (TERHUBUNG DENGAN LOKASI INI) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-6">
                   ${DATA_PRODUK.map(p => `
                     <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-royal-50 hover:border-royal-500 transition flex items-center justify-between gap-3">
@@ -1270,7 +1246,6 @@
               </div>
             </div>
 
-            <!-- SIDEBAR -->
             <div class="lg:col-span-4 space-y-6">
               <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xl sticky top-28 space-y-5">
                 <div class="border-b pb-4">
@@ -1311,8 +1286,7 @@
       document.getElementById('app-root').innerHTML = html;
     }
 
-    /* 
-    ==========================================================================
+    /* ==========================================================================
       6. SINKRONISASI ELEMEN & CHECKOUT HANDLER
     ==========================================================================
     */
