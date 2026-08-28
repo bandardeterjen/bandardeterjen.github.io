@@ -1,30 +1,22 @@
 <!DOCTYPE html>
-<html class="no-js" lang="id">
+<html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title id="page-title">Pusat Sabun, Parfum & Perlengkapan Laundry Banyumas</title>
-  <meta id="page-desc" name="description" content="Pusat suplai deterjen laundry, parfum grade A, softener, plastik packing, dan perlengkapan usaha laundry di Kabupaten Banyumas.">
-  <meta name="keywords" content="parfum laundry banyumas, sabun laundry purwokerto, perlengkapan laundry banyumas, deterjen matic banyumas">
-  <meta name="author" content="Laundry Banyumas">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-
+  <title id="page-title">Katalog Produk & Layanan Pengiriman Wilayah</title>
+  <meta id="page-desc" name="description" content="Katalog produk berkualitas dengan layanan pengiriman langsung ke alamat Anda.">
+  
   <meta property="og:type" content="website">
-  <meta property="og:title" id="og-title" content="Pusat Sabun, Parfum & Perlengkapan Laundry Banyumas">
-  <meta property="og:description" id="og-desc" content="Pusat suplai deterjen laundry, parfum grade A, softener, plastik packing, dan perlengkapan usaha laundry di Kabupaten Banyumas.">
-  <meta property="og:url" id="og-url" content="">
-  <meta property="og:image" id="og-image" content="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=800&q=80">
-  <meta property="og:site_name" content="Laundry Banyumas">
+  <meta id="og-url" property="og:url" content="">
+  <meta id="og-title" property="og:title" content="Katalog Produk & Layanan Wilayah">
+  <meta id="og-desc" property="og:description" content="Pesan produk berkualitas dengan pengiriman cepat ke seluruh wilayah.">
+  <meta id="og-image" property="og:image" content="">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" id="tw-title" content="Pusat Sabun, Parfum & Perlengkapan Laundry Banyumas">
-  <meta name="twitter:description" id="tw-desc" content="Pusat suplai deterjen laundry, parfum grade A, softener, plastik packing, dan perlengkapan usaha laundry di Kabupaten Banyumas.">
-  <meta name="twitter:image" id="tw-image" content="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=800&q=80">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
+  <meta id="tw-title" name="twitter:title" content="Katalog Produk & Layanan Wilayah">
+  <meta id="tw-desc" name="twitter:description" content="Pesan produk berkualitas dengan pengiriman cepat ke seluruh wilayah.">
+  <meta id="tw-image" name="twitter:image" content="">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -36,354 +28,253 @@
               50: '#eef2ff',
               100: '#e0e7ff',
               500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              800: '#1e3a8a', // Royal Blue Utama
+              900: '#172554',
+              950: '#0f172a'
             },
             brandOrange: {
-              400: '#fb923c',
-              500: '#f97316',
+              50: '#fff7ed',
+              500: '#f97316', // Brand Orange Utama
               600: '#ea580c',
               700: '#c2410c'
             }
-          },
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'Raleway', 'sans-serif'],
-            display: ['Raleway', 'sans-serif']
           }
         }
       }
     }
   </script>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
-    .bg-royal-gradient {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
-    }
-    .custom-scroll::-webkit-scrollbar { height: 6px; width: 6px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    
-    .cart-drawer {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 100%;
-      max-width: 480px;
-      height: 100vh;
-      background: #ffffff;
-      box-shadow: -10px 0 35px rgba(0,0,0,0.25);
-      z-index: 99999;
-      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-    }
-    .cart-drawer.open { right: 0; }
-    .cart-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(3px);
-      z-index: 99998;
-      display: none;
-    }
-    .cart-overlay.show { display: block; }
+    /* Styling scrollbar halus */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
 
-<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
+  <header class="bg-royal-800 text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" onclick="navigate(''); return false;" class="flex items-center gap-2 text-lg sm:text-xl font-black tracking-tight hover:opacity-90">
+        <i class="fa-solid fa-store text-brandOrange-500"></i>
+        <span>DISTRIBUTOR <span class="text-brandOrange-500">RESMI</span></span>
+      </a>
 
-  <div class="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex items-center gap-6">
-        <a href="https://wa.me/6285773009666" id="top-phone-link" class="hover:text-amber-400 transition flex items-center gap-1.5 font-medium">
-          <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
-          <span id="top-phone-val">085773009666</span>
-        </a>
-        <a href="mailto:bandardeterjen@gmail.com" class="hover:text-amber-400 transition flex items-center gap-1.5 hidden md:flex">
-          <i class="fa-regular fa-envelope text-royal-500 text-sm"></i>
-          bandardeterjen@gmail.com
-        </a>
-      </div>
       <div class="flex items-center gap-4">
-        <span class="text-slate-400"><i class="fa-solid fa-truck-fast text-brandOrange-500 mr-1"></i> Suplai Kimia & Perlengkapan Laundry Se-Banyumas</span>
-        <div class="h-3 w-px bg-slate-700 hidden sm:block"></div>
-        <div class="flex items-center gap-3">
-          <a href="https://www.facebook.com/bandardeterjen" target="_blank" class="hover:text-blue-400 transition"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/bandardeterjen" target="_blank" class="hover:text-pink-400 transition"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.youtube.com/bandardeterjen" target="_blank" class="hover:text-red-500 transition"><i class="fa-brands fa-youtube"></i></a>
-        </div>
+        <button onclick="toggleCartDrawer(true)" class="relative bg-royal-700 hover:bg-royal-600 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 transition shadow border border-royal-600">
+          <i class="fa-solid fa-cart-shopping text-brandOrange-500 text-base"></i>
+          <span class="hidden sm:inline">Keranjang</span>
+          <span id="cart-badge" class="bg-brandOrange-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+        </button>
       </div>
     </div>
-  </div>
+  </header>
 
-  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-0">
+  <main id="app-root" class="flex-grow">
+    <div class="flex items-center justify-center py-24">
+      <div class="text-center">
+        <i class="fa-solid fa-spinner fa-spin text-3xl text-royal-700"></i>
+        <p class="mt-3 text-sm text-slate-500">Memuat data katalog...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-300 pt-12 pb-8 border-t border-slate-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex justify-between items-center lg:h-20">
-        <a href="#" onclick="navigate(''); return false;" class="flex items-center gap-2.5 sm:gap-3">
-          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-royal-900 flex items-center justify-center text-white shadow-md font-extrabold text-lg sm:text-xl tracking-tighter shrink-0">
-            <span class="text-brandOrange-500">l</span>b
+      <div class="mb-10 pb-8 border-b border-slate-800">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-location-dot text-brandOrange-500"></i> Area Jangkauan Layanan
+        </h3>
+        <div id="footer-districts" class="flex flex-wrap gap-y-2 gap-x-3 text-xs text-slate-400">
           </div>
-          <div>
-            <span class="font-extrabold text-lg sm:text-xl tracking-tight text-royal-900 block leading-tight">LAUNDRY<span class="text-brandOrange-500">BANYUMAS</span></span>
-            <span class="text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-widest font-semibold block">Katalog Produk & Perlengkapan Laundry</span>
-          </div>
-        </a>
-
-        <div class="hidden lg:flex items-center gap-7 text-sm font-bold text-slate-700">
-          <a href="#" onclick="navigate(''); return false;" class="hover:text-royal-600 transition py-1">Beranda</a>
-          <a href="#katalog-produk" class="hover:text-royal-600 transition py-1">Katalog Produk</a>
-          <a href="#wilayah" class="hover:text-royal-600 transition py-1">Area Kecamatan</a>
-          <a href="#faq" class="hover:text-royal-600 transition py-1">FAQ</a>
-          <a href="#kontak" class="hover:text-royal-600 transition py-1">Kontak</a>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <button onclick="toggleCartDrawer(true)" class="relative bg-royal-50 hover:bg-royal-100 text-royal-800 p-2.5 sm:px-4 sm:py-2.5 rounded-xl border border-royal-200 shadow-sm transition flex items-center gap-2 font-bold text-sm">
-            <i class="fa-solid fa-cart-shopping text-base text-brandOrange-500"></i>
-            <span class="hidden sm:inline">Keranjang</span>
-            <span id="nav-cart-badge" class="bg-brandOrange-500 text-white text-[11px] font-black px-2 py-0.5 rounded-full">0</span>
-          </button>
-          
-          <button id="mobile-menu-btn" onclick="toggleMobileNav()" class="p-2 rounded-lg text-slate-700 hover:text-royal-900 hover:bg-slate-100 lg:hidden">
-            <i class="fa-solid fa-bars text-xl"></i>
-          </button>
-        </div>
       </div>
 
-    </div>
-
-    <div id="mobile-nav" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-3 text-sm font-bold shadow-xl">
-      <a href="#" onclick="navigate(''); toggleMobileNav(); return false;" class="block py-2 text-royal-900 border-b border-slate-50">Beranda</a>
-      <a href="#katalog-produk" onclick="toggleMobileNav()" class="block py-2 text-slate-700 border-b border-slate-50">Katalog Produk</a>
-      <a href="#wilayah" onclick="toggleMobileNav()" class="block py-2 text-slate-700 border-b border-slate-50">Daftar Kecamatan Banyumas</a>
-      <a href="#faq" onclick="toggleMobileNav()" class="block py-2 text-slate-700 border-b border-slate-50">Tanya Jawab (FAQ)</a>
-      <a href="#kontak" onclick="toggleMobileNav()" class="block py-2 text-slate-700">Hubungi Kami</a>
-    </div>
-  </nav>
-
-  <main id="app-root" class="flex-grow"></main>
-
-  <div id="cart-drawer" class="cart-drawer">
-    <div class="bg-royal-900 text-white p-4 flex justify-between items-center border-b border-royal-800 shrink-0">
-      <div class="flex items-center gap-2.5">
-        <i class="fa-solid fa-bag-shopping text-brandOrange-400 text-lg"></i>
-        <h3 class="font-bold text-base">Keranjang Belanja</h3>
-      </div>
-      <button onclick="toggleCartDrawer(false)" class="text-slate-300 hover:text-white text-xl p-1">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-
-    <div class="flex-1 overflow-y-auto p-4 space-y-5 custom-scroll">
-      <div>
-        <div class="flex justify-between items-center mb-3">
-          <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Produk Terpilih</span>
-          <span id="cart-item-count-label" class="text-xs text-slate-500 font-medium">0 item</span>
-        </div>
-        <div id="cart-items-container" class="space-y-2.5"></div>
-      </div>
-
-      <div id="cart-checkout-wrapper" class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-4 shadow-sm">
-        <div class="flex justify-between items-center pb-3 border-b border-slate-200">
-          <span class="text-xs font-bold text-slate-700 uppercase">Subtotal Belanja:</span>
-          <span id="cart-total-price" class="text-xl font-black text-brandOrange-600">Rp 0</span>
-        </div>
-
-        <form id="cart-checkout-form" class="space-y-3 text-xs">
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">Nama Pemesan <span class="text-rose-500">*</span></label>
-            <input type="text" id="co-nama" required placeholder="Nama lengkap Anda" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white">
-          </div>
-
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">Nomor WhatsApp <span class="text-slate-400 font-normal">(Opsional)</span></label>
-            <input type="tel" id="co-wa" placeholder="Contoh: 08123456789" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white">
-          </div>
-
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Kecamatan</label>
-              <select id="co-kecamatan" class="w-full px-2.5 py-2.5 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-royal-500 outline-none">
-                <option value="">Pilih Kecamatan</option>
-              </select>
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Desa/Kelurahan</label>
-              <select id="co-desa" class="w-full px-2.5 py-2.5 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-royal-500 outline-none">
-                <option value="">Pilih Desa</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">Alamat Lengkap <span class="text-rose-500">*</span></label>
-            <textarea id="co-alamat" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, patokan..." class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white"></textarea>
-          </div>
-
-          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[11px] text-amber-900 leading-relaxed">
-            <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i>
-            <strong>Catatan:</strong> Total harga barang belum termasuk biaya pengiriman. CS/Seller kami akan mengkonfirmasi ongkos kirim berdasarkan pilihan ekspedisi/kurir dan jarak tempuh ke alamat tujuan.
-          </div>
-
-          <button type="submit" id="btn-submit-cart" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm mt-2">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
-            Checkout via WhatsApp
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div id="cart-overlay" onclick="toggleCartDrawer(false)" class="cart-overlay"></div>
-
-  <footer id="kontak" class="bg-slate-950 text-slate-400 text-sm mt-20 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-royal-800 flex items-center justify-center text-white font-extrabold text-lg">
-              <span class="text-brandOrange-500">L</span>B
-            </div>
-            <span class="font-extrabold text-lg tracking-tight text-white">Laundry<span class="text-brandOrange-500">Banyumas</span></span>
-          </div>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Pusat penyedia deterjen laundry matic, parfum laundry grade A wangi tahan lama, pelembut pakaian, plastik kemasan, hanger, dan peralatan usaha laundry di Kabupaten Banyumas.
-          </p>
-          <div class="flex gap-3 text-white pt-2">
-            <a href="https://www.facebook.com/bandardeterjen" target="_blank" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-royal-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/bandardeterjen" target="_blank" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-pink-600 transition"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.youtube.com/bandardeterjen" target="_blank" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-red-600 transition"><i class="fa-brands fa-youtube"></i></a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold mb-4 text-base border-l-4 border-brandOrange-500 pl-3">Katalog Produk</h4>
-          <ul class="space-y-2 text-xs" id="footer-service-links"></ul>
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold mb-4 text-base border-l-4 border-royal-500 pl-3">Layanan & Distribusi</h4>
-          <p class="text-xs text-slate-300 font-semibold mb-2">Buka Setiap Hari:</p>
-          <p class="text-xs text-slate-400 mb-4">Senin - Sabtu: 08.00 - 17.00 WIB<br>Pengiriman Armada: Wilayah Banyumas & Sekitarnya</p>
-          <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs space-y-2">
-            <div class="text-emerald-400 font-bold flex items-center gap-1.5">
-              <i class="fa-solid fa-circle-check"></i> Siap Kirim ke Lokasi
-            </div>
-            <p class="text-[11px] text-slate-400">Pemesanan grosir maupun eceran dikirim langsung dari gudang distribusi Banyumas.</p>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold mb-4 text-base border-l-4 border-brandOrange-500 pl-3">Hubungi CS Kami</h4>
-          <ul class="space-y-3 text-xs">
-            <li class="flex items-start gap-3">
-              <i class="fa-brands fa-whatsapp text-emerald-400 text-base mt-0.5"></i>
-              <div>
-                <div class="text-white font-semibold">WhatsApp CS Resmi</div>
-                <a href="https://wa.me/6285773009666" id="footer-phone-link" class="hover:text-amber-400">085773009666</a>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fa-regular fa-envelope text-royal-400 text-base mt-0.5"></i>
-              <div>
-                <div class="text-white font-semibold">Email Sales</div>
-                <a href="mailto:bandardeterjen@gmail.com" class="hover:text-amber-400">bandardeterjen@gmail.com</a>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fa-solid fa-location-dot text-brandOrange-500 text-base mt-0.5"></i>
-              <div>
-                <div class="text-white font-semibold">Cakupan Area</div>
-                <span>Sokaraja, Purwokerto & Seluruh 27 Kecamatan</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="mt-12 pt-8 border-t border-slate-900">
-        <h5 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Area Distribusi Kecamatan di Kabupaten Banyumas:</h5>
-        <div id="footer-districts-cloud" class="flex flex-wrap gap-x-2.5 gap-y-1.5 text-xs text-slate-500"></div>
-      </div>
-
-      <div class="mt-10 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-3">
-        <p>&copy; <span id="auto-copyright-year"></span> Laundry Banyumas. Seluruh hak cipta dilindungi.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <p>&copy; <span id="current-year"></span> Official Catalog Store. Seluruh Hak Cipta Dilindungi.</p>
         <div class="flex items-center gap-4">
-          <span class="text-slate-600">Kualitas Terjamin • Siap Antar ke Seluruh Banyumas</span>
+          <span><i class="fa-solid fa-shield-check text-emerald-500 mr-1"></i> Transaksi Aman & Terpercaya</span>
         </div>
       </div>
     </div>
   </footer>
 
-  <div id="blg-toast" style="position:fixed; top:20px; right:20px; z-index:999999999; padding:12px 24px; color:#fff; border-radius:8px; display:none; font-weight:bold;" class="shadow-xl text-xs"></div>
+  <div id="cart-drawer-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden transition-opacity" onclick="toggleCartDrawer(false)"></div>
+  
+  <aside id="cart-drawer" class="fixed top-0 right-0 w-full max-w-md h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-4 bg-royal-800 text-white flex items-center justify-between flex-shrink-0 shadow">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-cart-shopping text-brandOrange-500"></i>
+        <h2 class="font-bold text-base">Keranjang Belanja</h2>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="text-slate-300 hover:text-white p-1 text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div id="cart-body" class="flex-grow overflow-y-auto p-4 space-y-6">
+      </div>
+  </aside>
 
   <script>
-    /* ==========================================================================
-      1. KONFIGURASI ENDPOINT CSV EKSTERNAL
-    ==========================================================================
-    */
-    const CSV_PRODUCTS_URL = 'https://bandardeterjen.github.io/product/belanja/daftarproduk.csv';
-    const CSV_PHONE_URL    = 'https://bandardeterjen.github.io/laundrybanyumas/daftartelpon.csv';
-    const CSV_WILAYAH_URL  = 'https://bandardeterjen.github.io/laundrybanyumas/daftarwilayah.csv';
-
-    /* State Master Data Global */
+    /* ================= DATA STATE ================= */
     let DATA_PRODUK = [];
+    let DATA_PHONE = { primary: "081234567890", formatted: "0812-3456-7890" };
     let DATA_WILAYAH = [];
-    let DATA_PHONE = {
-      primary: "085773009666",
-      formatted: "0857-7300-9666"
-    };
+    let CART = [];
+    
+    // Konteks Wilayah Terpilih (Two-Way Persistence)
+    let selectedDistrict = null;
+    let selectedVillage = null;
+    
+    // Pagination State
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 6;
+    const MAX_PAGES = 3;
 
-    /* Cart State (Tersimpan di LocalStorage) */
-    let CartState = JSON.parse(localStorage.getItem('banyumas_cart')) || [];
+    /* ================= PARSER CSV ASYNC ================= */
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      if (lines.length < 2) return [];
+      const headers = lines[0].split(',').map(h => h.trim().replace(/^["']|["']$/g, ''));
+      return lines.slice(1).filter(l => l.trim().length > 0).map(line => {
+        const values = [];
+        let insideQuote = false;
+        let entry = '';
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"' || char === "'") {
+            insideQuote = !insideQuote;
+          } else if (char === ',' && !insideQuote) {
+            values.push(entry.trim().replace(/^["']|["']$/g, ''));
+            entry = '';
+          } else {
+            entry += char;
+          }
+        }
+        values.push(entry.trim().replace(/^["']|["']$/g, ''));
+        
+        const obj = {};
+        headers.forEach((h, idx) => {
+          obj[h] = values[idx] || '';
+        });
+        return obj;
+      });
+    }
 
-    /* State Pagination Produk */
-    let CurrentProductPage = 1;
-    const ProductsPerPage = 6;
-    const MAX_PAGES_LIMIT = 3;
+    /* ================= FETCH DATA EKSTERNAL ================= */
+    async function loadAllData() {
+      try {
+        // 1. Fetch Telepon
+        const resPhone = await fetch('telepon.csv').catch(() => null);
+        if (resPhone && resPhone.ok) {
+          const textPhone = await resPhone.text();
+          const rows = parseCSV(textPhone);
+          if (rows.length > 0 && rows[0].nomor) {
+            DATA_PHONE.primary = rows[0].nomor;
+            DATA_PHONE.formatted = rows[0].format || rows[0].nomor;
+          }
+        }
 
-    /* State Lokasi Terpilih (Persisten Dua Arah) */
-    let PersistentLocation = {
-      districtSlug: null,
-      villageName: null
-    };
+        // 2. Fetch Wilayah
+        const resWilayah = await fetch('wilayah.csv').catch(() => null);
+        if (resWilayah && resWilayah.ok) {
+          const textWilayah = await resWilayah.text();
+          const rows = parseCSV(textWilayah);
+          
+          // Kelompokkan desa per kecamatan
+          const grouped = {};
+          rows.forEach(r => {
+            const kec = r.kecamatan ? r.kecamatan.trim() : '';
+            const kel = r.kelurahan ? r.kelurahan.trim() : '';
+            if (kec) {
+              if (!grouped[kec]) {
+                grouped[kec] = {
+                  nama: kec,
+                  slug: slugify(kec),
+                  kota: r.kota || 'Banyumas',
+                  desa: []
+                };
+              }
+              if (kel && !grouped[kec].desa.includes(kel)) {
+                grouped[kec].desa.push(kel);
+              }
+            }
+          });
+          DATA_WILAYAH = Object.values(grouped);
+        }
 
-    /* ==========================================================================
-      2. HELPER FUNCTIONS & CSV PARSER
-    ==========================================================================
-    */
+        // 3. Fetch Produk
+        const resProduk = await fetch('produk.csv').catch(() => null);
+        if (resProduk && resProduk.ok) {
+          const textProduk = await resProduk.text();
+          const rows = parseCSV(textProduk);
+          DATA_PRODUK = rows.map((r, idx) => ({
+            id: parseInt(r.id) || (idx + 1),
+            slug: r.slug || slugify(r.title || `produk-${idx+1}`),
+            title: r.title || 'Produk Tanpa Nama',
+            price: parseInt(r.price) || 0,
+            image: r.image || 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&q=80',
+            description: r.description || '',
+            fitur: r.fitur ? r.fitur.split(';').map(f => f.trim()) : ['Kualitas Ekspor', 'Siap Kirim']
+          }));
+        }
+
+      } catch (err) {
+        console.warn('Gagal memuat beberapa file CSV, menggunakan fallback default jika tersedia.');
+      }
+
+      // Fallback Minimal jika CSV Wilayah belum ada di folder server
+      if (DATA_WILAYAH.length === 0) {
+        DATA_WILAYAH = [
+          { nama: "Purwokerto Timur", slug: "purwokerto-timur", kota: "Banyumas", desa: ["Arcawinangun", "Kranji", "Mersi", "Purwokerto Lor", "Purwokerto Wetan", "Sokanegara"] },
+          { nama: "Purwokerto Selatan", slug: "purwokerto-selatan", kota: "Banyumas", desa: ["Karangklesem", "Karangpucung", "Purwokerto Kulon", "Purwokerto Selatan", "Tanjung", "Teluk"] },
+          { nama: "Purwokerto Barat", slug: "purwokerto-barat", kota: "Banyumas", desa: ["Bantarsoka", "Karanglewas Lor", "Kedungwuluh", "Kober", "Pasir Kidul", "Pasirmuncang", "Rejasari"] },
+          { nama: "Purwokerto Utara", slug: "purwokerto-utara", kota: "Banyumas", desa: ["Bancarkembar", "Bobosan", "Grendeng", "Karangwangkal", "Pabuaran", "Sumampir"] },
+          { nama: "Sumbang", slug: "sumbang", kota: "Banyumas", desa: ["Banjarsari Kulon", "Banjarsari Wetan", "Ciberem", "Datar", "Gandatapa", "Karangcegak", "Karanggintung", "Karangturi", "Kawungcarang", "Kebanggan", "Kedungmalang", "Kotayasa", "Limbangan", "Sikapat", "Silado", "Sumbang", "Susukan"] },
+          { nama: "Baturraden", slug: "baturraden", kota: "Banyumas", desa: ["Karangmangu", "Karangtengah", "Kebumen", "Kemutug Kidul", "Kemutug Lor", "Ketenger", "Kutasari", "Pandak", "Purwosari", "Rempoah", "Rempoah Lor", "Pamijen"] },
+          { nama: "Sokaraja", slug: "sokaraja", kota: "Banyumas", desa: ["Banjaranyar", "Banjarsari Kidul", "Jompo Kulon", "Kalikidang", "Karangduren", "Karangkedawung", "Karangnanas", "Karangrauk", "Klahang", "Lemberang", "Pamijen", "Sokaraja Kulon", "Sokaraja Lor", "Sokaraja Tengah", "Sokaraja Wetan", "Virgata"] },
+          { nama: "Ajibarang", slug: "ajibarang", kota: "Banyumas", desa: ["Ajibarang Kulon", "Ajibarang Wetan", "Banjarsari", "Ciberung", "Darmakradenan", "Jingkang", "Kalibenda", "Karangbawang", "Kracak", "Lesmana", "Pancasan", "Pancurendang", "Sawangan", "Tipar Kidul", "Pandansari"] }
+        ];
+      }
+
+      // Fallback Minimal jika CSV Produk belum ada
+      if (DATA_PRODUK.length === 0) {
+        DATA_PRODUK = [
+          { id: 1, slug: "deterjen-liquid-premium", title: "Deterjen Cair Laundry Konsentrat 5L", price: 45000, image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&q=80", description: "Formula konsentrat tinggi ramah lingkungan, wangi segar tahan lama dan ampuh merontokkan noda membandel.", fitur: ["Anti Bakteri", "Busa Rendah (Aman Mesin)", "Ekonomis 5 Liter"] },
+          { id: 2, slug: "parfum-laundry-grade-a", title: "Parfum Laundry Grade A Murni 5L", price: 125000, image: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=600&q=80", description: "Bibit parfum import murni grade A tanpa endapan air, aroma tahan hingga 30 hari di dalam lemari.", fitur: ["Grade A Murni", "Aroma Segar Mewah", "Tahan 30 Hari"] },
+          { id: 3, slug: "softener-pelembut-pakaian", title: "Softener & Pelicin Pakaian 5L", price: 50000, image: "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600&q=80", description: "Melembutkan serat kain hingga ke pori terdalam, memudahkan proses setrika dan mencegah bau apek.", fitur: ["Serat Kain Lembut", "Mudah Disetrika", "Bebas Bau Apek"] },
+          { id: 4, slug: "pembersih-kerak-porselen", title: "Pembersih Kerak Kamar Mandi & Porselen 1L", price: 35000, image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&q=80", description: "Cairan formula aktif penghancur kerak membandel pada keramik dan kloset tanpa merusak lapisan glasir.", fitur: ["Bekerja Cepat", "Tanpa Bau Menyengat", "Kloset Berkilau"] },
+          { id: 5, slug: "sabun-cuci-piring-jeruk-nipis", title: "Sabun Cuci Piring Jeruk Nipis Ekstrak 5L", price: 38000, image: "https://images.unsplash.com/photo-1585670270608-b4b0e872c3d1?w=600&q=80", description: "Mengandung ekstrak jeruk nipis asli pembasmi lemak membandel dan bau amis seketika, lembut di tangan.", fitur: ["Ekstrak Jeruk Nipis", "Lembut di Kulit", "Hemat & Busa Melimpah"] },
+          { id: 6, slug: "karbol-wangi-sereh-pine", title: "Karbol Wangi Sereh & Pinus 5L", price: 42000, image: "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=600&q=80", description: "Disinfektan pembersih lantai alami dengan minyak sereh murni, mengusir serangga dan menyegarkan ruangan.", fitur: ["Minyak Sereh Murni", "Anti Kuman & Nyamuk", "Segar Alami"] }
+        ];
+      }
+
+      renderFooterDistricts();
+      handleHashRouting();
+    }
+
+    /* ================= HELPER FUNCTIONS ================= */
     function slugify(text) {
-      return (text || '').toString().toLowerCase().trim()
+      return text.toString().toLowerCase().trim()
         .replace(/\s+/g, '-')
         .replace(/[^\w\-]+/g, '')
         .replace(/\-\-+/g, '-');
     }
 
-    function formatRupiah(num) {
-      return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(num || 0);
+    function formatRupiah(number) {
+      return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
     }
 
-    function parseCSV(text) {
-      const lines = text.split('\n').filter(l => l.trim() !== '');
-      if (lines.length === 0) return [];
-      const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-      return lines.slice(1).map(line => {
-        const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-        return headers.reduce((obj, header, i) => {
-          let val = values[i] ? values[i].trim() : '';
-          if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
-          obj[header] = val;
-          return obj;
-        }, {});
-      });
-    }
-
+    /* ================= DYNAMIC SEO & OPENGRAPH ================= */
     function setDynamicSEO(title, desc, image) {
       document.title = title;
+      
       const pt = document.getElementById('page-title'); if (pt) pt.innerText = title;
       const pd = document.getElementById('page-desc'); if (pd) pd.setAttribute("content", desc);
       
@@ -397,584 +288,183 @@
       const ti = document.getElementById('tw-image'); if (ti && image) ti.setAttribute("content", image);
     }
 
-    function navigate(hashPath) {
-      window.location.hash = hashPath;
-      renderApp();
+    /* ================= RENDER FOOTER WILAYAH ================= */
+    function renderFooterDistricts() {
+      const container = document.getElementById('footer-districts');
+      if (!container) return;
+      
+      container.innerHTML = DATA_WILAYAH.map((d, index) => `
+        <a href="#wilayah/${d.slug}" onclick="selectDistrictOnly('${d.slug}'); return false;" class="hover:text-brandOrange-400 transition font-medium">
+          ${d.nama}${index < DATA_WILAYAH.length - 1 ? ' <span class="text-slate-600 ml-2">•</span>' : ''}
+        </a>
+      `).join('');
+      
+      const yr = document.getElementById('current-year');
+      if (yr) yr.innerText = new Date().getFullYear();
+    }
+
+    /* ================= ROUTER & VIEW CONTROLLER ================= */
+    function navigate(hash) {
+      window.location.hash = hash;
+    }
+
+    window.addEventListener('hashchange', handleHashRouting);
+
+    function handleHashRouting() {
+      const hash = window.location.hash.replace(/^#/, '');
+      const parts = hash.split('/').map(decodeURIComponent);
+      const mainRoute = parts[0] || '';
+
+      if (mainRoute === '' || mainRoute === 'beranda') {
+        renderHomeView();
+      } else if (mainRoute === 'produk-detail') {
+        const productSlug = parts[1];
+        const districtSlug = parts[2] || (selectedDistrict ? selectedDistrict.slug : null);
+        const villageName = parts[3] || selectedVillage || null;
+
+        const product = DATA_PRODUK.find(p => p.slug === productSlug) || DATA_PRODUK[0];
+        const district = DATA_WILAYAH.find(d => d.slug === districtSlug) || selectedDistrict;
+
+        if (district) selectedDistrict = district;
+        if (villageName) selectedVillage = villageName;
+
+        renderProductDetailView(product, district, villageName);
+      } else if (mainRoute === 'wilayah') {
+        const districtSlug = parts[1];
+        const district = DATA_WILAYAH.find(d => d.slug === districtSlug) || DATA_WILAYAH[0];
+        selectedDistrict = district;
+        renderDistrictCatalogView(district);
+      } else {
+        renderHomeView();
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function toggleMobileNav() {
-      const el = document.getElementById('mobile-nav');
-      if (el) el.classList.toggle('hidden');
-    }
-
-    function showBlgToast(msg, isSuccess = true) {
-      const toast = document.getElementById('blg-toast');
-      if (!toast) return;
-      toast.style.backgroundColor = isSuccess ? '#10b981' : '#f43f5e';
-      toast.innerHTML = msg;
-      toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 3500);
-    }
-
-    /* ==========================================================================
-      3. CART MANAGEMENT FUNCTIONS (FULL BODY FLOW)
-    ==========================================================================
-    */
-    function toggleCartDrawer(show) {
-      const drawer = document.getElementById('cart-drawer');
-      const overlay = document.getElementById('cart-overlay');
-      if (show) {
-        syncCartFormLocation();
-        drawer.classList.add('open');
-        overlay.classList.add('show');
-      } else {
-        drawer.classList.remove('open');
-        overlay.classList.remove('show');
+    function selectDistrictOnly(slug) {
+      const d = DATA_WILAYAH.find(x => x.slug === slug);
+      if (d) {
+        selectedDistrict = d;
+        selectedVillage = null;
+        navigate(`wilayah/${d.slug}`);
       }
     }
 
-    function saveCart() {
-      localStorage.setItem('banyumas_cart', JSON.stringify(CartState));
-      renderCartUI();
-    }
-
-    function addToCart(productId, openDrawer = true) {
-      const prod = DATA_PRODUK.find(p => p.id === productId);
-      if (!prod) return;
-
-      const existing = CartState.find(item => item.id === productId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        CartState.push({
-          id: prod.id,
-          title: prod.title,
-          price: prod.price,
-          image: prod.image,
-          qty: 1
-        });
-      }
-      saveCart();
-      showBlgToast(`✓ ${prod.title} ditambahkan ke keranjang`);
-      if (openDrawer) {
-        toggleCartDrawer(true);
-      }
-    }
-
-    function updateCartQty(productId, delta) {
-      const item = CartState.find(i => i.id === productId);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) {
-        CartState = CartState.filter(i => i.id !== productId);
-      }
-      saveCart();
-    }
-
-    function renderCartUI() {
-      const container = document.getElementById('cart-items-container');
-      const badge = document.getElementById('nav-cart-badge');
-      const totalEl = document.getElementById('cart-total-price');
-      const countLabel = document.getElementById('cart-item-count-label');
-      const checkoutWrapper = document.getElementById('cart-checkout-wrapper');
-
-      const totalQty = CartState.reduce((sum, item) => sum + item.qty, 0);
-      const grandTotal = CartState.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-      if (badge) badge.innerText = totalQty;
-      if (countLabel) countLabel.innerText = `${totalQty} item`;
-      if (totalEl) totalEl.innerText = formatRupiah(grandTotal);
-
-      if (!container) return;
-
-      if (CartState.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-10 text-slate-400 space-y-2 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
-            <i class="fa-solid fa-cart-arrow-down text-4xl text-slate-300"></i>
-            <p class="text-xs font-semibold">Keranjang belanja Anda masih kosong.</p>
-            <p class="text-[11px] text-slate-400">Silakan pilih produk dari katalog kami.</p>
-          </div>
-        `;
-        if (checkoutWrapper) checkoutWrapper.style.opacity = '0.5';
-        return;
-      }
-
-      if (checkoutWrapper) checkoutWrapper.style.opacity = '1';
-
-      container.innerHTML = CartState.map(item => `
-        <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-sm">
-          <img src="${item.image}" alt="${item.title}" class="w-14 h-14 object-cover rounded-lg bg-slate-100 shrink-0">
-          <div class="flex-1 min-w-0">
-            <h4 class="font-bold text-xs text-slate-900 truncate">${item.title}</h4>
-            <div class="text-brandOrange-600 font-extrabold text-xs mt-0.5">${formatRupiah(item.price)}</div>
-            <div class="text-[10px] text-slate-400 font-semibold">Subtotal: ${formatRupiah(item.price * item.qty)}</div>
-          </div>
-          <div class="flex items-center gap-1.5 shrink-0 bg-slate-100 p-1 rounded-lg border border-slate-200">
-            <button onclick="updateCartQty(${item.id}, -1)" class="w-6 h-6 rounded bg-white hover:bg-slate-200 text-slate-700 font-bold flex items-center justify-center text-xs shadow-sm">-</button>
-            <span class="text-xs font-bold px-1.5 text-slate-800">${item.qty}</span>
-            <button onclick="updateCartQty(${item.id}, 1)" class="w-6 h-6 rounded bg-white hover:bg-slate-200 text-slate-700 font-bold flex items-center justify-center text-xs shadow-sm">+</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function syncCartFormLocation() {
-      const kecSelect = document.getElementById('co-kecamatan');
-      const desaSelect = document.getElementById('co-desa');
-      if (!kecSelect) return;
-
-      kecSelect.innerHTML = '<option value="">Pilih Kecamatan</option>' + 
-        DATA_WILAYAH.map(d => `<option value="${d.nama}" ${PersistentLocation.districtSlug === d.slug ? 'selected' : ''}>${d.nama}</option>`).join('');
-
-      updateCartDesaOptions();
-
-      kecSelect.onchange = function() {
-        const selectedKec = DATA_WILAYAH.find(d => d.nama === kecSelect.value);
-        if (selectedKec) {
-          PersistentLocation.districtSlug = selectedKec.slug;
-          PersistentLocation.villageName = null;
-        } else {
-          PersistentLocation.districtSlug = null;
-          PersistentLocation.villageName = null;
-        }
-        updateCartDesaOptions();
-      };
-
-      desaSelect.onchange = function() {
-        PersistentLocation.villageName = desaSelect.value || null;
-      };
-    }
-
-    function updateCartDesaOptions() {
-      const kecSelect = document.getElementById('co-kecamatan');
-      const desaSelect = document.getElementById('co-desa');
-      if (!desaSelect) return;
-
-      const selectedKec = DATA_WILAYAH.find(d => d.nama === kecSelect.value);
-      if (selectedKec && selectedKec.desa) {
-        desaSelect.innerHTML = '<option value="">Pilih Desa/Kelurahan</option>' + 
-          selectedKec.desa.map(ds => `<option value="${ds}" ${PersistentLocation.villageName === ds ? 'selected' : ''}>${ds}</option>`).join('');
-      } else {
-        desaSelect.innerHTML = '<option value="">Pilih Desa/Kelurahan</option>';
-      }
-    }
-
-    /* ==========================================================================
-      4. FETCH DATA DARI CSV EKSTERNAL
-    ==========================================================================
-    */
-    async function loadAllCSVData() {
-      try {
-        const [pRes, tRes, wRes] = await Promise.allSettled([
-          fetch(CSV_PRODUCTS_URL).then(r => r.text()),
-          fetch(CSV_PHONE_URL).then(r => r.text()),
-          fetch(CSV_WILAYAH_URL).then(r => r.text())
-        ]);
-
-        // 1. Parse CSV Produk
-        if (pRes.status === 'fulfilled' && pRes.value.trim().length > 10) {
-          const parsed = parseCSV(pRes.value);
-          if (parsed && parsed.length > 0) {
-            DATA_PRODUK = parsed.map((p, idx) => ({
-              id: parseInt(p.id) || (idx + 1),
-              slug: p.slug || slugify(p.title || p.nama || `produk-${idx+1}`),
-              title: p.title || p.nama || "Produk Laundry",
-              price: parseInt(p.price || p.harga) || 0,
-              image: p.image || p.thumbnail || "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=600&q=80",
-              description: p.description || p.deskripsi || "Produk dan perlengkapan laundry berkualitas standar pabrik.",
-              fitur: p.fitur ? (Array.isArray(p.fitur) ? p.fitur : p.fitur.split('|').map(f => f.trim())) : ["Kualitas Terjamin", "Siap Pakai", "Harga Bersahabat"]
-            }));
-          }
-        }
-
-        // 2. Parse CSV Telepon
-        if (tRes.status === 'fulfilled' && tRes.value.trim().length > 5) {
-          const parsedPhone = parseCSV(tRes.value);
-          if (parsedPhone && parsedPhone.length > 0) {
-            const row = parsedPhone[0];
-            DATA_PHONE.primary = row.nomorWA || row.primary || row.phone || "085773009666";
-            DATA_PHONE.formatted = row.formatted || DATA_PHONE.primary;
-          }
-        }
-
-        // 3. Parse CSV Wilayah
-        if (wRes.status === 'fulfilled' && wRes.value.trim().length > 10) {
-          const parsedWil = parseCSV(wRes.value);
-          if (parsedWil && parsedWil.length > 0) {
-            const grouped = {};
-            parsedWil.forEach(row => {
-              const kec = row.kecamatan || row.district;
-              const desa = row.kelurahan || row.desa || row.village;
-              if (!kec) return;
-              const s = slugify(kec);
-              if (!grouped[s]) {
-                grouped[s] = {
-                  slug: s,
-                  nama: kec,
-                  deskripsi: row.deskripsi || `Distribusi resmi sabun deterjen, parfum, dan perlengkapan laundry di area ${kec}, Kabupaten Banyumas.`,
-                  desa: []
-                };
-              }
-              if (desa && !grouped[s].desa.includes(desa)) {
-                grouped[s].desa.push(desa);
-              }
-            });
-            DATA_WILAYAH = Object.values(grouped);
-          }
-        }
-
-      } catch (err) {
-        console.error("Gagal memuat dataset CSV eksternal:", err);
-      }
-    }
-
-    /* ==========================================================================
-      5. ROUTER & RENDER VIEWS
-    ==========================================================================
-    */
-    function renderApp() {
-      const hash = window.location.hash.replace(/^#\/?/, '');
-      const parts = hash.split('/').filter(Boolean);
-
-      // Route 1: Detail Produk (#produk-detail/[slug-produk]/[slug-kecamatan]/[nama-desa])
-      if (parts[0] === 'produk-detail' && parts[1]) {
-        const prodSlug = parts[1];
-        const distSlug = parts[2] || PersistentLocation.districtSlug || null;
-        const villName = parts[3] ? decodeURIComponent(parts[3]) : (parts[2] ? null : PersistentLocation.villageName);
-
-        if (distSlug) PersistentLocation.districtSlug = distSlug;
-        if (villName) PersistentLocation.villageName = villName;
-
-        const product = DATA_PRODUK.find(p => p.slug === prodSlug) || DATA_PRODUK[0];
-        const district = distSlug ? DATA_WILAYAH.find(d => d.slug === distSlug) : null;
-        if (product) {
-          renderProductDetailView(product, district, villName);
-          return;
-        }
-      }
-
-      // Route 2: Detail Kecamatan (#kecamatan/[slug-kecamatan]/[nama-desa])
-      if (parts[0] === 'kecamatan' && parts[1]) {
-        const distSlug = parts[1];
-        const villName = parts[2] ? decodeURIComponent(parts[2]) : null;
-
-        PersistentLocation.districtSlug = distSlug;
-        PersistentLocation.villageName = villName;
-
-        const district = DATA_WILAYAH.find(d => d.slug === distSlug);
-        if (district) {
-          renderDistrictDetailView(district, villName);
-          return;
-        }
-      }
-
-      // Route Default: Beranda Utama
-      renderHomeView();
-    }
-
-    /* VIEW 1: BERANDA UTAMA */
+    /* ================= VIEW 1: HOME CATALOG ================= */
     function renderHomeView() {
-      const phone = DATA_PHONE.primary;
       setDynamicSEO(
-        `${phone} Pusat Sabun, Parfum & Perlengkapan Laundry Banyumas`,
-        "Pusat distributor deterjen laundry, bibit parfum wangi tahan lama grade A, softener, plastik packing, hanger, dan perlengkapan laundry lengkap di Banyumas.",
-        "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=800&q=80"
+        `${DATA_PHONE.formatted || DATA_PHONE.primary} Distributor Resmi Perlengkapan Kebersihan & Industri`,
+        "Pusat belanja kebutuhan deterjen, pembersih, dan parfum laundry terpercaya. Pengiriman cepat langsung ke alamat Anda.",
+        DATA_PRODUK[0]?.image || ""
       );
 
-      const html = `
-        <section class="relative bg-royal-gradient text-white overflow-hidden py-16 md:py-24">
-          <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold border border-white/20">
-                  <span class="w-2 h-2 rounded-full bg-brandOrange-500"></span> Formulasi Pabrik Kimia & Perlengkapan Laundry
-                </div>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black font-display tracking-tight leading-tight">
-                  Pusat Sabun, Parfum & <span class="text-brandOrange-400">Perlengkapan Laundry</span> di Banyumas
-                </h1>
-                <p class="text-sm md:text-base text-blue-100 max-w-2xl leading-relaxed">
-                  Solusi lengkap deterjen cair matic konsentrat, pelembut serat kain, bibit parfum murni tahan 14 hari, plastik packing, dan peralatan usaha laundry kiloan maupun satuan se-Kabupaten Banyumas.
-                </p>
-                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-                  <a href="#katalog-produk" class="bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-bold text-sm px-7 py-3.5 rounded-xl shadow-xl hover:shadow-orange-500/40 transition flex items-center gap-2">
-                    <i class="fa-solid fa-cart-shopping"></i> Belanja Produk
-                  </a>
-                  <a href="#wilayah" class="bg-white/15 hover:bg-white/25 text-white font-bold text-sm px-6 py-3.5 rounded-xl backdrop-blur-sm border border-white/20 transition">
-                    Lihat 27 Kecamatan ↓
-                  </a>
-                </div>
-                <div class="grid grid-cols-3 gap-3 pt-6 border-t border-white/15 text-left">
-                  <div>
-                    <div class="text-xl md:text-2xl font-black text-amber-400">14 Hari</div>
-                    <div class="text-[11px] text-blue-200">Wangi Tahan Lama</div>
-                  </div>
-                  <div>
-                    <div class="text-xl md:text-2xl font-black text-amber-400">27</div>
-                    <div class="text-[11px] text-blue-200">Kecamatan Siap</div>
-                  </div>
-                  <div>
-                    <div class="text-xl md:text-2xl font-black text-amber-400">100%</div>
-                    <div class="text-[11px] text-blue-200">Standar Pabrik</div>
-                  </div>
-                </div>
-              </div>
+      const totalPages = Math.min(MAX_PAGES, Math.ceil(DATA_PRODUK.length / ITEMS_PER_PAGE)) || 1;
+      if (currentPage > totalPages) currentPage = 1;
 
-              <div class="lg:col-span-5">
-                <div class="relative mx-auto max-w-md bg-white p-3 rounded-2xl shadow-2xl">
-                  <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=700&q=80" alt="Perlengkapan Laundry Banyumas" class="rounded-xl object-cover w-full h-72 sm:h-80">
-                  <div class="absolute -bottom-5 -left-5 bg-slate-900 text-white p-4 rounded-xl shadow-xl border border-slate-800 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center text-white text-xl">
-                      <i class="fa-solid fa-boxes-stacked"></i>
-                    </div>
-                    <div>
-                      <div class="text-xs text-slate-400">Stok Lengkap & Ready</div>
-                      <div class="font-bold text-sm text-amber-400">Grosir & Eceran</div>
-                    </div>
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const paginatedProducts = DATA_PRODUK.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+      const app = document.getElementById('app-root');
+      app.innerHTML = `
+        <div class="bg-gradient-to-r from-royal-900 via-royal-800 to-royal-900 text-white py-12 border-b border-royal-700">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+            <span class="bg-brandOrange-500/20 text-brandOrange-400 border border-brandOrange-500/30 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider">
+              Layanan Terpercaya & Pengiriman Langsung
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Katalog Produk Pilihan Terbaik</h1>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+              Solusi kebersihan dan kebutuhan kimia berkualitas standar industri. Siap antar ke alamat Anda dengan opsi pembayaran aman.
+            </p>
+          </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${paginatedProducts.map(p => `
+              <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                <div class="h-56 bg-slate-100 overflow-hidden">
+                  <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                  <h3 class="font-bold text-base text-slate-900 line-clamp-1 hover:text-royal-600 transition">
+                    ${p.title}
+                  </h3>
+                  <div class="mt-2 text-xl font-black text-brandOrange-600">
+                    ${formatRupiah(p.price)}
+                  </div>
+                  <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed flex-grow">
+                    ${p.description}
+                  </p>
+                  
+                  <div class="mt-5 grid grid-cols-2 gap-2 pt-3 border-t border-slate-100">
+                    <button onclick="goToProductDetail('${p.slug}')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold py-2.5 rounded-xl transition text-center">
+                      Detail Produk
+                    </button>
+                    <button onclick="addToCart(${p.id})" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm">
+                      <i class="fa-solid fa-cart-plus"></i> + Keranjang
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
+            `).join('')}
           </div>
-        </section>
 
-        <section class="py-14 bg-white border-b border-slate-100">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-              <span class="text-xs font-bold uppercase tracking-wider text-brandOrange-500">Keunggulan Layanan & Produk</span>
-              <h2 class="text-2xl md:text-3xl font-extrabold text-royal-900 mt-1">Mengapa Memilih Produk Kami?</h2>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition">
-                <div class="w-12 h-12 rounded-xl bg-royal-100 text-royal-700 flex items-center justify-center text-xl mb-4 font-black">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-                <h3 class="font-bold text-base text-slate-900 mb-2">Bibit Parfum Grade A</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Aroma eksklusif mewah tahan hingga 14 hari di dalam lemari dan tidak meninggalkan noda pada pakaian.</p>
-              </div>
-              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition">
-                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4">
-                  <i class="fa-solid fa-soap"></i>
-                </div>
-                <h3 class="font-bold text-base text-slate-900 mb-2">Deterjen Konsentrat</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Rendah busa (low foam), ramah lingkungan, hemat takaran, dan aman untuk mekanik mesin cuci matic.</p>
-              </div>
-              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
-                  <i class="fa-solid fa-truck-ramp-box"></i>
-                </div>
-                <h3 class="font-bold text-base text-slate-900 mb-2">Suplai 27 Kecamatan</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Armada siap mengirim sabun, parfum, dan peralatan laundry ke Sokaraja, Purwokerto, hingga pelosok Banyumas.</p>
-              </div>
-              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition">
-                <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mb-4">
-                  <i class="fa-solid fa-tags"></i>
-                </div>
-                <h3 class="font-bold text-base text-slate-900 mb-2">Harga Pabrik Langsung</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Harga bersahabat untuk usaha laundry kiloan, hotel, instansi, maupun pemakaian rumah tangga.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="katalog-produk" class="py-16 bg-slate-50">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
-              <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-brandOrange-500">Katalog Produk</span>
-                <h2 class="text-2xl md:text-3xl font-extrabold text-royal-900 mt-1">Daftar Produk & Perlengkapan Laundry</h2>
-                <p class="text-xs md:text-sm text-slate-600 mt-1">Pilih produk yang Anda butuhkan dan masukkan ke keranjang belanja untuk pemesanan multi-produk.</p>
-              </div>
-              <div class="mt-4 md:mt-0">
-                <span class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-lg">
-                  <i class="fa-solid fa-circle-check"></i> Bisa Bayar di Tempat (COD)
-                </span>
-              </div>
-            </div>
-
-            <div id="home-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-            <div id="home-pagination-container" class="mt-10 flex justify-center items-center gap-1.5 flex-wrap"></div>
-          </div>
-        </section>
-
-        <section id="wilayah" class="py-16 bg-white border-t border-slate-200">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-              <span class="text-xs font-bold uppercase tracking-wider text-brandOrange-500">Jangkauan Pengiriman</span>
-              <h2 class="text-2xl md:text-3xl font-extrabold text-royal-900 mt-1">Daftar 27 Kecamatan di Kabupaten Banyumas</h2>
-              <p class="text-xs md:text-sm text-slate-600 mt-2">
-                Pilih kecamatan Anda untuk melihat ketersediaan suplai produk laundry dan daftar desa/kelurahan tercover.
-              </p>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
-              ${DATA_WILAYAH.map(dist => `
-                <a href="#kecamatan/${dist.slug}" onclick="navigate('kecamatan/${dist.slug}'); return false;" class="p-3.5 rounded-xl border border-slate-200 hover:border-royal-500 bg-slate-50/70 hover:bg-royal-50 hover:shadow-md transition text-left group flex flex-col justify-between">
-                  <div>
-                    <div class="text-xs font-extrabold text-slate-900 group-hover:text-royal-700 flex items-center justify-between">
-                      <span>${dist.nama}</span>
-                      <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-royal-600 transition"></i>
-                    </div>
-                    <span class="text-[10px] text-slate-500 mt-1 block">${(dist.desa || []).length} Desa/Kel</span>
-                  </div>
-                  <span class="text-[9px] font-semibold text-emerald-600 mt-2">Suplai Ready</span>
-                </a>
-              `).join('')}
-            </div>
-          </div>
-        </section>
-
-        <section id="faq" class="py-16 bg-slate-50 border-t border-slate-200">
-          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-              <span class="text-xs font-bold uppercase tracking-wider text-brandOrange-500">Informasi Pelanggan</span>
-              <h2 class="text-2xl md:text-3xl font-extrabold text-royal-900 mt-1">Pertanyaan yang Sering Diajukan (FAQ)</h2>
-            </div>
-            
-            <div class="space-y-4">
-              <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                <h4 class="font-bold text-sm text-slate-900 mb-2 flex items-center gap-2">
-                  <i class="fa-solid fa-circle-question text-royal-600"></i> Bagaimana cara berbelanja beberapa barang sekaligus?
-                </h4>
-                <p class="text-xs text-slate-600 leading-relaxed pl-6">
-                  Klik tombol <strong>+ Keranjang</strong> pada produk yang Anda inginkan. Buka keranjang belanja di pojok kanan atas, isi nama dan alamat lengkap Anda, lalu klik <strong>Checkout via WhatsApp</strong>.
-                </p>
-              </div>
-
-              <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                <h4 class="font-bold text-sm text-slate-900 mb-2 flex items-center gap-2">
-                  <i class="fa-solid fa-circle-question text-royal-600"></i> Bagaimana penentuan biaya ongkos kirim?
-                </h4>
-                <p class="text-xs text-slate-600 leading-relaxed pl-6">
-                  Ongkos kirim akan dihitung secara langsung oleh CS/seller kami setelah Anda mengirimkan daftar pesanan dan alamat lengkap via WhatsApp, disesuaikan dengan jenis ekspedisi/kurir dan jarak tempuh.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      `;
-
-      document.getElementById('app-root').innerHTML = html;
-      renderPaginatedProductList(CurrentProductPage);
-    }
-
-    /* RENDER PAGINATED PRODUCT LIST (POLOS TANPA LABEL KATEGORI/PCS) */
-    function renderPaginatedProductList(page) {
-      CurrentProductPage = page;
-      const totalProducts = DATA_PRODUK.length;
-      let totalPages = Math.ceil(totalProducts / ProductsPerPage);
-      if (totalPages > MAX_PAGES_LIMIT) totalPages = MAX_PAGES_LIMIT;
-      if (totalPages < 1) totalPages = 1;
-
-      const startIndex = (page - 1) * ProductsPerPage;
-      const paginatedItems = DATA_PRODUK.slice(startIndex, startIndex + ProductsPerPage);
-
-      const gridEl = document.getElementById('home-products-grid');
-      const pagEl = document.getElementById('home-pagination-container');
-      if (!gridEl) return;
-
-      const locSuffix = PersistentLocation.districtSlug 
-        ? `/${PersistentLocation.districtSlug}${PersistentLocation.villageName ? '/' + encodeURIComponent(PersistentLocation.villageName) : ''}`
-        : '';
-
-      if (paginatedItems.length === 0) {
-        gridEl.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">Memuat katalog produk...</div>`;
-      } else {
-        gridEl.innerHTML = paginatedItems.map(item => `
-          <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition flex flex-col group">
-            <div class="relative h-48 overflow-hidden bg-slate-100">
-              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            </div>
-            <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-              <div>
-                <h3 class="font-bold text-base text-slate-900 hover:text-royal-600 transition">
-                  <a href="#produk-detail/${item.slug}${locSuffix}" onclick="navigate('produk-detail/${item.slug}${locSuffix}'); return false;">
-                    ${item.title}
-                  </a>
-                </h3>
-                <div class="mt-2 text-xl font-black text-brandOrange-600">
-                  ${formatRupiah(item.price)}
-                </div>
-                <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                  ${item.description}
-                </p>
-              </div>
-
-              <div class="space-y-2 pt-3 border-t border-slate-100">
-                <a href="#produk-detail/${item.slug}${locSuffix}" onclick="navigate('produk-detail/${item.slug}${locSuffix}'); return false;" class="w-full block text-center bg-royal-50 hover:bg-royal-100 text-royal-700 font-bold text-xs py-2 rounded-xl transition">
-                  <i class="fa-solid fa-circle-info mr-1"></i> Detail Produk
-                </a>
-                <button onclick="addToCart(${item.id})" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 rounded-xl transition shadow flex items-center justify-center gap-1.5">
-                  <i class="fa-solid fa-cart-plus text-sm"></i> + Keranjang
-                </button>
-              </div>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      // Pagination Controls
-      if (pagEl) {
-        if (totalPages <= 1) {
-          pagEl.innerHTML = '';
-          return;
-        }
-
-        let pHTML = '';
-
-        // Double Arrow First (<<)
-        pHTML += `
-          <button onclick="renderPaginatedProductList(1)" ${page === 1 ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-1.5 rounded-lg border bg-white text-slate-400 text-xs font-bold"' : 'class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-600 text-xs font-bold transition"'} title="Halaman Pertama">
-            <i class="fa-solid fa-angles-left"></i>
-          </button>
-        `;
-
-        // Single Arrow Prev (<)
-        pHTML += `
-          <button onclick="renderPaginatedProductList(${page - 1})" ${page === 1 ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-1.5 rounded-lg border bg-white text-slate-400 text-xs font-bold"' : 'class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-600 text-xs font-bold transition"'} title="Halaman Sebelumnya">
-            <i class="fa-solid fa-angle-left"></i>
-          </button>
-        `;
-
-        // Page Numbers (1, 2, 3)
-        for (let i = 1; i <= totalPages; i++) {
-          pHTML += `
-            <button onclick="renderPaginatedProductList(${i})" class="px-3.5 py-1.5 rounded-lg border text-xs font-bold transition ${i === page ? 'bg-royal-600 text-white border-royal-600 shadow' : 'bg-white hover:bg-royal-50 text-slate-700 border-slate-200'}">
-              ${i}
+          <div class="mt-12 flex items-center justify-center gap-1.5">
+            <button onclick="changePage(1)" ${currentPage === 1 ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-2 border rounded-lg text-xs font-bold text-slate-500 bg-white"' : 'class="px-3 py-2 border rounded-lg text-xs font-bold text-royal-800 bg-white hover:bg-royal-50 border-slate-300"'}>
+              «
             </button>
-          `;
-        }
+            <button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-2 border rounded-lg text-xs font-bold text-slate-500 bg-white"' : 'class="px-3 py-2 border rounded-lg text-xs font-bold text-royal-800 bg-white hover:bg-royal-50 border-slate-300"'}>
+              ‹
+            </button>
+            
+            ${Array.from({ length: totalPages }, (_, i) => i + 1).map(num => `
+              <button onclick="changePage(${num})" class="px-3.5 py-2 border rounded-lg text-xs font-bold transition ${currentPage === num ? 'bg-royal-800 text-white border-royal-800 shadow' : 'bg-white text-slate-700 hover:bg-royal-50 border-slate-300'}">
+                ${num}
+              </button>
+            `).join('')}
 
-        // Single Arrow Next (>)
-        pHTML += `
-          <button onclick="renderPaginatedProductList(${page + 1})" ${page === totalPages ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-1.5 rounded-lg border bg-white text-slate-400 text-xs font-bold"' : 'class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-600 text-xs font-bold transition"'} title="Halaman Selanjutnya">
-            <i class="fa-solid fa-angle-right"></i>
-          </button>
-        `;
+            <button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-2 border rounded-lg text-xs font-bold text-slate-500 bg-white"' : 'class="px-3 py-2 border rounded-lg text-xs font-bold text-royal-800 bg-white hover:bg-royal-50 border-slate-300"'}>
+              ›
+            </button>
+            <button onclick="changePage(${totalPages})" ${currentPage === totalPages ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-2 border rounded-lg text-xs font-bold text-slate-500 bg-white"' : 'class="px-3 py-2 border rounded-lg text-xs font-bold text-royal-800 bg-white hover:bg-royal-50 border-slate-300"'}>
+              »
+            </button>
+          </div>
+        </div>
+      `;
+    }
 
-        // Double Arrow Last (>>)
-        pHTML += `
-          <button onclick="renderPaginatedProductList(${totalPages})" ${page === totalPages ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-1.5 rounded-lg border bg-white text-slate-400 text-xs font-bold"' : 'class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-600 text-xs font-bold transition"'} title="Halaman Terakhir">
-            <i class="fa-solid fa-angles-right"></i>
-          </button>
-        `;
-
-        pagEl.innerHTML = pHTML;
+    function changePage(page) {
+      const totalPages = Math.min(MAX_PAGES, Math.ceil(DATA_PRODUK.length / ITEMS_PER_PAGE)) || 1;
+      if (page >= 1 && page <= totalPages) {
+        currentPage = page;
+        renderHomeView();
+        window.scrollTo({ top: 300, behavior: 'smooth' });
       }
     }
 
-    /* VIEW 2: DETAIL PRODUK */
+    function goToProductDetail(slug) {
+      if (selectedDistrict && selectedVillage) {
+        navigate(`produk-detail/${slug}/${selectedDistrict.slug}/${encodeURIComponent(selectedVillage)}`);
+      } else if (selectedDistrict) {
+        navigate(`produk-detail/${slug}/${selectedDistrict.slug}`);
+      } else {
+        navigate(`produk-detail/${slug}`);
+      }
+    }
+
+    /* ================= VIEW 2: PRODUCT DETAIL (DIPERBARUI DENGAN URUTAN TITLE & DESKRIPSI) ================= */
     function renderProductDetailView(product, district, villageName) {
-      const phone = DATA_PHONE.primary;
+      const phone = DATA_PHONE.formatted || DATA_PHONE.primary;
       let pageTitle = "";
       let breadcrumbDistrict = "";
       let locationScopeText = "";
+      let districtScopeName = "";
 
+      // 1. Susun Data Wilayah & Urutan Title: [Nomor Telpon] + [Nama Produk] + [Data Wilayah]
       if (villageName && district) {
-        pageTitle = `${phone} ${product.title} Di ${villageName} ${district.nama} Banyumas`;
-        locationScopeText = `di Desa/Kelurahan ${villageName}, Kecamatan ${district.nama}, Kabupaten Banyumas`;
+        districtScopeName = `Desa ${villageName}, Kec.${district.nama}, Kab. Banyumas`;
+        locationScopeText = `di Desa/Kelurahan ${villageName}, Kecamatan${district.nama}, Kabupaten Banyumas`;
+        pageTitle = `${phone} ${product.title}${districtScopeName}`;
         breadcrumbDistrict = `
           <li><span class="mx-2 text-slate-400">/</span></li>
           <li><a href="#produk-detail/${product.slug}" onclick="navigate('produk-detail/${product.slug}'); return false;" class="hover:text-royal-600">${product.title}</a></li>
@@ -984,8 +474,9 @@
           <li class="text-royal-700 font-bold">${villageName}</li>
         `;
       } else if (district) {
-        pageTitle = `${phone} ${product.title} Di Kecamatan ${district.nama} Banyumas`;
+        districtScopeName = `Kecamatan ${district.nama}, Kab. Banyumas`;
         locationScopeText = `di seluruh wilayah Kecamatan ${district.nama}, Kabupaten Banyumas`;
+        pageTitle = `${phone} ${product.title}${districtScopeName}`;
         breadcrumbDistrict = `
           <li><span class="mx-2 text-slate-400">/</span></li>
           <li><a href="#produk-detail/${product.slug}" onclick="navigate('produk-detail/${product.slug}'); return false;" class="hover:text-royal-600">${product.title}</a></li>
@@ -993,17 +484,24 @@
           <li class="text-royal-700 font-bold">${district.nama}</li>
         `;
       } else {
-        pageTitle = `${phone} ${product.title} Kabupaten Banyumas`;
-        locationScopeText = `meliputi seluruh 27 Kecamatan di Kabupaten Banyumas`;
+        districtScopeName = `Kabupaten Banyumas`;
+        locationScopeText = `meliputi seluruh wilayah Kabupaten Banyumas`;
+        pageTitle = `${phone} ${product.title}${districtScopeName}`;
         breadcrumbDistrict = `
           <li><span class="mx-2 text-slate-400">/</span></li>
           <li class="text-royal-700 font-bold">${product.title}</li>
         `;
       }
 
+      // 2. Ambil Deskripsi Langsung dari CSV Produk
+      const productDescription = product.description 
+        ? `${product.description} - Melayani pengiriman ke ${districtScopeName}. Harga ${formatRupiah(product.price)}.`
+        : `Jual ${product.title} ${locationScopeText}. Harga ${formatRupiah(product.price)}. Standar pabrik siap kirim ke lokasi Anda.`;
+
+      // 3. Update Dynamic SEO & OpenGraph Meta
       setDynamicSEO(
         pageTitle,
-        `Beli ${product.title} ${locationScopeText}. Harga ${formatRupiah(product.price)}. Kualitas terbaik standar pabrik siap antar ke lokasi Anda.`,
+        productDescription,
         product.image
       );
 
@@ -1022,10 +520,10 @@
             <div class="lg:col-span-8 space-y-8">
               <div>
                 <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-royal-900 leading-tight">
-                  ${product.title} ${locationScopeText}
+                  ${product.title}${locationScopeText}
                 </h1>
                 <p class="text-sm text-slate-600 mt-3 leading-relaxed">
-                  Penyedia resmi <strong>${product.title}</strong> standar industri laundry, memberikan hasil terbaik, kebersihan maksimal, serta efisiensi operasional.
+                  ${product.description}
                 </p>
               </div>
 
@@ -1033,17 +531,17 @@
                 <img src="${product.image}" alt="${product.title}" class="w-full h-80 sm:h-96 object-cover">
               </div>
 
-              <div class="prose max-w-none text-slate-700 text-sm sm:text-base leading-relaxed space-y-4">
+              <div class="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
                 <h3 class="text-xl font-bold text-royal-900">Spesifikasi & Keunggulan Produk</h3>
                 <p>
-                  Apakah Anda sedang membutuhkan <strong>${product.title}</strong> berkualitas ${locationScopeText}? Kami hadir memberikan suplai terbaik dengan harga langsung dari distributor.
+                  Apakah Anda sedang membutuhkan <strong>${product.title}</strong> berkualitas${locationScopeText}? Kami hadir memberikan suplai terbaik dengan harga langsung dari distributor.
                 </p>
                 <p>
                   ${product.description}
                 </p>
 
                 <div class="bg-royal-50 p-6 rounded-2xl border border-royal-100 my-6">
-                  <h4 class="font-bold text-royal-900 mb-3 text-base">Spesifikasi Produk:</h4>
+                  <h4 class="font-bold text-royal-900 mb-3 text-base">Fitur Utama:</h4>
                   <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-royal-950">
                     ${(product.fitur || []).map(f => `<li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> ${f}</li>`).join('')}
                     <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Harga: ${formatRupiah(product.price)}</li>
@@ -1074,7 +572,7 @@
                       Pilih Kecamatan Pengiriman di Banyumas:
                     </h3>
                     <p class="text-xs sm:text-sm text-slate-600 mb-4">
-                      Kami melayani pengiriman ${product.title} di seluruh 27 kecamatan di Banyumas. Pilih kecamatan Anda di bawah ini:
+                      Kami melayani pengiriman ${product.title} di seluruh kecamatan di Banyumas. Pilih kecamatan Anda di bawah ini:
                     </p>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                       ${DATA_WILAYAH.map(d => `
@@ -1094,309 +592,8 @@
             <div class="lg:col-span-4 space-y-6">
               <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xl sticky top-28 space-y-5">
                 <div class="border-b pb-4">
-                  <span class="text-xs text-slate-500 font-semibold uppercase">Informasi Harga</span>
+                  <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Informasi Harga</span>
                   <div class="text-3xl font-black text-brandOrange-600 mt-1">
                     ${formatRupiah(product.price)}
                   </div>
-                  <div class="text-xs text-emerald-600 font-bold mt-1 flex items-center gap-1">
-                    <i class="fa-solid fa-boxes-stacked"></i> Status: Stok Siap Kirim
-                  </div>
-                </div>
-
-                <div class="space-y-3 text-xs text-slate-600">
-                  <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Pengiriman Langsung ke Lokasi</div>
-                  <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Bayar di Tempat (COD Tersedia)</div>
-                  <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Jaminan Mutu Terpercaya</div>
-                </div>
-
-                <button onclick="addToCart(${product.id})" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
-                  <i class="fa-solid fa-cart-plus text-lg"></i>
-                  + Tambah ke Keranjang
-                </button>
-
-                <div class="text-center pt-2">
-                  <a href="tel:${phone}" class="text-xs text-slate-500 hover:text-royal-600 font-semibold">
-                    <i class="fa-solid fa-phone mr-1"></i> Hotline CS: ${phone}
-                  </a>
-                </div>
-              </div>
-
-              <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                <h4 class="font-bold text-sm text-slate-900 mb-3">Produk Lainnya</h4>
-                <div class="space-y-2">
-                  ${DATA_PRODUK.filter(s => s.slug !== product.slug).slice(0, 5).map(other => {
-                    const otherLoc = district ? `/${district.slug}${villageName ? '/' + encodeURIComponent(villageName) : ''}` : '';
-                    return `
-                      <a href="#produk-detail/${other.slug}${otherLoc}" onclick="navigate('produk-detail/${other.slug}${otherLoc}'); return false;" class="block p-2 rounded-lg hover:bg-white text-xs text-slate-700 hover:text-royal-600 font-semibold transition border border-transparent hover:border-slate-200">
-                        ${other.title} - <span class="text-brandOrange-600">${formatRupiah(other.price)}</span>
-                      </a>
-                    `;
-                  }).join('')}
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      `;
-
-      document.getElementById('app-root').innerHTML = html;
-    }
-
-    /* VIEW 3: DETAIL KECAMATAN / DESA */
-    function renderDistrictDetailView(district, villageName) {
-      const phone = DATA_PHONE.primary;
-      let pageTitle = "";
-      let locationText = "";
-      let breadcrumbHtml = "";
-
-      if (villageName) {
-        pageTitle = `${phone} Sabun, Parfum & Perlengkapan Laundry Di ${villageName} ${district.nama} Banyumas`;
-        locationText = `di Desa/Kelurahan ${villageName}, Kecamatan ${district.nama}, Kabupaten Banyumas`;
-        breadcrumbHtml = `
-          <li><span class="mx-2 text-slate-400">/</span></li>
-          <li><a href="#kecamatan/${district.slug}" onclick="navigate('kecamatan/${district.slug}'); return false;" class="hover:text-royal-600">${district.nama}</a></li>
-          <li><span class="mx-2 text-slate-400">/</span></li>
-          <li class="text-royal-700 font-bold">${villageName}</li>
-        `;
-      } else {
-        pageTitle = `${phone} Sabun, Parfum & Perlengkapan Laundry Di Kecamatan ${district.nama} Banyumas`;
-        locationText = `di Kecamatan ${district.nama} Banyumas`;
-        breadcrumbHtml = `
-          <li><span class="mx-2 text-slate-400">/</span></li>
-          <li class="text-royal-700 font-bold">${district.nama}</li>
-        `;
-      }
-
-      setDynamicSEO(
-        pageTitle,
-        `Pusat penjualan deterjen matic, softener, pelicin setrika, plastik, hanger, dan bibit parfum laundry ${locationText}. Siap kirim langsung ke alamat Anda.`,
-        "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=800&q=80"
-      );
-
-      const lowestPrice = DATA_PRODUK.length > 0 ? Math.min(...DATA_PRODUK.map(p => p.price)) : 10000;
-
-      const html = `
-        <div class="bg-white border-b border-slate-200 py-4">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ol class="flex flex-wrap items-center text-xs text-slate-600">
-              <li><a href="#" onclick="navigate(''); return false;" class="hover:text-royal-600">Beranda</a></li>
-              ${breadcrumbHtml}
-            </ol>
-          </div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-            <div class="lg:col-span-8 space-y-8">
-              <div>
-                <span class="inline-block bg-royal-100 text-royal-800 text-xs font-extrabold px-3 py-1 rounded-md uppercase tracking-wider mb-2">
-                  Area Distribusi Resmi Banyumas
-                </span>
-                <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-royal-900 leading-tight">
-                  Suplai Sabun, Parfum & Perlengkapan Laundry ${locationText}
-                </h1>
-                <p class="text-sm text-slate-600 mt-3 leading-relaxed">
-                  ${district.deskripsi} Kami melayani pengiriman langsung deterjen cair matic, pelembut pakaian, plastik kemasan, hanger, dan parfum laundry ke ${district.nama}.
-                </p>
-              </div>
-
-              <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
-                <img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=800&q=80" alt="${district.nama}" class="w-full h-72 sm:h-80 object-cover">
-              </div>
-
-              <div class="prose max-w-none text-slate-700 text-sm sm:text-base leading-relaxed space-y-4">
-                <h3 class="text-xl font-bold text-royal-900">Katalog Produk Tersedia untuk Area ${district.nama}</h3>
-                <p>
-                  Pilih produk di bawah ini dan masukkan ke keranjang belanja Anda:
-                </p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-6">
-                  ${DATA_PRODUK.map(p => `
-                    <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-royal-50 hover:border-royal-500 transition flex items-center justify-between gap-3">
-                      <div class="min-w-0">
-                        <a href="#produk-detail/${p.slug}/${district.slug}${villageName ? '/' + encodeURIComponent(villageName) : ''}" 
-                           onclick="navigate('produk-detail/${p.slug}/${district.slug}${villageName ? '/' + encodeURIComponent(villageName) : ''}'); return false;"
-                           class="font-bold text-xs text-slate-900 hover:text-royal-700 block truncate">
-                          ${p.title}
-                        </a>
-                        <span class="text-brandOrange-600 font-extrabold text-xs mt-0.5 block">${formatRupiah(p.price)}</span>
-                      </div>
-                      <button onclick="addToCart(${p.id})" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shrink-0 transition flex items-center gap-1">
-                        <i class="fa-solid fa-cart-plus"></i> + Beli
-                      </button>
-                    </div>
-                  `).join('')}
-                </div>
-
-                <div class="pt-6 border-t border-slate-200">
-                  <h3 class="text-xl font-bold text-royal-900 mb-3">
-                    Daftar Desa/Kelurahan di Kecamatan ${district.nama}:
-                  </h3>
-                  <div class="flex flex-wrap gap-2">
-                    ${(district.desa || []).map(ds => `
-                      <a href="#kecamatan/${district.slug}/${encodeURIComponent(ds)}" 
-                         onclick="navigate('kecamatan/${district.slug}/${encodeURIComponent(ds)}'); return false;"
-                         class="text-xs font-semibold px-3 py-2 rounded-lg border ${villageName === ds ? 'bg-royal-600 text-white border-royal-600 shadow' : 'bg-slate-100 hover:bg-royal-50 text-slate-800 border-slate-200'} transition">
-                        ${ds}
-                      </a>
-                    `).join('')}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="lg:col-span-4 space-y-6">
-              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xl sticky top-28 space-y-5">
-                <div class="border-b pb-4">
-                  <span class="text-xs text-slate-500 font-semibold uppercase">Layanan Pengiriman</span>
-                  <h3 class="text-lg font-bold text-royal-900 mt-1">Area ${district.nama}</h3>
-                  <div class="text-2xl font-black text-brandOrange-600 mt-2">
-                    Harga Mulai ${formatRupiah(lowestPrice)}
-                  </div>
-                </div>
-
-                <div class="space-y-3 text-xs text-slate-600">
-                  <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Pengiriman Langsung ke ${district.nama}</div>
-                  <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Stok Grosir & Eceran Ready</div>
-                  <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Bayar di Tempat (COD)</div>
-                </div>
-
-                <button onclick="toggleCartDrawer(true)" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
-                  <i class="fa-solid fa-cart-shopping text-lg"></i> Buka Keranjang & Checkout
-                </button>
-              </div>
-
-              <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                <h4 class="font-bold text-sm text-slate-900 mb-3">Kecamatan Lain di Banyumas</h4>
-                <div class="grid grid-cols-2 gap-2">
-                  ${DATA_WILAYAH.filter(d => d.slug !== district.slug).slice(0, 10).map(other => `
-                    <a href="#kecamatan/${other.slug}" onclick="navigate('kecamatan/${other.slug}'); return false;" class="text-xs text-slate-600 hover:text-royal-700 py-1 font-medium truncate">
-                      • ${other.nama}
-                    </a>
-                  `).join('')}
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      `;
-
-      document.getElementById('app-root').innerHTML = html;
-    }
-
-    /* ==========================================================================
-      6. SINKRONISASI ELEMEN & CHECKOUT HANDLER
-    ==========================================================================
-    */
-    function syncComponentsAndFooter() {
-      const phone = DATA_PHONE.primary;
-      const formatted = DATA_PHONE.formatted || phone;
-
-      const topPhoneVal = document.getElementById('top-phone-val');
-      if (topPhoneVal) topPhoneVal.innerText = formatted;
-
-      const topPhoneLink = document.getElementById('top-phone-link');
-      if (topPhoneLink) topPhoneLink.href = `https://wa.me/${phone.replace(/^0/, '62')}`;
-
-      const footerPhoneLink = document.getElementById('footer-phone-link');
-      if (footerPhoneLink) {
-        footerPhoneLink.innerText = formatted;
-        footerPhoneLink.href = `https://wa.me/${phone.replace(/^0/, '62')}`;
-      }
-
-      // Footer Quick Links
-      const footerServiceEl = document.getElementById('footer-service-links');
-      if (footerServiceEl) {
-        footerServiceEl.innerHTML = DATA_PRODUK.slice(0, 6).map(s => `
-          <li>
-            <a href="#produk-detail/${s.slug}" onclick="navigate('produk-detail/${s.slug}'); return false;" class="hover:text-amber-400 transition flex items-center gap-1.5">
-              <i class="fa-solid fa-chevron-right text-[9px] text-brandOrange-500"></i> ${s.title}
-            </a>
-          </li>
-        `).join('');
-      }
-
-      // Footer Cloud (Hanya Nama Kecamatan Saja)
-      const footerDistCloud = document.getElementById('footer-districts-cloud');
-      if (footerDistCloud) {
-        footerDistCloud.innerHTML = DATA_WILAYAH.map(d => `
-          <a href="#kecamatan/${d.slug}" onclick="navigate('kecamatan/${d.slug}'); return false;" class="hover:text-amber-400 hover:underline transition">
-            ${d.nama} •
-          </a>
-        `).join(' ');
-      }
-    }
-
-    async function initApp() {
-      document.getElementById('auto-copyright-year').innerText = new Date().getFullYear();
-      
-      // Ambil data CSV eksternal
-      await loadAllCSVData();
-      
-      syncComponentsAndFooter();
-      renderCartUI();
-      renderApp();
-
-      window.addEventListener('hashchange', renderApp);
-
-      // Handler Checkout WhatsApp Form Keranjang
-      const checkoutForm = document.getElementById('cart-checkout-form');
-      if (checkoutForm) {
-        checkoutForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-
-          if (CartState.length === 0) {
-            alert('Keranjang belanja Anda masih kosong!');
-            return;
-          }
-
-          const nama = document.getElementById('co-nama').value.trim();
-          const wa = document.getElementById('co-wa').value.trim();
-          const kec = document.getElementById('co-kecamatan').value;
-          const desa = document.getElementById('co-desa').value;
-          const alamat = document.getElementById('co-alamat').value.trim();
-
-          const grandTotal = CartState.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-          let locTujuan = '';
-          if (desa && kec) {
-            locTujuan = `Desa/Kel. ${desa}, Kec. ${kec}, Banyumas`;
-          } else if (kec) {
-            locTujuan = `Kec. ${kec}, Banyumas`;
-          } else {
-            locTujuan = `Kabupaten Banyumas`;
-          }
-
-          // Susun Pesan WhatsApp
-          let msg = `Halo Admin GH Laundry Banyumas, saya ingin memesan produk berikut:\n\n`;
-          msg += `*DAFTAR PESANAN:*\n`;
-          CartState.forEach((item, idx) => {
-            const subtotal = item.price * item.qty;
-            msg += `${idx + 1}. ${item.title}\n   Jumlah: ${item.qty} x ${formatRupiah(item.price)} = ${formatRupiah(subtotal)}\n`;
-          });
-          msg += `\n*TOTAL HARGA BARANG:* ${formatRupiah(grandTotal)}\n\n`;
-          msg += `*DATA PEMESAN & TUJUAN:*\n`;
-          msg += `• Nama: ${nama}\n`;
-          if (wa) msg += `• No. WA: ${wa}\n`;
-          msg += `• Wilayah: ${locTujuan}\n`;
-          msg += `• Alamat Lengkap: ${alamat}\n\n`;
-          msg += `_*(Mohon bantu hitungkan ongkos kirim sesuai pilihan ekspedisi/kurir dan jarak tempuh ke alamat di atas).* Terima kasih!_`;
-
-          const phone = DATA_PHONE.primary || "085773009666";
-          const waTarget = phone.startsWith('0') ? '62' + phone.slice(1) : phone;
-          const urlWA = `https://api.whatsapp.com/send?phone=${waTarget}&text=${encodeURIComponent(msg)}`;
-
-          showBlgToast("Membuka WhatsApp...");
-          setTimeout(() => {
-            window.open(urlWA, '_blank');
-          }, 300);
-        });
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', initApp);
-  </script>
-</body>
-</html>
+                  <div class="text-xs
