@@ -342,10 +342,11 @@
     /* Cart State (Tersimpan di LocalStorage) */
     let CartState = JSON.parse(localStorage.getItem('indonesia_cart')) || [];
 
-    /* State Pagination Produk */
+    /* State Pagination Produk & Search */
     let CurrentProductPage = 1;
     const ProductsPerPage = 6;
     const MAX_PAGES_LIMIT = 3;
+    let ProductSearchQuery = "";
 
     /* State Lokasi Terpilih (Persisten Dua Arah) */
     let PersistentLocation = {
@@ -888,16 +889,19 @@
 
         <section id="katalog-produk" class="py-16 bg-slate-50">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
               <div>
                 <span class="text-xs font-bold uppercase tracking-wider text-brandOrange-500">Katalog Produk</span>
                 <h2 class="text-2xl md:text-3xl font-extrabold text-royal-900 mt-1">Daftar Produk & Perlengkapan Laundry</h2>
                 <p class="text-xs md:text-sm text-slate-600 mt-1">Pilih produk yang Anda butuhkan dan masukkan ke keranjang belanja untuk pemesanan multi-produk.</p>
               </div>
-              <div class="mt-4 md:mt-0">
-                <span class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-lg">
-                  <i class="fa-solid fa-circle-check"></i> Pengiriman Aman & Terpercaya
-                </span>
+              
+              <!-- SEARCH BAR PRODUK -->
+              <div class="w-full md:w-72">
+                <div class="relative">
+                  <input type="text" id="product-search-input" oninput="handleProductSearch(this.value)" placeholder="Cari sabun, parfum..." value="${ProductSearchQuery}" class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-300 bg-white text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-royal-500 shadow-sm">
+                  <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+                </div>
               </div>
             </div>
 
@@ -956,16 +960,35 @@
       renderPaginatedProductList(CurrentProductPage);
     }
 
+    /* SEARCH PRODUCT HANDLER */
+    function handleProductSearch(query) {
+      ProductSearchQuery = query.toLowerCase().trim();
+      CurrentProductPage = 1;
+      renderPaginatedProductList(1);
+    }
+
     /* RENDER PAGINATED PRODUCT LIST */
     function renderPaginatedProductList(page) {
       CurrentProductPage = page;
-      const totalProducts = DATA_PRODUK.length;
+
+      // Filter Berdasarkan Pencarian
+      const filteredProducts = DATA_PRODUK.filter(p => {
+        if (!ProductSearchQuery) return true;
+        return p.title.toLowerCase().includes(ProductSearchQuery) || 
+               p.description.toLowerCase().includes(ProductSearchQuery);
+      });
+
+      // Batasi produk utama yang diambil maksimal 18 produk (3 halaman x 6 produk)
+      const maxAllowedProducts = MAX_PAGES_LIMIT * ProductsPerPage;
+      const limitedProducts = filteredProducts.slice(0, maxAllowedProducts);
+
+      const totalProducts = limitedProducts.length;
       let totalPages = Math.ceil(totalProducts / ProductsPerPage);
       if (totalPages > MAX_PAGES_LIMIT) totalPages = MAX_PAGES_LIMIT;
       if (totalPages < 1) totalPages = 1;
 
       const startIndex = (page - 1) * ProductsPerPage;
-      const paginatedItems = DATA_PRODUK.slice(startIndex, startIndex + ProductsPerPage);
+      const paginatedItems = limitedProducts.slice(startIndex, startIndex + ProductsPerPage);
 
       const gridEl = document.getElementById('home-products-grid');
       const pagEl = document.getElementById('home-pagination-container');
@@ -976,7 +999,7 @@
         : '';
 
       if (paginatedItems.length === 0) {
-        gridEl.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">Memuat katalog produk...</div>`;
+        gridEl.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">Tidak ada produk yang cocok dengan pencarian Anda.</div>`;
       } else {
         gridEl.innerHTML = paginatedItems.map(item => `
           <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition flex flex-col group">
