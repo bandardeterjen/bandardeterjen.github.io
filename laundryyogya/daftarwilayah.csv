@@ -1,410 +1,61 @@
-Nama_Kabupaten_Kota,Jenis,Nama_Kecamatan_Kemantren,Nama_Desa_Kelurahan
-Kota Yogyakarta,Kota,Danurejan,Bausasran
-Kota Yogyakarta,Kota,Danurejan,Tegal Panggung
-Kota Yogyakarta,Kota,Danurejan,Suryatmajan
-Kota Yogyakarta,Kota,Gedongtengen,Sosromenduran
-Kota Yogyakarta,Kota,Gedongtengen,Pringgokusuman
-Kota Yogyakarta,Kota,Gondokusuman,Baciro
-Kota Yogyakarta,Kota,Gondokusuman,Demangan
-Kota Yogyakarta,Kota,Gondokusuman,Klitren
-Kota Yogyakarta,Kota,Gondokusuman,Kotabaru
-Kota Yogyakarta,Kota,Gondokusuman,Terban
-Kota Yogyakarta,Kota,Gondomanan,Ngupasan
-Kota Yogyakarta,Kota,Gondomanan,Prawirodirjan
-Kota Yogyakarta,Kota,Jetis,Bumijo
-Kota Yogyakarta,Kota,Jetis,Cokrodiningratan
-Kota Yogyakarta,Kota,Jetis,Gowongan
-Kota Yogyakarta,Kota,Kotagede,Prenggan
-Kota Yogyakarta,Kota,Kotagede,Purbayan
-Kota Yogyakarta,Kota,Kotagede,Rejowinangun
-Kota Yogyakarta,Kota,Kraton,Kadipaten
-Kota Yogyakarta,Kota,Kraton,Patehan
-Kota Yogyakarta,Kota,Kraton,Panembahan
-Kota Yogyakarta,Kota,Mantrijeron,Gedongkiwo
-Kota Yogyakarta,Kota,Mantrijeron,Suryodiningratan
-Kota Yogyakarta,Kota,Mantrijeron,Mantrijeron
-Kota Yogyakarta,Kota,Mergangsan,Brontokusuman
-Kota Yogyakarta,Kota,Mergangsan,Keparakan
-Kota Yogyakarta,Kota,Mergangsan,Wirogunan
-Kota Yogyakarta,Kota,Ngampilan,Ngampilan
-Kota Yogyakarta,Kota,Ngampilan,Notoprajan
-Kota Yogyakarta,Kota,Pakualaman,Gunungketur
-Kota Yogyakarta,Kota,Pakualaman,Purwokinanti
-Kota Yogyakarta,Kota,Tegalrejo,Bener
-Kota Yogyakarta,Kota,Tegalrejo,Karangwaru
-Kota Yogyakarta,Kota,Tegalrejo,Kricak
-Kota Yogyakarta,Kota,Tegalrejo,Tegalrejo
-Kota Yogyakarta,Kota,Umbulharjo,Giwangan
-Kota Yogyakarta,Kota,Umbulharjo,Kamal
-Kota Yogyakarta,Kota,Umbulharjo,Muja Muju
-Kota Yogyakarta,Kota,Umbulharjo,Pandeyan
-Kota Yogyakarta,Kota,Umbulharjo,Semaki
-Kota Yogyakarta,Kota,Umbulharjo,Tahunan
-Kota Yogyakarta,Kota,Umbulharjo,Warungboto
-Kota Yogyakarta,Kota,Wirobrajan,Pakuncen
-Kota Yogyakarta,Kota,Wirobrajan,Patangpuluhan
-Kota Yogyakarta,Kota,Wirobrajan,Wirobrajan
-Kabupaten Bantul,Kabupaten,Bambanglipuro,Mulyodadi
-Kabupaten Bantul,Kabupaten,Bambanglipuro,Sidomulyo
-Kabupaten Bantul,Kabupaten,Bambanglipuro,Sumbermulyo
-Kabupaten Bantul,Kabupaten,Banguntapan,Banguntapan
-Kabupaten Bantul,Kabupaten,Banguntapan,Baturetno
-Kabupaten Bantul,Kabupaten,Banguntapan,Jagalan
-Kabupaten Bantul,Kabupaten,Banguntapan,Jambidan
-Kabupaten Bantul,Kabupaten,Banguntapan,Potorono
-Kabupaten Bantul,Kabupaten,Banguntapan,Singosaren
-Kabupaten Bantul,Kabupaten,Banguntapan,Tamanan
-Kabupaten Bantul,Kabupaten,Banguntapan,Wirokerten
-Kabupaten Bantul,Kabupaten,Bantul,Bantul
-Kabupaten Bantul,Kabupaten,Bantul,Palbapang
-Kabupaten Bantul,Kabupaten,Bantul,Ringinharjo
-Kabupaten Bantul,Kabupaten,Bantul,Sabdodadi
-Kabupaten Bantul,Kabupaten,Bantul,Trirenggo
-Kabupaten Bantul,Kabupaten,Dlingo,Dlingo
-Kabupaten Bantul,Kabupaten,Dlingo,Jatimulyo
-Kabupaten Bantul,Kabupaten,Dlingo,Mangunan
-Kabupaten Bantul,Kabupaten,Dlingo,Muntuk
-Kabupaten Bantul,Kabupaten,Dlingo,Temuwuh
-Kabupaten Bantul,Kabupaten,Dlingo,Terong
-Kabupaten Bantul,Kabupaten,Imogiri,Girirejo
-Kabupaten Bantul,Kabupaten,Imogiri,Imogiri
-Kabupaten Bantul,Kabupaten,Imogiri,Karangtalun
-Kabupaten Bantul,Kabupaten,Imogiri,Karangtengah
-Kabupaten Bantul,Kabupaten,Imogiri,Kebonagung
-Kabupaten Bantul,Kabupaten,Imogiri,Selopamioro
-Kabupaten Bantul,Kabupaten,Imogiri,Sriharjo
-Kabupaten Bantul,Kabupaten,Imogiri,Wukirsari
-Kabupaten Bantul,Kabupaten,Jetis,Canden
-Kabupaten Bantul,Kabupaten,Jetis,Patalan
-Kabupaten Bantul,Kabupaten,Jetis,Sumberagung
-Kabupaten Bantul,Kabupaten,Jetis,Trimulyo
-Kabupaten Bantul,Kabupaten,Kasihan,Bangunjiwo
-Kabupaten Bantul,Kabupaten,Kasihan,Ngestiharjo
-Kabupaten Bantul,Kabupaten,Kasihan,Tamantirto
-Kabupaten Bantul,Kabupaten,Kasihan,Tirtonirmolo
-Kabupaten Bantul,Kabupaten,Kretek,Donotirto
-Kabupaten Bantul,Kabupaten,Kretek,Parangtritis
-Kabupaten Bantul,Kabupaten,Kretek,Tirtohargo
-Kabupaten Bantul,Kabupaten,Kretek,Tirtomulyo
-Kabupaten Bantul,Kabupaten,Kretek,Tirtosari
-Kabupaten Bantul,Kabupaten,Pajangan,Guwosari
-Kabupaten Bantul,Kabupaten,Pajangan,Sendangsari
-Kabupaten Bantul,Kabupaten,Pajangan,Triwidadi
-Kabupaten Bantul,Kabupaten,Pandak,Caturharjo
-Kabupaten Bantul,Kabupaten,Pandak,Gilangharjo
-Kabupaten Bantul,Kabupaten,Pandak,Triharjo
-Kabupaten Bantul,Kabupaten,Pandak,Wijiharjo
-Kabupaten Bantul,Kabupaten,Piyungan,Sitimulyo
-Kabupaten Bantul,Kabupaten,Piyungan,Srimartani
-Kabupaten Bantul,Kabupaten,Piyungan,Srimulyo
-Kabupaten Bantul,Kabupaten,Pleret,Bawuran
-Kabupaten Bantul,Kabupaten,Pleret,Pleret
-Kabupaten Bantul,Kabupaten,Pleret,Segoroyoso
-Kabupaten Bantul,Kabupaten,Pleret,Wonokromo
-Kabupaten Bantul,Kabupaten,Pleret,Wonolelo
-Kabupaten Bantul,Kabupaten,Pundong,Panjangrejo
-Kabupaten Bantul,Kabupaten,Pundong,Seloharjo
-Kabupaten Bantul,Kabupaten,Pundong,Srihardono
-Kabupaten Bantul,Kabupaten,Sanden,Gadingharjo
-Kabupaten Bantul,Kabupaten,Sanden,Gadingsari
-Kabupaten Bantul,Kabupaten,Sanden,Murtigading
-Kabupaten Bantul,Kabupaten,Sanden,Srigading
-Kabupaten Bantul,Kabupaten,Sedayu,Argodadi
-Kabupaten Bantul,Kabupaten,Sedayu,Argomulyo
-Kabupaten Bantul,Kabupaten,Sedayu,Argorejo
-Kabupaten Bantul,Kabupaten,Sedayu,Argosari
-Kabupaten Bantul,Kabupaten,Sewon,Bangunharjo
-Kabupaten Bantul,Kabupaten,Sewon,Panggungharjo
-Kabupaten Bantul,Kabupaten,Sewon,Pendowoharjo
-Kabupaten Bantul,Kabupaten,Sewon,Timbulharjo
-Kabupaten Bantul,Kabupaten,Srandakan,Poncosari
-Kabupaten Bantul,Kabupaten,Srandakan,Trimurti
-Kabupaten Sleman,Kabupaten,Berbah,Jogotirto
-Kabupaten Sleman,Kabupaten,Berbah,Kalitirto
-Kabupaten Sleman,Kabupaten,Berbah,Sendangtirto
-Kabupaten Sleman,Kabupaten,Berbah,Tegaltirto
-Kabupaten Sleman,Kabupaten,Cangkringan,Argomulyo
-Kabupaten Sleman,Kabupaten,Cangkringan,Glagaharjo
-Kabupaten Sleman,Kabupaten,Cangkringan,Kepuharjo
-Kabupaten Sleman,Kabupaten,Cangkringan,Wukirsari
-Kabupaten Sleman,Kabupaten,Cangkringan,Umpak
-Kabupaten Sleman,Kabupaten,Depok,Caturtunggal
-Kabupaten Sleman,Kabupaten,Depok,Condongcatur
-Kabupaten Sleman,Kabupaten,Depok,Manguwoharjo
-Kabupaten Sleman,Kabupaten,Gamping,Ambarketawang
-Kabupaten Sleman,Kabupaten,Gamping,Banyuraden
-Kabupaten Sleman,Kabupaten,Gamping,Nogotirto
-Kabupaten Sleman,Kabupaten,Gamping,Raden
-Kabupaten Sleman,Kabupaten,Gamping,Trihanggo
-Kabupaten Sleman,Kabupaten,Godean,Sidokarto
-Kabupaten Sleman,Kabupaten,Godean,Sidoluhur
-Kabupaten Sleman,Kabupaten,Godean,Sidomoyo
-Kabupaten Sleman,Kabupaten,Godean,Sidomulyo
-Kabupaten Sleman,Kabupaten,Godean,Sidoagung
-Kabupaten Sleman,Kabupaten,Godean,Sidorejo
-Kabupaten Sleman,Kabupaten,Kalasan,Purwomartani
-Kabupaten Sleman,Kabupaten,Kalasan,Selomartani
-Kabupaten Sleman,Kabupaten,Kalasan,Tamanmartani
-Kabupaten Sleman,Kabupaten,Kalasan,Tirtomartani
-Kabupaten Sleman,Kabupaten,Minggir,Sendangagung
-Kabupaten Sleman,Kabupaten,Minggir,Sendangarum
-Kabupaten Sleman,Kabupaten,Minggir,Sendangmulyo
-Kabupaten Sleman,Kabupaten,Minggir,Sendangrejo
-Kabupaten Sleman,Kabupaten,Minggir,Sendangsari
-Kabupaten Sleman,Kabupaten,Mlati,Kagungan
-Kabupaten Sleman,Kabupaten,Mlati,Sinduadi
-Kabupaten Sleman,Kabupaten,Mlati,Sendangadi
-Kabupaten Sleman,Kabupaten,Mlati,Tlogoadi
-Kabupaten Sleman,Kabupaten,Mlati,Tirtoadi
-Kabupaten Sleman,Kabupaten,Moyudan,Sumberagung
-Kabupaten Sleman,Kabupaten,Moyudan,Sumberrahayu
-Kabupaten Sleman,Kabupaten,Moyudan,Sumbersari
-Kabupaten Sleman,Kabupaten,Moyudan,Sumberarum
-Kabupaten Sleman,Kabupaten,Ngaglik,Donoharjo
-Kabupaten Sleman,Kabupaten,Ngaglik,Minomartani
-Kabupaten Sleman,Kabupaten,Ngaglik,Sardonoharjo
-Kabupaten Sleman,Kabupaten,Ngaglik,Sariharjo
-Kabupaten Sleman,Kabupaten,Ngaglik,Sukoharjo
-Kabupaten Sleman,Kabupaten,Ngaglik,Sinduharjo
-Kabupaten Sleman,Kabupaten,Ngemplak,Bimomartani
-Kabupaten Sleman,Kabupaten,Ngemplak,Cangkringan
-Kabupaten Sleman,Kabupaten,Ngemplak,Sindumartani
-Kabupaten Sleman,Kabupaten,Ngemplak,Ubun
-Kabupaten Sleman,Kabupaten,Ngemplak,Wukirsari
-Kabupaten Sleman,Kabupaten,Pakem,Candibinangun
-Kabupaten Sleman,Kabupaten,Pakem,Hargobinangun
-Kabupaten Sleman,Kabupaten,Pakem,Harjobinangun
-Kabupaten Sleman,Kabupaten,Pakem,Pakembinangun
-Kabupaten Sleman,Kabupaten,Pakem,Purwobinangun
-Kabupaten Sleman,Kabupaten,Prambanan,Bokoharjo
-Kabupaten Sleman,Kabupaten,Prambanan,Gayamharjo
-Kabupaten Sleman,Kabupaten,Prambanan,Madurejo
-Kabupaten Sleman,Kabupaten,Prambanan,Sambirejo
-Kabupaten Sleman,Kabupaten,Prambanan,Sumberharjo
-Kabupaten Sleman,Kabupaten,Prambanan,Wukirharjo
-Kabupaten Sleman,Kabupaten,Seyegan,Margodadi
-Kabupaten Sleman,Kabupaten,Seyegan,Margokaton
-Kabupaten Sleman,Kabupaten,Seyegan,Margomulyo
-Kabupaten Sleman,Kabupaten,Seyegan,Margoluwih
-Kabupaten Sleman,Kabupaten,Seyegan,Margoagung
-Kabupaten Sleman,Kabupaten,Sleman,Caturharjo
-Kabupaten Sleman,Kabupaten,Sleman,Pandowoharjo
-Kabupaten Sleman,Kabupaten,Sleman,Tridadi
-Kabupaten Sleman,Kabupaten,Sleman,Triharjo
-Kabupaten Sleman,Kabupaten,Sleman,Trimulyo
-Kabupaten Sleman,Kabupaten,Tempel,Banyurejo
-Kabupaten Sleman,Kabupaten,Tempel,Lumbungrejo
-Kabupaten Sleman,Kabupaten,Tempel,Margorejo
-Kabupaten Sleman,Kabupaten,Tempel,Merdikorejo
-Kabupaten Sleman,Kabupaten,Tempel,Mororejo
-Kabupaten Sleman,Kabupaten,Tempel,Pondokrejo
-Kabupaten Sleman,Kabupaten,Tempel,Sumberejo
-Kabupaten Sleman,Kabupaten,Turi,Bangunkerto
-Kabupaten Sleman,Kabupaten,Turi,Donokerto
-Kabupaten Sleman,Kabupaten,Turi,Girikerto
-Kabupaten Sleman,Kabupaten,Turi,Wonokerto
-Kabupaten Kulon Progo,Kabupaten,Galur,Banaran
-Kabupaten Kulon Progo,Kabupaten,Galur,Brosot
-Kabupaten Kulon Progo,Kabupaten,Galur,Karangsewu
-Kabupaten Kulon Progo,Kabupaten,Galur,Kranggan
-Kabupaten Kulon Progo,Kabupaten,Galur,Nomporejo
-Kabupaten Kulon Progo,Kabupaten,Galur,Pandowan
-Kabupaten Kulon Progo,Kabupaten,Galur,Tirtarahayu
-Kabupaten Kulon Progo,Kabupaten,Girimulyo,Giripurwo
-Kabupaten Kulon Progo,Kabupaten,Girimulyo,Jatimulyo
-Kabupaten Kulon Progo,Kabupaten,Girimulyo,Pendoworejo
-Kabupaten Kulon Progo,Kabupaten,Girimulyo,Purwosari
-Kabupaten Kulon Progo,Kabupaten,Kalibawang,Banjararum
-Kabupaten Kulon Progo,Kabupaten,Kalibawang,Banjarasri
-Kabupaten Kulon Progo,Kabupaten,Kalibawang,Banjarharjo
-Kabupaten Kulon Progo,Kabupaten,Kalibawang,Banjaroyo
-Kabupaten Kulon Progo,Kabupaten,Kokap,Hargomulyo
-Kabupaten Kulon Progo,Kabupaten,Kokap,Hargorejo
-Kabupaten Kulon Progo,Kabupaten,Kokap,Hargotirto
-Kabupaten Kulon Progo,Kabupaten,Kokap,Hargowilis
-Kabupaten Kulon Progo,Kabupaten,Kokap,Kalirejo
-Kabupaten Kulon Progo,Kabupaten,Lendah,Bumirejo
-Kabupaten Kulon Progo,Kabupaten,Lendah,Gulurejo
-Kabupaten Kulon Progo,Kabupaten,Lendah,Jatirejo
-Kabupaten Kulon Progo,Kabupaten,Lendah,Ngentakrejo
-Kabupaten Kulon Progo,Kabupaten,Lendah,Sidorejo
-Kabupaten Kulon Progo,Kabupaten,Lendah,Wahyuharjo
-Kabupaten Kulon Progo,Kabupaten,Nanggulan,Banyuroto
-Kabupaten Kulon Progo,Kabupaten,Nanggulan,Donomulyo
-Kabupaten Kulon Progo,Kabupaten,Nanggulan,Jatisarono
-Kabupaten Kulon Progo,Kabupaten,Nanggulan,Kembang
-Kabupaten Kulon Progo,Kabupaten,Nanggulan,Tanjungharjo
-Kabupaten Kulon Progo,Kabupaten,Nanggulan,Wijimulyo
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Bojong
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Bugel
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Cerme
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Depok
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Garongan
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Gotakan
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Kanoman
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Krembangan
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Panjatan
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Pleret
-Kabupaten Kulon Progo,Kabupaten,Panjatan,Tayuban
-Kabupaten Kulon Progo,Kabupaten,Pengasih,Banguncipto
-Kabupaten Kulon Progo,Kabupaten,Pengasih,Karangsari
-Kabupaten Kulon Progo,Kabupaten,Pengasih,Kedungsari
-Kabupaten Kulon Progo,Kabupaten,Pengasih,Margosari
-Kabupaten Kulon Progo,Kabupaten,Pengasih,Pengasih
-Kabupaten Kulon Progo,Kabupaten,Pengasih,Sendangsari
-Kabupaten Kulon Progo,Kabupaten,Pengasih,Sidomulyo
-Kabupaten Kulon Progo,Kabupaten,Pengasih,Tawangsari
-Kabupaten Kulon Progo,Kabupaten,Samigaluh,Banjarsari
-Kabupaten Kulon Progo,Kabupaten,Samigaluh,Gerbosari
-Kabupaten Kulon Progo,Kabupaten,Samigaluh,Kebonharjo
-Kabupaten Kulon Progo,Kabupaten,Samigaluh,Ngargosari
-Kabupaten Kulon Progo,Kabupaten,Samigaluh,Pagerharjo
-Kabupaten Kulon Progo,Kabupaten,Samigaluh,Purwoharjo
-Kabupaten Kulon Progo,Kabupaten,Samigaluh,Sidoharjo
-Kabupaten Kulon Progo,Kabupaten,Sentolo,Banguncipto
-Kabupaten Kulon Progo,Kabupaten,Sentolo,Demangrejo
-Kabupaten Kulon Progo,Kabupaten,Sentolo,Kaliagung
-Kabupaten Kulon Progo,Kabupaten,Sentolo,Salamrejo
-Kabupaten Kulon Progo,Kabupaten,Sentolo,Sentolo
-Kabupaten Kulon Progo,Kabupaten,Sentolo,Srikayangan
-Kabupaten Kulon Progo,Kabupaten,Sentolo,Sukoreno
-Kabupaten Kulon Progo,Kabupaten,Sentolo,Tuksono
-Kabupaten Kulon Progo,Kabupaten,Temon,Demen
-Kabupaten Kulon Progo,Kabupaten,Temon,Glagah
-Kabupaten Kulon Progo,Kabupaten,Temon,Janten
-Kabupaten Kulon Progo,Kabupaten,Temon,Jangkaran
-Kabupaten Kulon Progo,Kabupaten,Temon,Kalidengen
-Kabupaten Kulon Progo,Kabupaten,Temon,Kaligintung
-Kabupaten Kulon Progo,Kabupaten,Temon,Karangwuluh
-Kabupaten Kulon Progo,Kabupaten,Temon,Kebonrejo
-Kabupaten Kulon Progo,Kabupaten,Temon,Kedundang
-Kabupaten Kulon Progo,Kabupaten,Temon,Kulur
-Kabupaten Kulon Progo,Kabupaten,Temon,Palihan
-Kabupaten Kulon Progo,Kabupaten,Temon,Plumbon
-Kabupaten Kulon Progo,Kabupaten,Temon,Sindutan
-Kabupaten Kulon Progo,Kabupaten,Temon,Temon Kulon
-Kabupaten Kulon Progo,Kabupaten,Temon,Temon Wetan
-Kabupaten Kulon Progo,Kabupaten,Wates,Bendungan
-Kabupaten Kulon Progo,Kabupaten,Wates,Giripeni
-Kabupaten Kulon Progo,Kabupaten,Wates,Karangwuni
-Kabupaten Kulon Progo,Kabupaten,Wates,Kulwaru
-Kabupaten Kulon Progo,Kabupaten,Wates,Ngestiharjo
-Kabupaten Kulon Progo,Kabupaten,Wates,Sogan
-Kabupaten Kulon Progo,Kabupaten,Wates,Triharjo
-Kabupaten Kulon Progo,Kabupaten,Wates,Wates
-Kabupaten Gunungkidul,Kabupaten,Gedangsari,Hargomulyo
-Kabupaten Gunungkidul,Kabupaten,Gedangsari,Mertelu
-Kabupaten Gunungkidul,Kabupaten,Gedangsari,Ngalang
-Kabupaten Gunungkidul,Kabupaten,Gedangsari,Sampang
-Kabupaten Gunungkidul,Kabupaten,Gedangsari,Serut
-Kabupaten Gunungkidul,Kabupaten,Gedangsari,Tegalrejo
-Kabupaten Gunungkidul,Kabupaten,Girisubo,Balong
-Kabupaten Gunungkidul,Kabupaten,Girisubo,Jepitu
-Kabupaten Gunungkidul,Kabupaten,Girisubo,Karangawen
-Kabupaten Gunungkidul,Kabupaten,Girisubo,Jerukwudel
-Kabupaten Gunungkidul,Kabupaten,Girisubo,Nglindur
-Kabupaten Gunungkidul,Kabupaten,Girisubo,Pucung
-Kabupaten Gunungkidul,Kabupaten,Girisubo,Songbanyu
-Kabupaten Gunungkidul,Kabupaten,Girisubo,Tileng
-Kabupaten Gunungkidul,Kabupaten,Karangmojo,Bejiharjo
-Kabupaten Gunungkidul,Kabupaten,Karangmojo,Gedangrejo
-Kabupaten Gunungkidul,Kabupaten,Karangmojo,Karangmojo
-Kabupaten Gunungkidul,Kabupaten,Karangmojo,Kelor
-Kabupaten Gunungkidul,Kabupaten,Karangmojo,Ngawis
-Kabupaten Gunungkidul,Kabupaten,Karangmojo,Ngipari
-Kabupaten Gunungkidul,Kabupaten,Karangmojo,Wiladeg
-Kabupaten Gunungkidul,Kabupaten,Ngawen,Banyusoco
-Kabupaten Gunungkidul,Kabupaten,Ngawen,Beji
-Kabupaten Gunungkidul,Kabupaten,Ngawen,Jurangjero
-Kabupaten Gunungkidul,Kabupaten,Ngawen,Katongan
-Kabupaten Gunungkidul,Kabupaten,Ngawen,Sambirejo
-Kabupaten Gunungkidul,Kabupaten,Ngawen,Tancep
-Kabupaten Gunungkidul,Kabupaten,Nglipar,Katongan
-Kabupaten Gunungkidul,Kabupaten,Nglipar,Kedungpoh
-Kabupaten Gunungkidul,Kabupaten,Nglipar,Kedungkeris
-Kabupaten Gunungkidul,Kabupaten,Nglipar,Nglipar
-Kabupaten Gunungkidul,Kabupaten,Nglipar,Pengkol
-Kabupaten Gunungkidul,Kabupaten,Nglipar,Pilangrejo
-Kabupaten Gunungkidul,Kabupaten,Nglipar,Natah
-Kabupaten Gunungkidul,Kabupaten,Paliyan,Gombang
-Kabupaten Gunungkidul,Kabupaten,Paliyan,Karangduwet
-Kabupaten Gunungkidul,Kabupaten,Paliyan,Karangasem
-Kabupaten Gunungkidul,Kabupaten,Paliyan,Pampang
-Kabupaten Gunungkidul,Kabupaten,Paliyan,Sodo
-Kabupaten Gunungkidul,Kabupaten,Paliyan,Trowono
-Kabupaten Gunungkidul,Kabupaten,Panggang,Giriwungu
-Kabupaten Gunungkidul,Kabupaten,Panggang,Giriharjo
-Kabupaten Gunungkidul,Kabupaten,Panggang,Girimulyo
-Kabupaten Gunungkidul,Kabupaten,Panggang,Girisuko
-Kabupaten Gunungkidul,Kabupaten,Panggang,Girisekar
-Kabupaten Gunungkidul,Kabupaten,Panggang,Giritirto
-Kabupaten Gunungkidul,Kabupaten,Patuk,Bunder
-Kabupaten Gunungkidul,Kabupaten,Patuk,Nglanggeran
-Kabupaten Gunungkidul,Kabupaten,Patuk,Ngoro-oro
-Kabupaten Gunungkidul,Kabupaten,Patuk,Patuk
-Kabupaten Gunungkidul,Kabupaten,Patuk,Pengkok
-Kabupaten Gunungkidul,Kabupaten,Patuk,Putat
-Kabupaten Gunungkidul,Kabupaten,Patuk,Salam
-Kabupaten Gunungkidul,Kabupaten,Patuk,Semoyo
-Kabupaten Gunungkidul,Kabupaten,Patuk,Terbah
-Kabupaten Gunungkidul,Kabupaten,Patuk,Tepus
-Kabupaten Gunungkidul,Kabupaten,Playen,Banaran
-Kabupaten Gunungkidul,Kabupaten,Playen,Getas
-Kabupaten Gunungkidul,Kabupaten,Playen,Logandeng
-Kabupaten Gunungkidul,Kabupaten,Playen,Ngangkrik
-Kabupaten Gunungkidul,Kabupaten,Playen,Ngasinan
-Kabupaten Gunungkidul,Kabupaten,Playen,Playen
-Kabupaten Gunungkidul,Kabupaten,Playen,Plembutan
-Kabupaten Gunungkidul,Kabupaten,Playen,Punsari
-Kabupaten Gunungkidul,Kabupaten,Ponjong,Bedoyo
-Kabupaten Gunungkidul,Kabupaten,Ponjong,Genjahan
-Kabupaten Gunungkidul,Kabupaten,Ponjong,Gomu
-Kabupaten Gunungkidul,Kabupaten,Ponjong,Kenteng
-Kabupaten Gunungkidul,Kabupaten,Ponjong,Ponjong
-Kabupaten Gunungkidul,Kabupaten,Ponjong,Sawahan
-Kabupaten Gunungkidul,Kabupaten,Ponjong,Sidorejo
-Kabupaten Gunungkidul,Kabupaten,Ponjong,Tambakromo
-Kabupaten Gunungkidul,Kabupaten,Purwosari,Giricahyo
-Kabupaten Gunungkidul,Kabupaten,Purwosari,Giriasih
-Kabupaten Gunungkidul,Kabupaten,Purwosari,Girijati
-Kabupaten Gunungkidul,Kabupaten,Purwosari,Giripurwo
-Kabupaten Gunungkidul,Kabupaten,Purwosari,Giritirto
-Kabupaten Gunungkidul,Kabupaten,Rongkop,Bohol
-Kabupaten Gunungkidul,Kabupaten,Rongkop,Botodayaan
-Kabupaten Gunungkidul,Kabupaten,Rongkop,Karangwuni
-Kabupaten Gunungkidul,Kabupaten,Rongkop,Melikan
-Kabupaten Gunungkidul,Kabupaten,Rongkop,Petir
-Kabupaten Gunungkidul,Kabupaten,Rongkop,Pringombo
-Kabupaten Gunungkidul,Kabupaten,Rongkop,Pundungsari
-Kabupaten Gunungkidul,Kabupaten,Rongkop,Semugih
-Kabupaten Gunungkidul,Kabupaten,Saptosari,Kanigoro
-Kabupaten Gunungkidul,Kabupaten,Saptosari,Krambilsawit
-Kabupaten Gunungkidul,Kabupaten,Saptosari,Monggol
-Kabupaten Gunungkidul,Kabupaten,Saptosari,Ngloro
-Kabupaten Gunungkidul,Kabupaten,Saptosari,Planjan
-Kabupaten Gunungkidul,Kabupaten,Saptosari,Puwodadi
-Kabupaten Gunungkidul,Kabupaten,Semanu,Candar
-Kabupaten Gunungkidul,Kabupaten,Semanu,Dadapayu
-Kabupaten Gunungkidul,Kabupaten,Semanu,Ngeposari
-Kabupaten Gunungkidul,Kabupaten,Semanu,Pacarejo
-Kabupaten Gunungkidul,Kabupaten,Semanu,Semanu
-Kabupaten Gunungkidul,Kabupaten,Tanjungsari,Hargosari
-Kabupaten Gunungkidul,Kabupaten,Tanjungsari,Kemadang
-Kabupaten Gunungkidul,Kabupaten,Tanjungsari,Kemasin
-Kabupaten Gunungkidul,Kabupaten,Tanjungsari,Ngestirejo
-Kabupaten Gunungkidul,Kabupaten,Tanjungsari,Nomporejo
-Kabupaten Gunungkidul,Kabupaten,Tepus,Giripitu
-Kabupaten Gunungkidul,Kabupaten,Tepus,Purwodadi
-Kabupaten Gunungkidul,Kabupaten,Tepus,Sidoharjo
-Kabupaten Gunungkidul,Kabupaten,Tepus,Sumberwungu
-Kabupaten Gunungkidul,Kabupaten,Tepus,Tepus
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Baleharjo
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Duwet
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Gari
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Karangtengah
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Kepek
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Mulo
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Piyaman
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Pulutan
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Siraman
-Kabupaten Gunungkidul,Kabupaten,Wonosari,Wonosari
+Nama_Provinsi,Nama_Kabupaten_Kota,Jenis,Nama_Kecamatan
+DKI Jakarta,Jakarta Pusat,Kota,Gambir
+DKI Jakarta,Jakarta Pusat,Kota,Tanah Abang
+DKI Jakarta,Jakarta Pusat,Kota,Menteng
+DKI Jakarta,Jakarta Selatan,Kota,Kebayoran Baru
+DKI Jakarta,Jakarta Selatan,Kota,Setiabudi
+DKI Jakarta,Jakarta Selatan,Kota,Cilandak
+DKI Jakarta,Jakarta Barat,Kota,Kembangan
+DKI Jakarta,Jakarta Barat,Kota,Grogol Petamburan
+DKI Jakarta,Jakarta Timur,Kota,Jatinegara
+DKI Jakarta,Jakarta Utara,Kota,Penjaringan
+Jawa Barat,Kota Bandung,Kota,Coblong
+Jawa Barat,Kota Bandung,Kota,Sumur Bandung
+Jawa Barat,Kota Bandung,Kota,Bandung Wetan
+Jawa Barat,Kota Bekasi,Kota,Bekasi Selatan
+Jawa Barat,Kota Bekasi,Kota,Bekasi Barat
+Jawa Barat,Kota Depok,Kota,Pancasoran Mas
+Jawa Barat,Kota Depok,Kota,Margonda
+Jawa Barat,Kota Bogor,Kota,Bogor Tengah
+Jawa Barat,Kota Bogor,Kota,Bogor Timur
+Jawa Timur,Kota Surabaya,Kota,Tegalsari
+Jawa Timur,Kota Surabaya,Kota,Gubeng
+Jawa Timur,Kota Surabaya,Kota,Wonokromo
+Jawa Timur,Kota Surabaya,Kota,Genteng
+Jawa Timur,Kota Malang,Kota,Klojen
+Jawa Timur,Kota Malang,Kota,Lowokwaru
+Jawa Tengah,Kota Semarang,Kota,Semarang Tengah
+Jawa Tengah,Kota Semarang,Kota,Semarang Barat
+Jawa Tengah,Kota Solo (Surakarta),Kota,Banjarsari
+Jawa Tengah,Kota Solo (Surakarta),Kota,Jebres
+DI Yogyakarta,Kota Yogyakarta,Kota,Danurejan
+DI Yogyakarta,Kota Yogyakarta,Kota,Gondokusuman
+DI Yogyakarta,Kota Yogyakarta,Kota,Gondomanan
+DI Yogyakarta,Kota Yogyakarta,Kota,Umbulharjo
+Banten,Kota Tangerang,Kota,Tangerang
+Banten,Kota Tangerang Selatan,Kota,Serpong
+Banten,Kota Tangerang Selatan,Kota,Pondok Aren
+Banten,Kota Serang,Kota,Serang
+Sumatera Utara,Kota Medan,Kota,Medan Petisah
+Sumatera Utara,Kota Medan,Kota,Medan Barat
+Sumatera Utara,Kota Medan,Kota,Medan Kota
+Sumatera Selatan,Kota Palembang,Kota,Ilir Barat I
+Sumatera Selatan,Kota Palembang,Kota,Ilir Timur I
+Sumatera Barat,Kota Padang,Kota,Padang Barat
+Riau,Kota Pekanbaru,Kota,Pekanbaru Kota
+Riau,Kota Pekanbaru,Kota,Tampan
+Kepulauan Riau,Kota Batam,Kota,Batam Kota
+Kepulauan Riau,Kota Batam,Kota,Lubuk Baja
+Lampung,Kota Bandar Lampung,Kota,Tanjung Karang Pusat
+Bali,Kota Denpasar,Kota,Denpasar Selatan
+Bali,Kota Denpasar,Kota,Denpasar Barat
+NTB,Kota Mataram,Kota,Mataram
+Kalimantan Timur,Kota Samarinda,Kota,Samarinda Kota
+Kalimantan Timur,Kota Balikpapan,Kota,Balikpapan Kota
+Kalimantan Barat,Kota Pontianak,Kota,Pontianak Kota
+Kalimantan Selatan,Kota Banjarmasin,Kota,Banjarmasin Tengah
+Sulawesi Selatan,Kota Makassar,Kota,Ujung Pandang
+Sulawesi Selatan,Kota Makassar,Kota,Panakkukang
+Sulawesi Utara,Kota Manado,Kota,Wenang
+Sulawesi Tengah,Kota Palu,Kota,Palu Barat
+Papua,Kota Jayapura,Kota,Jayapura Utara
