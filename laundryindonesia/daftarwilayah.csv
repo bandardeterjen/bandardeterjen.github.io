@@ -1,4 +1,4 @@
-Nama_Provinsi,Nama_Kabupaten_Kota,Jenis,Nama_Kecamatan
+provinsi,kabupaten_kota,jenis,kecamatan
 DKI Jakarta,Jakarta Pusat,Kota,Gambir
 DKI Jakarta,Jakarta Pusat,Kota,Tanah Abang
 DKI Jakarta,Jakarta Pusat,Kota,Menteng
@@ -15,47 +15,24 @@ Jawa Barat,Kota Bandung,Kota,Bandung Wetan
 Jawa Barat,Kota Bekasi,Kota,Bekasi Selatan
 Jawa Barat,Kota Bekasi,Kota,Bekasi Barat
 Jawa Barat,Kota Depok,Kota,Pancasoran Mas
-Jawa Barat,Kota Depok,Kota,Margonda
 Jawa Barat,Kota Bogor,Kota,Bogor Tengah
-Jawa Barat,Kota Bogor,Kota,Bogor Timur
 Jawa Timur,Kota Surabaya,Kota,Tegalsari
 Jawa Timur,Kota Surabaya,Kota,Gubeng
 Jawa Timur,Kota Surabaya,Kota,Wonokromo
-Jawa Timur,Kota Surabaya,Kota,Genteng
 Jawa Timur,Kota Malang,Kota,Klojen
-Jawa Timur,Kota Malang,Kota,Lowokwaru
 Jawa Tengah,Kota Semarang,Kota,Semarang Tengah
-Jawa Tengah,Kota Semarang,Kota,Semarang Barat
-Jawa Tengah,Kota Solo (Surakarta),Kota,Banjarsari
-Jawa Tengah,Kota Solo (Surakarta),Kota,Jebres
+Jawa Tengah,Kota Solo,Kota,Banjarsari
 DI Yogyakarta,Kota Yogyakarta,Kota,Danurejan
 DI Yogyakarta,Kota Yogyakarta,Kota,Gondokusuman
-DI Yogyakarta,Kota Yogyakarta,Kota,Gondomanan
 DI Yogyakarta,Kota Yogyakarta,Kota,Umbulharjo
+DI Yogyakarta,Kabupaten Sleman,Kabupaten,Depok
+DI Yogyakarta,Kabupaten Bantul,Kabupaten,Banguntapan
 Banten,Kota Tangerang,Kota,Tangerang
 Banten,Kota Tangerang Selatan,Kota,Serpong
-Banten,Kota Tangerang Selatan,Kota,Pondok Aren
-Banten,Kota Serang,Kota,Serang
 Sumatera Utara,Kota Medan,Kota,Medan Petisah
-Sumatera Utara,Kota Medan,Kota,Medan Barat
-Sumatera Utara,Kota Medan,Kota,Medan Kota
 Sumatera Selatan,Kota Palembang,Kota,Ilir Barat I
-Sumatera Selatan,Kota Palembang,Kota,Ilir Timur I
-Sumatera Barat,Kota Padang,Kota,Padang Barat
 Riau,Kota Pekanbaru,Kota,Pekanbaru Kota
-Riau,Kota Pekanbaru,Kota,Tampan
 Kepulauan Riau,Kota Batam,Kota,Batam Kota
-Kepulauan Riau,Kota Batam,Kota,Lubuk Baja
-Lampung,Kota Bandar Lampung,Kota,Tanjung Karang Pusat
 Bali,Kota Denpasar,Kota,Denpasar Selatan
-Bali,Kota Denpasar,Kota,Denpasar Barat
-NTB,Kota Mataram,Kota,Mataram
-Kalimantan Timur,Kota Samarinda,Kota,Samarinda Kota
-Kalimantan Timur,Kota Balikpapan,Kota,Balikpapan Kota
-Kalimantan Barat,Kota Pontianak,Kota,Pontianak Kota
-Kalimantan Selatan,Kota Banjarmasin,Kota,Banjarmasin Tengah
 Sulawesi Selatan,Kota Makassar,Kota,Ujung Pandang
-Sulawesi Selatan,Kota Makassar,Kota,Panakkukang
-Sulawesi Utara,Kota Manado,Kota,Wenang
-Sulawesi Tengah,Kota Palu,Kota,Palu Barat
-Papua,Kota Jayapura,Kota,Jayapura Utara
+Kalimantan Timur,Kota Balikpapan,Kota,Balikpapan Kota
