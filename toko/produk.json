@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "sabun-batang-herbal-zamzam",
+    "nama": "Sabun Batang Herbal Zamzam",
+    "kategori": "Sabun Batang",
+    "harga": 15000,
+    "ukuran": "100 gram",
+    "thumbnail": "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=600&q=80",
+    "deskripsi": "Sabun batang dengan bahan herbal alami, diformulasikan khusus untuk kebutuhan mandi harian jamaah selama perjalanan haji dan umroh.",
+    "manfaat": [
+      "Membersihkan debu dan keringat perjalanan",
+      "Aroma lembut, tidak menyengat saat ihram",
+      "Aman untuk kulit sensitif",
+      "Kemasan praktis dibawa dalam koper"
+    ]
+  },
+  {
+    "slug": "sabun-cair-antiseptik-ihram",
+    "nama": "Sabun Cair Antiseptik Ihram",
+    "kategori": "Sabun Cair",
+    "harga": 28000,
+    "ukuran": "250 ml",
+    "thumbnail": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80",
+    "deskripsi": "Sabun cair antiseptik yang menjaga kebersihan tubuh selama mengenakan kain ihram, cepat berbusa dan mudah dibilas dengan air terbatas.",
+    "manfaat": [
+      "Formula antiseptik ringan",
+      "Cepat berbusa, hemat air",
+      "Tidak meninggalkan residu di kain ihram",
+      "Tersedia botol travel size"
+    ]
+  },
+  {
+    "slug": "sabun-wajah-pemutih-herbal",
+    "nama": "Sabun Wajah Pemutih Herbal",
+    "kategori": "Sabun Wajah",
+    "harga": 32000,
+    "ukuran": "80 gram",
+    "thumbnail": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&q=80",
+    "deskripsi": "Membantu mencerahkan wajah yang kusam akibat cuaca panas dan berdebu di Tanah Suci, dengan kandungan ekstrak herbal alami.",
+    "manfaat": [
+      "Mencerahkan kulit wajah kusam",
+      "Melembapkan tanpa rasa kesat",
+      "Cocok untuk cuaca panas dan kering",
+      "Bebas pewarna berbahaya"
+    ]
+  },
+  {
+    "slug": "sabun-sirih-antibakteri",
+    "nama": "Sabun Sirih Antibakteri",
+    "kategori": "Sabun Kesehatan",
+    "harga": 18000,
+    "ukuran": "100 gram",
+    "thumbnail": "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?auto=format&fit=crop&w=600&q=80",
+    "deskripsi": "Sabun daun sirih alami yang membantu menjaga kebersihan dan kesegaran tubuh selama beraktivitas padat di area Masjidil Haram dan Nabawi.",
+    "manfaat": [
+      "Kandungan daun sirih alami",
+      "Membantu menjaga kesegaran tubuh",
+      "Cocok dipakai suami istri",
+      "Higienis untuk pemakaian harian"
+    ]
+  },
+  {
+    "slug": "sabun-susu-kambing-etawa",
+    "nama": "Sabun Susu Kambing Etawa",
+    "kategori": "Sabun Perawatan",
+    "harga": 35000,
+    "ukuran": "100 gram",
+    "thumbnail": "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80",
+    "deskripsi": "Sabun perawatan kulit dengan ekstrak susu kambing etawa yang melembutkan dan menutrisi kulit yang kering akibat udara gurun.",
+    "manfaat": [
+      "Melembutkan kulit kering",
+      "Kaya nutrisi alami susu etawa",
+      "Cocok untuk kulit dewasa & lansia",
+      "Tidak menimbulkan iritasi"
+    ]
+  },
+  {
+    "slug": "sabun-charcoal-detox",
+    "nama": "Sabun Charcoal Detox",
+    "kategori": "Sabun Perawatan",
+    "harga": 30000,
+    "ukuran": "100 gram",
+    "thumbnail": "https://images.unsplash.com/photo-1614806687792-2e3a5e18b7a2?auto=format&fit=crop&w=600&q=80",
+    "deskripsi": "Sabun arang aktif yang membantu mengangkat kotoran dan minyak berlebih pada kulit setelah seharian beribadah di luar ruangan.",
+    "manfaat": [
+      "Mengangkat kotoran & minyak berlebih",
+      "Membantu menyamarkan pori-pori besar",
+      "Menyegarkan kulit lelah",
+      "Aman dipakai setiap hari"
+    ]
+  },
+  {
+    "slug": "sabun-zaitun-habbatussauda",
+    "nama": "Sabun Minyak Zaitun & Habbatussauda",
+    "kategori": "Sabun Herbal",
+    "harga": 27000,
+    "ukuran": "100 gram",
+    "thumbnail": "https://images.unsplash.com/photo-1547793548-7c4e6cee4c8f?auto=format&fit=crop&w=600&q=80",
+    "deskripsi": "Perpaduan minyak zaitun dan habbatussauda yang dipercaya menutrisi dan menjaga kelembapan kulit sesuai anjuran sunnah.",
+    "manfaat": [
+      "Perpaduan zaitun & habbatussauda",
+      "Menjaga kelembapan alami kulit",
+      "Sesuai anjuran sunnah",
+      "Aroma khas, tidak menyengat"
+    ]
+  },
+  {
+    "slug": "paket-serbaguna-haji-umroh",
+    "nama": "Paket Sabun Serbaguna Haji & Umroh (Isi 5)",
+    "kategori": "Paket Bundling",
+    "harga": 120000,
+    "ukuran": "5 varian x 100 gram",
+    "thumbnail": "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=600&q=80",
+    "deskripsi": "Paket hemat berisi 5 varian sabun terlaris kami, cocok untuk bekal pribadi maupun oleh-oleh sesama jamaah satu rombongan.",
+    "manfaat": [
+      "Isi 5 varian sabun terlaris",
+      "Hemat dibanding beli satuan",
+      "Cocok untuk bekal rombongan",
+      "Kemasan rapi siap dibagikan"
+    ]
+  }
+]
