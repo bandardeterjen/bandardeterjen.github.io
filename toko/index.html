@@ -18,15 +18,17 @@
 
 <meta name="author" content="Albandar Detergent" />
 
-<link id="canonical-link" rel="canonical" href="https://albandardetergent.com/" />
+<link id="canonical-link" rel="canonical" href="https://bandardeterjen.pages.dev/toko/" />
 
 <meta id="og-title" property="og:title" content="085773009666 Distributor Deterjen & Perlengkapan Laundry Nasional - Albandar Detergent" />
 
 <meta id="og-desc" property="og:description" content="Distributor deterjen dan perlengkapan laundry nasional. Melayani pengiriman ke seluruh Indonesia." />
 
-<meta id="og-url" property="og:url" content="https://albandardetergent.com/" />
+<meta id="og-url" property="og:url" content="https://bandardeterjen.pages.dev/toko/" />
 
 <meta name="theme-color" content="#1e3a8a" />
+
+<base href="/toko/" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
@@ -95,7 +97,7 @@ tailwind.config = {
 <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
-            <a href="/" onclick="navigate(''); return false;" class="flex items-center gap-3">
+            <a href="/toko/" onclick="navigate(''); return false;" class="flex items-center gap-3">
                 <div class="w-11 h-11 rounded-xl bg-royal-900 flex items-center justify-center text-white shadow-md font-extrabold text-xl">
                     <i class="fa-solid fa-jug-detergent text-brandOrange-500"></i>
                 </div>
@@ -106,7 +108,7 @@ tailwind.config = {
             </a>
 
             <div class="hidden lg:flex items-center gap-7 text-sm font-bold text-slate-700">
-                <a href="/" onclick="navigate(''); return false;" class="hover:text-royal-600 transition py-1">Beranda</a>
+                <a href="/toko/" onclick="navigate(''); return false;" class="hover:text-royal-600 transition py-1">Beranda</a>
                 <a href="#produk" onclick="scrollToId('produk')" class="hover:text-royal-600 transition py-1">Produk</a>
                 <a href="#wilayah" onclick="scrollToId('wilayah')" class="hover:text-royal-600 transition py-1">Wilayah Pengiriman</a>
                 <a href="#faq" onclick="scrollToId('faq')" class="hover:text-royal-600 transition py-1">FAQ</a>
@@ -125,7 +127,7 @@ tailwind.config = {
     </div>
 
     <div id="mobile-nav" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-3 text-sm font-bold shadow-xl">
-        <a href="/" onclick="navigate(''); toggleMobileNav(); return false;" class="block py-2 text-royal-900 border-b border-slate-50">Beranda</a>
+        <a href="/toko/" onclick="navigate(''); toggleMobileNav(); return false;" class="block py-2 text-royal-900 border-b border-slate-50">Beranda</a>
         <a href="#produk" onclick="toggleMobileNav()" class="block py-2 text-slate-700 border-b border-slate-50">Produk</a>
         <a href="#wilayah" onclick="toggleMobileNav()" class="block py-2 text-slate-700 border-b border-slate-50">Wilayah Pengiriman</a>
         <a href="#faq" onclick="toggleMobileNav()" class="block py-2 text-slate-700 border-b border-slate-50">FAQ</a>
@@ -219,6 +221,8 @@ const PHONE = "6285773009666";
 const PHONE_DISPLAY = "085773009666";
 const MOD_PRODUK = "produk";
 const MOD_WILAYAH = "wilayah";
+const BASE_PATH = "/toko"; // Base path untuk aplikasi
+
 const CSV_URLS = {
     provinces: "https://raw.githubusercontent.com/prodhokter/dataset-wilayah-indonesia/master/provinces.csv",
     regencies: "https://raw.githubusercontent.com/prodhokter/dataset-wilayah-indonesia/master/regencies.csv",
@@ -238,7 +242,6 @@ const CSV_URLS = {
         sessionStorage.removeItem('albandar_redirect');
         // Jika path yang disimpan berbeda dengan path saat ini, redirect ke path tersebut
         if (redirectPath !== window.location.pathname) {
-            // Gunakan replace agar tidak menambah history
             window.history.replaceState(null, '', redirectPath);
         }
     }
@@ -535,7 +538,7 @@ function chainSiblings(chain) {
 
 /*
 ==========================================================================
-4. ROUTING (CLEAN PATH ROUTING - HTML5 History API)
+4. ROUTING (CLEAN PATH ROUTING - HTML5 History API dengan Base Path)
 ==========================================================================
 */
 
@@ -543,20 +546,24 @@ function chainSiblings(chain) {
 function urlWilayah(slugArr, produkSlug) {
     const segs = [MOD_WILAYAH].concat(slugArr || []);
     if (produkSlug) segs.push(produkSlug);
-    return '/' + segs.join('/');
+    return BASE_PATH + '/' + segs.join('/');
 }
 
 function urlProduk(produkSlug, slugArr) {
     const segs = [MOD_PRODUK, produkSlug].concat(slugArr || []);
-    return '/' + segs.join('/');
+    return BASE_PATH + '/' + segs.join('/');
 }
 
 // ============ PATH PARSERS ============
 function getPathSegments() {
     const path = window.location.pathname;
-    if (path === '/' || path === '' || path === '/index.html') return [];
-    // Hapus leading dan trailing slash
-    const cleanPath = path.replace(/^\/|\/$/g, '');
+    // Remove base path from the beginning
+    let cleanPath = path;
+    if (path.startsWith(BASE_PATH)) {
+        cleanPath = path.substring(BASE_PATH.length);
+    }
+    // Remove leading and trailing slashes
+    cleanPath = cleanPath.replace(/^\/|\/$/g, '');
     if (!cleanPath) return [];
     return cleanPath.split('/').filter(Boolean);
 }
@@ -640,7 +647,7 @@ function parseProdukSegments(segs) {
 
 // ============ NAVIGATION FUNCTIONS ============
 function navigate(path) {
-    const target = path ? path : '/';
+    const target = path ? BASE_PATH + path : BASE_PATH + '/';
     if (window.location.pathname === target) {
         renderRoute();
         return;
@@ -930,7 +937,7 @@ function renderHomeView() {
     if (punyaKonteks) {
         const produkCtx = ctxProdukSlug ? findProduk(ctxProdukSlug) : null;
         const wilayahCtxAda = chainHasAny(ctxWilayahChain);
-        let lanjutPath = '/';
+        let lanjutPath = BASE_PATH + '/';
         let teks = 'Lanjutkan pencarian Anda';
         if (produkCtx && wilayahCtxAda) { lanjutPath = urlProduk(produkCtx.slug, chainSlugs(ctxWilayahChain)); teks = `Lanjutkan melihat <strong>${produkCtx.nama}</strong> untuk <strong>${deepestName(ctxWilayahChain)}</strong>`; }
         else if (produkCtx) { lanjutPath = urlProduk(produkCtx.slug); teks = `Lanjutkan melihat <strong>${produkCtx.nama}</strong>`; }
@@ -1032,7 +1039,7 @@ function renderProdukDetailView(produk, chain) {
     const wilayahCtxFallback = !chainHasAny(chain) && chainHasAny(ctxWilayahChain) ? ctxWilayahChain : null;
     const children = chainChildren(chain);
     const breadcrumb = `
-        <li><a href="/" onclick="navigate(''); return false;" class="hover:text-royal-600">Beranda</a></li>
+        <li><a href="/toko/" onclick="navigate(''); return false;" class="hover:text-royal-600">Beranda</a></li>
         <li><span class="mx-2 text-slate-400">/</span></li>
         <li><a href="${urlProduk(produk.slug)}" onclick="navigatePath('${urlProduk(produk.slug)}'); return false;" class="hover:text-royal-600">${produk.nama}</a></li>
         ${breadcrumbWilayahLinksForProduk(chain, produk)}
@@ -1154,7 +1161,7 @@ function renderWilayahDetailView(chain, produkAktif) {
     const children = chainChildren(chain);
     const siblings = chainSiblings(chain);
     let breadcrumb = `
-        <li><a href="/" onclick="navigate(''); return false;" class="hover:text-royal-600">Beranda</a></li>
+        <li><a href="/toko/" onclick="navigate(''); return false;" class="hover:text-royal-600">Beranda</a></li>
         ${breadcrumbWilayahLinks(chain, produkAktif)}
     `;
     let bannerKonteks = '';
@@ -1257,7 +1264,7 @@ function renderWilayahDetailView(chain, produkAktif) {
     }).join('');
     if (fullList.length > listProduk.length) {
         produkGridHtml += `
-            <a href="/" onclick="navigate(''); scrollToId('produk'); return false;" class="p-3.5 rounded-xl border border-dashed border-royal-300 bg-white hover:bg-royal-50 transition flex items-center justify-center text-center">
+            <a href="/toko/" onclick="navigate(''); scrollToId('produk'); return false;" class="p-3.5 rounded-xl border border-dashed border-royal-300 bg-white hover:bg-royal-50 transition flex items-center justify-center text-center">
                 <span class="text-xs font-bold text-royal-700">Lihat ${fullList.length - listProduk.length} produk lainnya di katalog lengkap &rarr;</span>
             </a>`;
     }
@@ -1301,7 +1308,7 @@ function populateFooterProduk() {
         const link = urlProduk(p.slug);
         return `<li><a href="${link}" onclick="navigatePath('${link}'); return false;" class="hover:text-amber-400 transition flex items-center gap-1.5"><i class="fa-solid fa-chevron-right text-[9px] text-brandOrange-500"></i> ${p.nama}</a></li>`;
     }).join('');
-    html += `<li><a href="/" onclick="navigate(''); scrollToId('produk'); return false;" class="hover:text-amber-400 transition font-bold flex items-center gap-1.5"><i class="fa-solid fa-arrow-right text-[9px] text-brandOrange-500"></i> Lihat Semua Produk (${PRODUK.items.length})</a></li>`;
+    html += `<li><a href="/toko/" onclick="navigate(''); scrollToId('produk'); return false;" class="hover:text-amber-400 transition font-bold flex items-center gap-1.5"><i class="fa-solid fa-arrow-right text-[9px] text-brandOrange-500"></i> Lihat Semua Produk (${PRODUK.items.length})</a></li>`;
     el.innerHTML = html;
 }
 
@@ -1316,7 +1323,7 @@ function render404() {
             <h2 class="text-2xl font-extrabold text-royal-900 mb-3">Halaman Tidak Ditemukan</h2>
             <p class="text-sm text-slate-600 mb-6">Produk atau wilayah yang Anda cari tidak tersedia atau formatnya tidak dikenali.</p>
             <p class="text-xs text-slate-400 mb-4">Path: ${window.location.pathname}</p>
-            <a href="/" onclick="navigate(''); return false;" class="inline-block bg-royal-600 hover:bg-royal-700 text-white font-bold px-6 py-3 rounded-xl transition">Kembali ke Beranda</a>
+            <a href="/toko/" onclick="navigate(''); return false;" class="inline-block bg-royal-600 hover:bg-royal-700 text-white font-bold px-6 py-3 rounded-xl transition">Kembali ke Beranda</a>
         </div>`;
 }
 
