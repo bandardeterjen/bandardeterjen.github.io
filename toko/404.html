@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>404 - Halaman Tidak Ditemukan | Albandar Detergent</title>
     <meta name="robots" content="noindex, follow" />
-    <base href="/toko/" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -107,7 +106,7 @@
         <h1>Halaman Tidak Ditemukan</h1>
         <p>Maaf, halaman yang Anda cari tidak tersedia.<br>Silakan kembali ke beranda atau gunakan menu navigasi.</p>
         <div class="path-info" id="path-display">Memuat...</div>
-        <a href="/toko/" class="btn-home" id="home-link">
+        <a href="/" class="btn-home" id="home-link">
             🏠 Kembali ke Beranda
         </a>
         <div class="loading-redirect" id="redirect-info">
@@ -118,6 +117,13 @@
 
     <script>
         (function() {
+            // Cek apakah ini adalah redirect loop
+            if (sessionStorage.getItem('albandar_redirecting')) {
+                // Jika sudah redirecting, berhenti untuk mencegah infinite loop
+                document.getElementById('redirect-info').innerHTML = 'Gagal mengalihkan. Silakan klik tombol di atas.';
+                return;
+            }
+
             // Ambil path yang diminta
             var requestedPath = window.location.pathname + window.location.search;
             
@@ -127,26 +133,31 @@
                 pathDisplay.textContent = 'Path: ' + requestedPath;
             }
 
-            // Simpan path ke sessionStorage agar index.html bisa merender konten yang sesuai
-            if (requestedPath && requestedPath !== '/' && requestedPath !== '/index.html' && requestedPath !== '/toko/') {
+            // Hanya redirect jika path bukan root dan bukan index.html
+            if (requestedPath && requestedPath !== '/' && 
+                requestedPath !== '/index.html' && 
+                !requestedPath.startsWith('/toko/')) {
+                
                 try {
+                    // Set flag untuk mencegah infinite loop
+                    sessionStorage.setItem('albandar_redirecting', 'true');
                     sessionStorage.setItem('albandar_redirect', requestedPath);
+                    
+                    // Redirect ke index.html dengan path yang sama
+                    setTimeout(function() {
+                        var redirectTarget = '/index.html' + window.location.pathname + window.location.search;
+                        window.location.replace(redirectTarget);
+                    }, 1000);
                 } catch (e) {
-                    // Session storage tidak tersedia - abaikan
+                    // Jika sessionStorage error, tetap coba redirect
+                    setTimeout(function() {
+                        window.location.replace('/index.html' + window.location.pathname + window.location.search);
+                    }, 1000);
                 }
+            } else {
+                // Jika path adalah root atau /toko/, tidak perlu redirect
+                document.getElementById('redirect-info').innerHTML = 'Halaman tidak ditemukan.';
             }
-
-            // Perbaiki link home
-            var homeLink = document.getElementById('home-link');
-            if (homeLink) {
-                homeLink.href = '/toko/';
-            }
-
-            // Redirect ke /toko/index.html dengan path yang sama setelah delay
-            setTimeout(function() {
-                var redirectTarget = '/toko/index.html' + window.location.pathname + window.location.search;
-                window.location.replace(redirectTarget);
-            }, 1000);
         })();
     </script>
 </body>
