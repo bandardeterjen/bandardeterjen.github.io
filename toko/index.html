@@ -1,20 +1,37 @@
 <!DOCTYPE html>
+
 <html class="no-js" lang="id">
+
 <head>
+
 <meta charset="utf-8">
+
 <meta http-equiv="x-ua-compatible" content="IE=edge" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title id="page-title">085773009666 Distributor Deterjen & Perlengkapan Laundry Nasional - Bandar Deterjent</title>
+
+<title id="page-title">085773009666 Distributor Deterjen & Perlengkapan Laundry Nasional - Bandar Deterjen</title>
+
 <meta id="page-desc" name="description" content="Distributor deterjen, parfum laundry, dan perlengkapan kebersihan dengan ratusan pilihan produk. Melayani pengiriman hingga tingkat desa/kelurahan di seluruh Indonesia." />
+
 <meta name="keywords" content="deterjen laundry, parfum laundry, distributor deterjen, bahan kimia laundry, sabun cuci, karbol, perlengkapan laundry" />
+
 <meta name="author" content="Bandar Deterjen" />
+
 <link id="canonical-link" rel="canonical" href="https://bandardeterjen.pages.dev/" />
+
 <meta id="og-title" property="og:title" content="085773009666 Distributor Deterjen & Perlengkapan Laundry Nasional - Bandar Deterjen" />
+
 <meta id="og-desc" property="og:description" content="Distributor deterjen dan perlengkapan laundry nasional. Melayani pengiriman ke seluruh Indonesia." />
+
 <meta id="og-url" property="og:url" content="https://bandardeterjen.pages.dev/" />
+
 <meta name="theme-color" content="#1e3a8a" />
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Raleway:wght@400;700;900&display=swap" rel="stylesheet" />
+
 <script src="https://cdn.tailwindcss.com"></script>
 
 <script>
@@ -64,8 +81,8 @@ tailwind.config = {
             <a href="https://wa.me/6285773009666" class="hover:text-amber-400 transition flex items-center gap-1.5 font-medium">
                 <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i> 085773009666
             </a>
-            <a href="mailto:bandardeterjen@gmail.com" class="hover:text-amber-400 transition flex items-center gap-1.5 hidden md:flex">
-                <i class="fa-regular fa-envelope text-royal-500 text-sm"></i> bandardeterjen@gmail.com
+            <a href="mailto:cs@bandardeterjen.com" class="hover:text-amber-400 transition flex items-center gap-1.5 hidden md:flex">
+                <i class="fa-regular fa-envelope text-royal-500 text-sm"></i> cs@bandardeterjen.com
             </a>
         </div>
         <div class="flex items-center gap-4">
@@ -83,7 +100,7 @@ tailwind.config = {
                     <i class="fa-solid fa-jug-detergent text-brandOrange-500"></i>
                 </div>
                 <div>
-                    <span class="font-extrabold text-xl tracking-tight text-royal-900 block leading-tight">BANDAR<span class="text-brandOrange-500"> DETERJEN</span></span>
+                    <span class="font-extrabold text-xl tracking-tight text-royal-900 block leading-tight">BANDAR<span class="text-brandOrange-500">DETERJEN</span></span>
                     <span class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold block">Distributor Deterjen Nasional</span>
                 </div>
             </a>
@@ -133,7 +150,7 @@ tailwind.config = {
                     <div class="w-10 h-10 rounded-xl bg-royal-800 flex items-center justify-center text-white text-lg">
                         <i class="fa-solid fa-jug-detergent text-brandOrange-500"></i>
                     </div>
-                    <span class="font-extrabold text-lg tracking-tight text-white">Bandar<span class="text-brandOrange-500">Deterjen</span></span>
+                    <span class="font-extrabold text-lg tracking-tight text-white">BANDAR<span class="text-brandOrange-500">DETERJEN</span></span>
                 </div>
                 <p class="text-xs text-slate-400 leading-relaxed">
                     Distributor deterjen, parfum laundry, dan perlengkapan kebersihan dengan ratusan pilihan produk. Melayani pengiriman hingga tingkat desa/kelurahan di seluruh Indonesia.
@@ -164,7 +181,7 @@ tailwind.config = {
                     </li>
                     <li class="flex items-start gap-3">
                         <i class="fa-regular fa-envelope text-royal-400 text-base mt-0.5"></i>
-                        <div><div class="text-white font-semibold">Email</div><a href="mailto:bandardeterjen@gmail.com" class="hover:text-amber-400">bandardeterjen@gmail.com</a></div>
+                        <div><div class="text-white font-semibold">Email</div><a href="mailto:cs@bandardeterjen.com" class="hover:text-amber-400">cs@bandardeterjen.com</a></div>
                     </li>
                     <li class="flex items-start gap-3">
                         <i class="fa-solid fa-location-dot text-brandOrange-500 text-base mt-0.5"></i>
@@ -202,16 +219,7 @@ const PHONE = "6285773009666";
 const PHONE_DISPLAY = "085773009666";
 const MOD_PRODUK = "produk";
 const MOD_WILAYAH = "wilayah";
-// Auto-detect base path dari URL saat ini
-const BASE_PATH = (function() {
-    const path = window.location.pathname;
-    // Jika path mengandung /toko/ di awal, gunakan /toko
-    if (path.startsWith('/toko/')) {
-        return '/toko';
-    }
-    // Jika path mengandung folder lain, bisa ditambahkan di sini
-    return '';
-})();
+const BASE_PATH = ""; // Kosong untuk root
 
 const CSV_URLS = {
     provinces: "https://raw.githubusercontent.com/prodhokter/dataset-wilayah-indonesia/master/provinces.csv",
@@ -222,26 +230,24 @@ const CSV_URLS = {
 
 /*
 ==========================================================================
-2. SESSION STORAGE REDIRECT HANDLER (untuk 404.html)
+2. RESTORE ROUTE FROM SESSION STORAGE (untuk refresh)
 ==========================================================================
 */
 (function() {
-    // Cek apakah ada redirect dari 404.html
-    const redirectPath = sessionStorage.getItem('albandar_redirect');
-    if (redirectPath) {
-        sessionStorage.removeItem('albandar_redirect');
-        // Hanya redirect jika path berbeda dan bukan root dengan path yang sama
-        if (redirectPath !== window.location.pathname) {
-            // Cegah infinite loop dengan menambahkan flag
-            if (!sessionStorage.getItem('albandar_redirecting')) {
-                sessionStorage.setItem('albandar_redirecting', 'true');
-                window.history.replaceState(null, '', redirectPath);
-                // Hapus flag setelah redirect
-                setTimeout(() => {
-                    sessionStorage.removeItem('albandar_redirecting');
-                }, 100);
-            }
+    // Cek apakah ada route yang disimpan dari 404.html
+    const savedRoute = sessionStorage.getItem('bandar_deterjen_route');
+    if (savedRoute) {
+        sessionStorage.removeItem('bandar_deterjen_route');
+        // Jika path yang disimpan berbeda dengan path saat ini, redirect
+        if (savedRoute !== window.location.pathname) {
+            window.history.replaceState(null, '', savedRoute);
         }
+    }
+    
+    // Cek juga flag redirecting untuk mencegah infinite loop
+    const redirecting = sessionStorage.getItem('bandar_deterjen_redirecting');
+    if (redirecting) {
+        sessionStorage.removeItem('bandar_deterjen_redirecting');
     }
 })();
 
@@ -544,25 +550,20 @@ function chainSiblings(chain) {
 function urlWilayah(slugArr, produkSlug) {
     const segs = [MOD_WILAYAH].concat(slugArr || []);
     if (produkSlug) segs.push(produkSlug);
-    return BASE_PATH + '/' + segs.join('/');
+    return '/' + segs.join('/');
 }
 
 function urlProduk(produkSlug, slugArr) {
     const segs = [MOD_PRODUK, produkSlug].concat(slugArr || []);
-    return BASE_PATH + '/' + segs.join('/');
+    return '/' + segs.join('/');
 }
 
 // ============ PATH PARSERS ============
 function getPathSegments() {
     const path = window.location.pathname;
-    // Jika ada base path, remove dari awal
-    let cleanPath = path;
-    if (BASE_PATH && path.startsWith(BASE_PATH)) {
-        cleanPath = path.substring(BASE_PATH.length);
-    }
     // Remove leading and trailing slashes
-    cleanPath = cleanPath.replace(/^\/|\/$/g, '');
-    if (!cleanPath) return [];
+    const cleanPath = path.replace(/^\/|\/$/g, '');
+    if (!cleanPath || cleanPath === 'index.html') return [];
     return cleanPath.split('/').filter(Boolean);
 }
 
@@ -645,7 +646,7 @@ function parseProdukSegments(segs) {
 
 // ============ NAVIGATION FUNCTIONS ============
 function navigate(path) {
-    const target = path ? BASE_PATH + path : BASE_PATH + '/';
+    const target = path ? path : '/';
     if (window.location.pathname === target) {
         renderRoute();
         return;
@@ -672,8 +673,8 @@ function toggleMobileNav() { document.getElementById('mobile-nav').classList.tog
 window.addEventListener('popstate', renderRoute);
 
 async function renderRoute() {
-    // Hapus flag redirecting jika ada
-    sessionStorage.removeItem('albandar_redirecting');
+    // Hapus flag redirecting
+    sessionStorage.removeItem('bandar_deterjen_redirecting');
     
     await Promise.all([loadWilayah(), loadProduk()]);
     const segs = getPathSegments();
@@ -938,7 +939,7 @@ function renderHomeView() {
     if (punyaKonteks) {
         const produkCtx = ctxProdukSlug ? findProduk(ctxProdukSlug) : null;
         const wilayahCtxAda = chainHasAny(ctxWilayahChain);
-        let lanjutPath = BASE_PATH + '/';
+        let lanjutPath = '/';
         let teks = 'Lanjutkan pencarian Anda';
         if (produkCtx && wilayahCtxAda) { lanjutPath = urlProduk(produkCtx.slug, chainSlugs(ctxWilayahChain)); teks = `Lanjutkan melihat <strong>${produkCtx.nama}</strong> untuk <strong>${deepestName(ctxWilayahChain)}</strong>`; }
         else if (produkCtx) { lanjutPath = urlProduk(produkCtx.slug); teks = `Lanjutkan melihat <strong>${produkCtx.nama}</strong>`; }
