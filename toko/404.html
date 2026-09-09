@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>404 - Halaman Tidak Ditemukan | Albandar Detergent</title>
     <meta name="robots" content="noindex, follow" />
+    <base href="/toko/" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -106,7 +107,7 @@
         <h1>Halaman Tidak Ditemukan</h1>
         <p>Maaf, halaman yang Anda cari tidak tersedia.<br>Silakan kembali ke beranda atau gunakan menu navigasi.</p>
         <div class="path-info" id="path-display">Memuat...</div>
-        <a href="/" class="btn-home" id="home-link">
+        <a href="/toko/" class="btn-home" id="home-link">
             🏠 Kembali ke Beranda
         </a>
         <div class="loading-redirect" id="redirect-info">
@@ -127,7 +128,7 @@
             }
 
             // Simpan path ke sessionStorage agar index.html bisa merender konten yang sesuai
-            if (requestedPath && requestedPath !== '/' && requestedPath !== '/index.html') {
+            if (requestedPath && requestedPath !== '/' && requestedPath !== '/index.html' && requestedPath !== '/toko/') {
                 try {
                     sessionStorage.setItem('albandar_redirect', requestedPath);
                 } catch (e) {
@@ -138,12 +139,12 @@
             // Perbaiki link home
             var homeLink = document.getElementById('home-link');
             if (homeLink) {
-                homeLink.href = '/';
+                homeLink.href = '/toko/';
             }
 
-            // Redirect ke index.html dengan path yang sama setelah delay
+            // Redirect ke /toko/index.html dengan path yang sama setelah delay
             setTimeout(function() {
-                var redirectTarget = '/index.html' + window.location.pathname + window.location.search;
+                var redirectTarget = '/toko/index.html' + window.location.pathname + window.location.search;
                 window.location.replace(redirectTarget);
             }, 1000);
         })();
