@@ -236,9 +236,10 @@ const CSV_URLS = {
     const redirectPath = sessionStorage.getItem('albandar_redirect');
     if (redirectPath) {
         sessionStorage.removeItem('albandar_redirect');
-        // Jika path yang disimpan sama dengan path saat ini, kita render route
-        if (window.location.pathname === redirectPath) {
-            return; // Biarkan renderRoute yang menangani
+        // Jika path yang disimpan berbeda dengan path saat ini, redirect ke path tersebut
+        if (redirectPath !== window.location.pathname) {
+            // Gunakan replace agar tidak menambah history
+            window.history.replaceState(null, '', redirectPath);
         }
     }
 })();
@@ -553,8 +554,11 @@ function urlProduk(produkSlug, slugArr) {
 // ============ PATH PARSERS ============
 function getPathSegments() {
     const path = window.location.pathname;
-    if (path === '/' || path === '') return [];
-    return path.split('/').filter(Boolean);
+    if (path === '/' || path === '' || path === '/index.html') return [];
+    // Hapus leading dan trailing slash
+    const cleanPath = path.replace(/^\/|\/$/g, '');
+    if (!cleanPath) return [];
+    return cleanPath.split('/').filter(Boolean);
 }
 
 function parseWilayahSegments(segs) {
@@ -637,7 +641,6 @@ function parseProdukSegments(segs) {
 // ============ NAVIGATION FUNCTIONS ============
 function navigate(path) {
     const target = path ? path : '/';
-    // Cek apakah kita sedang di path yang sama
     if (window.location.pathname === target) {
         renderRoute();
         return;
@@ -666,24 +669,36 @@ window.addEventListener('popstate', renderRoute);
 async function renderRoute() {
     await Promise.all([loadWilayah(), loadProduk()]);
     const segs = getPathSegments();
+    
     if (segs.length === 0) {
         updateSEO(null, null);
         renderHomeView();
         return;
     }
+    
     const modul = segs[0];
+    
+    // Handle produk routes: /produk/slug-produk/...
     if (modul === MOD_PRODUK && segs[1]) {
         const r = parseProdukSegments(segs.slice(1));
-        if (r.error) { render404(); return; }
+        if (r.error) { 
+            render404(); 
+            return; 
+        }
         ctxProdukSlug = r.produk.slug;
         if (chainHasAny(r.chain)) ctxWilayahChain = r.chain;
         updateSEO(r.produk, r.chain);
         renderProdukDetailView(r.produk, r.chain);
         return;
     }
+    
+    // Handle wilayah routes: /wilayah/...
     if (modul === MOD_WILAYAH && segs[1]) {
         const r = parseWilayahSegments(segs.slice(1));
-        if (r.error) { render404(); return; }
+        if (r.error) { 
+            render404(); 
+            return; 
+        }
         if (chainHasAny(r.chain)) ctxWilayahChain = r.chain;
         const produkAktif = r.produkSlug ? findProduk(r.produkSlug) : null;
         if (produkAktif) ctxProdukSlug = produkAktif.slug;
@@ -691,6 +706,7 @@ async function renderRoute() {
         renderWilayahDetailView(r.chain, produkAktif);
         return;
     }
+    
     render404();
 }
 
@@ -1299,6 +1315,7 @@ function render404() {
         <div class="max-w-2xl mx-auto px-4 py-24 text-center">
             <h2 class="text-2xl font-extrabold text-royal-900 mb-3">Halaman Tidak Ditemukan</h2>
             <p class="text-sm text-slate-600 mb-6">Produk atau wilayah yang Anda cari tidak tersedia atau formatnya tidak dikenali.</p>
+            <p class="text-xs text-slate-400 mb-4">Path: ${window.location.pathname}</p>
             <a href="/" onclick="navigate(''); return false;" class="inline-block bg-royal-600 hover:bg-royal-700 text-white font-bold px-6 py-3 rounded-xl transition">Kembali ke Beranda</a>
         </div>`;
 }
