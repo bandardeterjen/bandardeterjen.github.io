@@ -112,14 +112,13 @@
         <div class="loading-redirect" id="redirect-info">
             <span class="spinner"></span> Mengalihkan ke halaman yang sesuai...
         </div>
-        <div class="brand">ALBANDAR<span>DETERGENT</span></div>
+        <div class="brand">BANDAR<span>DETERJEN</span></div>
     </div>
 
     <script>
         (function() {
             // Cek apakah ini adalah redirect loop
-            if (sessionStorage.getItem('albandar_redirecting')) {
-                // Jika sudah redirecting, berhenti untuk mencegah infinite loop
+            if (sessionStorage.getItem('bandar_deterjen_redirecting')) {
                 document.getElementById('redirect-info').innerHTML = 'Gagal mengalihkan. Silakan klik tombol di atas.';
                 return;
             }
@@ -133,30 +132,36 @@
                 pathDisplay.textContent = 'Path: ' + requestedPath;
             }
 
-            // Hanya redirect jika path bukan root dan bukan index.html
-            if (requestedPath && requestedPath !== '/' && 
-                requestedPath !== '/index.html' && 
-                !requestedPath.startsWith('/toko/')) {
-                
+            // Hanya redirect jika path bukan root, index.html, atau 404.html
+            var shouldRedirect = requestedPath && 
+                requestedPath !== '/' && 
+                requestedPath !== '/index.html' &&
+                requestedPath !== '/404.html' &&
+                !requestedPath.includes('favicon.ico') &&
+                !requestedPath.includes('robots.txt') &&
+                !requestedPath.match(/\.(css|js|jpg|jpeg|png|gif|svg|ico|webp)$/i);
+
+            if (shouldRedirect) {
                 try {
                     // Set flag untuk mencegah infinite loop
-                    sessionStorage.setItem('albandar_redirecting', 'true');
-                    sessionStorage.setItem('albandar_redirect', requestedPath);
+                    sessionStorage.setItem('bandar_deterjen_redirecting', 'true');
+                    sessionStorage.setItem('bandar_deterjen_route', requestedPath);
                     
-                    // Redirect ke index.html dengan path yang sama
+                    // Redirect ke index.html
                     setTimeout(function() {
-                        var redirectTarget = '/index.html' + window.location.pathname + window.location.search;
-                        window.location.replace(redirectTarget);
-                    }, 1000);
+                        window.location.replace('/index.html' + requestedPath);
+                    }, 800);
                 } catch (e) {
                     // Jika sessionStorage error, tetap coba redirect
                     setTimeout(function() {
-                        window.location.replace('/index.html' + window.location.pathname + window.location.search);
-                    }, 1000);
+                        window.location.replace('/index.html' + requestedPath);
+                    }, 800);
                 }
             } else {
-                // Jika path adalah root atau /toko/, tidak perlu redirect
+                // Jika path adalah root atau static file, tidak perlu redirect
                 document.getElementById('redirect-info').innerHTML = 'Halaman tidak ditemukan.';
+                var spinner = document.querySelector('.spinner');
+                if (spinner) spinner.style.display = 'none';
             }
         })();
     </script>
