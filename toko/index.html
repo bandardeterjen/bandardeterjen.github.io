@@ -193,7 +193,7 @@
     /* ==========================================================================
        2. DATA PRODUK - dimuat dinamis dari CSV eksternal (ratusan item)
        ========================================================================== */
-    const CSV_URL_PRODUK = "https://raw.githubusercontent.com/bandardeterjen/bandardeterjen.github.io/refs/heads/main/toko/daftarproduk.csv?token=GHSAT0AAAAAAEINQXJOEWSR33LAJNT2HIMI2VBCRUA";
+    const CSV_URL_PRODUK = "https://raw.githubusercontent.com/bandardeterjen/bandardeterjen.github.io/refs/heads/main/toko/daftarproduk.csv";
     const PRODUK = { items: [], loaded: false };
 
     function findProduk(slug) { return PRODUK.items.find(p => p.slug === slug) || null; }
