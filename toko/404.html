@@ -59,9 +59,6 @@
         .btn-home:hover {
             background: #1d4ed8;
         }
-        .btn-home i {
-            margin-right: 8px;
-        }
         .brand {
             font-weight: 800;
             color: #1e3a8a;
@@ -91,6 +88,16 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        .path-info {
+            font-size: 12px;
+            color: #94a3b8;
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            word-break: break-all;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
@@ -98,8 +105,9 @@
         <span class="error-icon">🔍</span>
         <h1>Halaman Tidak Ditemukan</h1>
         <p>Maaf, halaman yang Anda cari tidak tersedia.<br>Silakan kembali ke beranda atau gunakan menu navigasi.</p>
+        <div class="path-info" id="path-display">Memuat...</div>
         <a href="/" class="btn-home" id="home-link">
-            <span id="home-icon">🏠</span> Kembali ke Beranda
+            🏠 Kembali ke Beranda
         </a>
         <div class="loading-redirect" id="redirect-info">
             <span class="spinner"></span> Mengalihkan ke halaman yang sesuai...
@@ -109,9 +117,17 @@
 
     <script>
         (function() {
-            // Simpan path yang diminta ke sessionStorage agar index.html bisa merender konten yang sesuai
+            // Ambil path yang diminta
             var requestedPath = window.location.pathname + window.location.search;
-            if (requestedPath && requestedPath !== '/') {
+            
+            // Tampilkan path di halaman
+            var pathDisplay = document.getElementById('path-display');
+            if (pathDisplay) {
+                pathDisplay.textContent = 'Path: ' + requestedPath;
+            }
+
+            // Simpan path ke sessionStorage agar index.html bisa merender konten yang sesuai
+            if (requestedPath && requestedPath !== '/' && requestedPath !== '/index.html') {
                 try {
                     sessionStorage.setItem('albandar_redirect', requestedPath);
                 } catch (e) {
@@ -119,23 +135,17 @@
                 }
             }
 
-            // Perbaiki link home agar menggunakan path root
+            // Perbaiki link home
             var homeLink = document.getElementById('home-link');
             if (homeLink) {
                 homeLink.href = '/';
             }
 
-            // Tampilkan pesan redirect
-            var redirectInfo = document.getElementById('redirect-info');
-            if (redirectInfo) {
-                redirectInfo.innerHTML = '<span class="spinner"></span> Mengalihkan ke halaman yang sesuai...';
-            }
-
-            // Redirect ke index.html dengan path yang sama
-            var redirectTarget = '/index.html' + window.location.pathname + window.location.search;
+            // Redirect ke index.html dengan path yang sama setelah delay
             setTimeout(function() {
+                var redirectTarget = '/index.html' + window.location.pathname + window.location.search;
                 window.location.replace(redirectTarget);
-            }, 1500);
+            }, 1000);
         })();
     </script>
 </body>
