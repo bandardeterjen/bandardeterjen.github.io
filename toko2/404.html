@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mengalihkan... - Albandar Detergent</title>
+  <meta name="robots" content="noindex">
+  <!--
+    GitHub Pages tidak mendukung server-side rewrite untuk Single Page
+    Application. Saat pengguna me-refresh atau membuka langsung sebuah
+    deep-link clean path (mis. /produk/sabun-x/jawa-barat), GitHub Pages
+    tidak menemukan file/folder fisik tersebut lalu menyajikan 404.html ini.
+
+    Solusi: simpan path yang diminta (path + query + hash) ke sessionStorage,
+    lalu redirect ke root (index.html). Skrip di index.html akan membaca
+    sessionStorage tersebut dan mengembalikan URL asli via
+    history.replaceState() sebelum routing dijalankan, sehingga pengguna
+    tetap mendarat di halaman yang benar tanpa terlihat berpindah.
+  -->
+  <script>
+    sessionStorage.setItem(
+      'spa-redirect-path',
+      window.location.pathname + window.location.search + window.location.hash
+    );
+    window.location.replace(window.location.origin + '/');
+  </script>
+</head>
+<body>
+  <p>Mengalihkan ke halaman yang benar...</p>
+  <noscript>
+    <p>JavaScript diperlukan untuk mengalihkan Anda secara otomatis. Silakan
+      <a href="/">klik di sini untuk kembali ke Beranda</a>.</p>
+  </noscript>
+</body>
+</html>
