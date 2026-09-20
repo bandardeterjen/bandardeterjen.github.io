@@ -30,7 +30,7 @@ Follow media sosial fb, ig tw @bandardeterjen
 Mengisi formulir identitas masjid dan penerima.
 Gratis hanya isi saja sebanyak 600 ml atau 1 liter.
 Botol dan ongkos kirim dan bea penanganan ditanggung pihak penerima.
-Berlaku akhir tahun 2022
+Berlaku akhir tahun ini
 Program bisa diberhentikan sewaktu-waktu tanpa pemberitahuan terlebih dahulu.
 Silahkan konfirmasi melalui hanya whatsapp 085773009666 untuk mengikuti program peduli masjid. Tebarkan kebaikan untuk sesama muslim.
 
