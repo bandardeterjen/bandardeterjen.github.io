@@ -54,62 +54,53 @@ title: Beranda
     </div>
 
     {% if paginator.total_pages > 1 %}
-    <nav class="pagination" aria-label="Navigasi halaman">
-      {% assign cur = paginator.page %}
-      {% assign total = paginator.total_pages %}
-      {% assign last_url = site.paginate_path | replace: ':num', total %}
+<nav class="pagination" aria-label="Navigasi halaman">
+  {% assign cur = paginator.page %}
+  {% assign total = paginator.total_pages %}
+  {% assign last_url = site.paginate_path | replace: ':num', total %}
 
-      {# First #}
-      {% if cur == 1 %}
-        <span class="disabled" aria-disabled="true"><i class="fa-solid fa-angles-left"></i></span>
+  {% if cur == 1 %}
+    <span class="disabled">&laquo;</span>
+  {% else %}
+    <a href="{{ '/' | relative_url }}" aria-label="Halaman pertama">&laquo;</a>
+  {% endif %}
+
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}" aria-label="Halaman sebelumnya">&lsaquo;</a>
+  {% else %}
+    <span class="disabled">&lsaquo;</span>
+  {% endif %}
+
+  {% for page_num in (1..total) %}
+    {% assign diff = page_num | minus: cur | abs %}
+    {% if page_num == 1 or page_num == total or diff <= 1 %}
+      {% if page_num == cur %}
+        <span class="current">{{ page_num }}</span>
+      {% elsif page_num == 1 %}
+        <a href="{{ '/' | relative_url }}">{{ page_num }}</a>
+      {% elsif page_num == total %}
+        <a href="{{ last_url | relative_url }}">{{ page_num }}</a>
       {% else %}
-        <a href="{{ '/' | relative_url }}" aria-label="Halaman pertama"><i class="fa-solid fa-angles-left"></i></a>
+        <a href="{{ site.paginate_path | replace: ':num', page_num | relative_url }}">{{ page_num }}</a>
       {% endif %}
-
-      {# Previous #}
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}" aria-label="Sebelumnya"><i class="fa-solid fa-angle-left"></i></a>
-      {% else %}
-        <span class="disabled" aria-disabled="true"><i class="fa-solid fa-angle-left"></i></span>
-      {% endif %}
-
-      {# Numbers #}
-      {% for page_num in (1..total) %}
-        {% assign diff = page_num | minus: cur | abs %}
-        {% if page_num == 1 or page_num == total or diff <= 1 %}
-          {% if page_num == cur %}
-            <span class="current page-num {% if page_num == 1 %}first{% endif %} {% if page_num == total %}last{% endif %}">{{ page_num }}</span>
-          {% elsif page_num == 1 %}
-            <a class="page-num first" href="{{ '/' | relative_url }}">{{ page_num }}</a>
-          {% elsif page_num == total %}
-            <a class="page-num last" href="{{ last_url | relative_url }}">{{ page_num }}</a>
-          {% else %}
-            <a class="page-num" href="{{ site.paginate_path | replace: ':num', page_num | relative_url }}">{{ page_num }}</a>
-          {% endif %}
-        {% elsif diff == 2 %}
-          <span class="ellipsis">…</span>
-        {% endif %}
-      {% endfor %}
-
-      {# Next #}
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" aria-label="Selanjutnya"><i class="fa-solid fa-angle-right"></i></a>
-      {% else %}
-        <span class="disabled" aria-disabled="true"><i class="fa-solid fa-angle-right"></i></span>
-      {% endif %}
-
-      {# Last #}
-      {% if cur == total %}
-        <span class="disabled" aria-disabled="true"><i class="fa-solid fa-angles-right"></i></span>
-      {% else %}
-        <a href="{{ last_url | relative_url }}" aria-label="Halaman terakhir"><i class="fa-solid fa-angles-right"></i></a>
-      {% endif %}
-    </nav>
-
-    <p style="text-align:center;color:var(--text-muted);font-size:0.85rem;margin-top:16px;">
-      Halaman {{ paginator.page }} dari {{ paginator.total_pages }} — Total {{ paginator.total_posts }} artikel
-    </p>
+    {% elsif diff == 2 %}
+      <span class="ellipsis">…</span>
     {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}" aria-label="Halaman selanjutnya">&rsaquo;</a>
+  {% else %}
+    <span class="disabled">&rsaquo;</span>
+  {% endif %}
+
+  {% if cur == total %}
+    <span class="disabled">&raquo;</span>
+  {% else %}
+    <a href="{{ last_url | relative_url }}" aria-label="Halaman terakhir">&raquo;</a>
+  {% endif %}
+</nav>
+{% endif %}
 
   {% else %}
     <div class="empty-state">
