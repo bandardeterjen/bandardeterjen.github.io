@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Pelatihan Sabun di Bogor"
-date: 2026-09-20 08:15:00 +0700
+date: 2026-09-20 06:15:00 +0700
 categories: [Kursus]
 tags: [sabun, kursus, bogor]
 author: Wahyudi
