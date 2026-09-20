@@ -1,16 +1,22 @@
+# ============================================
+# Blogjak Theme Versi 3.0 — Konfigurasi Jekyll
+# ============================================
+
 title: "Bandar Deterjen"
 tagline: "Sahabat Usaha Anda"
-description: "Sedia peralatan dan perlengkapan laundry terutama deterjen, parfum laundry, serta pelatihan sabun."
+description: "Sedia peralatan dan perlengkapan laundry seperti deterjen, parfum laundry serta penyelenggara kursus sabun."
 author: "Wahyudi"
-email: "bandardeterjen@gmail.com"
+email: "bandardeterjen.id@gmail.com"
+version: "3.0.0"
 
-# ====== PENTING: URL & BASEURL ======
+# ====== URL & BASEURL ======
 url: "https://bandardeterjen.github.io"
 baseurl: ""
 
-# ---------- Build Settings ----------
+# ====== Build Settings ======
 markdown: kramdown
 highlighter: rouge
+# PERUBAHAN v3.0: permalink tanpa tanggal & tag
 permalink: /:categories/:title/
 timezone: Asia/Jakarta
 
@@ -19,11 +25,11 @@ kramdown:
   syntax_highlighter: rouge
   hard_wrap: false
 
-# ---------- Pagination ----------
+# ====== Pagination ======
 paginate: 6
 paginate_path: "/page/:num/"
 
-# ---------- Plugins ----------
+# ====== Plugins ======
 plugins:
   - jekyll-paginate
   - jekyll-feed
@@ -31,44 +37,36 @@ plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
 
-# ---------- SEO Defaults ----------
+# ====== Language & SEO ======
 lang: id_ID
-logo: "https://raw.githubusercontent.com/bandardeterjen/index.html/refs/heads/images/apple-touch-icon.png"
+logo: "/assets/images/logo.png"
 
 twitter:
-  username: bandardeterjen
+  username: blogjak
   card: summary_large_image
 
 social:
   name: Bandar Deterjen
-  facebook: "https://facebook.com/bandardeterjen"
-  instagram: "https://instagram.com/bandardeterjen"
-  youtube: "https://youtube.com/bandardeterjen"
-  linkedin: ""
-  tiktok: ""
-  telegram: "https://t.me/bandardeterjen"
-  whatsapp: "https://wa.me/bandardeterjen"
-  pinterest: ""
-  reddit: ""
-  discord: ""
-  medium: ""
-  devto: ""
-  rss: "/feed.xml"                            # otomatis dari jekyll-feed
+  links:
+    - https://twitter.com/bandardeterjen
 
-# ---------- Search ----------
+# ====== Search Engine Verification ======
+google_site_verification: ""
+bing_site_verification: ""
+yandex_site_verification: ""
+
+# ====== Search ======
 search:
   enabled: true
   placeholder: "Cari artikel..."
   max_results: 10
-  excerpt_length: 150
 
-# ---------- Related Posts ----------
+# ====== Related Posts ======
 related:
   enabled: true
   count: 3
-  strategy: categories   # options: categories, tags, both
 
-# ---------- Defaults ----------
+# ====== Defaults ======
 defaults:
   - scope:
       path: ""
@@ -82,7 +80,26 @@ defaults:
     values:
       layout: "default"
 
-# ---------- Exclude ----------
+# ====== Social Links (footer) ======
+# PERUBAHAN v3.0: pindah dari `social:` ke `social_links:`
+# Kosongkan ("") untuk menyembunyikan ikon
+social_links:
+  github: ""
+  twitter: "https://twitter.com/bandardeterjen"
+  facebook: "https://facebook.com/bandardeterjen"
+  instagram: "https://instagram.com/bandardeterjen"
+  youtube: "https://youtube.com/bandardeterjen"
+  linkedin: ""
+  tiktok: ""
+  telegram: "https://t.me/bandardeterjen"
+  whatsapp: "https://wa.me/bandardeterjen"
+  pinterest: ""
+  reddit: ""
+  discord: ""
+  medium: ""
+  devto: ""
+
+# ====== Exclude ======
 exclude:
   - Gemfile
   - Gemfile.lock
