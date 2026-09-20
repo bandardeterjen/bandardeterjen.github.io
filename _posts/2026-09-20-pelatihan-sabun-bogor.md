@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Kursus Pelatihan Sabun di Bogor"
+title: "Pelatihan Sabun di Bogor"
 date: 2026-09-20 08:15:00 +0700
-categories: [kursus]
+categories: [Kursus]
 tags: [sabun, kursus, bogor]
 author: Wahyudi
 gallery_image: [https://www.bandardeterjen.com/wp-content/uploads/2023/06/bd-kursus-sabun-bogor-1024x576.jpg]
