@@ -5,8 +5,8 @@ date: 2026-09-20 06:15:00 +0700
 categories: [Kursus]
 tags: [sabun, kursus, bogor]
 author: Wahyudi
-gallery_image: "https://www.bandardeterjen.com/wp-content/uploads/2023/06/bd-kursus-sabun-bogor-1024x576.jpg"
-excerpt: "Ikuti kursus sabun bersama Pak Bandar praktek langsung di tempat yang diselenggarakan secara privat maupun kelompok baik offline maupun online. Ada bonus 100 lebih resep kimia industry yang akan saya berikan gratis dan bisa dipelajari serta praktekan di rumah.."
+image: "https://www.bandardeterjen.com/wp-content/uploads/2023/06/bd-kursus-sabun-bogor-1024x576.jpg"
+description: "Ikuti kursus sabun bersama Pak Bandar praktek langsung di tempat yang diselenggarakan secara privat maupun kelompok baik offline maupun online. Ada bonus 100 lebih resep kimia industry yang akan saya berikan gratis dan bisa dipelajari serta praktekan di rumah.."
 ---
 
 Lagi mencari peluang usaha yang bisa dikerjakan di rumah? Ikuti kursus sabun bersama Pak Bandar praktek langsung di tempat yang diselenggarakan secara privat maupun kelompok baik offline maupun online. Ada bonus 100 lebih resep kimia industry yang akan saya berikan gratis dan bisa dipelajari serta praktekan di rumah.
