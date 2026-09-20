@@ -4,7 +4,7 @@ title: "Apa Saja Fungsi Manfaat dan Bahaya Metanol?"
 description: "Metanol atau methanol adalah senyawa kimia dengan rumus kimia CH3OH. Ini adalah cairan bening, mudah terbakar, dan memiliki berbagai fungsi dan manfaat dalam berbagai industri dan aplikasi"
 date: 2026-09-20 09:08:00 +0700
 categories: [Info]
-tags: [metanol. methanol]
+tags: [metanol, methanol]
 author: Wahyudi
 image: "https://www.bandardeterjen.com/wp-content/uploads/2023/10/bd-metanol-1drum-1024x1024.jpg"
 ---
