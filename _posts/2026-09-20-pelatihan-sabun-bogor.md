@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Pelatihan Sabun di Bogor"
+title: "085773009666 Pelatihan Sabun di Bogor"
 date: 2026-09-20 06:15:00 +0700
 categories: [Kursus]
 tags: [sabun, kursus, bogor]
