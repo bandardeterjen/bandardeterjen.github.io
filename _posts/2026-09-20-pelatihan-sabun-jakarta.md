@@ -14,10 +14,15 @@ Pelatihan kelas privat online dan offline cara membuat sabun praktek langsung de
 Anda bisa berpeluang sukses menjual ratusan produk yang akan membawa pundi-pundi ke kantong milik Anda. Kalau Anda meginginkan peluang usaha yang bisa dikerjakan di rumah dengan produk tidak ada basi, boleh mengikuti program kursus sabun di Jakarta karena:
 
 . Online dan Offline. Kursus diselenggarakan bisa melalui online atau ketemuan langsung (offline).
+
 . Kelas Privat. Kursus ini terbatas untuk 1 orang dengan 1 mentor.
+
 . Bahan Disediakan . Bahan untuk praktek kami sediakan dan hasilnya bisa dibawa pulang.
+
 . Cashback 150K . Ada cashback yakni hasil praktek yang senilai +-150K
+
 . Bonus 100++ Resep. Anda akan dapatkan bonus 100 lebih resep yang terdiri dari skincare, laundrycare, homecare, dan autocare.
+
 . Konsultasi Via Whatsapp. Kalau ada kendala bisa ditanyakan langsung melalui aplikasi perpesanan Whatsapp.
 
 Sudah banyak peserta yang mengikuti dan merasakan manfaat mengikuti kursus sabun ini dengan datang dan praktek langsung ke workhouse untuk mengikuti pelatihan sabun cuci piring, sabun cuci pakaian (deterjen laundry), parfum laundry sampai membuat bahan pembusa sendiri. Anda sekarang sudah bisa membuat produk sendiri dengan bahan yang mudah dijumpai di toko kimia terdekat.
