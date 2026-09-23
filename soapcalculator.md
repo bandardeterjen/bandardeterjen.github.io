@@ -1,3 +1,22 @@
+---
+layout: default
+title: "Soap Calculator"
+description: "Kalkulator resep sabun berbasis web."
+permalink: /soapcalculator/
+---
+
+<div class="container">
+  <article class="page-content">
+
+    <header class="post-header">
+      <h1 class="post-title">Soap Calculator (Multiple Oils)</h1>
+      <p class="post-description">
+        Kenali lebih dekat Wahyudi sang penulis dan developer situs ini.Kalkulator resep sabun berbasis web
+      </p>
+    </header>
+
+    <div class="post-content">
+
 # Soap Calculator
 
 Dokumentasi sumber untuk **Soap Calculator (Multiple Oils)** berdasarkan file HTML terlampir.
@@ -233,6 +252,17 @@ tampilkan hasil
 
 Dokumen ini merupakan ekstraksi dan penyusunan ulang isi file HTML sumber. Rumus, faktor konversi, nilai SAP, jenis sabun, serta persentase parfum dipertahankan sebagaimana terdapat pada sumber dan tidak divalidasi atau dikoreksi terhadap referensi formulasi eksternal.
 
-Sumber HTML mendefinisikan judul sebagai **“Soap Calculator (Multiple Oils)”** dan menyediakan input minyak serta berat dalam gram. fileciteturn0file0L69-L85
+Sumber HTML mendefinisikan judul sebagai **“Soap Calculator (Multiple Oils)”** dan menyediakan input minyak serta berat dalam gram. fileciteturn0file0L69-L85
+
+ </div>
+
+    <div class="back-home">
+      <a href="{{ '/' | relative_url }}" class="btn btn-primary">
+        <i class="fa-solid fa-house"></i> Kembali ke Beranda
+      </a>
+    </div>
+
+  </article>
+</div>
 
 Logika perhitungan sumber menggunakan SAP untuk menghitung NaOH, faktor `1.403` untuk KOH, rasio air `2.5` untuk NaOH dan `2.0` untuk KOH, serta parfum default 3% untuk sabun batang dan 1.5% untuk sabun cair. fileciteturn0file0L213-L245
