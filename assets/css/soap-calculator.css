@@ -1,0 +1,235 @@
+/* ============================================
+   SOAP CALCULATOR — Scoped Styles
+   Semua rule di-scope .soap-calc-page
+   ============================================ */
+
+.soap-calc-page {
+  padding: 32px 0 48px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.soap-calc-page .soap-label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.soap-calc-page .soap-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.soap-calc-page .soap-checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  accent-color: var(--accent);
+  transform: scale(1.15);
+}
+
+.soap-calc-page .soap-input,
+.soap-calc-page .soap-select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 4px;
+  border-radius: var(--radius-sm, 8px);
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.soap-calc-page .soap-input:focus,
+.soap-calc-page .soap-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+.soap-calc-page .soap-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .soap-calc-page .soap-select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.soap-calc-page .soap-entry-block {
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 14px);
+  position: relative;
+  animation: soapFadeIn 0.3s ease;
+}
+
+@keyframes soapFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.soap-calc-page .soap-entry-block .soap-remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.soap-calc-page .soap-entry-block .soap-remove:hover {
+  background: #dc2626;
+  color: white;
+}
+
+.soap-calc-page .soap-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  margin-top: 16px;
+  border: none;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.soap-calc-page .soap-btn-primary {
+  background: linear-gradient(135deg, var(--royal-blue, #1e3a8a), var(--royal-blue-3, #3b5bdb));
+  color: white;
+  box-shadow: 0 6px 18px rgba(30, 58, 138, 0.3);
+}
+
+.soap-calc-page .soap-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(30, 58, 138, 0.45);
+}
+
+[data-theme="dark"] .soap-calc-page .soap-btn-primary {
+  background: linear-gradient(135deg, var(--orange, #f97316), var(--orange-2, #fb923c));
+  color: #0a0a0a;
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.35);
+}
+
+.soap-calc-page .soap-btn-secondary {
+  background: var(--bg-elev);
+  color: var(--text);
+  border: 1px dashed var(--border);
+}
+
+.soap-calc-page .soap-btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg-soft);
+}
+
+.soap-calc-page .soap-result {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 14px);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.7;
+  min-height: 40px;
+  transition: all 0.3s ease;
+}
+
+.soap-calc-page .soap-result:empty {
+  display: none;
+}
+
+.soap-calc-page .soap-result strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.soap-calc-page .soap-result .soap-result-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px dashed var(--border);
+  color: var(--accent);
+}
+
+.soap-calc-page .soap-result .soap-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.soap-calc-page .soap-result .soap-result-row:last-child {
+  border-bottom: none;
+}
+
+.soap-calc-page .soap-result .soap-result-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.soap-calc-page .soap-result .soap-result-value {
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.soap-calc-page .soap-result .soap-result-value.highlight {
+  color: var(--orange);
+}
+
+.soap-calc-page .soap-result .soap-error {
+  color: #dc2626;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .soap-calc-page {
+    padding: 24px 0 40px;
+  }
+  .soap-calc-page .soap-entry-block {
+    padding: 14px;
+  }
+}
