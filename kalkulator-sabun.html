@@ -1,0 +1,261 @@
+---
+layout: default
+title: "Kalkulator Sabun - Soap Calculator"
+description: "Kalkulator untuk sabun mandi batang dan sabun mandi cair."
+permalink: /kalkulator-sabun/
+---
+
+ <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #5c4d7d;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, button, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #5c4d7d;
+      color: white;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #483c64;
+    }
+    textarea {
+      height: 180px;
+      resize: none;
+      margin-top: 15px;
+    }
+    .entry-block {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 8px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f8f8;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+  </style>
+
+  <div class="container">
+    
+    <div id="oilInputs">
+      <div class="entry-block">
+        <label>Oil Type:</label>
+        <select class="oil">
+          <optgroup label="Oils Umum">
+            <option value="0.141" title="Minyak kelapa sawit - keras, busa sedang">Palm
+            <option value="0.190" title="Minyak kelapa murni - busa melimpah, membersihkan">Coconut (refined)
+            <option value="0.134" title="Minyak zaitun - lembut, lembab, sedikit busa">Olive Oil
+            <option value="0.134" title="Minyak bunga matahari - ringan dan lembut">Sunflower
+          </optgroup>
+          <optgroup label="Oils Lainnya">
+            <option value="0.136" title="Minyak almond manis - lembut dan pelembab">Almond (Sweet)
+            <option value="0.135" title="Minyak biji aprikot - lembut untuk kulit">Apricot kernel
+            <option value="0.136" title="Minyak kacang tanah">Arachis
+            <option value="0.133" title="Minyak alpukat - sangat lembab">Avocado
+            <option value="0.175" title="Babassu - mirip kelapa, busa tinggi">Babassu
+            <option value="0.1405" title="Lemak sapi - keras dan stabil">Beef Tallow
+            <option value="0.136" title="Minyak borage - kaya GLA, untuk kulit sensitif">Borage Oil
+            <!-- Continue other oils here in similar format -->
+          </optgroup>
+          <option value="0.141">Palm
+          <option value="0.190">Coconut (refined)
+          <option value="0.134">Olive Oil
+          <option value="0.134">Sunflower
+          <option value="0.141">Palm</option>
+          <option value="0.190">Coconut (refined)</option>
+          <option value="0.134">Olive Oil</option>
+          <option value="0.134">Sunflower</option>
+          <option value="0.136">Almond (Sweet)</option>
+          <option value="0.135">Apricot kernel</option>
+          <option value="0.136">Arachis</option>
+          <option value="0.133">Avocado</option>
+          <option value="0.175">Babassu</option>
+          <option value="0.1405">Beef Tallow</option>
+          <option value="0.136">Borage Oil</option>
+          <option value="0.175">Brazil Nut Oil</option>
+          <option value="0.1619">Butterfat (cow)</option>
+          <option value="0.1672">Butterfat (goat)</option>
+          <option value="0.136">Camelia oil</option>
+          <option value="0.1286">Castor</option>
+          <option value="0.1389">Chicken fat</option>
+          <option value="0.135">Chinese Bean</option>
+          <option value="0.137">Cocoa Butter</option>
+          <option value="0.190">Coconut (refined)</option>
+          <option value="0.1946">Coconut (virgin)</option>
+          <option value="0.1326">Cod Liver Oil</option>
+          <option value="0.130">Coffee Seed Oil</option>
+          <option value="0.124">Colza</option>
+          <option value="0.136">Corn (Maize)</option>
+          <option value="0.1386">Cottonseed</option>
+          <option value="0.1379">Deer Tallow</option>
+          <option value="0.136">Earthnut</option>
+          <option value="0.135">Emu oil</option>
+          <option value="0.136">Evening Primrose</option>
+          <option value="0.1357">Flaxseed</option>
+          <option value="0.133">Gigely Tree</option>
+          <option value="0.1383">Goat Tallow</option>
+          <option value="0.1369">Goose Fat</option>
+          <option value="0.1265">Grapeseed</option>
+          <option value="0.123">Grapefruit Seed Oil</option>
+          <option value="0.1356">Hazelnut</option>
+          <option value="0.1345">Hemp Seed</option>
+          <option value="0.136">Herring Oil</option>
+          <option value="0.136">Illippe Butter</option>
+          <option value="0.069">Jojoba</option>
+          <option value="0.137">Kapok</option>
+          <option value="0.136">Katchung</option>
+          <option value="0.134">Kokum Butter</option>
+          <option value="0.135">Kukui Nut</option>
+          <option value="0.138">Lard</option>
+          <option value="0.1357">Linseed</option>
+          <option value="0.134">Loccu</option>
+          <option value="0.139">Macadamia Nut</option>
+          <option value="0.135">Mango Butter</option>
+          <option value="0.140">Mink Oil</option>
+          <option value="0.136">Moringa</option>
+          <option value="0.1241">Mustard Seed Oil</option>
+          <option value="0.069">Myrtle oil</option>
+          <option value="0.1359">Neat’s Foot Oil</option>
+          <option value="0.1387">Neem</option>
+          <option value="0.1355">Niger Seed Oil</option>
+          <option value="0.116">Nutmeg Butter</option>
+          <option value="0.134">Olive Oil</option>
+          <option value="0.185">Olive Butter</option>
+          <option value="0.156">Palm Kernel</option>
+          <option value="0.141">Palm</option>
+          <option value="0.136">Peanut</option>
+          <option value="0.1369">Perilla</option>
+          <option value="0.135">Pistachio Oil</option>
+          <option value="0.1383">Poppy Seed Oil</option>
+          <option value="0.138">Pork Tallow</option>
+          <option value="0.1331">Pumpkin Seed</option>
+          <option value="0.124">Ramic</option>
+          <option value="0.124">Rape Seed (Canola)</option>
+          <option value="0.128">Rice Bran</option>
+          <option value="0.1286">Ricinus</option>
+          <option value="0.136">Safflower</option>
+          <option value="0.135">Sardine Oil</option>
+          <option value="0.133">Sesame Seed</option>
+          <option value="0.134">Sunflower</option>
+          <option value="0.128">Shea (Karite) Butter</option>
+          <option value="0.1383">Sheeps Tallow</option>
+          <option value="0.135">Soybean</option>
+          <option value="0.134">Sunflower</option>
+          <option value="0.1377">Tung</option>
+          <option value="0.136">Vegetable Shortening</option>
+          <option value="0.139">Venison Fat</option>
+          <option value="0.1353">Walnut</option>
+          <option value="0.131">Wheatgerm</option>
+          <option value="0.069">Beeswax</option>
+          <option value="0.069">Carnauba Wax</option>
+          <option value="0.0741">Lanolin</option>
+        </select>
+        <label>Weight (grams):</label>
+        <input type="number" class="oilWeight" placeholder="e.g. 200" />
+      </div>
+    </div>
+
+    <button onclick="addOilInput()">+ Add Another Oil</button>
+    <label>Jenis Sabun:</label>
+    <select id="soapType">
+      <option value="bar">Sabun Mandi Batang</option>
+      <option value="liquid">Sabun Mandi Cair</option>
+    </select>
+
+    <label><input type="checkbox" id="customFragrance"> Gunakan Persentase Parfum Kustom</label>
+    <input type="number" id="fragranceInput" placeholder="Masukkan % parfum (contoh: 3)" style="display:none;" />
+
+    <button onclick="calculateRecipe()">Hitung Resep</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function addOilInput() {
+      const oilInputs = document.getElementById("oilInputs");
+      const entry = document.querySelector(".entry-block");
+      const clone = entry.cloneNode(true);
+      clone.querySelector("input").value = "";
+      oilInputs.appendChild(clone);
+    }
+
+    function calculateRecipe() {
+      const useCustomFragrance = document.getElementById("customFragrance").checked;
+      const fragranceInput = parseFloat(document.getElementById("fragranceInput").value);
+      const soapType = document.getElementById("soapType").value;
+      const oils = document.querySelectorAll(".oil");
+      const weights = document.querySelectorAll(".oilWeight");
+      let totalLye = 0;
+      let totalKOH = 0;
+      let totalOil = 0;
+
+      for (let i = 0; i < oils.length; i++) {
+        const sapNaOH = parseFloat(oils[i].value);
+        const weight = parseFloat(weights[i].value);
+        if (!isNaN(weight) && weight > 0) {
+          totalLye += sapNaOH * weight;
+          totalKOH += (sapNaOH * weight) * 1.403;
+          totalOil += weight;
+        }
+      }
+
+      const fragrancePercent = useCustomFragrance && !isNaN(fragranceInput) ? fragranceInput / 100 : (soapType === "bar" ? 0.03 : 0.015);
+      const fragrance = totalOil * fragrancePercent;
+      let lyeLabel = "";
+      let lyeAmount = 0;
+      let water = 0;
+
+      if (soapType === "bar") {
+        lyeLabel = "NaOH (Lye)";
+        lyeAmount = totalLye;
+        water = totalLye * 2.5;
+      } else {
+        lyeLabel = "KOH (Kalium Hidroksida)";
+        lyeAmount = totalKOH;
+        water = totalKOH * 2.0; // lower water ratio for liquid
+      }
+
+      document.getElementById("result").innerHTML = `
+        <strong>Summary:</strong><br>
+        Total Oil: <strong>${totalOil.toFixed(2)} g</strong><br>
+        ${lyeLabel}: <strong>${lyeAmount.toFixed(2)} g</strong><br>
+        Required Water: <strong>${water.toFixed(2)} g</strong><br>
+        Required Fragrance: <strong>${fragrance.toFixed(2)} g</strong>
+      `;
+    }
+  document.getElementById("customFragrance").addEventListener("change", function() {
+      const input = document.getElementById("fragranceInput");
+      input.style.display = this.checked ? "block" : "none";
+    });
+  </script>
