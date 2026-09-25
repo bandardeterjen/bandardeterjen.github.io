@@ -1,0 +1,630 @@
+/* ============================================
+   LAUNDRY PAGE — Scoped Styles
+   Semua rule di-scope .laundry-*
+   Tidak akan bentrok dengan theme atau halaman lain
+   ============================================ */
+
+/* ---------- Base ---------- */
+.laundry-page {
+  padding: 0;
+}
+
+/* ---------- Buttons ---------- */
+.laundry-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.laundry-btn-primary {
+  background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-3));
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(30, 58, 138, 0.35);
+}
+
+.laundry-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(30, 58, 138, 0.5);
+  color: var(--white);
+}
+
+[data-theme="dark"] .laundry-btn-primary {
+  background: linear-gradient(135deg, var(--orange), var(--orange-2));
+  color: var(--black);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
+}
+
+.laundry-btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.laundry-btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.laundry-btn-whatsapp {
+  background: #25d366;
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+}
+
+.laundry-btn-whatsapp:hover {
+  background: #1ebe5d;
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+/* ---------- Section Header ---------- */
+.laundry-section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.laundry-section-header h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.laundry-section-header p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.laundry-see-all {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.laundry-hero {
+  padding: 64px 0 80px;
+  background: linear-gradient(180deg, var(--bg-soft), var(--bg));
+  overflow: hidden;
+}
+
+.laundry-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.laundry-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(30, 58, 138, 0.1);
+  color: var(--royal-blue);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+[data-theme="dark"] .laundry-badge {
+  background: rgba(249, 115, 22, 0.15);
+  color: var(--orange);
+}
+
+.laundry-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.laundry-title-accent {
+  background: linear-gradient(135deg, var(--royal-blue), var(--orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.laundry-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.laundry-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.laundry-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px dashed var(--border);
+}
+
+.laundry-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.laundry-stat strong {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.laundry-stat span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.laundry-hero-image {
+  position: relative;
+}
+
+.laundry-hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(30, 58, 138, 0.2);
+  margin-left: auto;
+  display: block;
+}
+
+/* ============================================
+   FEATURES
+   ============================================ */
+.laundry-features {
+  padding: 80px 0;
+}
+
+.laundry-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.laundry-feature-card {
+  padding: 32px 24px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow);
+}
+
+.laundry-feature-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.laundry-feature-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-3));
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+}
+
+[data-theme="dark"] .laundry-feature-icon {
+  background: linear-gradient(135deg, var(--orange), var(--orange-2));
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+}
+
+.laundry-feature-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.laundry-feature-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ============================================
+   KATEGORI
+   ============================================ */
+.laundry-categories {
+  padding: 80px 0;
+  background: var(--bg-soft);
+}
+
+.laundry-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.laundry-cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 32px 24px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.laundry-cat-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+  color: var(--text);
+}
+
+.laundry-cat-icon {
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-3));
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+  transition: transform 0.25s ease;
+}
+
+[data-theme="dark"] .laundry-cat-icon {
+  background: linear-gradient(135deg, var(--orange), var(--orange-2));
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+}
+
+.laundry-cat-card:hover .laundry-cat-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.laundry-cat-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.laundry-cat-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+.laundry-cat-arrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 4px;
+  transition: transform 0.25s ease;
+}
+
+.laundry-cat-card:hover .laundry-cat-arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   TAGS
+   ============================================ */
+.laundry-tags {
+  padding: 80px 0;
+}
+
+.laundry-tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.laundry-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 18px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  line-height: 1;
+}
+
+.laundry-tag:hover {
+  background: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
+}
+
+[data-theme="dark"] .laundry-tag:hover {
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+}
+
+.laundry-tag-lg {
+  font-size: 1.05rem;
+  padding: 12px 22px;
+  font-weight: 700;
+}
+
+.laundry-tag-hash {
+  color: var(--orange);
+  font-weight: 800;
+  margin-right: 2px;
+}
+
+.laundry-tag:hover .laundry-tag-hash {
+  color: var(--white);
+}
+
+/* ============================================
+   ARTIKEL TERBARU
+   ============================================ */
+.laundry-latest {
+  padding: 80px 0;
+  background: var(--bg-soft);
+}
+
+.laundry-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.laundry-blog-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.laundry-blog-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.laundry-blog-image {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+
+.laundry-blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.laundry-blog-card:hover .laundry-blog-image img {
+  transform: scale(1.06);
+}
+
+.laundry-blog-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: linear-gradient(135deg, var(--bg-soft), var(--bg-elev));
+}
+
+.laundry-blog-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.laundry-blog-cat {
+  align-self: flex-start;
+  padding: 4px 10px;
+  background: var(--orange);
+  color: var(--white);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.laundry-blog-body h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.laundry-blog-body h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.laundry-blog-body h3 a:hover {
+  color: var(--accent);
+}
+
+.laundry-blog-body p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.laundry-cta-section {
+  padding: 80px 0;
+}
+
+.laundry-cta-box {
+  padding: 64px 32px;
+  background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-3));
+  border-radius: 24px;
+  text-align: center;
+  color: var(--white);
+  box-shadow: 0 24px 60px rgba(30, 58, 138, 0.3);
+}
+
+[data-theme="dark"] .laundry-cta-box {
+  background: linear-gradient(135deg, var(--orange), var(--orange-2));
+  color: var(--black);
+  box-shadow: 0 24px 60px rgba(249, 115, 22, 0.3);
+}
+
+.laundry-cta-box h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: inherit;
+}
+
+.laundry-cta-box p {
+  font-size: 1.05rem;
+  margin-bottom: 28px;
+  opacity: 0.95;
+}
+
+.laundry-cta-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.laundry-cta-box .laundry-btn-primary {
+  background: var(--white);
+  color: var(--royal-blue);
+}
+
+.laundry-cta-box .laundry-btn-primary:hover {
+  background: var(--bg-soft);
+  color: var(--royal-blue);
+}
+
+[data-theme="dark"] .laundry-cta-box .laundry-btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .laundry-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .laundry-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .laundry-cta {
+    justify-content: center;
+  }
+
+  .laundry-stats {
+    justify-content: center;
+  }
+
+  .laundry-hero-image img {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .laundry-hero {
+    padding: 40px 0 56px;
+  }
+
+  .laundry-features,
+  .laundry-categories,
+  .laundry-tags,
+  .laundry-latest,
+  .laundry-cta-section {
+    padding: 56px 0;
+  }
+
+  .laundry-cta-box {
+    padding: 40px 20px;
+  }
+
+  .laundry-cta-actions .laundry-btn {
+    width: 100%;
+  }
+
+  .laundry-stats {
+    gap: 20px;
+  }
+
+  .laundry-tag-cloud {
+    gap: 8px;
+  }
+
+  .laundry-tag {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .laundry-tag-lg {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+}
