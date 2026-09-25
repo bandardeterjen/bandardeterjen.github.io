@@ -9,40 +9,40 @@
     if (!sendWaBtn) return;
 
     sendWaBtn.addEventListener('click', function() {
-      const via_url = location.href;
-      const browser = navigator.userAgent;
-      const d = new Date();
+      const viaUrl = location.href;
+      const browserInfo = navigator.userAgent;
+      const timeNow = new Date();
       
-      const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const textCity = document.getElementById('text-city');
-      const textProd = document.getElementById('text-prod');
-      const hdnmsgprod = document.getElementById('hdnmsgprod');
-      const hdnmsg = document.getElementById('hdnmsg');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const cityInput = document.getElementById('text-city');
+      const prodSelect = document.getElementById('text-prod');
+      const hdnMsgProd = document.getElementById('hdnmsgprod');
+      const hdnMsg = document.getElementById('hdnmsg');
       const mobileNumber = '6285773009666';
 
-      if (name.value.trim() === "") {
-        name.style.background = "lightpink";
-        name.style.border = "4px solid red";
-        alert('Tulis nama terlebih dahulu');
-        name.focus();
+      if (nameInput.value.trim() === "") {
+        nameInput.style.background = "lightpink";
+        nameInput.style.border = "2px solid red";
+        alert('Mohon tuliskan nama Anda terlebih dahulu.');
+        nameInput.focus();
         return false;
       }
 
-      // Reset styling if valid
-      name.style.background = "";
-      name.style.border = "";
+      nameInput.style.background = "";
+      nameInput.style.border = "";
 
-      let url = `https://wa.me/${mobileNumber}?text=` + 
-                "Nama: " + encodeURIComponent(name.value) + "%0a" + 
-                "Email: " + encodeURIComponent(email.value) + "%0a" + 
-                "Kota: " + encodeURIComponent(textCity.value) + "%0a" + 
-                encodeURIComponent(hdnmsgprod.value) + "%20" + encodeURIComponent(textProd.value) + "%0a%0a" + 
-                encodeURIComponent(hdnmsg.value) + "%0a%0a%0aDari: " + encodeURIComponent(via_url) + 
-                ' %0a%0aBrowser: ' + encodeURIComponent(browser) + 
-                '%0A%0APada: ' + encodeURIComponent(d);
+      let waMessage = `Nama: ${nameInput.value}%0a` + 
+                      `Email: ${emailInput.value}%0a` + 
+                      `Kota: ${cityInput.value}%0a` + 
+                      `${hdnMsgProd.value} ${prodSelect.value}%0a%0a` + 
+                      `${hdnMsg.value}%0a%0a` + 
+                      `Dari: ${viaUrl}%0a` + 
+                      `Browser: ${browserInfo}%0a` + 
+                      `Pada: ${timeNow}`;
 
-      window.open(url, '_blank').focus();
+      let waUrl = `https://wa.me/${mobileNumber}?text=` + encodeURIComponent(waMessage);
+      window.open(waUrl, '_blank').focus();
     });
   });
 })();
