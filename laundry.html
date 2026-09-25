@@ -1,157 +1,304 @@
 ---
 layout: default
-permalink: /laundry/
 title: Laundry
-description: 
+description: "Layanan laundry kiloan dengan antar jemput gratis. Cuci bersih, wangi, dan rapi."
+permalink: /laundry/
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}">
-<section class="landing-hero">
-  <div class="container landing-hero-inner">
-    <div class="landing-hero-content">
-      <span class="landing-badge">🧺 Laundry Terpercaya</span>
-      <h1 class="landing-title">
-        Cuci Bersih, <span class="landing-title-accent">Wangi & Rapi</span>
-      </h1>
-      <p class="landing-subtitle">
-        Layanan laundry kiloan dengan antar jemput gratis untuk area tertentu.
-        Selesai dalam 24 jam, harga terjangkau.
-      </p>
-      <div class="landing-cta">
-        <a href="{{ '/contact/' | relative_url }}" class="landing-btn landing-btn-primary">
-          Pesan Sekarang
-        </a>
-        <a href="{{ '/blog/' | relative_url }}" class="landing-btn landing-btn-secondary">
-          Baca Blog
-        </a>
-      </div>
-      <div class="landing-stats">
-        <div class="landing-stat">
-          <strong>500+</strong>
-          <span>Pelanggan Puas</span>
-        </div>
-        <div class="landing-stat">
-          <strong>24 Jam</strong>
-          <span>Selesai Cepat</span>
-        </div>
-        <div class="landing-stat">
-          <strong>100%</strong>
-          <span>Garansi Bersih</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="landing-hero-image">
-      <img src="https://picsum.photos/seed/laundry/800/800" alt="Ilustrasi laundry" loading="lazy">
-    </div>
-  </div>
-</section>
-<section class="landing-features">
-  <div class="container">
-    <header class="landing-section-header">
-      <h2>Kenapa Pilih Kami?</h2>
-      <p>Layanan yang membuat hidup Anda lebih mudah</p>
-    </header>
-
-    <div class="landing-features-grid">
-      <div class="landing-feature-card">
-        <div class="landing-feature-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <h3>Cepat</h3>
-        <p>Selesai dalam 24 jam untuk layanan reguler, 6 jam untuk express.</p>
-      </div>
-
-      <div class="landing-feature-card">
-        <div class="landing-feature-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-        </div>
-        <h3>Berkualitas</h3>
-        <p>Deterjen premium, pewangi tahan lama, dan proses higienis.</p>
-      </div>
-
-      <div class="landing-feature-card">
-        <div class="landing-feature-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="1" y="3" width="15" height="13"/>
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-            <circle cx="5.5" cy="18.5" r="2.5"/>
-            <circle cx="18.5" cy="18.5" r="2.5"/>
-          </svg>
-        </div>
-        <h3>Antar Jemput</h3>
-        <p>Gratis untuk area dalam radius 5 km dari lokasi kami.</p>
-      </div>
-
-      <div class="landing-feature-card">
-        <div class="landing-feature-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="1" x2="12" y2="23"/>
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-          </svg>
-        </div>
-        <h3>Harga Terjangkau</h3>
-        <p>Mulai dari Rp 5.000/kg. Tidak ada biaya tersembunyi.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="landing-latest">
-  <div class="container">
-    <header class="landing-section-header">
-      <h2>Artikel Terbaru</h2>
-      <p>Tips, tutorial, dan berita dari kami</p>
-    </header>
-
-    <div class="landing-blog-grid">
-      {% for post in site.posts limit: 3 %}
-        <article class="landing-blog-card">
-          <a href="{{ post.url | relative_url }}" class="landing-blog-image">
-            {% if post.image %}
-              <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
-            {% else %}
-              <div class="landing-blog-placeholder">
-                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                </svg>
-              </div>
-            {% endif %}
+<link rel="stylesheet" href="{{ '/assets/css/laundry.css' | relative_url }}">
+<div class="laundry-page">
+  <section class="laundry-hero">
+    <div class="container laundry-hero-inner">
+      <div class="laundry-hero-content">
+        <span class="laundry-badge">🧺 Laundry Terpercaya</span>
+        <h1 class="laundry-title">
+          Cuci Bersih, <span class="laundry-title-accent">Wangi &amp; Rapi</span>
+        </h1>
+        <p class="laundry-subtitle">
+          Layanan laundry kiloan dengan antar jemput gratis untuk area tertentu.
+          Selesai dalam 24 jam, harga terjangkau.
+        </p>
+        <div class="laundry-cta">
+          <a href="{{ '/contact/' | relative_url }}" class="laundry-btn laundry-btn-primary">
+            Pesan Sekarang
           </a>
-          <div class="landing-blog-body">
-            {% if post.categories.first %}
-              <span class="landing-blog-cat">{{ post.categories.first }}</span>
-            {% endif %}
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-            <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 15 }}</p>
+          <a href="{{ '/blog/' | relative_url }}" class="laundry-btn laundry-btn-secondary">
+            Baca Blog
+          </a>
+        </div>
+        <div class="laundry-stats">
+          <div class="laundry-stat">
+            <strong>500+</strong>
+            <span>Pelanggan Puas</span>
           </div>
-        </article>
-      {% endfor %}
-    </div>
+          <div class="laundry-stat">
+            <strong>24 Jam</strong>
+            <span>Selesai Cepat</span>
+          </div>
+          <div class="laundry-stat">
+            <strong>100%</strong>
+            <span>Garansi Bersih</span>
+          </div>
+        </div>
+      </div>
 
-    <div class="landing-see-all">
-      <a href="{{ '/blog/' | relative_url }}" class="landing-btn landing-btn-primary">
-        Lihat Semua Artikel
-      </a>
+      <div class="laundry-hero-image">
+        <img src="https://picsum.photos/seed/laundry/800/800" alt="Ilustrasi laundry" loading="lazy">
+      </div>
     </div>
-  </div>
-</section>
-<section class="landing-cta-section">
-  <div class="container">
-    <div class="landing-cta-box">
-      <h2>Siap Coba Layanan Kami?</h2>
-      <p>Hubungi kami sekarang dan dapatkan promo 50% untuk pelanggan baru.</p>
-      <div class="landing-cta-actions">
-        <a href="{{ '/contact/' | relative_url }}" class="landing-btn landing-btn-primary">Hubungi Kami</a>
-        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="landing-btn landing-btn-whatsapp">
-          WhatsApp
+  </section>
+
+ <section class="laundry-features">
+    <div class="container">
+      <header class="laundry-section-header">
+        <h2>Kenapa Pilih Kami?</h2>
+        <p>Layanan yang membuat hidup Anda lebih mudah</p>
+      </header>
+
+      <div class="laundry-features-grid">
+        <div class="laundry-feature-card">
+          <div class="laundry-feature-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>Cepat</h3>
+          <p>Selesai dalam 24 jam untuk layanan reguler, 6 jam untuk express.</p>
+        </div>
+
+        <div class="laundry-feature-card">
+          <div class="laundry-feature-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <h3>Berkualitas</h3>
+          <p>Deterjen premium, pewangi tahan lama, dan proses higienis.</p>
+        </div>
+
+        <div class="laundry-feature-card">
+          <div class="laundry-feature-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13"/>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <h3>Antar Jemput</h3>
+          <p>Gratis untuk area dalam radius 5 km dari lokasi kami.</p>
+        </div>
+
+        <div class="laundry-feature-card">
+          <div class="laundry-feature-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <h3>Harga Terjangkau</h3>
+          <p>Mulai dari Rp 5.000/kg. Tidak ada biaya tersembunyi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section class="laundry-categories">
+    <div class="container">
+      <header class="laundry-section-header">
+        <h2>Kategori Laundry</h2>
+        <p>Pilih kategori sesuai kebutuhan Anda</p>
+      </header>
+
+      <div class="laundry-cat-grid">
+
+        <a class="laundry-cat-card" href="{{ '/categories/kursus/' | relative_url }}">
+          <div class="laundry-cat-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <h3 class="laundry-cat-title">Kursus</h3>
+          <p class="laundry-cat-desc">Pelatihan & kursus sabun, parfum, dan deterjen</p>
+          <span class="laundry-cat-arrow">Lihat →</span>
+        </a>
+
+        <a class="laundry-cat-card" href="{{ '/categories/parfum-laundry/' | relative_url }}">
+          <div class="laundry-cat-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 2h6v6l4 4v10H5V12l4-4V2z"/>
+              <line x1="9" y1="2" x2="15" y2="2"/>
+              <line x1="7" y1="15" x2="17" y2="15"/>
+            </svg>
+          </div>
+          <h3 class="laundry-cat-title">Parfum Laundry</h3>
+          <p class="laundry-cat-desc">Aneka parfum laundry tahan lama dan wangi</p>
+          <span class="laundry-cat-arrow">Lihat →</span>
+        </a>
+
+       <a class="laundry-cat-card" href="{{ '/categories/deterjen/' | relative_url }}">
+          <div class="laundry-cat-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2"/>
+              <line x1="8" y1="6" x2="16" y2="6"/>
+              <line x1="8" y1="10" x2="16" y2="10"/>
+              <line x1="8" y1="14" x2="12" y2="14"/>
+            </svg>
+          </div>
+          <h3 class="laundry-cat-title">Deterjen</h3>
+          <p class="laundry-cat-desc">Deterjen curah & kemasan dengan kualitas premium</p>
+          <span class="laundry-cat-arrow">Lihat →</span>
+        </a>
+       
+        <a class="laundry-cat-card" href="{{ '/categories/tips/' | relative_url }}">
+          <div class="laundry-cat-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18h6M10 22h4"/>
+              <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/>
+            </svg>
+          </div>
+          <h3 class="laundry-cat-title">Tips</h3>
+          <p class="laundry-cat-desc">Tips & trik seputar laundry dan perawatan kain</p>
+          <span class="laundry-cat-arrow">Lihat →</span>
+        </a>
+
+      </div>
+
+      <div class="laundry-see-all">
+        <a href="{{ '/categories/' | relative_url }}" class="laundry-btn laundry-btn-secondary">
+          Lihat Semua Kategori
         </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="laundry-tags">
+    <div class="container">
+      <header class="laundry-section-header">
+        <h2>Topik Populer</h2>
+        <p>Tag yang sering dicari pelanggan</p>
+      </header>
+
+      <div class="laundry-tag-cloud">
+
+         <a class="laundry-tag" href="{{ '/tags/sabun/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>sabun
+        </a>
+
+       
+         <a class="laundry-tag laundry-tag-lg" href="{{ '/tags/laundry/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>laundry
+        </a>
+
+       
+         <a class="laundry-tag" href="{{ '/tags/parfum/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>parfum
+        </a>
+
+       
+         <a class="laundry-tag" href="{{ '/tags/deterjen/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>deterjen
+        </a>
+
+       
+        <a class="laundry-tag laundry-tag-lg" href="{{ '/tags/kursus/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>kursus
+        </a>
+       
+        <a class="laundry-tag" href="{{ '/tags/pewangi/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>pewangi
+        </a>
+
+       <a class="laundry-tag" href="{{ '/tags/bogor/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>bogor
+        </a>
+
+        <a class="laundry-tag" href="{{ '/tags/kimia/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>kimia
+        </a>
+
+        <a class="laundry-tag laundry-tag-lg" href="{{ '/tags/bisnis/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>bisnis
+        </a>
+
+        <a class="laundry-tag" href="{{ '/tags/tutorial/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>tutorial
+        </a>
+
+        <a class="laundry-tag" href="{{ '/tags/resep/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>resep
+        </a>
+
+        <a class="laundry-tag" href="{{ '/tags/usaha/' | relative_url }}">
+          <span class="laundry-tag-hash">#</span>usaha
+        </a>
+
+      </div>
+
+      <div class="laundry-see-all">
+        <a href="{{ '/tags/' | relative_url }}" class="laundry-btn laundry-btn-secondary">
+          Lihat Semua Tag
+        </a>
+      </div>
+    </div>
+  </section>
+ <section class="laundry-latest">
+    <div class="container">
+      <header class="laundry-section-header">
+        <h2>Artikel Terbaru</h2>
+        <p>Tips, tutorial, dan berita dari kami</p>
+      </header>
+
+      <div class="laundry-blog-grid">
+        {% for post in site.posts limit: 3 %}
+          <article class="laundry-blog-card">
+            <a href="{{ post.url | relative_url }}" class="laundry-blog-image">
+              {% if post.image %}
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
+              {% else %}
+                <div class="laundry-blog-placeholder">
+                  <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                </div>
+              {% endif %}
+            </a>
+            <div class="laundry-blog-body">
+              {% if post.categories.first %}
+                <span class="laundry-blog-cat">{{ post.categories.first }}</span>
+              {% endif %}
+              <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+              <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 15 }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="laundry-see-all">
+        <a href="{{ '/blog/' | relative_url }}" class="laundry-btn laundry-btn-primary">
+          Lihat Semua Artikel
+        </a>
+      </div>
+    </div>
+  </section>
+ <section class="laundry-cta-section">
+    <div class="container">
+      <div class="laundry-cta-box">
+        <h2>Siap Coba Layanan Kami?</h2>
+        <p>Hubungi kami sekarang dan dapatkan promo 50% untuk pelanggan baru.</p>
+        <div class="laundry-cta-actions">
+          <a href="{{ '/contact/' | relative_url }}" class="laundry-btn laundry-btn-primary">
+            Hubungi Kami
+          </a>
+          <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="laundry-btn laundry-btn-whatsapp">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
