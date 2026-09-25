@@ -17,13 +17,23 @@
   text-align: right;
 }
 
+.bandar-deterjen-page .mt-3 {
+  margin-top: 1rem;
+}
+
 /* Hero Section */
 .bandar-deterjen-page .hero-section {
-  text-align: center;
-  padding: 3rem 1rem;
   background-color: var(--bg-elev);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  padding: 2.5rem;
+}
+
+.bandar-deterjen-page .hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
 }
 
 .bandar-deterjen-page .hero-title {
@@ -31,6 +41,7 @@
   font-weight: 700;
   margin-bottom: 1rem;
   font-size: 2rem;
+  line-height: 1.3;
 }
 
 .bandar-deterjen-page .hero-subtitle {
@@ -42,10 +53,34 @@
 .bandar-deterjen-page .hero-buttons {
   display: flex;
   gap: 1rem;
-  justify-content: center;
 }
 
-/* Cards & Grid */
+/* Responsive Embed YouTube */
+.bandar-deterjen-page .video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.bandar-deterjen-page .video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Problem & Solution Layout */
+.bandar-deterjen-page .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
 .bandar-deterjen-page .card {
   background-color: var(--bg-elev);
   border: 1px solid var(--border);
@@ -53,19 +88,23 @@
   padding: 1.5rem;
 }
 
-.bandar-deterjen-page .mb-4 {
-  margin-bottom: 1.5rem;
+.bandar-deterjen-page .solution-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  max-height: 350px;
 }
 
 .bandar-deterjen-page h2 {
   color: var(--royal-blue);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin-bottom: 1rem;
 }
 
 .bandar-deterjen-page h3 {
   color: var(--text);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -80,6 +119,7 @@
   padding-left: 1.5rem;
   margin-bottom: 0.75rem;
   color: var(--text-muted);
+  font-size: 0.95rem;
 }
 
 .bandar-deterjen-page .negative-list li::before {
@@ -121,6 +161,14 @@
   text-align: center;
   background-color: var(--bg-elev);
   transition: transform 0.2s;
+}
+
+.bandar-deterjen-page .product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
 }
 
 .bandar-deterjen-page .product-card:hover {
@@ -171,15 +219,15 @@
 
 /* Responsive Media Queries */
 @media (max-width: 768px) {
+  .bandar-deterjen-page .hero-grid,
+  .bandar-deterjen-page .grid-2,
   .bandar-deterjen-page .features-grid,
   .bandar-deterjen-page .products-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .bandar-deterjen-page .features-grid,
-  .bandar-deterjen-page .products-grid,
   .bandar-deterjen-page .form-row {
     grid-template-columns: 1fr;
   }
