@@ -1,0 +1,164 @@
+---
+layout: default
+title: Beranda
+description: "Laundry kiloan terbaik dengan layanan antar jemput gratis."
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}">
+
+<!-- ====== HERO SECTION ====== -->
+<section class="landing-hero">
+  <div class="container landing-hero-inner">
+    <div class="landing-hero-content">
+      <span class="landing-badge">🧺 Laundry Terpercaya</span>
+      <h1 class="landing-title">
+        Cuci Bersih, <span class="landing-title-accent">Wangi & Rapi</span>
+      </h1>
+      <p class="landing-subtitle">
+        Layanan laundry kiloan dengan antar jemput gratis untuk area tertentu.
+        Selesai dalam 24 jam, harga terjangkau.
+      </p>
+      <div class="landing-cta">
+        <a href="{{ '/contact/' | relative_url }}" class="landing-btn landing-btn-primary">
+          Pesan Sekarang
+        </a>
+        <a href="{{ '/blog/' | relative_url }}" class="landing-btn landing-btn-secondary">
+          Baca Blog
+        </a>
+      </div>
+      <div class="landing-stats">
+        <div class="landing-stat">
+          <strong>500+</strong>
+          <span>Pelanggan Puas</span>
+        </div>
+        <div class="landing-stat">
+          <strong>24 Jam</strong>
+          <span>Selesai Cepat</span>
+        </div>
+        <div class="landing-stat">
+          <strong>100%</strong>
+          <span>Garansi Bersih</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="landing-hero-image">
+      <img src="https://picsum.photos/seed/laundry/800/800" alt="Ilustrasi laundry" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ====== FEATURES SECTION ====== -->
+<section class="landing-features">
+  <div class="container">
+    <header class="landing-section-header">
+      <h2>Kenapa Pilih Kami?</h2>
+      <p>Layanan yang membuat hidup Anda lebih mudah</p>
+    </header>
+
+    <div class="landing-features-grid">
+      <div class="landing-feature-card">
+        <div class="landing-feature-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Cepat</h3>
+        <p>Selesai dalam 24 jam untuk layanan reguler, 6 jam untuk express.</p>
+      </div>
+
+      <div class="landing-feature-card">
+        <div class="landing-feature-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <h3>Berkualitas</h3>
+        <p>Deterjen premium, pewangi tahan lama, dan proses higienis.</p>
+      </div>
+
+      <div class="landing-feature-card">
+        <div class="landing-feature-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"/>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <h3>Antar Jemput</h3>
+        <p>Gratis untuk area dalam radius 5 km dari lokasi kami.</p>
+      </div>
+
+      <div class="landing-feature-card">
+        <div class="landing-feature-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <h3>Harga Terjangkau</h3>
+        <p>Mulai dari Rp 5.000/kg. Tidak ada biaya tersembunyi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LATEST BLOG SECTION ====== -->
+<section class="landing-latest">
+  <div class="container">
+    <header class="landing-section-header">
+      <h2>Artikel Terbaru</h2>
+      <p>Tips, tutorial, dan berita dari kami</p>
+    </header>
+
+    <div class="landing-blog-grid">
+      {% for post in site.posts limit: 3 %}
+        <article class="landing-blog-card">
+          <a href="{{ post.url | relative_url }}" class="landing-blog-image">
+            {% if post.image %}
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
+            {% else %}
+              <div class="landing-blog-placeholder">
+                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+              </div>
+            {% endif %}
+          </a>
+          <div class="landing-blog-body">
+            {% if post.categories.first %}
+              <span class="landing-blog-cat">{{ post.categories.first }}</span>
+            {% endif %}
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 15 }}</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="landing-see-all">
+      <a href="{{ '/blog/' | relative_url }}" class="landing-btn landing-btn-primary">
+        Lihat Semua Artikel
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CTA SECTION ====== -->
+<section class="landing-cta-section">
+  <div class="container">
+    <div class="landing-cta-box">
+      <h2>Siap Coba Layanan Kami?</h2>
+      <p>Hubungi kami sekarang dan dapatkan promo 50% untuk pelanggan baru.</p>
+      <div class="landing-cta-actions">
+        <a href="{{ '/contact/' | relative_url }}" class="landing-btn landing-btn-primary">Hubungi Kami</a>
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="landing-btn landing-btn-whatsapp">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
