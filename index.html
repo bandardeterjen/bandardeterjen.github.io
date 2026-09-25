@@ -1,157 +1,383 @@
 ---
 layout: default
-title: Beranda
-description: "Landing page."
+title: Bandar Deterjen – Sahabat Usaha Anda
+description: "Pabrik produsen tangan pertama pewangi & detergen. Harga grosir, kualitas terjamin, aman untuk kulit dan lingkungan."
 permalink: /
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}">
-<section class="landing-hero">
-  <div class="container landing-hero-inner">
-    <div class="landing-hero-content">
-      <span class="landing-badge">🧺 Laundry Terpercaya</span>
-      <h1 class="landing-title">
-        Cuci Bersih, <span class="landing-title-accent">Wangi & Rapi</span>
-      </h1>
-      <p class="landing-subtitle">
-        Layanan laundry kiloan dengan antar jemput gratis untuk area tertentu.
-        Selesai dalam 24 jam, harga terjangkau.
+<link rel="stylesheet" href="{{ '/assets/css/bandar-deterjen.css' | relative_url }}">
+
+<div class="container bandar-deterjen-page">
+
+  <section class="bd-hero">
+    <div class="bd-hero__text">
+      <span class="bd-eyebrow">Pabrik &amp; Produsen Tangan Pertama</span>
+      <h1 class="bd-hero__title">Pewangi &amp; Detergen Laundry Harga Grosir</h1>
+      <p class="bd-hero__desc">
+        Produk terpercaya, aman, dan berpengalaman sejak 2011.
+        Langsung dari pabrik — lebih murah, lebih wangi, lebih awet.
       </p>
-      <div class="landing-cta">
-        <a href="{{ '/contact/' | relative_url }}" class="landing-btn landing-btn-primary">
-          Pesan Sekarang
+      <div class="bd-hero__actions">
+        <a href="#pesan" class="btn btn-primary bd-btn">
+          <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
         </a>
-        <a href="{{ '/blog/' | relative_url }}" class="landing-btn landing-btn-secondary">
-          Baca Blog
+        <a href="#produk" class="btn bd-btn bd-btn--ghost">
+          Lihat Produk
         </a>
       </div>
-      <div class="landing-stats">
-        <div class="landing-stat">
-          <strong>500+</strong>
-          <span>Pelanggan Puas</span>
-        </div>
-        <div class="landing-stat">
-          <strong>24 Jam</strong>
-          <span>Selesai Cepat</span>
-        </div>
-        <div class="landing-stat">
-          <strong>100%</strong>
-          <span>Garansi Bersih</span>
-        </div>
+      <ul class="bd-hero__badges">
+        <li><i class="fa fa-check" aria-hidden="true"></i> 10+ Tahun Pengalaman</li>
+        <li><i class="fa fa-check" aria-hidden="true"></i> 1000+ Pelanggan</li>
+        <li><i class="fa fa-check" aria-hidden="true"></i> Produk Legal &amp; Bersertifikat</li>
+      </ul>
+    </div>
+    <div class="bd-hero__media">
+      <div class="bd-video">
+        <iframe
+          src="https://www.youtube.com/embed/0zs_o1XzIy8?si=xwhAW6l_Ine8yDdz"
+          title="Profil Bandar Deterjen"
+          loading="lazy"
+          allowfullscreen></iframe>
       </div>
     </div>
+  </section>
 
-    <div class="landing-hero-image">
-      <img src="https://picsum.photos/seed/laundry/800/800" alt="Ilustrasi laundry" loading="lazy">
-    </div>
-  </div>
-</section>
-<section class="landing-features">
-  <div class="container">
-    <header class="landing-section-header">
-      <h2>Kenapa Pilih Kami?</h2>
-      <p>Layanan yang membuat hidup Anda lebih mudah</p>
+  <section class="bd-section">
+    <header class="bd-section__head">
+      <h2 class="bd-section__title">Kenapa Harus Bandar Deterjen?</h2>
+      <p class="bd-section__lead">
+        Kami paham masalah yang sering Anda alami. Bandar Deterjen hadir sebagai solusinya.
+      </p>
     </header>
 
-    <div class="landing-features-grid">
-      <div class="landing-feature-card">
-        <div class="landing-feature-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <h3>Cepat</h3>
-        <p>Selesai dalam 24 jam untuk layanan reguler, 6 jam untuk express.</p>
+    <div class="bd-compare">
+      <div class="card bd-compare__col bd-compare__col--bad">
+        <h3 class="bd-compare__title">
+          <i class="fa fa-times-circle" aria-hidden="true"></i> Masalah Umum
+        </h3>
+        <ul class="bd-list">
+          <li>Aroma pewangi tidak awet dan cepat hilang</li>
+          <li>Bahan kimia merusak serat kain</li>
+          <li>Memicu alergi &amp; iritasi kulit</li>
+          <li>Peralatan makan masih bau sabun</li>
+          <li>Biaya operasional membengkak</li>
+        </ul>
       </div>
 
-      <div class="landing-feature-card">
-        <div class="landing-feature-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-        </div>
-        <h3>Berkualitas</h3>
-        <p>Deterjen premium, pewangi tahan lama, dan proses higienis.</p>
-      </div>
-
-      <div class="landing-feature-card">
-        <div class="landing-feature-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="1" y="3" width="15" height="13"/>
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-            <circle cx="5.5" cy="18.5" r="2.5"/>
-            <circle cx="18.5" cy="18.5" r="2.5"/>
-          </svg>
-        </div>
-        <h3>Antar Jemput</h3>
-        <p>Gratis untuk area dalam radius 5 km dari lokasi kami.</p>
-      </div>
-
-      <div class="landing-feature-card">
-        <div class="landing-feature-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="1" x2="12" y2="23"/>
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-          </svg>
-        </div>
-        <h3>Harga Terjangkau</h3>
-        <p>Mulai dari Rp 5.000/kg. Tidak ada biaya tersembunyi.</p>
+      <div class="card bd-compare__col bd-compare__col--good">
+        <h3 class="bd-compare__title">
+          <i class="fa fa-check-circle" aria-hidden="true"></i> Solusi Bandar
+        </h3>
+        <ul class="bd-list">
+          <li>Wangi tahan lama, aroma tidak mengganggu</li>
+          <li>Aman untuk semua jenis kain</li>
+          <li>Lembut di kulit, bebas fosfat</li>
+          <li>Bersih tuntas, segar, bebas apek</li>
+          <li>Harga tangan pertama, hemat HPP</li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
-<section class="landing-latest">
-  <div class="container">
-    <header class="landing-section-header">
-      <h2>Artikel Terbaru</h2>
-      <p>Tips, tutorial, dan berita dari kami</p>
+  </section>
+
+  <section class="bd-section">
+    <div class="bd-pillars">
+      <div class="card bd-pillar">
+        <div class="bd-pillar__icon"><i class="fa fa-industry" aria-hidden="true"></i></div>
+        <h3>Pabrik Sendiri</h3>
+        <p>Produksi in-house dengan formulasi mutakhir &amp; tim berpengalaman.</p>
+      </div>
+      <div class="card bd-pillar">
+        <div class="bd-pillar__icon"><i class="fa fa-leaf" aria-hidden="true"></i></div>
+        <h3>Bahan Berkualitas</h3>
+        <p>Bahan lokal &amp; impor Eropa. Aman untuk kulit dan lingkungan.</p>
+      </div>
+      <div class="card bd-pillar">
+        <div class="bd-pillar__icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+        <h3>Kirim Seluruh Nusantara</h3>
+        <p>Melayani 1000+ pelanggan dengan berbagai pilihan ekspedisi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bd-section" id="produk">
+    <header class="bd-section__head">
+      <h2 class="bd-section__title">Produk Bandar</h2>
+      <p class="bd-section__lead">
+        Detergen, parfum laundry, spray setrika, sabun cuci piring, hingga hand sanitizer.
+      </p>
     </header>
 
-    <div class="landing-blog-grid">
-      {% for post in site.posts limit: 3 %}
-        <article class="landing-blog-card">
-          <a href="{{ post.url | relative_url }}" class="landing-blog-image">
-            {% if post.image %}
-              <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
-            {% else %}
-              <div class="landing-blog-placeholder">
-                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                </svg>
-              </div>
-            {% endif %}
-          </a>
-          <div class="landing-blog-body">
-            {% if post.categories.first %}
-              <span class="landing-blog-cat">{{ post.categories.first }}</span>
-            {% endif %}
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-            <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 15 }}</p>
+    <div class="bd-products">
+      <figure class="card bd-product">
+        <img src="https://www.bandardeterjen.com/wp-content/uploads/2023/10/bd-produk-perlengkapan-usaha-laundry.jpg"
+             alt="Perlengkapan Usaha Laundry" loading="lazy">
+        <figcaption>
+          <h3>Perlengkapan Usaha Laundry</h3>
+          <p>Paket lengkap untuk bisnis laundry kiloan Anda.</p>
+        </figcaption>
+      </figure>
+      <figure class="card bd-product">
+        <img src="https://www.bandardeterjen.com/wp-content/uploads/2023/10/bd-produk-keperluan-rumah-tangga.jpg"
+             alt="Kebutuhan Rumah Tangga" loading="lazy">
+        <figcaption>
+          <h3>Kebutuhan Rumah Tangga</h3>
+          <p>Solusi hemat untuk kebersihan sehari-hari keluarga.</p>
+        </figcaption>
+      </figure>
+      <figure class="card bd-product">
+        <img src="https://www.bandardeterjen.com/wp-content/uploads/2023/10/bd-produk-kebersihan-dan-kesehatan.jpg"
+             alt="Kebersihan dan Kesehatan" loading="lazy">
+        <figcaption>
+          <h3>Kebersihan &amp; Kesehatan</h3>
+          <p>Produk higienis untuk hotel, restoran, dan katering.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bd-section bd-section--soft">
+    <header class="bd-section__head">
+      <h2 class="bd-section__title">Keunggulan Produk Kami</h2>
+    </header>
+
+    <ul class="bd-features">
+      <li class="card bd-feature">
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
+        <strong>Tahan Lama</strong>
+        <span>Wangi awet seharian.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-tshirt" aria-hidden="true"></i>
+        <strong>Bersih Maksimal</strong>
+        <span>Hasil cucian segar &amp; cerah.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+        <strong>Bersih Tuntas</strong>
+        <span>Noda membandel hilang.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+        <strong>Bebas Apek</strong>
+        <span>Aroma menyegarkan.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-tint" aria-hidden="true"></i>
+        <strong>Ramah Lingkungan</strong>
+        <span>Bebas fosfat.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+        <strong>Aman di Kulit</strong>
+        <span>Cocok untuk kulit sensitif.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+        <strong>Perlindungan Warna</strong>
+        <span>Pakaian tetap seperti baru.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-recycle" aria-hidden="true"></i>
+        <strong>Kemasan Praktis</strong>
+        <span>Bisa dipakai berulang.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-search-dollar" aria-hidden="true"></i>
+        <strong>Lebih Murah</strong>
+        <span>Harga tangan pertama.</span>
+      </li>
+      <li class="card bd-feature">
+        <i class="fa fa-registered" aria-hidden="true"></i>
+        <strong>Produk Legal</strong>
+        <span>Izin produksi &amp; edar resmi.</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="landing-latest">
+    <div class="container">
+      <header class="landing-section-header bd-section__head">
+        <h2 class="bd-section__title">Artikel Terbaru</h2>
+        <p class="bd-section__lead">Tips, tutorial, dan berita seputar dunia laundry dan kebersihan</p>
+      </header>
+
+      <div class="landing-blog-grid">
+        {% for post in site.posts limit: 3 %}
+          <article class="landing-blog-card card">
+            <a href="{{ post.url | relative_url }}" class="landing-blog-image">
+              {% if post.image %}
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
+              {% else %}
+                <div class="landing-blog-placeholder">
+                  <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                </div>
+              {% endif %}
+            </a>
+            <div class="landing-blog-body">
+              {% if post.categories.first %}
+                <span class="landing-blog-cat">{{ post.categories.first }}</span>
+              {% endif %}
+              <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+              <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 15 }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="landing-see-all text-center" style="margin-top: 2rem;">
+        <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary bd-btn">
+          Lihat Semua Artikel
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bd-section">
+    <header class="bd-section__head">
+      <h2 class="bd-section__title">Kata Pelanggan Kami</h2>
+    </header>
+
+    <div class="bd-testi" id="bd-testi">
+      <button type="button" class="bd-testi__nav" id="bd-testi-prev" aria-label="Sebelumnya">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div class="bd-testi__stage">
+        <div class="bd-testi__slides" id="bd-testi-slides">
+          <blockquote class="bd-testi__slide is-active">
+            <p>"Saya sudah datang ke pabriknya sekalian kantor pusatnya. Harganya terjangkau, kualitas produknya juga bagus."</p>
+            <cite>Abidin</cite>
+          </blockquote>
+          <blockquote class="bd-testi__slide">
+            <p>"Pasti rekomendasi. Harga grosir, pelayanan fast respon dan ramah. Banyak juga jual produk laundry, home care, cuci motor dan cuci mobil."</p>
+            <cite>Aziz</cite>
+          </blockquote>
+          <blockquote class="bd-testi__slide">
+            <p>"Parfum laundry kesukaan saya, wanginya tahan lama. Harga terjangkau, saya suka aroma vanila dan Sakura."</p>
+            <cite>Fulan</cite>
+          </blockquote>
+          <blockquote class="bd-testi__slide">
+            <p>"Saya punya usaha horeka. Semenjak pakai produk Bandar, pengeluaran jadi irit."</p>
+            <cite>Sugeng</cite>
+          </blockquote>
+          <blockquote class="bd-testi__slide">
+            <p>"Ternyata di sini ada bahan konsentrat untuk sabun. Jadi lebih irit ongkir. Kirim ke luar kota nggak masalah."</p>
+            <cite>Novian</cite>
+          </blockquote>
+        </div>
+        <ul class="bd-testi__dots" id="bd-testi-dots" role="tablist">
+          <li role="button" tabindex="0" class="is-active" aria-label="Testimoni 1"></li>
+          <li role="button" tabindex="0" aria-label="Testimoni 2"></li>
+          <li role="button" tabindex="0" aria-label="Testimoni 3"></li>
+          <li role="button" tabindex="0" aria-label="Testimoni 4"></li>
+          <li role="button" tabindex="0" aria-label="Testimoni 5"></li>
+        </ul>
+      </div>
+
+      <button type="button" class="bd-testi__nav" id="bd-testi-next" aria-label="Berikutnya">
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+  </section>
+
+  <section class="bd-section bd-section--cta" id="pesan">
+    <div class="bd-cta">
+      <div class="bd-cta__text">
+        <h2 class="bd-section__title">Dapatkan Harga Termurah</h2>
+        <p>
+          <strong>Bandar Deterjen</strong> adalah pabrik &amp; produsen.
+          Produk yang kami jual adalah harga dari <strong>tangan pertama</strong>.
+        </p>
+        <ul class="bd-list bd-list--check">
+          <li><i class="fa fa-check" aria-hidden="true"></i> Konsultasi gratis via WhatsApp</li>
+          <li><i class="fa fa-check" aria-hidden="true"></i> Bisa kirim ke seluruh Indonesia</li>
+          <li><i class="fa fa-check" aria-hidden="true"></i> Tersedia paket reseller &amp; grosir</li>
+        </ul>
+      </div>
+
+      <form class="card bd-form" id="bd-form" novalidate>
+        <h3 class="bd-form__title">Minta Info &amp; Harga</h3>
+
+        <label class="bd-field">
+          <span>Nama</span>
+          <input type="text" id="bd-name" name="name" placeholder="Nama lengkap" required>
+        </label>
+
+        <label class="bd-field">
+          <span>Email</span>
+          <input type="email" id="bd-email" name="email" placeholder="email@contoh.com">
+        </label>
+
+        <label class="bd-field">
+          <span>Kota</span>
+          <input type="text" id="bd-city" name="city" placeholder="Kota Anda">
+        </label>
+
+        <label class="bd-field">
+          <span>Kebutuhan</span>
+          <select id="bd-produk" name="produk">
+            <option value="Produk Usaha Laundry">Produk Usaha Laundry</option>
+            <option value="Produk Kebutuhan Rumah">Produk Kebutuhan Rumah</option>
+            <option value="Produk Kebutuhan Horeka">Produk Kebutuhan Horeka</option>
+          </select>
+        </label>
+
+        <button type="submit" class="btn btn-primary bd-btn bd-btn--block">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i> Kirim via WhatsApp
+        </button>
+
+        <p class="bd-form__note" id="bd-form-note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="bd-section">
+    <div class="bd-contact">
+      <div class="card bd-contact__info">
+        <h2 class="bd-section__title bd-section__title--left">Hubungi Kami</h2>
+
+        <div class="bd-contact__row">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          <div>
+            <strong>Alamat</strong>
+            <p>Pejagalan Kulon No. 50, Sokaraja, Banyumas</p>
           </div>
-        </article>
-      {% endfor %}
-    </div>
+        </div>
+        <div class="bd-contact__row">
+          <i class="fa fa-whatsapp" aria-hidden="true"></i>
+          <div>
+            <strong>Kontak</strong>
+            <p><a href="https://wa.me/6285773009666" target="_blank" rel="noopener">0857-7300-9666</a></p>
+          </div>
+        </div>
+        <div class="bd-contact__row">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <div>
+            <strong>Jam Kerja</strong>
+            <p>Senin – Sabtu, 08:00 – 17:00 WIB</p>
+          </div>
+        </div>
 
-    <div class="landing-see-all">
-      <a href="{{ '/blog/' | relative_url }}" class="landing-btn landing-btn-primary">
-        Lihat Semua Artikel
-      </a>
-    </div>
-  </div>
-</section>
-<section class="landing-cta-section">
-  <div class="container">
-    <div class="landing-cta-box">
-      <h2>Siap Coba Layanan Kami?</h2>
-      <p>Hubungi kami sekarang dan dapatkan promo 50% untuk pelanggan baru.</p>
-      <div class="landing-cta-actions">
-        <a href="{{ '/contact/' | relative_url }}" class="landing-btn landing-btn-primary">Hubungi Kami</a>
-        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="landing-btn landing-btn-whatsapp">
-          WhatsApp
-        </a>
+        <div class="bd-social">
+          <a href="https://www.facebook.com/bandardeterjen" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          <a href="https://www.twitter.com/bandardeterjen" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/bandardeterjen" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/bandardeterjen" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="card bd-contact__map">
+        <iframe
+          src="https://maps.google.com/maps?ll=-7.458711%2C109.289966&spn=0.005638%2C0.017703&ie=UTF8&hl=id&z=16&t=roadmap&sll=-7.458711%2C109.289966&sspn=0.005638%2C0.017703&q=Jl.%20Pejagalan%20Kulon%2C%20Kec.%20Sokaraja%2C%20Kabupaten%20Banyumas%2C%20Jawa%20Tengah%2053181%2C%20Indonesia%20(Jl.%20Pejagalan%20Kulon)&output=embed"
+          title="Lokasi Bandar Deterjen"
+          loading="lazy"></iframe>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+</div>
+
+<script src="{{ '/assets/js/bandar-deterjen.js' | relative_url }}"></script>
