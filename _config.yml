@@ -17,7 +17,7 @@ baseurl: ""
 markdown: kramdown
 highlighter: rouge
 # PERUBAHAN v3.0: permalink tanpa tanggal & tag
-permalink: /:categories/:title/
+permalink: /blog/:categories/:title/
 timezone: Asia/Jakarta
 
 kramdown:
