@@ -1,30 +1,119 @@
 ---
 layout: default
 title: Blog
+description: "Kumpulan artikel blog."
 permalink: /blog/
 ---
 
-<div class="container" style="padding:40px 0;">
-  <h1>DEBUG Blog</h1>
-
-  <div style="background:#fff3cd;padding:20px;border-radius:8px;margin:20px 0;font-family:monospace;border:1px solid #ffc107;">
-    <p><strong>paginator.page</strong> = {{ paginator.page }}</p>
-    <p><strong>paginator.per_page</strong> = {{ paginator.per_page }}</p>
-    <p><strong>paginator.total_posts</strong> = {{ paginator.total_posts }}</p>
-    <p><strong>paginator.total_pages</strong> = {{ paginator.total_pages }}</p>
-    <p><strong>paginator.posts.size</strong> = {{ paginator.posts.size }}</p>
-    <hr>
-    <p><strong>site.posts.size</strong> = {{ site.posts.size }}</p>
-    <p><strong>site.categories.size</strong> = {{ site.categories.size }}</p>
-    <p><strong>site.paginate_path</strong> = {{ site.paginate_path }}</p>
+<section class="hero">
+  <div class="container">
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
   </div>
+</section>
 
-  {% if site.posts.size > 0 %}
-    <h3>Semua Post (site.posts):</h3>
-    <ul>
-      {% for post in site.posts limit: 5 %}
-        <li>{{ post.title }} — {{ post.date | date: "%Y-%m-%d" }}</li>
+<div class="container">
+  {% if paginator.posts.size > 0 %}
+    <div class="gallery-grid">
+      {% for post in paginator.posts %}
+        <article class="card">
+          <a href="{{ post.url | relative_url }}" class="card-image">
+            {% if post.image %}
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
+            {% else %}
+              <div class="placeholder"><i class="fa-solid fa-image"></i></div>
+            {% endif %}
+            {% if post.categories.first %}
+              <span class="card-category">{{ post.categories.first }}</span>
+            {% endif %}
+          </a>
+
+          <div class="card-body">
+            <div class="card-meta">
+              <span><i class="fa-regular fa-calendar"></i>{{ post.date | date: "%d %b %Y" }}</span>
+              <span><i class="fa-regular fa-clock"></i>
+                {% assign words = post.content | number_of_words %}
+                {% if words < 360 %}1 mnt{% else %}{{ words | divided_by: 180 }} mnt{% endif %}
+              </span>
+            </div>
+
+            <h3 class="card-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+
+            <p class="card-excerpt">
+              {{ post.description | default: post.excerpt | strip_html | truncatewords: 22 }}
+            </p>
+
+            <div class="card-footer">
+              <a href="{{ post.url | relative_url }}" class="card-readmore">
+                Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </article>
       {% endfor %}
-    </ul>
+    </div>
+
+    {% if paginator.total_pages > 1 %}
+    <nav class="pagination" aria-label="Navigasi halaman">
+      {% assign cur = paginator.page %}
+      {% assign total = paginator.total_pages %}
+      {% assign last_url = site.paginate_path | replace: ':num', total %}
+
+      {# First #}
+      {% if cur == 1 %}
+        <span class="disabled">&laquo;</span>
+      {% else %}
+        <a href="{{ '/blog/' | relative_url }}" aria-label="Halaman pertama">&laquo;</a>
+      {% endif %}
+
+      {# Previous #}
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}" aria-label="Halaman sebelumnya">&lsaquo;</a>
+      {% else %}
+        <span class="disabled">&lsaquo;</span>
+      {% endif %}
+
+      {# Numbers #}
+      {% for page_num in (1..total) %}
+        {% assign diff = page_num | minus: cur | abs %}
+        {% if page_num == 1 or page_num == total or diff <= 1 %}
+          {% if page_num == cur %}
+            <span class="current">{{ page_num }}</span>
+          {% elsif page_num == 1 %}
+            <a href="{{ '/blog/' | relative_url }}">{{ page_num }}</a>
+          {% elsif page_num == total %}
+            <a href="{{ last_url | relative_url }}">{{ page_num }}</a>
+          {% else %}
+            <a href="{{ site.paginate_path | replace: ':num', page_num | relative_url }}">{{ page_num }}</a>
+          {% endif %}
+        {% elsif diff == 2 %}
+          <span class="ellipsis">…</span>
+        {% endif %}
+      {% endfor %}
+
+      {# Next #}
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}" aria-label="Halaman selanjutnya">&rsaquo;</a>
+      {% else %}
+        <span class="disabled">&rsaquo;</span>
+      {% endif %}
+
+      {# Last #}
+      {% if cur == total %}
+        <span class="disabled">&raquo;</span>
+      {% else %}
+        <a href="{{ last_url | relative_url }}" aria-label="Halaman terakhir">&raquo;</a>
+      {% endif %}
+    </nav>
+    {% endif %}
+
+  {% else %}
+    <div class="empty-state">
+      <i class="fa-regular fa-folder-open"></i>
+      <h2>Belum Ada Artikel</h2>
+      <p>Tambahkan berkas Markdown di folder <code>_posts/</code> untuk mulai menulis.</p>
+    </div>
   {% endif %}
 </div>
