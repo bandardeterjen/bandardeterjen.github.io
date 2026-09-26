@@ -1,0 +1,220 @@
+---
+layout: default
+permalink: /bandar-laundry/
+title: "Pusat Sabun, Parfum & Perlengkapan Laundry Indonesia"
+description: "Pusat suplai deterjen laundry, parfum grade A, softener, plastik packing, dan perlengkapan usaha laundry untuk seluruh wilayah Indonesia."
+---
+
+<div class="container bandar-laundry-page">
+  <div class="top-banner-bar">
+    <div class="top-banner-inner">
+      <div class="top-links-group">
+        <a href="https://wa.me/6285773009666" id="top-phone-link" class="phone-link">
+          <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+          <span id="top-phone-val">085773009666</span>
+        </a>
+        <a href="mailto:bandardeterjen@gmail.com" class="email-link">
+          <i class="fa-regular fa-envelope text-sm"></i>
+          bandardeterjen@gmail.com
+        </a>
+      </div>
+      <div class="top-info-group">
+        <span class="info-text"><i class="fa-solid fa-truck-fast mr-1"></i> Suplai Kimia & Perlengkapan Laundry Se-Indonesia</span>
+        <div class="divider-vertical"></div>
+        <div class="social-links">
+          <a href="https://www.facebook.com/bandardeterjen" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/bandardeterjen" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/bandardeterjen" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sticky-nav">
+    <div class="nav-container">
+      <div class="nav-content-wrapper">
+        <a href="{{ '/' | relative_url }}" class="brand-logo-link" onclick="navigate(''); return false;">
+          <div class="brand-logo-box">
+            <span class="brand-orange">I</span>L
+          </div>
+          <div>
+            <span class="brand-title">INDONESIA<span class="brand-orange">LISTING</span></span>
+            <span class="brand-subtitle">Katalog Produk & Perlengkapan Laundry</span>
+          </div>
+        </a>
+        <div class="nav-menu-desktop">
+          <a href="{{ '/' | relative_url }}" onclick="navigate(''); return false;" class="nav-link">Beranda</a>
+          <a href="#katalog-produk" class="nav-link">Katalog Produk</a>
+          <a href="#wilayah" class="nav-link">Area Wilayah</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#kontak" class="nav-link">Kontak</a>
+        </div>
+        <div class="nav-actions">
+          <button onclick="toggleCartDrawer(true)" class="cart-btn">
+            <i class="fa-solid fa-cart-shopping text-base"></i>
+            <span class="cart-text-label">Keranjang</span>
+            <span id="nav-cart-badge" class="cart-badge">0</span>
+          </button>
+          
+          <button id="mobile-menu-btn" onclick="toggleMobileNav()" class="mobile-toggle-btn" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-nav" class="mobile-nav-dropdown hidden">
+      <a href="{{ '/' | relative_url }}" onclick="navigate(''); toggleMobileNav(); return false;" class="mobile-nav-item">Beranda</a>
+      <a href="#katalog-produk" onclick="toggleMobileNav()" class="mobile-nav-item">Katalog Produk</a>
+      <a href="#wilayah" onclick="toggleMobileNav()" class="mobile-nav-item">Daftar Wilayah Indonesia</a>
+      <a href="#faq" onclick="toggleMobileNav()" class="mobile-nav-item">Tanya Jawab (FAQ)</a>
+      <a href="#kontak" onclick="toggleMobileNav()" class="mobile-nav-item">Hubungi Kami</a>
+    </div>
+  </nav>
+
+  <main id="app-root" class="app-main-content flex-grow"></main>
+
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title-wrap">
+        <i class="fa-solid fa-bag-shopping text-lg"></i>
+        <h3 class="font-bold text-base">Keranjang Belanja</h3>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="cart-close-btn" aria-label="Close Cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="cart-drawer-body custom-scroll">
+      <div>
+        <div class="cart-subhead">
+          <span class="text-xs font-bold uppercase tracking-wider">Produk Terpilih</span>
+          <span id="cart-item-count-label" class="text-xs font-medium">0 item</span>
+        </div>
+        <div id="cart-items-container" class="space-y-2.5"></div>
+      </div>
+      <div id="cart-checkout-wrapper" class="cart-checkout-box">
+        <div class="cart-subtotal-row">
+          <span class="text-xs font-bold uppercase">Subtotal Belanja:</span>
+          <span id="cart-total-price" class="text-xl font-black">Rp 0</span>
+        </div>
+        <form id="cart-checkout-form" class="space-y-3 text-xs">
+          <div>
+            <label class="block font-semibold mb-1">Nama Pemesan <span class="text-rose-500">*</span></label>
+            <input type="text" id="co-nama" required placeholder="Nama lengkap Anda" class="w-full px-3 py-2.5 rounded-xl outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold mb-1">Nomor WhatsApp <span class="font-normal">(Opsional)</span></label>
+            <input type="tel" id="co-wa" placeholder="Contoh: 08123456789" class="w-full px-3 py-2.5 rounded-xl outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block font-semibold mb-1">Kota / Kabupaten</label>
+              <select id="co-kecamatan" class="w-full px-2.5 py-2.5 rounded-xl outline-none">
+                <option value="">Pilih Wilayah</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-semibold mb-1">Kecamatan / Desa</label>
+              <select id="co-desa" class="w-full px-2.5 py-2.5 rounded-xl outline-none">
+                <option value="">Pilih Area</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block font-semibold mb-1">Alamat Lengkap <span class="text-rose-500">*</span></label>
+            <textarea id="co-alamat" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, patokan..." class="w-full px-3 py-2.5 rounded-xl outline-none"></textarea>
+          </div>
+          <div class="cart-note-box">
+            <i class="fa-solid fa-circle-info mr-1"></i>
+            <strong>Catatan:</strong> Total harga barang belum termasuk biaya pengiriman. CS/Seller kami akan mengkonfirmasi ongkos kirim berdasarkan pilihan ekspedisi/kurir dan jarak tempuh ke alamat tujuan.
+          </div>
+          <button type="submit" id="btn-submit-cart" class="w-full font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm mt-2 text-white bg-emerald-600 hover:bg-emerald-700">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            Checkout via WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="cart-overlay" onclick="toggleCartDrawer(false)" class="cart-overlay"></div>
+
+  <footer id="kontak" class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center font-extrabold text-lg brand-logo-footer">
+              <span class="brand-orange">I</span>L
+            </div>
+            <span class="font-extrabold text-lg tracking-tight">Indonesia<span class="brand-orange">Listing</span></span>
+          </div>
+          <p class="text-xs leading-relaxed">
+            Pusat penyedia deterjen laundry matic, parfum laundry grade A wangi tahan lama, pelembut pakaian, plastik kemasan, hanger, dan peralatan usaha laundry di seluruh Indonesia.
+          </p>
+          <div class="flex gap-3 pt-2">
+            <a href="https://www.facebook.com/bandardeterjen" target="_blank" rel="noopener" class="social-icon-box"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/bandardeterjen" target="_blank" rel="noopener" class="social-icon-box"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/bandardeterjen" target="_blank" rel="noopener" class="social-icon-box"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-base border-l-4 border-orange pl-3">Katalog Produk</h4>
+          <ul class="space-y-2 text-xs" id="footer-service-links"></ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-base border-l-4 border-royal pl-3">Layanan & Distribusi</h4>
+          <p class="text-xs font-semibold mb-2">Buka Setiap Hari:</p>
+          <p class="text-xs mb-4">Senin - Sabtu: 08.00 - 17.00 WIB<br>Pengiriman Ekspedisi/Kurir ke Seluruh Wilayah Indonesia</p>
+          <div class="footer-ready-box text-xs space-y-2">
+            <div class="text-emerald-400 font-bold flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check"></i> Siap Kirim ke Seluruh Indonesia
+            </div>
+            <p class="text-[11px]">Pemesanan grosir maupun eceran dikirim langsung dari gudang distribusi pusat.</p>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-base border-l-4 border-orange pl-3">Hubungi CS Kami</h4>
+          <ul class="space-y-3 text-xs">
+            <li class="flex items-start gap-3">
+              <i class="fa-brands fa-whatsapp text-emerald-400 text-base mt-0.5"></i>
+              <div>
+                <div class="font-semibold">WhatsApp CS Resmi</div>
+                <a href="https://wa.me/6285773009666" id="footer-phone-link">085773009666</a>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-regular fa-envelope text-base mt-0.5"></i>
+              <div>
+                <div class="font-semibold">Email Sales</div>
+                <a href="mailto:bandardeterjen@gmail.com">bandardeterjen@gmail.com</a>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-location-dot text-base mt-0.5"></i>
+              <div>
+                <div class="font-semibold">Cakupan Area</div>
+                <span>Seluruh Kota & Kabupaten di Indonesia</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 footer-border-top">
+        <h5 class="text-xs font-bold uppercase tracking-wider mb-3">Area Distribusi Wilayah Indonesia:</h5>
+        <div id="footer-districts-cloud" class="flex flex-wrap gap-x-2.5 gap-y-1.5 text-xs"></div>
+      </div>
+      <div class="mt-10 pt-6 footer-border-top flex flex-col sm:flex-row justify-between items-center text-xs gap-3">
+        <p>&copy; <span id="auto-copyright-year"></span> Indonesia Laundry Listing. Seluruh hak cipta dilindungi.</p>
+        <div class="flex items-center gap-4">
+          <span>Kualitas Terjamin • Siap Antar Seluruh Indonesia</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="blg-toast" class="blg-toast-box"></div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/css/bandar-laundry.css' | relative_url }}">
+<script src="{{ '/assets/js/bandar-laundry.js' | relative_url }}"></script>
