@@ -1,0 +1,268 @@
+.laundry-banyumas-page {
+  --lb-phone: "085773009666";
+  display: block;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.laundry-banyumas-page * {
+  box-sizing: border-box;
+}
+
+.laundry-banyumas-page .lb-accent {
+  color: var(--orange, #f97316);
+}
+
+.laundry-banyumas-page .lb-hero {
+  background: linear-gradient(135deg,
+    var(--royal-blue, #1e3a8a) 0%,
+    #1d4ed8 50%,
+    #2563eb 100%);
+  color: var(--white, #fff);
+  border-radius: var(--radius, 16px);
+  padding: 2.5rem 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.laundry-banyumas-page .lb-hero__inner {
+  max-width: 720px;
+}
+
+.laundry-banyumas-page .lb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.laundry-banyumas-page .lb-badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange, #f97316);
+}
+
+.laundry-banyumas-page .lb-hero__title {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: 800;
+  margin: 0 0 0.85rem;
+  color: var(--white, #fff);
+}
+
+.laundry-banyumas-page .lb-hero__desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 1.5rem;
+}
+
+.laundry-banyumas-page .lb-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.laundry-banyumas-page .lb-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.laundry-banyumas-page .lb-stat__value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fbbf24;
+}
+
+.laundry-banyumas-page .lb-stat__label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.laundry-banyumas-page .lb-section {
+  margin-bottom: 3.5rem;
+}
+
+.laundry-banyumas-page .lb-features,
+.laundry-banyumas-page .lb-pricing,
+.laundry-banyumas-page .lb-contact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.laundry-banyumas-page .lb-feature {
+  padding: 1.5rem;
+}
+
+.laundry-banyumas-page .lb-feature__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm, 10px);
+  background: var(--bg-soft, #f1f5f9);
+  color: var(--royal-blue, #1e3a8a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 0.85rem;
+}
+
+.laundry-banyumas-page .lb-feature__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: var(--text, #0f172a);
+}
+
+.laundry-banyumas-page .lb-feature__text {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-muted, #64748b);
+  margin: 0;
+}
+
+.laundry-banyumas-page .lb-price {
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.laundry-banyumas-page .lb-price--featured {
+  border: 2px solid var(--orange, #f97316);
+}
+
+.laundry-banyumas-page .lb-price__tag {
+  position: absolute;
+  top: -12px;
+  right: 1rem;
+  background: var(--orange, #f97316);
+  color: var(--white, #fff);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+}
+
+.laundry-banyumas-page .lb-price__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text, #0f172a);
+}
+
+.laundry-banyumas-page .lb-price__amount {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--orange, #f97316);
+}
+
+.laundry-banyumas-page .lb-price__amount span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted, #64748b);
+  margin-left: 0.15rem;
+}
+
+.laundry-banyumas-page .lb-price__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.laundry-banyumas-page .lb-price__list li {
+  font-size: 0.85rem;
+  color: var(--text-muted, #64748b);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.laundry-banyumas-page .lb-price__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: 700;
+}
+
+.laundry-banyumas-page .lb-contact__card {
+  padding: 1.5rem;
+}
+
+.laundry-banyumas-page .lb-contact__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: var(--text, #0f172a);
+}
+
+.laundry-banyumas-page .lb-contact__text {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-muted, #64748b);
+  margin: 0 0 0.9rem;
+}
+
+.laundry-banyumas-page .lb-contact__card .btn {
+  margin-top: auto;
+}
+
+@media (min-width: 640px) {
+  .laundry-banyumas-page .lb-hero {
+    padding: 3.5rem 2.5rem;
+  }
+  .laundry-banyumas-page .lb-hero__title {
+    font-size: 2.25rem;
+  }
+  .laundry-banyumas-page .lb-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .laundry-banyumas-page .lb-pricing,
+  .laundry-banyumas-page .lb-contact {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .laundry-banyumas-page .lb-pricing .lb-price--featured {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .laundry-banyumas-page {
+    padding-top: 3rem;
+  }
+  .laundry-banyumas-page .lb-hero {
+    padding: 4rem 3rem;
+  }
+  .laundry-banyumas-page .lb-hero__title {
+    font-size: 2.75rem;
+  }
+  .laundry-banyumas-page .lb-hero__desc {
+    font-size: 1.05rem;
+  }
+  .laundry-banyumas-page .lb-features {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .laundry-banyumas-page .lb-pricing,
+  .laundry-banyumas-page .lb-contact {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .laundry-banyumas-page .lb-pricing .lb-price--featured {
+    grid-column: auto;
+  }
+}
