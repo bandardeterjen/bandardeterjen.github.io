@@ -1,46 +1,15 @@
 /* ============================================================
    LAUNDRY BANYUMAS — Scoped stylesheet
-   Scope root: .laundry-banyumas-page
-   Semua warna pakai CSS variable theme (fallback disediakan)
+   Hanya untuk komponen yang tidak bisa di-Tailwind.
    ============================================================ */
 
 .laundry-banyumas-page {
-  display: block;
-  padding-top: 1.5rem;
-  padding-bottom: 3rem;
-  color: var(--text, #0f172a);
-  font-family: var(--font-sans, "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif);
-  background: var(--bg, #f8fafc);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.laundry-banyumas-page *,
-.laundry-banyumas-page *::before,
-.laundry-banyumas-page *::after {
-  box-sizing: border-box;
-}
-
-.laundry-banyumas-page img {
-  max-width: 100%;
-  display: block;
-}
-
-/* ---------- App root ---------- */
-.laundry-banyumas-page .lb-app-root {
-  display: block;
-  flex-grow: 1;
-}
-
-/* ---------- Custom scrollbar ---------- */
-.laundry-banyumas-page .lb-custom-scroll::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
-}
-.laundry-banyumas-page .lb-custom-scroll::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-
-/* ---------- Hero gradient ---------- */
+/* ---------- Royal gradient (dipakai hero) ---------- */
 .laundry-banyumas-page .bg-royal-gradient {
   background: linear-gradient(135deg,
     var(--royal-blue, #1e3a8a) 0%,
@@ -48,8 +17,18 @@
     #2563eb 100%);
 }
 
+/* ---------- Custom scrollbar ---------- */
+.laundry-banyumas-page .custom-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.laundry-banyumas-page .custom-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
 /* ---------- Cart Drawer ---------- */
-.laundry-banyumas-page .lb-cart-drawer {
+.laundry-banyumas-page .cart-drawer {
   position: fixed;
   top: 0;
   right: -100%;
@@ -63,309 +42,12 @@
   display: flex;
   flex-direction: column;
 }
-.laundry-banyumas-page .lb-cart-drawer.open {
+.laundry-banyumas-page .cart-drawer.open {
   right: 0;
 }
 
-.laundry-banyumas-page .lb-cart-drawer__head {
-  background: var(--royal-blue, #1e3a8a);
-  color: var(--white, #fff);
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #1e40af;
-  flex-shrink: 0;
-}
-.laundry-banyumas-page .lb-cart-drawer__title {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-.laundry-banyumas-page .lb-cart-drawer__title i {
-  color: var(--orange, #f97316);
-  font-size: 1.05rem;
-}
-.laundry-banyumas-page .lb-cart-drawer__title h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-}
-.laundry-banyumas-page .lb-cart-drawer__close {
-  background: transparent;
-  border: 0;
-  color: #cbd5e1;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.25rem;
-  transition: color 0.2s;
-}
-.laundry-banyumas-page .lb-cart-drawer__close:hover {
-  color: var(--white, #fff);
-}
-
-.laundry-banyumas-page .lb-cart-drawer__body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.laundry-banyumas-page .lb-cart-items-block__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-}
-.laundry-banyumas-page .lb-cart-items-block__label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #334155;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.laundry-banyumas-page .lb-cart-items-block__count {
-  font-size: 0.7rem;
-  color: #64748b;
-  font-weight: 500;
-}
-.laundry-banyumas-page .lb-cart-items-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-/* ---------- Cart item card (rendered by JS) ---------- */
-.laundry-banyumas-page .lb-cart-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  background: var(--white, #fff);
-  border-radius: 0.75rem;
-  border: 1px solid var(--border, #e2e8f0);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-}
-.laundry-banyumas-page .lb-cart-item__img {
-  width: 56px;
-  height: 56px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  background: #f1f5f9;
-  flex-shrink: 0;
-}
-.laundry-banyumas-page .lb-cart-item__info {
-  flex: 1;
-  min-width: 0;
-}
-.laundry-banyumas-page .lb-cart-item__title {
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: #0f172a;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.laundry-banyumas-page .lb-cart-item__price {
-  color: var(--orange, #ea580c);
-  font-weight: 800;
-  font-size: 0.75rem;
-  margin-top: 0.125rem;
-}
-.laundry-banyumas-page .lb-cart-item__subtotal {
-  font-size: 0.625rem;
-  color: #94a3b8;
-  font-weight: 600;
-}
-.laundry-banyumas-page .lb-cart-item__qty {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  background: #f1f5f9;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-  border: 1px solid #e2e8f0;
-  flex-shrink: 0;
-}
-.laundry-banyumas-page .lb-cart-item__qty button {
-  width: 24px;
-  height: 24px;
-  border-radius: 0.25rem;
-  background: var(--white, #fff);
-  border: 0;
-  color: #334155;
-  font-weight: 700;
-  font-size: 0.75rem;
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
-  transition: background 0.15s;
-}
-.laundry-banyumas-page .lb-cart-item__qty button:hover {
-  background: #e2e8f0;
-}
-.laundry-banyumas-page .lb-cart-item__qty span {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #1e293b;
-  padding: 0 0.375rem;
-}
-
-.laundry-banyumas-page .lb-cart-empty {
-  text-align: center;
-  padding: 2.5rem 1rem;
-  color: #94a3b8;
-  background: #f8fafc;
-  border-radius: 1rem;
-  border: 1px dashed var(--border, #e2e8f0);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center;
-}
-.laundry-banyumas-page .lb-cart-empty i {
-  font-size: 2.25rem;
-  color: #cbd5e1;
-}
-.laundry-banyumas-page .lb-cart-empty p {
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-.laundry-banyumas-page .lb-cart-empty p:last-child {
-  font-size: 0.6875rem;
-  font-weight: 400;
-  color: #94a3b8;
-}
-
-/* ---------- Checkout wrapper ---------- */
-.laundry-banyumas-page .lb-checkout-wrapper {
-  background: var(--bg-soft, #f8fafc);
-  border: 1px solid var(--border, #e2e8f0);
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.laundry-banyumas-page .lb-checkout-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border, #e2e8f0);
-}
-.laundry-banyumas-page .lb-checkout-total__label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #334155;
-  text-transform: uppercase;
-}
-.laundry-banyumas-page .lb-checkout-total__value {
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--orange, #ea580c);
-}
-
-.laundry-banyumas-page .lb-checkout-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-}
-
-.laundry-banyumas-page .lb-field {
-  display: flex;
-  flex-direction: column;
-}
-.laundry-banyumas-page .lb-field__label {
-  font-weight: 600;
-  color: #334155;
-  margin-bottom: 0.25rem;
-}
-.laundry-banyumas-page .lb-req {
-  color: #f43f5e;
-}
-.laundry-banyumas-page .lb-opt {
-  color: #94a3b8;
-  font-weight: 400;
-}
-.laundry-banyumas-page .lb-input {
-  width: 100%;
-  padding: 0.625rem 0.75rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.75rem;
-  background: var(--white, #fff);
-  color: var(--text, #0f172a);
-  font-family: inherit;
-  font-size: 0.75rem;
-  outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-.laundry-banyumas-page .lb-input:focus {
-  border-color: var(--royal-blue, #2563eb);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-.laundry-banyumas-page textarea.lb-input {
-  resize: vertical;
-  min-height: 56px;
-}
-
-.laundry-banyumas-page .lb-field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.laundry-banyumas-page .lb-note {
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  font-size: 0.6875rem;
-  line-height: 1.55;
-  color: #78350f;
-}
-.laundry-banyumas-page .lb-note i {
-  color: #d97706;
-  margin-right: 0.25rem;
-}
-
-.laundry-banyumas-page .lb-btn-wa {
-  width: 100%;
-  background: #059669;
-  color: var(--white, #fff);
-  font-weight: 700;
-  padding: 0.875rem 1rem;
-  border-radius: 0.75rem;
-  border: 0;
-  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  font-family: inherit;
-  transition: background 0.15s, transform 0.15s;
-  margin-top: 0.5rem;
-}
-.laundry-banyumas-page .lb-btn-wa:hover {
-  background: #047857;
-}
-.laundry-banyumas-page .lb-btn-wa:active {
-  transform: translateY(1px);
-}
-.laundry-banyumas-page .lb-btn-wa i {
-  font-size: 1.1rem;
-}
-
-/* ---------- Overlay ---------- */
-.laundry-banyumas-page .lb-cart-overlay {
+/* ---------- Cart Overlay ---------- */
+.laundry-banyumas-page .cart-overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.65);
@@ -374,99 +56,38 @@
   z-index: 99998;
   display: none;
 }
-.laundry-banyumas-page .lb-cart-overlay.show {
+.laundry-banyumas-page .cart-overlay.show {
   display: block;
 }
 
 /* ---------- Toast ---------- */
-.laundry-banyumas-page .lb-toast {
+.laundry-banyumas-page .blg-toast {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 999999999;
   padding: 12px 24px;
-  color: var(--white, #fff);
+  color: #fff;
   border-radius: 8px;
   display: none;
   font-weight: 700;
-  font-size: 0.75rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
   background: #10b981;
   max-width: 320px;
 }
 
-/* ---------- Responsive tweaks ---------- */
-@media (max-width: 640px) {
-  .laundry-banyumas-page {
-    padding-top: 1rem;
-  }
-  .laundry-banyumas-page .lb-cart-drawer {
-    max-width: 100%;
-  }
-  .laundry-banyumas-page .lb-field-row {
-    grid-template-columns: 1fr;
-  }
-  .laundry-banyumas-page .lb-toast {
-    left: 16px;
-    right: 16px;
-    text-align: center;
-  }
+/* ---------- Line clamp helper (Tailwind 3 punya line-clamp-2,
+   tapi CDN kadang tidak include plugin) ---------- */
+.laundry-banyumas-page .line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .laundry-banyumas-page .lb-cart-drawer__head {
-    padding: 0.85rem;
-  }
-  .laundry-banyumas-page .lb-cart-drawer__body {
-    padding: 0.75rem;
-  }
-}
-
-/* ---------- Dark mode (opt-in via prefers-color-scheme) ---------- */
+/* ---------- Dark mode ringan ---------- */
 @media (prefers-color-scheme: dark) {
-  .laundry-banyumas-page {
-    background: var(--bg, #0b1220);
-    color: var(--text, #e2e8f0);
-  }
-  .laundry-banyumas-page .lb-cart-drawer {
+  .laundry-banyumas-page .cart-drawer {
     background: var(--bg-elev, #0f172a);
-    color: var(--text, #e2e8f0);
-  }
-  .laundry-banyumas-page .lb-cart-item {
-    background: var(--bg-elev, #0f172a);
-    border-color: var(--border, #1e293b);
-  }
-  .laundry-banyumas-page .lb-cart-item__title {
-    color: var(--text, #e2e8f0);
-  }
-  .laundry-banyumas-page .lb-cart-item__qty {
-    background: #1e293b;
-    border-color: #334155;
-  }
-  .laundry-banyumas-page .lb-cart-item__qty button {
-    background: #0f172a;
     color: #e2e8f0;
-  }
-  .laundry-banyumas-page .lb-cart-item__qty span {
-    color: #e2e8f0;
-  }
-  .laundry-banyumas-page .lb-cart-empty {
-    background: #0b1220;
-    color: #64748b;
-    border-color: #1e293b;
-  }
-  .laundry-banyumas-page .lb-checkout-wrapper {
-    background: var(--bg-soft, #0b1220);
-    border-color: var(--border, #1e293b);
-  }
-  .laundry-banyumas-page .lb-input {
-    background: #0b1220;
-    border-color: #334155;
-    color: #e2e8f0;
-  }
-  .laundry-banyumas-page .lb-note {
-    background: #422006;
-    border-color: #78350f;
-    color: #fcd34d;
   }
 }
