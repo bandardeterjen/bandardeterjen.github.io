@@ -1,136 +1,93 @@
 ---
 layout: default
-title: "Laundry Banyumas — Layanan Cuci Kiloan & Satuan"
-description: "Laundry Banyumas: layanan cuci kiloan, satuan, express, dan antar-jemput untuk wilayah Banyumas dan sekitarnya. Wangi tahan lama, bersih maksimal."
+title: "Laundry Banyumas — Pusat Sabun, Parfum & Perlengkapan Laundry"
+description: "Pusat suplai deterjen laundry, parfum grade A, softener, plastik packing, dan perlengkapan usaha laundry untuk seluruh wilayah Indonesia."
 permalink: /laundry-banyumas/
 ---
 
 <div class="container laundry-banyumas-page">
 
-  <section class="lb-hero">
-    <div class="lb-hero__inner">
-      <span class="lb-badge">
-        <span class="lb-badge__dot"></span>
-        Layanan Laundry Profesional Banyumas
-      </span>
-      <h1 class="lb-hero__title">
-        Laundry <span class="lb-accent">Banyumas</span> — Bersih, Wangi, Tepat Waktu
-      </h1>
-      <p class="lb-hero__desc">
-        Cuci kiloan, satuan, bed cover, gorden, dan sepatu. Antar-jemput gratis
-        untuk area Banyumas dan sekitarnya. Wangi tahan lama hingga 14 hari.
-      </p>
-      <div class="lb-hero__actions">
-        <a href="#lb-paket" class="btn btn-primary">Lihat Paket</a>
-        <a href="#lb-kontak" class="btn">Hubungi Kami</a>
-      </div>
-      <div class="lb-hero__stats">
-        <div class="lb-stat">
-          <div class="lb-stat__value">6 Jam</div>
-          <div class="lb-stat__label">Layanan Express</div>
-        </div>
-        <div class="lb-stat">
-          <div class="lb-stat__value">14 Hari</div>
-          <div class="lb-stat__label">Wangi Tahan Lama</div>
-        </div>
-        <div class="lb-stat">
-          <div class="lb-stat__value">Gratis</div>
-          <div class="lb-stat__label">Antar-Jemput Area Banyumas</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main id="app-root" class="lb-app-root"></main>
 
-  <section class="lb-section">
-    <header class="post-header">
-      <h2 class="post-title">Mengapa Memilih Kami?</h2>
-      <p class="post-description">Standar kebersihan dan pelayanan yang bisa kamu andalkan.</p>
-    </header>
-    <div class="lb-features">
-      <div class="card lb-feature">
-        <div class="lb-feature__icon">1</div>
-        <h3 class="lb-feature__title">Bersih Maksimal</h3>
-        <p class="lb-feature__text">Deterjen konsentrat dan mesin modern mengangkat noda membandel tanpa merusak serat kain.</p>
-      </div>
-      <div class="card lb-feature">
-        <div class="lb-feature__icon">2</div>
-        <h3 class="lb-feature__title">Wangi Tahan Lama</h3>
-        <p class="lb-feature__text">Parfum grade A dengan aroma pilihan yang menempel hingga 14 hari di lemari.</p>
-      </div>
-      <div class="card lb-feature">
-        <div class="lb-feature__icon">3</div>
-        <h3 class="lb-feature__title">Antar-Jemput</h3>
-        <p class="lb-feature__text">Gratis penjemputan dan pengantaran untuk area Banyumas dengan minimum order tertentu.</p>
-      </div>
-      <div class="card lb-feature">
-        <div class="lb-feature__icon">4</div>
-        <h3 class="lb-feature__title">Tepat Waktu</h3>
-        <p class="lb-feature__text">Estimasi selesai jelas. Paket express 6 jam untuk kebutuhan mendesak.</p>
-      </div>
-    </div>
-  </section>
+  <div id="cart-drawer" class="lb-cart-drawer">
 
-  <section id="lb-paket" class="lb-section">
-    <header class="post-header">
-      <h2 class="post-title">Paket & Harga</h2>
-      <p class="post-description">Transparan, tanpa biaya tersembunyi.</p>
-    </header>
-    <div class="lb-pricing">
-      <div class="card lb-price">
-        <h3 class="lb-price__name">Cuci Kiloan</h3>
-        <div class="lb-price__amount">Rp 6.000<span>/kg</span></div>
-        <ul class="lb-price__list">
-          <li>Cuci + kering + lipat</li>
-          <li>Selesai 2 hari</li>
-          <li>Min. 3 kg</li>
-        </ul>
-        <button type="button" class="btn btn-primary lb-order" data-paket="Cuci Kiloan">Pesan Sekarang</button>
+    <div class="lb-cart-drawer__head">
+      <div class="lb-cart-drawer__title">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h3>Keranjang Belanja</h3>
       </div>
-      <div class="card lb-price lb-price--featured">
-        <span class="lb-price__tag">Terpopuler</span>
-        <h3 class="lb-price__name">Express 6 Jam</h3>
-        <div class="lb-price__amount">Rp 10.000<span>/kg</span></div>
-        <ul class="lb-price__list">
-          <li>Cuci + kering + lipat</li>
-          <li>Selesai 6 jam</li>
-          <li>Prioritas antrian</li>
-        </ul>
-        <button type="button" class="btn btn-primary lb-order" data-paket="Express 6 Jam">Pesan Sekarang</button>
-      </div>
-      <div class="card lb-price">
-        <h3 class="lb-price__name">Satuan Besar</h3>
-        <div class="lb-price__amount">Rp 25.000<span>/pcs</span></div>
-        <ul class="lb-price__list">
-          <li>Bed cover, gorden, selimut</li>
-          <li>Selesai 3 hari</li>
-          <li>Perawatan khusus</li>
-        </ul>
-        <button type="button" class="btn btn-primary lb-order" data-paket="Satuan Besar">Pesan Sekarang</button>
-      </div>
+      <button type="button" class="lb-cart-drawer__close" data-lb-action="close-cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
-  </section>
 
-  <section id="lb-kontak" class="lb-section">
-    <header class="post-header">
-      <h2 class="post-title">Hubungi Kami</h2>
-      <p class="post-description">Kami siap membantu setiap hari, 08.00–21.00 WIB.</p>
-    </header>
-    <div class="lb-contact">
-      <div class="card lb-contact__card">
-        <h3 class="lb-contact__title">WhatsApp</h3>
-        <p class="lb-contact__text">Respon cepat untuk pemesanan dan pertanyaan.</p>
-        <a class="btn btn-primary" id="lb-wa-link" href="#">Chat WhatsApp</a>
+    <div class="lb-cart-drawer__body lb-custom-scroll">
+
+      <div class="lb-cart-items-block">
+        <div class="lb-cart-items-block__head">
+          <span class="lb-cart-items-block__label">Produk Terpilih</span>
+          <span id="cart-item-count-label" class="lb-cart-items-block__count">0 item</span>
+        </div>
+        <div id="cart-items-container" class="lb-cart-items-list"></div>
       </div>
-      <div class="card lb-contact__card">
-        <h3 class="lb-contact__title">Alamat</h3>
-        <p class="lb-contact__text">Jl. Raya Banyumas No. 123, Banyumas, Jawa Tengah.</p>
-      </div>
-      <div class="card lb-contact__card">
-        <h3 class="lb-contact__title">Jam Operasional</h3>
-        <p class="lb-contact__text">Senin–Sabtu: 08.00–21.00 WIB<br>Minggu: 09.00–17.00 WIB</p>
+
+      <div id="cart-checkout-wrapper" class="lb-checkout-wrapper">
+
+        <div class="lb-checkout-total">
+          <span class="lb-checkout-total__label">Subtotal Belanja:</span>
+          <span id="cart-total-price" class="lb-checkout-total__value">Rp 0</span>
+        </div>
+
+        <form id="cart-checkout-form" class="lb-checkout-form">
+
+          <div class="lb-field">
+            <label for="co-nama" class="lb-field__label">Nama Pemesan <span class="lb-req">*</span></label>
+            <input type="text" id="co-nama" required placeholder="Nama lengkap Anda" class="lb-input">
+          </div>
+
+          <div class="lb-field">
+            <label for="co-wa" class="lb-field__label">Nomor WhatsApp <span class="lb-opt">(Opsional)</span></label>
+            <input type="tel" id="co-wa" placeholder="Contoh: 08123456789" class="lb-input">
+          </div>
+
+          <div class="lb-field-row">
+            <div class="lb-field">
+              <label for="co-kecamatan" class="lb-field__label">Kota / Kabupaten</label>
+              <select id="co-kecamatan" class="lb-input">
+                <option value="">Pilih Wilayah</option>
+              </select>
+            </div>
+            <div class="lb-field">
+              <label for="co-desa" class="lb-field__label">Kecamatan / Desa</label>
+              <select id="co-desa" class="lb-input">
+                <option value="">Pilih Area</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="lb-field">
+            <label for="co-alamat" class="lb-field__label">Alamat Lengkap <span class="lb-req">*</span></label>
+            <textarea id="co-alamat" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, patokan..." class="lb-input"></textarea>
+          </div>
+
+          <div class="lb-note">
+            <i class="fa-solid fa-circle-info"></i>
+            <strong>Catatan:</strong> Total harga barang belum termasuk biaya pengiriman. CS/Seller kami akan mengkonfirmasi ongkos kirim berdasarkan pilihan ekspedisi/kurir dan jarak tempuh ke alamat tujuan.
+          </div>
+
+          <button type="submit" id="btn-submit-cart" class="lb-btn-wa">
+            <i class="fa-brands fa-whatsapp"></i>
+            Checkout via WhatsApp
+          </button>
+
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+
+  <div id="cart-overlay" class="lb-cart-overlay" data-lb-action="close-cart"></div>
+
+  <div id="blg-toast" class="lb-toast"></div>
 
 </div>
 
