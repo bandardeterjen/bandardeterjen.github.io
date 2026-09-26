@@ -5,91 +5,107 @@ description: "Pusat suplai deterjen laundry, parfum grade A, softener, plastik p
 permalink: /laundry-banyumas/
 ---
 
-<div class="container laundry-banyumas-page">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          royal: { 50:'#eef2ff',100:'#e0e7ff',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a8a' },
+          brandOrange: { 400:'#fb923c',500:'#f97316',600:'#ea580c',700:'#c2410c' }
+        },
+        fontFamily: {
+          sans: ['Plus Jakarta Sans','Raleway','sans-serif'],
+          display: ['Raleway','sans-serif']
+        }
+      }
+    }
+  };
+</script>
 
-  <main id="app-root" class="lb-app-root"></main>
+<link rel="stylesheet" href="{{ '/assets/css/laundry-banyumas.css' | relative_url }}">
 
-  <div id="cart-drawer" class="lb-cart-drawer">
+<div class="laundry-banyumas-page bg-slate-50 text-slate-800 antialiased font-sans">
 
-    <div class="lb-cart-drawer__head">
-      <div class="lb-cart-drawer__title">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <h3>Keranjang Belanja</h3>
+  <main id="app-root" class="flex-grow"></main>
+
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="bg-royal-900 text-white p-4 flex justify-between items-center border-b border-royal-800 shrink-0">
+      <div class="flex items-center gap-2.5">
+        <i class="fa-solid fa-bag-shopping text-brandOrange-400 text-lg"></i>
+        <h3 class="font-bold text-base">Keranjang Belanja</h3>
       </div>
-      <button type="button" class="lb-cart-drawer__close" data-lb-action="close-cart">
+      <button type="button" data-lb-action="close-cart" class="text-slate-300 hover:text-white text-xl p-1">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
 
-    <div class="lb-cart-drawer__body lb-custom-scroll">
-
-      <div class="lb-cart-items-block">
-        <div class="lb-cart-items-block__head">
-          <span class="lb-cart-items-block__label">Produk Terpilih</span>
-          <span id="cart-item-count-label" class="lb-cart-items-block__count">0 item</span>
+    <div class="flex-1 overflow-y-auto p-4 space-y-5 custom-scroll">
+      <div>
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Produk Terpilih</span>
+          <span id="cart-item-count-label" class="text-xs text-slate-500 font-medium">0 item</span>
         </div>
-        <div id="cart-items-container" class="lb-cart-items-list"></div>
+        <div id="cart-items-container" class="space-y-2.5"></div>
       </div>
 
-      <div id="cart-checkout-wrapper" class="lb-checkout-wrapper">
-
-        <div class="lb-checkout-total">
-          <span class="lb-checkout-total__label">Subtotal Belanja:</span>
-          <span id="cart-total-price" class="lb-checkout-total__value">Rp 0</span>
+      <div id="cart-checkout-wrapper" class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-4 shadow-sm">
+        <div class="flex justify-between items-center pb-3 border-b border-slate-200">
+          <span class="text-xs font-bold text-slate-700 uppercase">Subtotal Belanja:</span>
+          <span id="cart-total-price" class="text-xl font-black text-brandOrange-600">Rp 0</span>
         </div>
 
-        <form id="cart-checkout-form" class="lb-checkout-form">
-
-          <div class="lb-field">
-            <label for="co-nama" class="lb-field__label">Nama Pemesan <span class="lb-req">*</span></label>
-            <input type="text" id="co-nama" required placeholder="Nama lengkap Anda" class="lb-input">
+        <form id="cart-checkout-form" class="space-y-3 text-xs">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Nama Pemesan <span class="text-rose-500">*</span></label>
+            <input type="text" id="co-nama" required placeholder="Nama lengkap Anda" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white">
           </div>
 
-          <div class="lb-field">
-            <label for="co-wa" class="lb-field__label">Nomor WhatsApp <span class="lb-opt">(Opsional)</span></label>
-            <input type="tel" id="co-wa" placeholder="Contoh: 08123456789" class="lb-input">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Nomor WhatsApp <span class="text-slate-400 font-normal">(Opsional)</span></label>
+            <input type="tel" id="co-wa" placeholder="Contoh: 08123456789" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white">
           </div>
 
-          <div class="lb-field-row">
-            <div class="lb-field">
-              <label for="co-kecamatan" class="lb-field__label">Kota / Kabupaten</label>
-              <select id="co-kecamatan" class="lb-input">
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Kota / Kabupaten</label>
+              <select id="co-kecamatan" class="w-full px-2.5 py-2.5 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-royal-500 outline-none">
                 <option value="">Pilih Wilayah</option>
               </select>
             </div>
-            <div class="lb-field">
-              <label for="co-desa" class="lb-field__label">Kecamatan / Desa</label>
-              <select id="co-desa" class="lb-input">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Kecamatan / Desa</label>
+              <select id="co-desa" class="w-full px-2.5 py-2.5 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-royal-500 outline-none">
                 <option value="">Pilih Area</option>
               </select>
             </div>
           </div>
 
-          <div class="lb-field">
-            <label for="co-alamat" class="lb-field__label">Alamat Lengkap <span class="lb-req">*</span></label>
-            <textarea id="co-alamat" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, patokan..." class="lb-input"></textarea>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Alamat Lengkap <span class="text-rose-500">*</span></label>
+            <textarea id="co-alamat" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, patokan..." class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-royal-500 outline-none bg-white"></textarea>
           </div>
 
-          <div class="lb-note">
-            <i class="fa-solid fa-circle-info"></i>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[11px] text-amber-900 leading-relaxed">
+            <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i>
             <strong>Catatan:</strong> Total harga barang belum termasuk biaya pengiriman. CS/Seller kami akan mengkonfirmasi ongkos kirim berdasarkan pilihan ekspedisi/kurir dan jarak tempuh ke alamat tujuan.
           </div>
 
-          <button type="submit" id="btn-submit-cart" class="lb-btn-wa">
-            <i class="fa-brands fa-whatsapp"></i>
+          <button type="submit" id="btn-submit-cart" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm mt-2">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
             Checkout via WhatsApp
           </button>
-
         </form>
       </div>
     </div>
   </div>
 
-  <div id="cart-overlay" class="lb-cart-overlay" data-lb-action="close-cart"></div>
+  <div id="cart-overlay" data-lb-action="close-cart" class="cart-overlay"></div>
 
-  <div id="blg-toast" class="lb-toast"></div>
+  <div id="blg-toast" class="blg-toast shadow-xl text-xs"></div>
 
 </div>
 
-<link rel="stylesheet" href="{{ '/assets/css/laundry-banyumas.css' | relative_url }}">
 <script src="{{ '/assets/js/laundry-banyumas.js' | relative_url }}" defer></script>
