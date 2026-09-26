@@ -19,6 +19,7 @@ highlighter: rouge
 # PERUBAHAN v3.0: permalink tanpa tanggal & tag
 permalink: /blog/:categories/:title/
 timezone: Asia/Jakarta
+future: true
 
 kramdown:
   input: GFM
@@ -101,7 +102,6 @@ social_links:
 # ====== Exclude ======
 exclude:
   - Gemfile
-  - Gemfile.lock
   - node_modules
   - vendor
   - README.md
