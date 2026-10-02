@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Katalog Resep & Akses Member</title>
+    <title>E-Katalog Resep Kimia Industri</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
-        #sidebar { transition: width 0.3s ease-in-out; }
-        .sidebar-closed #sidebar { width: 0; overflow: hidden; border-right-width: 0; }
-        #toggle-icon { transform: rotate(180deg); transition: transform 0.3s; }
-        .sidebar-closed #toggle-icon { transform: rotate(0deg); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .rotate-180 { transform: rotate(180deg); }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
 
     <!-- ================= HALAMAN LOGIN ================= -->
     <div id="login-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 z-50">
@@ -40,7 +37,7 @@
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Verifikasi Matematika</label>
                     <div class="flex items-center gap-2">
-                        <div id="math-question" class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-xl text-sm font-bold border border-indigo-100 shrink-0">
+                        <div id="math-question" class="bg-indigo-50 text-indigo-700 px-4 py-2.5 rounded-xl text-sm font-bold border border-indigo-100 shrink-0">
                             <!-- Pertanyaan Matematika Generated via JS -->
                         </div>
                         <input type="number" id="math-answer" required placeholder="Hasil?" class="w-full px-4 py-2.5 bg-slate-50 rounded-xl text-sm border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
@@ -56,66 +53,1010 @@
         </div>
     </div>
 
-    <!-- ================= MODAL PANEL ADMIN (MANAJEMEN EMAIL) ================= -->
-    <div id="admin-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-40">
-        <div class="bg-white rounded-3xl p-6 max-w-lg w-full shadow-2xl border border-slate-100 flex flex-col max-h-[85vh]">
+    <!-- ================= MODAL PANEL ADMIN ================= -->
+    <div id="admin-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-5 md:p-6 max-w-lg w-full shadow-2xl border border-slate-100 flex flex-col max-h-[85vh]">
             <div class="flex justify-between items-center pb-4 border-b border-slate-100">
-                <h3 class="font-bold text-slate-800 text-lg">Panel Admin - Kelola Email Member</h3>
-                <button onclick="closeAdminPanel()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+                <h3 class="font-bold text-slate-800 text-base md:text-lg">Panel Admin - Kelola Email Member</h3>
+                <button onclick="closeAdminPanel()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold">&times;</button>
             </div>
 
             <div class="mt-4 flex gap-2">
                 <input type="email" id="new-user-email" placeholder="Tambah email baru..." class="flex-1 px-4 py-2 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 outline-none">
-                <button onclick="addNewUser()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-semibold hover:bg-indigo-700">Tambah</button>
+                <button onclick="addNewUser()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-semibold hover:bg-indigo-700 shrink-0">Tambah</button>
             </div>
 
             <div id="admin-user-list" class="mt-4 flex-1 overflow-y-auto space-y-2 custom-scrollbar pr-1">
-                <!-- User list loaded dynamically -->
+                <!-- User list dimuat via JS -->
             </div>
         </div>
     </div>
 
-    <!-- ================= HALAMAN UTAMA (KATALOG) ================= -->
-    <div id="app" class="flex h-screen overflow-hidden hidden">
-        <!-- Sidebar -->
-        <aside id="sidebar" class="w-80 bg-white border-r border-slate-200 flex flex-col shrink-0">
-            <div class="p-4 border-b border-slate-100 bg-white sticky top-0 z-10">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-indigo-600 p-2 rounded-lg text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                        </div>
-                        <h1 class="font-bold text-lg text-slate-800 tracking-tight">E-Katalog Resep</h1>
+    <!-- ================= APLIKASI UTAMA ================= -->
+    <div id="app" class="flex-1 flex flex-col md:flex-row h-screen overflow-hidden hidden">
+        
+        <!-- Overlay Backdrop Mobile saat Sidebar Terbuka -->
+        <div id="sidebar-overlay" onclick="closeMobileSidebar()" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-30 hidden md:hidden"></div>
+
+        <!-- Sidebar / Daftar Isi Collapsible -->
+        <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-80 bg-white border-r border-slate-200 flex flex-col shrink-0 z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+            
+            <!-- Header Sidebar -->
+            <div class="p-4 border-b border-slate-100 bg-white flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="bg-indigo-600 p-2 rounded-xl text-white shadow-md shadow-indigo-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     </div>
+                    <h1 class="font-bold text-base text-slate-800 tracking-tight">E-Katalog Resep</h1>
                 </div>
+                <button onclick="closeMobileSidebar()" class="md:hidden text-slate-400 hover:text-slate-600 p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="p-3 border-b border-slate-100">
                 <div class="relative">
-                    <input type="text" id="search-input" placeholder="Cari resep..." class="w-full pl-4 pr-4 py-2 bg-slate-100 rounded-xl text-sm border-none focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <input type="text" id="search-input" placeholder="Cari resep..." class="w-full pl-9 pr-4 py-2 bg-slate-100 rounded-xl text-xs md:text-sm border-none focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <svg class="absolute left-3 top-2.5 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </div>
             </div>
-            <div id="recipe-list" class="flex-1 overflow-y-auto py-2 custom-scrollbar"></div>
+
+            <!-- Header Toggle Collapse/Expand All -->
+            <div class="px-3 py-2 bg-slate-50 border-b border-slate-100 flex justify-between items-center text-xs">
+                <span class="font-bold text-slate-500 uppercase tracking-wider">Daftar Materi</span>
+                <button onclick="toggleCollapseAll()" id="btn-toggle-collapse" class="text-indigo-600 hover:underline font-semibold">Tutup Semua</button>
+            </div>
+
+            <!-- List Materi Collapsible / Accordion -->
+            <div id="recipe-list-container" class="flex-1 overflow-y-auto p-3 space-y-2 custom-scrollbar">
+                <!-- Accordion items generated via JS -->
+            </div>
         </aside>
 
-        <!-- Main Content -->
-        <main class="flex-1 flex flex-col min-w-0 relative">
-            <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-20">
-                <button id="sidebar-toggle" class="p-2 hover:bg-slate-100 rounded-lg text-slate-500">
-                    <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col min-w-0 bg-slate-50 h-full overflow-hidden">
+            
+            <!-- Header Atas (Top Nav) -->
+            <header class="bg-white border-b border-slate-200 px-4 md:px-6 py-3 flex items-center justify-between shrink-0">
                 <div class="flex items-center gap-3">
-                    <span id="user-display" class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg"></span>
-                    <button id="btn-admin-panel" onclick="openAdminPanel()" class="hidden text-xs bg-indigo-600 text-white font-semibold px-3 py-1.5 rounded-lg hover:bg-indigo-700">Kelola Email</button>
-                    <button onclick="logout()" class="text-xs bg-red-50 text-red-600 font-semibold px-3 py-1.5 rounded-lg hover:bg-red-100">Keluar</button>
+                    <button onclick="openMobileSidebar()" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-xl border border-slate-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                    <span class="hidden sm:inline-block text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-lg">Katalog Resep Kimia</span>
+                </div>
+
+                <div class="flex items-center gap-2 md:gap-3">
+                    <span id="user-display" class="text-xs font-medium text-slate-600 bg-slate-100 px-2.5 py-1.5 rounded-lg max-w-[140px] md:max-w-none truncate"></span>
+                    <button id="btn-admin-panel" onclick="openAdminPanel()" class="hidden text-xs bg-indigo-600 text-white font-semibold px-2.5 py-1.5 rounded-lg hover:bg-indigo-700">Admin</button>
+                    <button onclick="logout()" class="text-xs bg-red-50 text-red-600 font-semibold px-2.5 py-1.5 rounded-lg hover:bg-red-100">Keluar</button>
                 </div>
             </header>
 
-            <div id="content-area" class="flex-1 overflow-y-auto p-6 md:p-10 scroll-smooth">
-                <div id="recipe-container" class="max-w-3xl mx-auto"></div>
+            <!-- Area Isi Materi -->
+            <div id="content-area" class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth custom-scrollbar">
+                <div id="recipe-container" class="max-w-3xl mx-auto">
+                    <!-- Detail resep dimuat via JS -->
+                </div>
             </div>
         </main>
     </div>
 
     <script>
-        const _0x29307d=_0x344f;(function(_0x5397f3,_0x5d77ea){const _0x547eb4=_0x344f,_0x152e26=_0x5397f3();while(!![]){try{const _0x2964c2=-parseInt(_0x547eb4(0x2dc))/(0x17*0xa3+0x7*-0x2b+0x17f*-0x9)+-parseInt(_0x547eb4(0x7fa))/(-0x1037+0x79*0x1f+0x1*0x192)+parseInt(_0x547eb4(0x317))/(0x3*0x161+0x11*0x238+0x4*-0xa76)*(parseInt(_0x547eb4(0x27d))/(0x13f3+0x1cb+-0x15ba))+parseInt(_0x547eb4(0x686))/(0x1d34+-0x5bb+-0x4c*0x4f)+-parseInt(_0x547eb4(0x590))/(0x17b*-0x4+0x102+0x4f0)+-parseInt(_0x547eb4(0x385))/(-0x266d+-0x1c0d+0x4281)*(-parseInt(_0x547eb4(0x41a))/(-0x2363+-0x96a+-0x1*-0x2cd5))+parseInt(_0x547eb4(0x356))/(0x1*0x1795+-0x1ee2+0x756)*(parseInt(_0x547eb4(0x6d4))/(-0x1d5c+0x1f67+-0x201));if(_0x2964c2===_0x5d77ea)break;else _0x152e26['push'](_0x152e26['shift']());}catch(_0x27db74){_0x152e26['push'](_0x152e26['shift']());}}}(_0x4112,-0x5f8+-0x1*-0x2acd3+-0xd627));const GAS_WEB_APP_URL=_0x29307d(0x811)+_0x29307d(0x50f)+_0x29307d(0x512)+'os/s/AKfyc'+_0x29307d(0x7b5)+_0x29307d(0x412)+'rdcjzjQztc'+_0x29307d(0x80c)+_0x29307d(0x489)+_0x29307d(0x642)+_0x29307d(0x390)+_0x29307d(0x589);let currentMathResult=0x1b4f+-0x26ba+-0xb6b*-0x1,loggedUser=null,isUserAdmin=![];function generateMathProblem(){const _0x587d92=_0x29307d,_0x133a15={'bMduP':function(_0x398506,_0x1341a0){return _0x398506+_0x1341a0;},'yzGEd':function(_0x51f432,_0x46e7db){return _0x51f432*_0x46e7db;},'wqzRM':function(_0x365fee,_0x489194){return _0x365fee>_0x489194;},'rPIbP':function(_0x52bbb0,_0x43dc4d){return _0x52bbb0+_0x43dc4d;},'gyDlV':function(_0x41c1a8,_0x5b3208){return _0x41c1a8-_0x5b3208;},'UjzZl':_0x587d92(0x483)+_0x587d92(0x180)},_0x3c9923=_0x133a15[_0x587d92(0x391)](Math['floor'](_0x133a15['yzGEd'](Math[_0x587d92(0x372)](),-0x26a4*-0x1+-0x1205+-0x148b)),-0x2*-0x2de+-0x21*0x7b+0x289*0x4),_0x5ec757=Math[_0x587d92(0x31a)](_0x133a15[_0x587d92(0x3b7)](Math['random'](),-0x201a+0x267+0x1dbd))+(0xb22+-0x298+-0x889*0x1),_0x164a65=_0x133a15[_0x587d92(0x7fc)](Math['random'](),-0x1*0xdf4+-0x10a0*0x2+0x2f34+0.5);_0x164a65?(currentMathResult=_0x133a15[_0x587d92(0x37c)](_0x3c9923,_0x5ec757),document[_0x587d92(0x6b8)+_0x587d92(0x282)](_0x587d92(0x483)+_0x587d92(0x180))[_0x587d92(0x23d)]=_0x3c9923+'\x20+\x20'+_0x5ec757+'\x20='):(currentMathResult=_0x133a15[_0x587d92(0x544)](_0x3c9923,_0x5ec757),document[_0x587d92(0x6b8)+'ById'](_0x133a15[_0x587d92(0x302)])[_0x587d92(0x23d)]=_0x3c9923+_0x587d92(0x1ae)+_0x5ec757+'\x20=');}async function handleLoginSubmit(_0x58bca4){const _0x138174=_0x29307d,_0x1f86b6={'gHSgw':'login-emai'+'l','GMUMK':function(_0x1f649b,_0x3295f6,_0x3615b6){return _0x1f649b(_0x3295f6,_0x3615b6);},'SZvNf':_0x138174(0x616)+'r','MToLf':_0x138174(0x619)+'r','jExAh':_0x138174(0x232),'mViIv':'hidden','HGLov':function(_0x39757e,_0x498607){return _0x39757e!==_0x498607;},'lxIta':function(_0x3a731a){return _0x3a731a();},'Yglik':_0x138174(0x190)+_0x138174(0x3ea),'AqICT':function(_0x3257b0,_0x8eb208){return _0x3257b0(_0x8eb208);},'oyiDT':_0x138174(0x2fc),'JuAqB':_0x138174(0x1c7)+_0x138174(0x684),'XPVGw':_0x138174(0x3fb),'XXUwC':_0x138174(0x48b)+'l','qqQwD':function(_0x500634,_0xf96c01){return _0x500634===_0xf96c01;},'amwzJ':'admin','gaBIT':_0x138174(0x511)+'ay','CWUOJ':function(_0x292a45){return _0x292a45();},'QkGAX':_0x138174(0x3d7)+_0x138174(0x472)};_0x58bca4[_0x138174(0x7e4)+_0x138174(0x673)]();const _0x533712=document[_0x138174(0x6b8)+_0x138174(0x282)](_0x1f86b6[_0x138174(0x6a6)])[_0x138174(0x588)][_0x138174(0x652)](),_0x4415c8=_0x1f86b6[_0x138174(0x585)](parseInt,document['getElement'+_0x138174(0x282)](_0x1f86b6['SZvNf'])[_0x138174(0x588)],0xfe*0x16+0x9be*0x1+-0x1f88),_0x290e3d=document['getElement'+_0x138174(0x282)](_0x1f86b6[_0x138174(0x28e)]),_0x2ffd33=document[_0x138174(0x6b8)+'ById'](_0x1f86b6[_0x138174(0x609)]);_0x290e3d[_0x138174(0x76f)][_0x138174(0x802)](_0x1f86b6['mViIv']);if(_0x1f86b6['HGLov'](_0x4415c8,currentMathResult)){const _0x597699=_0x138174(0x3d1)[_0x138174(0x755)]('|');let _0x38f1d4=-0x225b+-0xce*-0xb+0x1981;while(!![]){switch(_0x597699[_0x38f1d4++]){case'0':document['getElement'+'ById'](_0x1f86b6[_0x138174(0x350)])['value']='';continue;case'1':_0x1f86b6[_0x138174(0x205)](generateMathProblem);continue;case'2':_0x290e3d[_0x138174(0x76f)][_0x138174(0x651)]('hidden');continue;case'3':return;case'4':_0x290e3d['innerText']='Hasil\x20jawa'+'ban\x20matema'+_0x138174(0x6bd)+_0x138174(0x4f9)+'coba\x20lagi.';continue;}break;}}_0x2ffd33[_0x138174(0x5bb)]=!![],_0x2ffd33[_0x138174(0x23d)]=_0x1f86b6['Yglik'];try{const _0x10976d=await _0x1f86b6[_0x138174(0x824)](fetch,GAS_WEB_APP_URL+(_0x138174(0x1c4)+_0x138174(0x5d1))+_0x1f86b6[_0x138174(0x824)](encodeURIComponent,_0x533712)),_0x1156a6=await _0x10976d[_0x138174(0x698)]();if(_0x1156a6['status']===_0x1f86b6[_0x138174(0x519)]){const _0x509bcb=_0x1f86b6[_0x138174(0x309)]['split']('|');let _0x1ec63b=-0x183e*0x1+-0x1*-0x1ae+0x1690;while(!![]){switch(_0x509bcb[_0x1ec63b++]){case'0':_0x1f86b6[_0x138174(0x205)](renderContent);continue;case'1':document[_0x138174(0x6b8)+_0x138174(0x282)](_0x1f86b6[_0x138174(0x56c)])[_0x138174(0x76f)][_0x138174(0x651)](_0x1f86b6['mViIv']);continue;case'2':loggedUser=_0x1156a6['email'];continue;case'3':document['getElement'+'ById'](_0x1f86b6[_0x138174(0x7f2)])[_0x138174(0x76f)][_0x138174(0x802)](_0x1f86b6[_0x138174(0x2a6)]);continue;case'4':isUserAdmin=_0x1f86b6[_0x138174(0x6db)](_0x1156a6[_0x138174(0x565)],_0x1f86b6[_0x138174(0x71a)]);continue;case'5':document['getElement'+_0x138174(0x282)](_0x1f86b6[_0x138174(0x33b)])[_0x138174(0x23d)]=loggedUser;continue;case'6':isUserAdmin&&document['getElement'+'ById'](_0x138174(0x28d)+'panel')[_0x138174(0x76f)]['remove'](_0x1f86b6['mViIv']);continue;case'7':_0x1f86b6[_0x138174(0x205)](renderList);continue;}break;}}else _0x290e3d['innerText']=_0x1156a6[_0x138174(0x1a9)]||_0x138174(0x268)+_0x138174(0x490)+'r.',_0x290e3d[_0x138174(0x76f)][_0x138174(0x651)]('hidden'),_0x1f86b6[_0x138174(0x24d)](generateMathProblem);}catch(_0x4afa64){_0x290e3d[_0x138174(0x23d)]='Gagal\x20terh'+_0x138174(0x4ea)+_0x138174(0x1c3)+_0x138174(0x21b),_0x290e3d[_0x138174(0x76f)][_0x138174(0x651)](_0x1f86b6[_0x138174(0x2a6)]);}finally{_0x2ffd33[_0x138174(0x5bb)]=![],_0x2ffd33[_0x138174(0x23d)]=_0x1f86b6[_0x138174(0x34f)];}}function logout(){const _0xb0ea48=_0x29307d,_0x385e75={'wtCDv':_0xb0ea48(0x52b)+'l','HCzMH':function(_0x36bf64){return _0x36bf64();},'nALeH':_0xb0ea48(0x402),'wVIhy':_0xb0ea48(0x616)+'r'},_0x11af49=(_0xb0ea48(0x7ba)+_0xb0ea48(0x78d))[_0xb0ea48(0x755)]('|');let _0x1aaae8=0x8b0+-0x13f1+0x2b*0x43;while(!![]){switch(_0x11af49[_0x1aaae8++]){case'0':document[_0xb0ea48(0x6b8)+'ById'](_0x385e75[_0xb0ea48(0x2d1)])[_0xb0ea48(0x588)]='';continue;case'1':loggedUser=null;continue;case'2':_0x385e75[_0xb0ea48(0x4f5)](generateMathProblem);continue;case'3':document[_0xb0ea48(0x6b8)+'ById'](_0xb0ea48(0x48b)+'l')[_0xb0ea48(0x76f)]['remove'](_0x385e75[_0xb0ea48(0x7fe)]);continue;case'4':isUserAdmin=![];continue;case'5':document[_0xb0ea48(0x6b8)+_0xb0ea48(0x282)](_0x385e75[_0xb0ea48(0x737)])[_0xb0ea48(0x588)]='';continue;case'6':document['getElement'+_0xb0ea48(0x282)]('app')[_0xb0ea48(0x76f)][_0xb0ea48(0x802)](_0x385e75[_0xb0ea48(0x7fe)]);continue;}break;}}function openAdminPanel(){const _0x38975e=_0x29307d,_0x5e22f6={'mFHXb':'admin-moda'+'l'};document[_0x38975e(0x6b8)+'ById'](_0x5e22f6[_0x38975e(0x67d)])[_0x38975e(0x76f)][_0x38975e(0x651)](_0x38975e(0x402)),loadAdminUserList();}function closeAdminPanel(){const _0x35074d=_0x29307d,_0x37f2c1={'rdOIG':_0x35074d(0x523)+'l','QTbWA':'hidden'};document[_0x35074d(0x6b8)+'ById'](_0x37f2c1['rdOIG'])[_0x35074d(0x76f)][_0x35074d(0x802)](_0x37f2c1[_0x35074d(0x492)]);}async function loadAdminUserList(){const _0x59b396=_0x29307d,_0x5f2c85={'pVQCR':_0x59b396(0x58a),'FWcdF':function(_0x240fda,_0x5d7780){return _0x240fda===_0x5d7780;},'PowSY':_0x59b396(0x2bd)+_0x59b396(0x611)+_0x59b396(0x7c7)+'min)</b>','ZNHOm':function(_0x4b10c5,_0x689bf1){return _0x4b10c5!==_0x689bf1;},'jtthw':_0x59b396(0x6e6)+_0x59b396(0x817)+_0x59b396(0x51f),'MdBWB':_0x59b396(0x541)+_0x59b396(0x76c),'cbQbT':function(_0x441d8b,_0x3232d4){return _0x441d8b(_0x3232d4);}},_0x488397=document['getElement'+_0x59b396(0x282)](_0x5f2c85[_0x59b396(0x43e)]);_0x488397[_0x59b396(0x5b6)]='<p\x20class=\x22'+'text-xs\x20te'+_0x59b396(0x4a7)+_0x59b396(0x177)+'xt-center\x22'+_0x59b396(0x2e6)+_0x59b396(0x3df)+_0x59b396(0x680);try{const _0x424273=await fetch(GAS_WEB_APP_URL+('?action=ge'+'tUsers&adm'+_0x59b396(0x6da))+_0x5f2c85[_0x59b396(0x30f)](encodeURIComponent,loggedUser)),_0x2918b7=await _0x424273[_0x59b396(0x698)]();_0x5f2c85['FWcdF'](_0x2918b7[_0x59b396(0x2d0)],_0x59b396(0x2fc))?(_0x488397['innerHTML']='',_0x2918b7[_0x59b396(0x3fe)][_0x59b396(0x39f)](_0x170bcc=>{const _0x5c6328=_0x59b396,_0x5f53a6=document[_0x5c6328(0x1f1)+_0x5c6328(0x76d)](_0x5f2c85[_0x5c6328(0x3aa)]);_0x5f53a6[_0x5c6328(0x52a)]=_0x5c6328(0x164)+_0x5c6328(0x65e)+_0x5c6328(0x778)+_0x5c6328(0x5f4)+'te-50\x20p-2.'+'5\x20rounded-'+'xl\x20border\x20'+_0x5c6328(0x1bc)+_0x5c6328(0x25c)+_0x5c6328(0x461),_0x5f53a6[_0x5c6328(0x5b6)]=_0x5c6328(0x2c6)+_0x5c6328(0x291)+_0x5c6328(0x762)+_0x5c6328(0x4bb)+_0x5c6328(0x4ae)+'ibold\x20text'+_0x5c6328(0x5d8)+_0x5c6328(0x4ca)+'>'+_0x170bcc[_0x5c6328(0x5a5)]+'\x20'+(_0x5f2c85[_0x5c6328(0x6fd)](_0x170bcc[_0x5c6328(0x565)],_0x5c6328(0x5a6))?_0x5f2c85[_0x5c6328(0x35e)]:'')+(_0x5c6328(0x4a3)+_0x5c6328(0x291)+'\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x5c6328(0x1da)+'\x20class=\x22fl'+_0x5c6328(0x770)+_0x5c6328(0x45e)+_0x5c6328(0x789)+_0x5c6328(0x291)+_0x5c6328(0x291)+_0x5c6328(0x319)+_0x5c6328(0x58d)+'k=\x22editUse'+'r(\x27')+_0x170bcc['email']+('\x27)\x22\x20class='+_0x5c6328(0x7c9)+_0x5c6328(0x763)+_0x5c6328(0x5b1)+'r:text-ind'+'igo-600\x20fo'+_0x5c6328(0x206)+_0x5c6328(0x3bc)+_0x5c6328(0x712)+_0x5c6328(0x291)+_0x5c6328(0x291)+_0x5c6328(0x345))+(_0x5f2c85['ZNHOm'](_0x170bcc[_0x5c6328(0x5a5)],_0x5f2c85['jtthw'])?_0x5c6328(0x22c)+_0x5c6328(0x3dc)+'eteUser(\x27'+_0x170bcc[_0x5c6328(0x5a5)]+(_0x5c6328(0x33c)+_0x5c6328(0x7c9)+'\x20text-red-'+_0x5c6328(0x61c)+'text-red-7'+_0x5c6328(0x416)+_0x5c6328(0x6e5)+'s</button>'):'')+('\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x5c6328(0x291)+_0x5c6328(0x762)+_0x5c6328(0x499)+'\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x5c6328(0x291)),_0x488397[_0x5c6328(0x76e)+'d'](_0x5f53a6);})):_0x488397['innerHTML']='<p\x20class=\x22'+_0x59b396(0x648)+_0x59b396(0x776)+'\x22>'+_0x2918b7['message']+_0x59b396(0x5a3);}catch(_0x584b7f){_0x488397[_0x59b396(0x5b6)]=_0x59b396(0x744)+_0x59b396(0x648)+_0x59b396(0x776)+_0x59b396(0x1a5)+_0x59b396(0x6dd)+'ta.</p>';}}async function addNewUser(){const _0x594d92=_0x29307d,_0x547411={'RICHU':function(_0x131a7b,_0x46c98b,_0x2b5e71){return _0x131a7b(_0x46c98b,_0x2b5e71);},'xtkRr':_0x594d92(0x67b),'dqSuC':_0x594d92(0x31b),'FqnQm':_0x594d92(0x797)},_0x1974a9=document[_0x594d92(0x6b8)+'ById'](_0x594d92(0x550)+'mail'),_0x398df5=_0x1974a9[_0x594d92(0x588)][_0x594d92(0x652)]();if(!_0x398df5)return;await _0x547411[_0x594d92(0x724)](fetch,GAS_WEB_APP_URL,{'method':_0x547411[_0x594d92(0x7f0)],'headers':{'Content-Type':_0x547411[_0x594d92(0x835)]},'body':JSON['stringify']({'action':_0x547411[_0x594d92(0x624)],'adminEmail':loggedUser,'targetEmail':_0x398df5})}),_0x1974a9['value']='',loadAdminUserList();}function _0x4112(){const _0x999b5c=['Larutkan\x20p','Pine\x20Oil\x205','uk\x20rata','Asuntol\x202\x20','Parfum\x2020\x20','nyak','Gliserin\x202','dium\x22>Hapu','bandardete','Tween\x20pana','Wadah\x201:\x20L','tearat','0\x20ml','pewarna,\x20a','\x20sehari','Campur\x20fas','han,\x20biark','at\x20Semir\x20J','Campurkan\x20','Wadah\x20B:\x20E','SLES\x20+\x20NaC','Dextrin\x2025','mpur\x20bibit','at\x20Sanitiz','ampuran\x201\x20','diamkan\x201\x20','ABS\x201.000\x20','ar\x20250\x20gr','Sorbitol/S','ji\x20160\x20gr','hap,\x20aduk\x20','FWcdF','Panaskan\x20k','engental','-40','elehkan\x20La','\x20perlahan,','aric,\x20pana','Talc\x2097\x20gr','at\x20Obat\x20Ku','adat','100\x20gr','aOH\x20ke\x205L\x20','dua\x20campur','toLowerCas','kas,\x20kemas','a\x20talc,\x20ad','Lelehkan\x20f','istal\x2010\x20g','gin','aphon,\x20adu','STPP\x2050\x20gr','ton>\x0a\x20\x20\x20\x20\x20','Soda\x20ash\x20+','Tim\x20Steari','Kering\x20ang','\x20(B)','Anti\x20Nyamu','\x204\x20menit','lowing','amwzJ','Latex\x20200\x20','ulsi\x20250\x20m','Gelatin\x201/','i\x20tekstur\x20','hanol\x20+\x20pa','tearic','r\x20dingin','Tambah\x20min','P,\x20Magnaso','RICHU','ont-bold\x20t','h\x20Susu','l\x2075\x20ml','oam,\x20Pine\x20','Tim\x20parafi','andi','(Resep\x20114','avender','Toluena\x2010','Masukkan\x20a','gliserin\x20p','C\x20+\x20ABS','ering','Karbol\x201\x20L','i\x20100\x20ml','i\x20Silicon\x20','(Resep\x20101','(Resep\x2096)','wVIhy','da\x20Pakaian','Tambah\x20gul','Aduk\x20perla','\x20Pewarna\x20k','Cetak,\x20ker','\x20saring,\x20k','nan','lahan\x20samb','Linseed\x20+\x20','Tambah\x20men','id\x2050\x20gr','emi\x20sediki','<p\x20class=\x22','\x20cc','n,\x20mixer\x20k','duk','\x20sambil\x20di','rbon\x20aktif',',\x20PVAc\x20ber','in\x20(70°C)','air','\x20satukan\x20k','an,\x20MPG\x20+\x20','roma\x20dari\x20','Campur\x20par','Terigu\x20250','Menthol\x2030','oyang\x20beri','Parfum\x2050\x20','split','PG\x2050\x20ml','ambah\x20NaCl','elap','ir\x20isi\x20ula','ua\x20DM','\x201\x20kg','Air\x2080\x20L','Camphora\x20&','quid\x2020\x20ml','\x20gr','r\x20perlahan','Rendam\x20rub','\x20\x20\x20\x20\x20\x20\x20\x20\x20<','\x20text-slat','l\x20steril','aan','16\x20ml','E\x20&\x20parfum','Talk\x203\x20kg','an\x2012\x20jam','4\x20py-3\x20tex','join','-list','ent','appendChil','classList','ex\x20items-c','-3\x22>Langka','pentine','TEA\x205\x20ml','Diamkan\x20sa','Lelehkan\x20w','xt-red-500','na\x20&\x20parfu','stify-betw','(Resep\x2028)','as,\x20tuang\x20','astic\x20vern','Gliserin','Bilas\x20&\x20re','at\x20Meni\x20Ca','Gula\x20250\x20g','apa\x20200\x20ml','tainer','Campur\x20Cao','Gosok','Larutkan\x20a','\x20tua\x205\x20L','e\x20air\x20pana','at\x20Karbol\x20','at\x20Water\x20C','1\x22>\x0a\x20\x20\x20\x20\x20\x20','xt-3xl\x20fon','Tambah\x20Oli','\x20Texapon\x20d','5|2','at\x20Softerg','id\x2015\x20ml','at\x20100\x20cc','l,\x20biarkan','HqIJa','Minyak\x20ser','nded-2xl\x20s','anas\x20&\x20din','Propilen\x20g','addUser','an\x201-2\x20jam','\x20gel','\x20bahan\x20akt','arut,\x20mixe','ilttZ','xt-slate-6','(Resep\x2019)','n\x20Galon\x20Ai','urex,\x20Lexe','mogen','Tambah\x20aci','Garam\x201.75','(Resep\x2046)','at\x20cair,\x20b','soft','Tambah\x20sil','Tambah\x20Met','m\x20plastik\x20','Lilin\x20balo','w-full\x20tex','ir\x20hangat','PG\x20100\x20ml','at\x20Karbel\x20','l\x20+\x20Air','<li>','Tambah\x20Bet','h\x20parfum','TUBUH\x20LAIN','at\x20Balsam\x20','byfu8Nr9nw','tahap,\x20aya','Masak\x20Natr','(Resep\x202)','at\x20Plitur','1|4|6|3|0|','mpai\x20membe','l\x20base','clean','u\x20dan\x20Besi','iator','\x20ke\x20air\x20pa','rna','late-600\x20s','r,\x20aduk\x20ho','sisa\x20air','\x20dkk)','\x20text-xs\x20u','o-600\x22>(Ad','-1\x22>','\x22px-2\x20py-1','smo\x20wax','Angin\x20Fres','P1:\x20Leleh\x20','\x20rata','Nutrijel\x208','(Resep\x2093)','ioksida\x202\x20','(Resep\x20108','target','A\x20+\x20Borax\x20','\x20&\x20parfum','Satukan\x20sa','but','pKwVj','ah\x20bintik\x20','d\x20200\x20gr','\x20sempurna','quid\x2020\x20cc','Gliserine\x20','cium\x20+\x20Res','t-left\x20px-','t-extrabol','(Resep\x2010)','hcare','Kaolin\x201\x20k','\x20jemur\x20mat','preventDef','an\x20dibilas','pai\x20putih','anol','it\x20+\x20PG\x201:','00\x20gr','Air\x202\x20L','ing\x20angink','t\x20&\x20parfum','\x20ke\x20P1,\x20ce','0\x20cc','up\x20koran','xtkRr','Tambah\x20sar','XXUwC','Rebus\x20air\x20','serin\x20&\x20ai','Campur\x20NP-','Borax\x20150\x20','Tambah\x20AHA','HCL\x204\x20L','e\x20gliserin','50568csMXoy','line\x20+\x20Tit','wqzRM','ampur\x20Empi','nALeH','der\x2010\x20gr','\x20200\x20ml','AN\x20BAGIAN\x20','add','Air\x20100\x20ml','fum+Etanol','lama\x201-2\x20j','accharin','an\x20botol\x20j','Parfum\x20kop','prot\x20alkoh','esol,\x20aduk','ertahap,\x20a','kwzzKWSl_1','l\x2050\x20ml','\x20pigmen','button','elin\x20+\x20Ste','https://sc','at\x20Sabun\x20T','a\x20butter\x20+','n</h3>\x0a\x20\x20\x20','mul,\x20Paraf','nseed+Terp','rjen@gmail','(Resep\x2025)','ambah\x20talc','ir\x20masak\x20+','Buat\x20emuls','Campur\x20gly','Vit\x20E','t-sm\x20flex\x20','exafon+Gly','Baking\x20sod','encang','ri\x20parfum,','arfum\x20ke\x20a','AqICT','\x20perlahan','atrosol\x20se','d\x20&\x20dewisi','Garam\x201.5\x20','Texafon\x2010','Terpentine','at\x20Compoun','iter,\x20Glis','m\x20ke\x20alkoh','Minyak\x20Pep','ng\x20ke\x20dala','Wadah\x20B:\x20P','na\x20&\x20deter','Air\x20kelapa','g\x20Skin\x20Car','x\x20250\x20gr','dqSuC','Minyak\x20Gan','Tambah\x20Cyc','at\x20Sun\x20Blo','ehan\x20stear','text-sm\x20te','Bak\x20air\x2025','\x20Vanish','\x20\x20\x20\x20\x20<div\x20','l,\x20Air\x20pan','Caustic\x20so','p\x20sampai\x20j','ting\x20Spray','amar\x20Mandi','ng\x20Cream\x20G','ih\x20Mesin\x20C','flex\x20items','ptop','alc,\x20&\x20Lin','Bahan\x202:\x20N','l\x20spray','l\x20merah','Kuku','at\x20Shower\x20','\x20dan\x20tawas','Masukkan\x20m','t\x20sampai\x20m','1\x20L','at\x20Bedak\x20S','ahari','indigo-600','\x2025\x20gr','Model\x20mast','Alkohol\x2070','Oker\x20(Pewa','00\x20py-4\x20te','\x20+\x20air\x20pan','enyatu','ikroba,\x20ad','GAN\x20TERKEN','n\x20dasar\x20sa','+lilin','searchTerm','Larutkan\x20b','ion','Lexgard\x203\x20','10,\x20Parfum','Parfum\x20100','Vit\x20C\x201000','an-Bahan</','n\x20thinner','arna\x20berta','t\x20perlahan','TSP\x2080\x20gr','Mentol\x204\x20g','k\x20200\x20gr','antah,\x20adu','Tambah\x20par','at\x20Pelicin','at\x20Vanishi','Memverifik','Tumbuk\x20ser','i\x20bengkoan','(Resep\x2060)','Linseed\x20oi','x,\x20parfum','\x20\x20\x20\x20\x20\x20\x20<h2','r\x20Tikus','osol\x20+\x20air','r\x20Serangga','as\x2020\x20lite','Acid/EDTA','%\x2040\x20cc','(Resep\x20112','arutkan\x20TE','nder','Essensial\x20','rounded-2x','u\x20Putih','Air\x2017\x20L','ua\x20bahan','\x22>Gagal\x20me','Titan\x20diox','Gliserin\x203','Carnauba\x20w','message','(Resep\x2047)','id\x20100\x20gr','nginkan','-sm\x20text-s','\x20-\x20','at\x20Pasir\x20W','Glycerin\x20&','Laurex\x2030\x20','(Resep\x2032)','5\x20ml','ru\x20250\x20g','Asam\x20salis','igu\x20+\x20gara','Air\x20panas','e,\x20Moskito','Parfum\x20+\x20N','pasir','Methanol\x205','border-sla','Campur\x20Ase','kassa','mulgent+MP','(Resep\x2045)','H202\x2050%','50\x20text-in','erver\x20Apps','?action=lo','Gula\x20100\x20g','Ayak\x20halus','2|4|3|1|5|','ang\x20700\x20ml','Tepung\x20kan','epatu\x20Cair','Usap\x20ke\x20ra','Alkohol\x207\x20','Soda\x20ash\x205','han\x20sampai','rafin\x20+\x20St','Air\x20240\x20gr','Satukan\x202\x20','n\x20ke\x20gelas','NYA','Parfum','an\x20aktif','Air\x20isi\x20ul','Tim\x20soap\x20b','at\x20Hand\x20&\x20','apon\x20+\x20Gar','\x20\x20\x20\x20\x20\x20<div','Aquadest\x204','r-4\x20border','STPP\x20100\x20g','Malam\x20Kuni','at\x20Pengkil','t\x20750\x20gr','perlan,\x20Ci','(Sulfat,\x20A','\x2025\x20liter,','i\x20jadi\x20bub','stringify','dat','Dewisil\x2010','\x20tuang\x20wad','class=\x22bg-','halus','Beeswax\x2050','0-65°C','Aduk\x20halus','(Resep\x20100','Kemas\x20flip','(Resep\x204)','createElem','elum\x20diung','un,\x20gliser','l\x20fliptop','\x20100\x20gr,\x20A','Aloe\x20Vera\x20','c,\x20aduk\x20ra','Satukan,\x20k','MSgTb','/2\x20sdt','NP-10\x20deng','Tambah\x20gar','TEA\x20&\x20Bora','l\x20biru','(Resep\x2085)','ngi','cking-wide','Bahan\x201:\x20T','Campur\x20Par','Sodium\x20sul','lxIta','nt-medium\x22','\x20kemas\x20fli','andi\x20Batan','st\x20text-sl','Wadah\x20B:\x20L','Parfum\x20ape','300\x20cc','P2:\x20Methan','Tambah\x20PG\x20','dapura\x2050\x20','m,\x20cetak','NP-10\x2050\x20m','Campur\x20sil','inkan\x20lalu','Pewarna\x20&\x20','\x20oil','ransparan','ang\x20ke\x20gel','igi\x20Odol','id\x2060\x20gr','(Resep\x2042)','\x20Script.','i\x2010\x20cc','g\x20minyak\x20k','Soda\x20Ash\x202','ke\x20dalam\x20C','dih,\x20sarin','ohol,\x20TEA,','at\x20Sabun\x20C','ukuran\x20500','Saring,\x20di','apur\x20barus','editUser','m\x20pada\x20bak','-between\x20','BOP\x2020\x20ml','i\x20sumbu','\x2075\x20ml','<button\x20on','0\x20+\x20air\x20(2','gelembung\x20','Air\x2025\x20L','Aquadest\x201','alc\x20&\x20Pewa','btn-login','um\x205\x20cc','\x20gelap\x20(4\x20','Air\x20927\x20gr','eeswax','fliptop','thol\x20&\x20Kam','air\x201\x20lite','/Menthol/T','Air\x2020\x20L','</ul>\x0a\x20\x20\x20\x20','innerText','ang\x20Kutek\x20','i\x20cream','i,\x20aduk\x20ra','rfum','r/Oil','\x20tambah\x20te','Tambah\x20Oke','Kemas\x20boto','Resol\x20765\x20','ajah','n\x201','(Resep\x2014)','en\x20Plus\x20Pe','Mobil','baguna','CWUOJ','arutkan\x20Ca','tambah\x20sed','MPG/Glycer','Rambut','lapa\x20(70°C','ax\x20100\x20gr','\x20ml','Soda\x20Ash\x201','ening','Tumbuk\x20Men','ds\x20(Lactic','\x20ke\x20NaOH,\x20','if\x20300\x20gr','uci','te-100\x20tex','eras\x20airny','arna','Wadah\x20A:\x20S','(Resep\x2074)','ight\x201\x20kg','n-anginkan','ase\x20leleh','\x20kemas','e\x20Gandapur','Tuang\x20boto','ga\x20menyatu','Email\x20tida','EDTA\x2010\x20gr','as\x20spray\x20g','am\x20Dashboa','Kamper\x204\x20g','ayu','atrosol\x2030','e\x20Natrosol','an,\x20aduk\x20r','esin\x20denga','Suhu\x2060°C:','Gliserin\x201','Kemas\x20deng','\x20di\x20botol\x20','e\x205\x20gr','Agar-agar\x20','rutan\x20zinc','Tawas\x203\x20gr','gah.</p>','at\x20Masker\x20','per\x20halus','1468IusEiT','Calcium\x20Ca','WzsLz','pakai\x20tusu','u\x20putih\x2050','ById','Aduk\x2015\x20me','Air\x2010\x20L','abun\x20colek','erei\x20+\x20Tep','Pewarna\x20bi','tearic\x20aci','st-decimal','\x20+\x20parfum,','Masukkan\x20T','Rambut\x20Pom','btn-admin-','MToLf','at\x20Night\x20C','a\x20air,\x20war','\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','EA\x20+\x20Glise','emas','Aquadest\x20p','Beri\x20air\x20b','Kamper\x2010\x20','Fluorescei','\x20warna','e\x20Vera\x20&\x20U','omogen','ai\x2050\x20cc','alis,\x20aduk','kelapa\x20dkk','sh,\x20Talk)','n\x20Bubuk','h3>\x0a\x20\x20\x20\x20\x20\x20','ensin','at\x20Gel\x20Ram','ngin','Olive\x20oil\x20','Pewarna\x20Oi','mViIv','\x22font-bold','emadat','ar-benar\x20l','Tutup\x20kain','mua\x20minyak','(Resep\x2073)','Lem\x2075\x20gr','igu\x20&\x20warn','ulsi\x201\x20L','\x20hari','NaOH\x20225\x20g','trak\x20&\x20Aci','ohol\x20+\x20air','Charcoal\x201','ic\x20+\x20Paraf','Tambah\x20pew','(Resep\x2057)','Phenol\x20res','kental','&\x20UV\x20B','P-10,\x20tamb','Parafin\x2010','<b\x20class=\x22','00\x20mb-4\x22>\x0a','\x20nanas\x20+\x20a','Stearic\x20ac','\x20Mobil\x20Ice','Soap\x20Base\x20','hap','Tambah\x20lel','ng\x202cm,\x20ca','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20','te-900\x20mb-','Lelehkan\x20B',',\x20aduk\x20rat','m,\x20tuang\x20l','nitizer\x20Ge','er\x202\x20bh','\x20TEA','Kemas','Wadah\x20B:\x20A','status','wtCDv','clay\x201/2\x20s','gus\x20Perabo','ata','erai\x20+\x20Kay','\x20&\x20Benzoat','madat','00\x20ml','t\x20Dasar','at\x20Pembers','parfum/scr','175575aCaRfv','Parfum,\x20ma','\x20Setrika\x20B','ap\x20Mobil\x20T','wangi\x20Cuci','wder\x20100\x20g','d\x20Body\x20Mis','lyserin\x20+\x20','Asam\x20citri','0\x20g','>Memuat\x20da','10\x20cc','ilat\x203\x20gr','Air\x20250\x20ml','s\x20200\x20gr','l\x20roll\x20on/','Diamkan\x20se','ua\x20bahan\x20k','(Resep\x20104','Ayak,\x20tamb','Silikon\x20em','Tambah\x20Alo','NP-10\x20100\x20','Aduk\x20kenta','Biarkan\x20pa','Aloe\x20vera\x20','20\x20ml','Masukkan\x20S','Alkohol','menyatu','NP-10\x2020\x20m','Hari\x20ke-9\x20','success','\x20Zuur','Garam\x20250\x20','(Resep\x2041)','Kocok\x20rata','MPG/Aquade','UjzZl','n\x20sampai\x20c','Parafin\x20oi','Bibit\x20lily','Campur\x20sem','Campuran\x201','igrosin+Li','JuAqB','Hypochlori','20\x20L','fum\x20&\x20scru','Gliserin\x204','ampuran\x202,','cbQbT','utkan\x20air','mbersih\x20An','\x20alkohol,\x20','ont-semibo','hadow-sm\x20b','at\x20Hand\x20Sa','\x20sampai\x20di','573dZibFh','mpai\x20emuls','\x20\x20\x20\x20\x20\x20<but','floor','text/plain','(Resep\x2044)','Tumbuk\x20Kap','Air\x201.5\x20L','e\x20air\x20(B)\x20','Dinginkan\x20','+\x20Sorbitol','tonit/Lith','n/Fixolite','Angkat,\x20be','ri\x20resep\x20b','Masukkan\x20s','Tambah\x20war','Aqua\x20DM\x201\x20','(Resep\x2098)','Air\x201\x20L','n\x20sampai\x206','Wangi','ai\x20bening','5\x20kg','na,\x20Aqua\x20D','aduk\x20rata\x20','Alkohol\x2096','ambah\x20Vit\x20','Satukan\x20se','tic\x20Acid\x20&','Beeswax\x2030','n\x20Oxide,\x20T','bonat\x20+\x20ka','Silicon\x20oi','te\x20p-6\x20rou','Parfum\x20200','gaBIT','\x27)\x22\x20class=','seed\x20&\x20ter','Masukkan\x20R','ilin\x20lebah','ub)','thol\x20oil','esin\x20+\x20pel','Parfum\x20mel','recipe-con','\x20\x20\x20\x20\x20\x20\x20','(Resep\x2016)','Pakaian','(Resep\x2021)','l\x2050\x20gr','likon\x20emul','buk\x20kayu\x20&','Larutkan\x20s','Scrub\x2060\x20g','Wadah\x20A:\x20L','QkGAX','SZvNf',',\x20Metaphos','parfum,\x20ad','r\x20barus','tol,\x20Peper','rtahap','63AFHOJB','hkan,\x20ding','nas','arut\x20dan\x20m','il\x20+\x20Stear','\x20Sepatu','fum,\x20glise','(Resep\x2091)','PowSY','cerin','ke\x20B\x20perla','mkan\x20semal','if\x2020\x20gr','Satukan\x20W2','(Resep\x203)','ate-800\x20mb','Spiritus\x20P','anaskan\x20se','nar\x20kering','\x20&\x20penjern','Semprot\x20pa','(Resep\x2031)','\x20Alkohol','apa\x20620\x20cc','mi\x20sedikit','font-bold\x20','kelapa,\x20di','rutan\x20parf','random','orax\x20+\x20TEA','uena\x20sampa','at\x20Super\x20P','\x20Coco\x20Tanp','g\x20Stearic\x20','hol,\x20masuk','ld\x20border-','um\x20Pengusi','k\x20rata','rPIbP','rd\x20dan\x20Ban','iNtyw','tuk\x20Sepatu','iarkan\x20pad','\x20&\x20Asuntol','Scrub\x20100\x20','Tambah\x20Cam','at\x20Cetakan','5467Ohguzg','x,\x20&\x20Paraf','\x20aduk\x20homo','&\x20Gliserin','Masukkan\x20e','Acid\x2030\x20gr','Tuang\x20ke\x20g','ata\x20de\x20Coc','Soda\x20api\x20+','uk\x20homogen','Campur\x20Air','-w0bgmWMQ/','bMduP','arfum\x20Ruan','Tumbuk\x20Arp','dest\x20text-','nt)','\x2050%','Jelantah','Yakin\x20ingi','Parafin\x20li','Parfum\x20&\x20A','mipan)\x2010\x20','ap\x20Mobil','ohol','l\x20gantung\x20','forEach','ton\x20+\x20Amil','ent\x20Lotion','(Resep\x2095)','Natrosol\x205','sampai\x20jad','h\x20EDTA','rfum,\x20satu','perlahan','\x20Setrika\x20P','\x20Isi\x20Ulang','pVQCR','Katalis\x2025','A\x20+\x20Air','ndam\x20air\x202','Bees\x20Wax\x203','Alantoin/E','e\x20Aqua\x20DM','lsi\x20+\x20oil','Tuang\x20A\x20ke','u\x2060°C,\x20ma','at\x20Parfum\x20','Terpentin','(Resep\x2011)','yzGEd','100\x20ml','Gandapura\x20','BKC\x2050\x20ml','Aseton\x20330','>Edit</but','hymol','Lelehkan\x20A','Tea\x20tree\x20o','arfum,\x20cet','\x20+\x20Lem\x20+\x20S','Wadah\x20B:\x20C','at\x20Air\x20Aki','ibit\x20parfu','\x20tambah\x20Oa','(Resep\x2052)','BKC\x20100\x20ml','ercase\x20tra','Metil\x20Euge','\x20aduk\x20rata','rin,\x20H202','c\x204\x20gr','BoDhD','inat\x20&\x20Gli','nis\x2018\x20gr','dan\x202','4|2|1|0|3','selectedTi','er\x20100\x20gr','nia,\x20thinn','Rambut\x20Kem','nat\x20400\x20gr','Masuk\x20/\x20Ve','per,\x20larut','Campur\x20emu','(Resep\x208)','Karbon\x20Akt','click=\x22del','Garam\x204.5\x20','(Resep\x2090)','ftar\x20email','Haluskan\x20k','Siapkan\x20Aq','Minyak\x20gan','aduk\x20kenta','\x20mb-3\x22>Bah','Tambah\x20sis','Acid\x2010\x20gr','nol\x2050\x20gr','id\x20200\x20gr','at\x20Crayon\x20','asi...','Sodium\x20bik','\x201\x20L','at\x20Deterje','Simpan\x20suh','trit,\x20EDTA','ycerin','olek','200\x20gr','epung\x20kanj','\x20Tandon\x20Da','+\x20Jelantah','Lelehkan\x20b','Campur\x20Mag','per','Kelapa\x20200','Tambah\x20Tex','app','\x20di\x20tempat','P,\x20Soda\x20as','data','bg-indigo-','Biolite\x20ak','ochlorit\x20+','hidden','Oles','(Resep\x2069)','\x20\x20\x20\x20\x20\x20\x20\x20<h','300\x20gr','ner\x20Rambut','ikon\x20+\x20kat','engan\x20gara','k\x20kelapa,\x20','awet,\x20beri','s\x20100\x20gr','\x20(jadi\x20gel','replace','Jelantah\x201','aine\x20&\x20bah','rbomer','Ffdt52Yfvk','\x20siap\x20paka','at\x20Sabun\x20M','amuk\x20Bakar','00\x20font-me','serin','at\x20Asam\x20Cu','n\x202','1160JGcofw','bah\x20air','Aluminium\x20','utih','liserine\x20&','inyak\x20esen','(Resep\x2063)','(Resep\x2077)','elarut\x20per','da\x20100\x20gr','order\x20bord','an\x20padat','\x20Pigmen\x20+\x20','er\x20Non\x20Alk','nit,\x20Litho','ass=\x22mt-4\x20','Tambah\x20Cit','skan','Salicylic\x20','elehkan\x20Pa','Tumbuk\x20taw','m\x20border\x20b','Tim\x20vaseli','Stearic\x2060','ber\x20ke\x20Tol','Gula\x20pasir','Karbon\x20akt','na,\x20&\x20TEA','Agar\x20ke\x20ai','(Resep\x20111','4\x20ml','l,\x20tambah\x20','Lexemul/La','am,\x20didihk','amkan\x20sema','Lexemul\x20CS','MdBWB','Texapon\x204.','Oat\x201.000\x20','rfum,\x20angi','pon,\x20aduk\x20','ream','r\x20Kelapa','rin','Kalium\x20Nit',':bg-slate-','a\x20rata,\x20ke','Terpentin\x20','on\x20+\x20Garam','t,\x20tambah\x20','(Resep\x2050)','at\x20Minyak\x20','at\x20Anti\x20No','+\x20Pewarna\x20','e\x20Pine\x20Oil','Masukkan\x20H','at\x20(90°C)','p,\x20mixer\x20k','3\x20minggu','Zaitun/Kel','Anti\x20UV\x20A/','(Resep\x2065)','Glyserin\x202','Amil\x20Aseta','as\x20Kulit','Hancurkan\x20','Campur\x20kam','0\x20gr,\x20Air\x20','enter\x20gap-','text-slate','Bees\x20Wax\x201','t-xs','Parfum\x2030\x20','),\x20angkat','ng\x201\x20kg','at\x20Extolia','a\x20Ash,\x20TSP','sampai\x20lel','G+Air\x20pana','at\x20Shampo\x20','Terigu\x20kas','Lelehkan\x20V','t\x20100\x20ml','liserin','(Resep\x2013)','NP\x2010\x20100\x20','Alkohol\x2020','Tambah\x20pen','rifikasi','at\x20Lem\x20Lal','Serbuk\x20kay','ass=\x22list-','Hilangkan\x20','Tambah\x20STP','8\x20bks','(Resep\x20102','70\x20gr','Stearic\x20+\x20','\x20+\x20Krayon\x20','hanol,\x20par','Asam\x20sulfa','Minyak','sampai\x20ben','\x20tuang\x20Ste','g,\x20madu,\x20p','math-quest','Tuang\x20B\x20ke','utrijel\x20&\x20','Campur\x20Alg','recipe-lis','Chloride','ks3ES3AdIt','Metanol\x2030','login-moda','at\x20Cat\x20Kay','r,\x20masak','lahan','Tauge\x2010\x20g','k\x20terdafta','+\x20Sereh','QTbWA','(Resep\x2026)','Aduk\x20kuat\x20','Tambah\x20Pol','gr,\x20EDTA\x203','Tambah\x20Kao','(Resep\x209)','/div>\x0a\x20\x20\x20\x20','l\x20100\x20ml','l\x2020\x20ml','elas\x20beris','(Resep\x2040)','at\x20Pengusi','PG/Gliseri','Cara\x20Membu','tan\x20Dapur','a\x20pasir,\x20a','</span>\x0a\x20\x20','<h3\x20class=','(Resep\x2097)','<h2\x20class=','xt-slate-4','clomethico','\x20kg','5\x20buka\x205\x20m','10\x20ml','\x20mangkok\x20s','Titanium\x20d','=\x22font-sem','Minyak\x20kel','at\x20Sabun\x20A','Masukkan\x20n','e\x20supersof','\x20class=\x22li','Gliserin\x205','ai\x20&\x20soda\x20','Resin\x20Styr','Wadah\x201:\x20B',',\x20EDTA','malam,\x20amb','(Resep\x2058)','span\x20class','(Resep\x2022)','fum+NP-10,','arfum','(Resep\x2054)','A\x20TANGAN\x20D','at\x20Penghil','ing\x20soda\x20+','eeswax\x20+\x20c','Tim\x20Lilin\x20','ah\x202\x20ke\x201,','amuk\x20Cair','items-cent','e\x20oil,\x20bia','ss=\x22bg-whi','\x20truncate\x22','(Resep\x2076)','\x20(kecuali\x20','Carbomer\x201','Masukkan\x20C','Lelehkan\x20S','Bibit\x20100\x20','STTP\x20100\x20g','thicone\x20(B','Aduk\x20sampa','M,\x20&\x20parfu','Bak\x20air\x2050','a\x20100\x20gr','(Resep\x2086)','(Resep\x2075)','Tambah\x20air','opon','nic\x20Lotion','atangan\x20Pe','t\x201\x20kg','ubuk\x20Untuk','affein','ng\x20600\x20gr','nesium\x20+\x20p','rata','NfSqn','\x20Cream','Thinner\x2050','Butanol\x2050','G/Aquadest','il\x20jernihn','Lelehkan\x20s','ubung\x20ke\x20s','TEA\x2010\x20ml','kan,\x20biark','Larutkan\x20S','(Resep\x2081)','epermint\x20k','at\x20Semir\x20S','Kaolin/Ben','ulfat\x20zinc','\x2020','lin/Minyak','HCzMH','Lexemul\x2020','\x20(70°C)','at\x20Sterno\x20','!\x20Silakan\x20','Kemiri\x20300','Aquadest\x209','r\x20sampai\x20p','Toluen/MEK','l\x20200\x20ml','Alantoin,\x20','likol\x20100\x20','Aquadest\x202',',\x20hari\x20ke-','Tambah\x20Hyp','kan\x20talc\x20k','Antifoam\x20&','&\x20BKC,\x20tam','as)','Ambil\x20jern','Satukan\x20P2','Lexemul\x205\x20','Asam\x20stear','m\x20+\x20Air\x20pa','hari\x20tutup','rutan\x20warn','ript.googl','n+MPG+Air\x20','user-displ','e.com/macr','an\x20kering','Buat\x20gel\x20C','\x20150\x20gr','Glycerin\x201','am\x20+\x201L\x20Ai','on\x20Emulsi','oyiDT','-800\x22>','mur','Vit\x20E\x205\x20ml','Masukkan\x20M','a\x205\x20gr','.com','adi\x20gel','Bibit\x20wang','Blender\x20na','admin-moda','AHA','(Resep\x2068)','an\x20jernih','at\x20Bedak\x20P','\x20+\x20Air','urex\x20+\x20100','className','login-emai','nit,\x20diamk','0\x20gr','(Resep\x2089)','Pepermint\x20','\x20&\x20scrub,\x20','Pewarna','Aqua\x20DM\x202.','a\x20air\x20&\x20pe','Rekat\x20mast','in\x20100\x20gr','Beeswax\x2015','Panaskan\x20A','entol\x20+\x20TE','Toluena\x2050','panas','ke\x20B,\x20tamb','Toluena\x2035','Soda\x20ash\x201','Tambah\x20PG,','(Resep\x2036)','\x20kemas\x20spr','admin-user','ke\x20A,\x20tamb','Pijat','gyDlV','gen','aian','ung','wder,\x20ayak','carbonat\x205','\x20rata,\x20din','elembut\x20Pe','Air\x20panas\x20','c\x20600\x20gr','SLS\x20200\x20gr',',\x20masukkan','new-user-e','h\x20250\x20gr','(Resep\x20109','(Resep\x2094)','elapa','Campur\x20Vas','air\x20warna','Cl\x20air\x20pan','Tuang\x20loya','arbomer\x20+\x20','Mastic\x20ver','Oxalic\x20aci','\x20homogen','Bibit\x20parf','ve\x20oil,\x20Ni','sin\x20100\x20gr','as\x20halus,\x20','Body\x20Lotio','(Resep\x2049)','utama,\x20adu','\x20angkat','role','(Resep\x2033)','h\x20100\x20gr','Tambah\x20Vit','Wadah\x202:\x20N','10\x20+\x20parfu','r\x20hangat','XPVGw','in,\x20tambah','Lepas\x20mast','ihnya,\x20kem','+\x20Air\x20(pan','dinginkan','yak\x20&\x20peng','at\x20','Vaselin\x20pu','map','l\x201\x20tetes','\x20sedikit\x20s',',\x20pewarna','(Resep\x201)','Crepe\x20rubb','Mineral\x20oi','\x20Glycerin,','2\x20sdt','Campur\x20ser','Satukan\x20A\x20','Hewan\x20Piar','i\x205\x20cc','utih\x20Susu','in\x20+\x20Air,\x20','Silicon\x20Oi','GMUMK','mua,\x20tamba','kencang','value','exec','div','apa\x20350\x20gr','\x20air','ton\x20onclic','t\x20E','Pencampura','184608tRTDGy','h\x20sisa\x20air','an,\x20tuang\x20','Glycerin\x204','ent\x20Deterj','in,\x20Parabe','\x20panas\x20per','\x20masukkan',',\x20didihkan','orax','Fixolite\x201','h\x20terpen\x20&','at\x20Lulur\x20M','Badan\x20Non\x20','CMC\x20200\x20gr','(Resep\x2061)','opionat','Wadah\x20B:\x20G','fat\x203\x20kg','</p>','ustic,\x20STT','email','admin','Air\x202.5\x20L','sukkan','tas','202\x20dengan','fum,\x20kemas','Camperlan\x20','ir\x201\x20liter','Masukkan\x20k','rna)','at\x20Pasta\x20A','e-500\x20hove','at\x20Lem\x20Sol','mixer','Larutkan\x20H','H\x20ke\x20minya','innerHTML','TEA\x2020\x20ml','\x20botol\x20kac','Tambah\x20jel','(Resep\x2023)','disabled','at\x20Peeling','Enzim\x20AR\x205','Susu\x20100\x20m','st/Cyclome','phora,\x20Men','ang\x20640\x20ml','Larutkan\x20B','Campur\x20Cal','ir\x20+\x20PG,\x20l','Gel','tawas,\x20lar','\x20sisa\x20air','an\x20parfum\x20','Madu\x202\x20sdm','Wadah\x20B:\x20S','r\x20sampai\x20h','\x20pl-5\x20text','Tumbuk\x20kam','digo-700\x20f','aOH,\x20diamk','e-100\x22>\x0a\x20\x20','gin&email=','Arpus\x201\x20kg','Silikon\x20RT','d\x20100\x20gr','(Resep\x2099)','nas\x20halus','</h2>\x0a\x20\x20\x20\x20','-slate-700','Bentonite\x20','Acrylic\x20Re','Nanas\x20mata','TCfGH','ck\x20Tabir\x20S','at\x20Dempul\x20','at\x20Sabun\x20B','Butil\x20Aset','\x20&\x20homogen','Stearic/Li','oraks\x20ke\x20a','Talc\x20100\x20g','likol\x20+\x20la','anpa\x20Silic','aselin,\x20Wa','mas','\x20dengan\x20Gl','i-hati!)','oil\x20Chamom','(Resep\x206)','nol','Borax\x205\x20gr','50\x20gr','g\x20Jelly\x20Kr','\x20gliserin','Masukkan\x20E','Bensin\x20250','een\x20bg-sla','Parfum\x2010\x20','00\x20cc','pagin,\x20BHT','an\x20kering\x20','SLES\x20120\x20g','Asam\x20karbo','fum\x20&\x20warn','Methanol\x201','Parafin\x20Li','\x20sedikit\x20d','gen,\x20Armot','Tween-80\x201','earic','Satukan,\x20t','\x20100\x20ml','50\x20ml','W2:\x20Campur','(Resep\x2078)','epatu\x20Pada','Stearat\x2025','jExAh',',\x20dinginka','rat\x205\x20gr','upersoft','Air\x20500\x20ml','irlak\x20&\x20wa','in\x20Mainan','tih\x20200\x20gr','text-indig','(Resep\x20110','PG\x20150\x20ml','a\x20air\x20&\x20H2','si\x20+\x201L\x20ai','math-answe',':\x20Campurka','g\x20kain\x20hal','login-erro','2\x20jam,\x20kem','Tuang\x201\x20ke','500\x20hover:','Talc\x20400\x20g','ding','Arpus\x20400\x20','tif','er-slate-1','mail\x20baru:','quadest','FqnQm','ke\x201\x20(api\x20','g\x20Transpar','se\x20minyak','arcoal','gawet\x20&\x20mi','n\x201\x20gr','2\x20sdm','fum,\x20metha','5\x20L','Diamkan\x202-','an\x20+\x20Warna','Mixer\x20halu','Tambah\x20Tal','at\x20Nata\x20de','DTA,\x20aduk\x20','at\x20Obat\x20Ny','u\x20ruang\x202-','Beeswax\x2020','fum','Spiritus\x203','\x20Latex','(Resep\x20103','(Resep\x2043)','ol\x2050°C','TEA','c+Parafin+','ke\x20A,\x20aduk','Tambah\x20alk','Biarkan\x20me','uhXmbrgqPf','pas\x20Cat','cek\x20PH\x20>\x201','Sulfat\x20zin','Wadah\x20A:\x20M','n\x20tipis,\x20k','text-xs\x20te','Masukkan\x20L','Cip\x20Soap\x202','iri','is,\x20aduk\x20r','at\x20Condito','1-2\x20jam','fum\x20+\x20NP-1','Oil','remove','trim','(Resep\x20113','Zaitun\x2025\x20','i\x20benar-be','mbut,\x20jang','(Resep\x2083)','Fermentasi','Tambah\x20ess','Wadah\x202:\x20L','(Resep\x2092)','erigen\x20kua','BAHAN\x20BERB','-center\x20ju','ambil\x20diad','atrosol\x20ai','Satukan\x20B\x20','KC\x20ke\x20air','ase\x20minyak','Campur\x20bah','Garam\x2050\x20g','3\x20jam','eh\x20200\x20cc','at\x20Astring','pace-y-2\x22>','Tambahkan\x20','\x201.3\x20L','V-48\x201000\x20','Kalsium\x20pr','%\x2090\x20ml','\x20susu','un,\x20etanol','Dimethicon','dopuro','ault','rpus\x20+\x20200','Stearic\x2010','apa/Jojoba','Campur\x20kar','(Resep\x2072)','tahap','t,\x20saring\x20','POST','tle','mFHXb','(Resep\x2048)','lembut\x20Pak','...</p>','oninput','Lilin\x20leba','kan','6|7|0','\x20(A)','352055liigIa','\x20Mentol','Campur\x20ter','\x20liter,\x20ad','dikit\x20demi','%\x205\x20L',',\x20ikat\x20kua','ua\x20bahan\x20p','ka\x20dari\x20Ai','atex\x20berta','\x20\x20\x20\x20<ul\x20cl','Aduk\x20rata,','DTA/Collag','Vit\x20E\x2020\x20g','rbonate\x202\x20','\x20Parfum','</li>','seed\x20&\x20pin','json','kecil\x20samp','\x205\x20L','\x20Pakaian\x20S','Amonia\x2030\x20','Simpan\x207-1','Menthol\x20oi','V\x20B','Aduk\x20Texap','emiri\x20&\x20ke','ioxide\x2050\x20','elehkan\x20fa','TEA\x2040\x20ml','Collagen/C','gHSgw','ran\x201,\x20adu','06\x2060\x20gr','tak','kan,\x20ayak','ody\x20Spa\x20aw','ember','Diamkan\x201-',',\x20tambah\x20G','entin','Sari\x20bengk','duk\x20rata.\x20','oolant\x20Rad','Cetak\x20kota','at\x20Lem\x20Put','Lexemul/Co','Tambah\x20lin','Panaskan\x20a','getElement','0\x20gr,\x20Parf','Soda\x20api\x201','(Resep\x2053)','(Resep\x2039)','tika\x20salah','ti\x20Bau\x20Bad','at\x2070\x20gr','(Resep\x2055)','mua,\x20aduk\x20','larutkan\x20k','(Resep\x2080)','an\x202\x20jam','NaOH\x2075\x20gr','Larutkan\x20N','Campur\x20wad','il\x205\x20ml','Kapur\x20baru','ash,\x20cetak','ft,\x20warna,','arnauba','inkan','ai\x20kental,','at\x20Pasta\x20G','clin','at\x20Lem\x20Ker','Tambah\x20Lac','at\x20Hari\x20An','138340oMOXGi','ampur\x20Tita','-500\x22>Mate','OumyX','Campuran\x202','fum\x20&\x20pewa','inEmail=','qqQwD','AHAYA,\x20JAN','ngambil\x20da'];_0x4112=function(){return _0x999b5c;};return _0x4112();}async function editUser(_0x4c4d6d){const _0x1fc16c=_0x29307d,_0x47ea07={'MSgTb':function(_0x415bb2,_0x1e0b00,_0x55273e){return _0x415bb2(_0x1e0b00,_0x55273e);},'WzsLz':_0x1fc16c(0x389)+_0x1fc16c(0x622),'RVuYW':_0x1fc16c(0x67b),'HqIJa':'text/plain','CuuAu':_0x1fc16c(0x226),'iNtyw':function(_0x5902b3){return _0x5902b3();}},_0x1da54c=_0x47ea07[_0x1fc16c(0x1f9)](prompt,_0x47ea07[_0x1fc16c(0x27f)],_0x4c4d6d);if(!_0x1da54c||_0x1da54c[_0x1fc16c(0x652)]()===_0x4c4d6d)return;await fetch(GAS_WEB_APP_URL,{'method':_0x47ea07['RVuYW'],'headers':{'Content-Type':_0x47ea07[_0x1fc16c(0x792)]},'body':JSON[_0x1fc16c(0x1e5)]({'action':_0x47ea07['CuuAu'],'adminEmail':loggedUser,'oldEmail':_0x4c4d6d,'newEmail':_0x1da54c['trim']()})}),_0x47ea07[_0x1fc16c(0x37e)](loadAdminUserList);}async function deleteUser(_0x1fc454){const _0x5794b3=_0x29307d,_0x5e0834={'SUEaM':function(_0x40f292,_0x569233){return _0x40f292(_0x569233);},'wvdLP':_0x5794b3(0x67b)};if(!_0x5e0834['SUEaM'](confirm,_0x5794b3(0x398)+'n\x20menghapu'+'s\x20'+_0x1fc454+'?'))return;await fetch(GAS_WEB_APP_URL,{'method':_0x5e0834['wvdLP'],'headers':{'Content-Type':'text/plain'},'body':JSON[_0x5794b3(0x1e5)]({'action':'deleteUser','adminEmail':loggedUser,'targetEmail':_0x1fc454})}),loadAdminUserList();}const ALL_TITLES=[_0x29307d(0x4a0)+'at\x20Air\x20Aki'+_0x29307d(0x3a9),'Cara\x20Membu'+_0x29307d(0x3c3)+_0x29307d(0x2fd),_0x29307d(0x4a0)+_0x29307d(0x44e)+_0x29307d(0x738)+_0x29307d(0x83c),_0x29307d(0x4a0)+_0x29307d(0x418)+_0x29307d(0x68e)+_0x29307d(0x444),_0x29307d(0x4a0)+_0x29307d(0x668)+_0x29307d(0x3a1),_0x29307d(0x4a0)+_0x29307d(0x7b4)+_0x29307d(0x783),_0x29307d(0x4a0)+_0x29307d(0x527)+'owder',_0x29307d(0x4a0)+_0x29307d(0x170)+'alicyl',_0x29307d(0x4a0)+'at\x20Bibit\x20N'+_0x29307d(0x38c)+'o',_0x29307d(0x4a0)+'at\x20Blau\x20Pa'+_0x29307d(0x1e6),_0x29307d(0x4a0)+'at\x20Cat\x20Din'+_0x29307d(0x61e),'Cara\x20Membu'+_0x29307d(0x48c)+_0x29307d(0x7be),_0x29307d(0x4a0)+_0x29307d(0x384)+'\x20Sabun\x20Dar'+_0x29307d(0x734)+'Rubber',_0x29307d(0x4a0)+_0x29307d(0x82b)+'d\x20Mobil\x20Wa'+_0x29307d(0x200),_0x29307d(0x4a0)+_0x29307d(0x64d)+_0x29307d(0x407),'Cara\x20Membu'+_0x29307d(0x3e9)+_0x29307d(0x531),'Cara\x20Membu'+'at\x20Cream\x20O'+'bat\x20Gosok',_0x29307d(0x4a0)+'at\x20Day\x20Cre'+'am','Cara\x20Membu'+_0x29307d(0x5de)+'Kayu',_0x29307d(0x4a0)+_0x29307d(0x3ed)+_0x29307d(0x29f),_0x29307d(0x4a0)+'at\x20Deterje'+'n\x20Cair\x20Oxy'+_0x29307d(0x7bd),_0x29307d(0x4a0)+_0x29307d(0x3ed)+'n\x20Cair\x20Ser'+_0x29307d(0x24c),_0x29307d(0x4a0)+'at\x20Extolia'+'ting\x20Gel\x20B'+_0x29307d(0x6ab)+'ww',_0x29307d(0x4a0)+_0x29307d(0x465)+_0x29307d(0x160),_0x29307d(0x4a0)+_0x29307d(0x2a2)+_0x29307d(0x7d6),_0x29307d(0x4a0)+_0x29307d(0x1d8)+_0x29307d(0x561)+_0x29307d(0x248),_0x29307d(0x4a0)+_0x29307d(0x1d8)+_0x29307d(0x561)+_0x29307d(0x419),'Cara\x20Membu'+_0x29307d(0x315)+_0x29307d(0x2cb)+'l',_0x29307d(0x4a0)+_0x29307d(0x6d3)+_0x29307d(0x2e2)+'t',_0x29307d(0x4a0)+'at\x20Jelly\x20P'+_0x29307d(0x392)+'gan','Cara\x20Membu'+_0x29307d(0x7ae)+'Sereh\x20Puti'+_0x29307d(0x726),_0x29307d(0x4a0)+_0x29307d(0x787)+_0x29307d(0x32c),_0x29307d(0x4a0)+_0x29307d(0x6d1)+_0x29307d(0x5a9),_0x29307d(0x4a0)+_0x29307d(0x473)+'at',_0x29307d(0x4a0)+_0x29307d(0x6b4)+'ih',_0x29307d(0x4a0)+_0x29307d(0x5b2)+_0x29307d(0x35b),_0x29307d(0x4a0)+'at\x20Lem\x20Tik'+'us',_0x29307d(0x4a0)+'at\x20Lilin\x20A'+_0x29307d(0x74f)+_0x29307d(0x397),_0x29307d(0x4a0)+'at\x20Lotion\x20'+_0x29307d(0x717)+'k',_0x29307d(0x4a0)+_0x29307d(0x59c)+_0x29307d(0x72a),_0x29307d(0x4a0)+_0x29307d(0x27b)+'Gelatin\x20Ch'+_0x29307d(0x628),'Cara\x20Membu'+_0x29307d(0x27b)+_0x29307d(0x251),'Cara\x20Membu'+_0x29307d(0x27b)+'Wajah',_0x29307d(0x4a0)+_0x29307d(0x77e)+_0x29307d(0x2d9),_0x29307d(0x4a0)+_0x29307d(0x44d)+_0x29307d(0x7cb)+_0x29307d(0x7e1),'Cara\x20Membu'+'at\x20Minyak\x20'+_0x29307d(0x543),'Cara\x20Membu'+_0x29307d(0x44d)+_0x29307d(0x3d5)+_0x29307d(0x64b),_0x29307d(0x4a0)+_0x29307d(0x44d)+'Rambut\x20Pom'+'ade',_0x29307d(0x4a0)+_0x29307d(0x44d)+_0x29307d(0x28c)+'ade\x20Wax',_0x29307d(0x4a0)+_0x29307d(0x44d)+'Telon','Cara\x20Membu'+'at\x20Molto\x20P'+_0x29307d(0x54b)+_0x29307d(0x2e0)+'an',_0x29307d(0x4a0)+_0x29307d(0x632)+_0x29307d(0x376)+'a\x20Urea','Cara\x20Membu'+_0x29307d(0x28f)+_0x29307d(0x443),_0x29307d(0x4a0)+'at\x20Obat\x20An'+_0x29307d(0x6be)+'an',_0x29307d(0x4a0)+_0x29307d(0x705)+_0x29307d(0x51b),'Cara\x20Membu'+_0x29307d(0x705)+'tu\x20Rambut',_0x29307d(0x4a0)+_0x29307d(0x634)+_0x29307d(0x415),'Cara\x20Membu'+_0x29307d(0x634)+_0x29307d(0x4c6),_0x29307d(0x4a0)+_0x29307d(0x3b4)+_0x29307d(0x59d)+_0x29307d(0x2f8),_0x29307d(0x4a0)+_0x29307d(0x3b4)+'Laundry','Cara\x20Membu'+_0x29307d(0x3b4)+_0x29307d(0x24b),_0x29307d(0x4a0)+_0x29307d(0x3b4)+_0x29307d(0x403),_0x29307d(0x4a0)+_0x29307d(0x3b4)+'Oles\x20Roll\x20'+'On',_0x29307d(0x4a0)+_0x29307d(0x3b4)+_0x29307d(0x347),_0x29307d(0x4a0)+_0x29307d(0x1af)+_0x29307d(0x25e),_0x29307d(0x4a0)+_0x29307d(0x5b0)+'nti\x20Air\x20Un'+_0x29307d(0x37f),_0x29307d(0x4a0)+_0x29307d(0x6cf)+_0x29307d(0x218),'Cara\x20Membu'+_0x29307d(0x5bc)+_0x29307d(0x4e4),_0x29307d(0x4a0)+_0x29307d(0x18e)+_0x29307d(0x2de)+_0x29307d(0x256),_0x29307d(0x4a0)+_0x29307d(0x18e)+_0x29307d(0x3a8)+_0x29307d(0x582),_0x29307d(0x4a0)+_0x29307d(0x2da)+'ih\x20Kaca',_0x29307d(0x4a0)+_0x29307d(0x2da)+'ih\x20Kerak\x20K'+_0x29307d(0x161),_0x29307d(0x4a0)+'at\x20Pembers'+_0x29307d(0x163)+_0x29307d(0x25b),_0x29307d(0x4a0)+'at\x20Pemutih'+_0x29307d(0x69b)+'ejenis\x20B@y'+_0x29307d(0x6d0),'Cara\x20Membu'+'at\x20Pengelu'+_0x29307d(0x643),_0x29307d(0x4a0)+'at\x20Penghar'+_0x29307d(0x37a)+_0x29307d(0x197),_0x29307d(0x4a0)+_0x29307d(0x4c1)+_0x29307d(0x23e)+_0x29307d(0x16a),_0x29307d(0x4a0)+'at\x20Penghit'+_0x29307d(0x26b)+_0x29307d(0x37d),_0x29307d(0x4a0)+_0x29307d(0x1df)+_0x29307d(0x39c),_0x29307d(0x4a0)+_0x29307d(0x1df)+_0x29307d(0x2df)+_0x29307d(0x5e6)+_0x29307d(0x518),_0x29307d(0x4a0)+_0x29307d(0x49e)+_0x29307d(0x199),_0x29307d(0x4a0)+'at\x20Plastis'+_0x29307d(0x60f),'Cara\x20Membu'+_0x29307d(0x7b9),_0x29307d(0x4a0)+_0x29307d(0x4b0)+'nti\x20Jerawa'+'t',_0x29307d(0x4a0)+_0x29307d(0x5df)+_0x29307d(0x4dc)+_0x29307d(0x311)+_0x29307d(0x2d3)+_0x29307d(0x4a1),_0x29307d(0x4a0)+_0x29307d(0x5df)+_0x29307d(0x4de)+_0x29307d(0x3f4)+_0x29307d(0x79f)+'r','Cara\x20Membu'+_0x29307d(0x222)+'air\x20untuk\x20'+'Wajah\x20Fres'+'h\x20Cool',_0x29307d(0x4a0)+_0x29307d(0x222)+'harcoal',_0x29307d(0x4a0)+_0x29307d(0x222)+_0x29307d(0x3f1),_0x29307d(0x4a0)+_0x29307d(0x222)+'olek\x20Benin'+_0x29307d(0x5f0)+'im','Cara\x20Membu'+_0x29307d(0x414)+_0x29307d(0x208)+_0x29307d(0x626)+'an',_0x29307d(0x4a0)+_0x29307d(0x812)+_0x29307d(0x216),_0x29307d(0x4a0)+'at\x20Sanitiz'+'er\x20Cair\x20Sp'+'ray','Cara\x20Membu'+_0x29307d(0x6f5)+_0x29307d(0x427)+_0x29307d(0x39d),_0x29307d(0x4a0)+'at\x20Semir\x20B'+'an\x20Mijel','Cara\x20Membu'+_0x29307d(0x6ef)+'aket\x20dan\x20T'+_0x29307d(0x45a),'Cara\x20Membu'+_0x29307d(0x4f0)+_0x29307d(0x1ca),_0x29307d(0x4a0)+_0x29307d(0x4f0)+_0x29307d(0x607)+'t',_0x29307d(0x4a0)+'at\x20Serum\x20W'+_0x29307d(0x247),_0x29307d(0x4a0)+'at\x20Shampo\x20'+_0x29307d(0x580)+_0x29307d(0x765),_0x29307d(0x4a0)+_0x29307d(0x469)+_0x29307d(0x251),_0x29307d(0x4a0)+'at\x20Shampoo'+_0x29307d(0x2c1)+_0x29307d(0x4e4),'Cara\x20Membu'+_0x29307d(0x16b)+_0x29307d(0x5c5),_0x29307d(0x4a0)+'at\x20Skin\x20To'+_0x29307d(0x4db),_0x29307d(0x4a0)+'at\x20Soap\x20Ba'+'se',_0x29307d(0x4a0)+_0x29307d(0x78e)+_0x29307d(0x594)+_0x29307d(0x24a)+_0x29307d(0x67f)+_0x29307d(0x546),_0x29307d(0x4a0)+'at\x20Soothin'+_0x29307d(0x833)+'e',_0x29307d(0x4a0)+_0x29307d(0x4f8)+_0x29307d(0x366)+_0x29307d(0x706),_0x29307d(0x4a0)+_0x29307d(0x838)+_0x29307d(0x5dd)+'urya',_0x29307d(0x4a0)+_0x29307d(0x375)+'el\x20Lantai',_0x29307d(0x4a0)+'at\x20Un-yell'+'owing\x20Mids'+'ole\x20Sepatu',_0x29307d(0x4a0)+_0x29307d(0x18f)+_0x29307d(0x162)+_0x29307d(0x719),_0x29307d(0x4a0)+_0x29307d(0x788)+_0x29307d(0x6b2)+_0x29307d(0x7bf)],RECIPE_DETAILS={'Cara\x20Membuat\x20Air\x20Aki\x20Isi\x20Ulang':{'bahan':['Aqua\x20DM\x2030'+_0x29307d(0x6ea),_0x29307d(0x1d6)+_0x29307d(0x1c8),'EDTA\x202\x20gr'],'steps':['Masukkan\x20A'+'qua\x20DM\x20ke\x20'+'wadah','Tambahkan\x20'+_0x29307d(0x1d6)+'ang\x20perlah'+_0x29307d(0x270)+'ata','Masukkan\x20E'+'DTA,\x20aduk\x20'+_0x29307d(0x4e2),_0x29307d(0x62e)+_0x29307d(0x666),_0x29307d(0x245)+_0x29307d(0x1fe)],'footer':_0x29307d(0x579)},'Cara\x20Membuat\x20Air\x20Aki\x20Zuur':{'bahan':['Air\x20isi\x20ul'+_0x29307d(0x5c1),'Asam\x20sulfa'+'t\x20360\x20ml','EDTA\x202\x20gr'],'steps':[_0x29307d(0x72e)+_0x29307d(0x759)+_0x29307d(0x82f)+'m\x20wadah',_0x29307d(0x66a)+_0x29307d(0x47e)+_0x29307d(0x188)+_0x29307d(0x2c9)+'a',_0x29307d(0x5f2)+_0x29307d(0x633)+_0x29307d(0x4e2),'Diamkan\x202-'+_0x29307d(0x666),_0x29307d(0x245)+_0x29307d(0x169)],'footer':_0x29307d(0x7b8)},'Cara\x20Membuat\x20Anti\x20Noda\x20Pakaian\x20Vanish':{'bahan':['H202\x2050%\x201'+'\x20L',_0x29307d(0x46f)+'ml',_0x29307d(0x55d)+'um\x2050\x20ml',_0x29307d(0x284)],'steps':[_0x29307d(0x5b4)+_0x29307d(0x5aa)+'\x20air,\x20aduk'+'\x20rata\x20(Hat'+_0x29307d(0x5ea),_0x29307d(0x6f0)+_0x29307d(0x1fb)+_0x29307d(0x5c8)+'dalam\x20gela'+'s','Satukan\x20la'+_0x29307d(0x371)+'um\x20ke\x20bak\x20'+_0x29307d(0x563)+'k\x20rata',_0x29307d(0x274)+_0x29307d(0x807)+_0x29307d(0x65c)+'t'],'warning':_0x29307d(0x65d)+_0x29307d(0x6dc)+_0x29307d(0x17b)+_0x29307d(0x4c0)+_0x29307d(0x801)+_0x29307d(0x7b3)+_0x29307d(0x1d3),'footer':_0x29307d(0x364)},'Cara\x20Membuat\x20Asam\x20Cuka\x20dari\x20Air\x20Kelapa':{'bahan':['Air\x20kelapa'+_0x29307d(0x785),'Starter\x20mi'+'kroba\x20(fer'+_0x29307d(0x39b)+'gr',_0x29307d(0x433)+_0x29307d(0x75b)],'steps':[_0x29307d(0x7f3)+_0x29307d(0x370)+_0x29307d(0x1ac),_0x29307d(0x739)+_0x29307d(0x4a2)+'duk\x20larut',_0x29307d(0x16d)+_0x29307d(0x17a)+_0x29307d(0x6e0),_0x29307d(0x658)+_0x29307d(0x3fc)+_0x29307d(0x234)+_0x29307d(0x50d)+_0x29307d(0x502)+_0x29307d(0x4aa)+_0x29307d(0x395),_0x29307d(0x2fb)+_0x29307d(0x644),'Kemas\x20boto'+_0x29307d(0x764)],'footer':_0x29307d(0x1f0)},'Cara\x20Membuat\x20Astringent\x20Lotion':{'bahan':[_0x29307d(0x645)+_0x29307d(0x3cc),_0x29307d(0x593)+_0x29307d(0x7ee),_0x29307d(0x279),_0x29307d(0x54c)+'300\x20cc','Alkohol\x2070'+_0x29307d(0x19c),'Bibit\x20wang'+_0x29307d(0x581)],'steps':[_0x29307d(0x4ed)+_0x29307d(0x4f2)+_0x29307d(0x5e9)+_0x29307d(0x3f0),_0x29307d(0x42e)+_0x29307d(0x560)+_0x29307d(0x6c2)+_0x29307d(0x786)+'s','Satukan\x20la'+_0x29307d(0x278)+_0x29307d(0x16c)+_0x29307d(0x2c9)+'a',_0x29307d(0x17f)+_0x29307d(0x3c4)+_0x29307d(0x82d)+'ol',_0x29307d(0x333)+_0x29307d(0x6c1)+_0x29307d(0x4e2),_0x29307d(0x6ad)+'2\x20jam',_0x29307d(0x245)+_0x29307d(0x1f4)],'footer':'(Resep\x205)'},'Cara\x20Membuat\x20Balsam\x20Gosok':{'bahan':[_0x29307d(0x574)+_0x29307d(0x610),'Menthol\x20Kr'+_0x29307d(0x70e)+'r',_0x29307d(0x296)+'gr',_0x29307d(0x836)+_0x29307d(0x20f)+'cc',_0x29307d(0x82e)+'ermint\x2010\x20'+'cc',_0x29307d(0x521)+_0x29307d(0x21c)],'steps':[_0x29307d(0x430)+_0x29307d(0x303)+_0x29307d(0x74c),_0x29307d(0x257)+_0x29307d(0x238)+_0x29307d(0x27c),'Larutkan\x20P'+_0x29307d(0x4ef)+'e\x20Gandapur'+'a',_0x29307d(0x333)+'mua\x20saat\x20d'+'i-tim,\x20adu'+'k\x20rata',_0x29307d(0x324)+'ri\x20parfum','Saring\x20kai'+'n\x20tipis,\x20k'+_0x29307d(0x293)],'footer':_0x29307d(0x5ec)},'Cara\x20Membuat\x20Bedak\x20Powder':{'bahan':['Magnesium\x20'+_0x29307d(0x549)+'0\x20gr','Caoline\x2020'+_0x29307d(0x52d),_0x29307d(0x1a6)+_0x29307d(0x742),'Tepung\x20tal'+_0x29307d(0x54d),_0x29307d(0x214)+_0x29307d(0x1d4)],'steps':[_0x29307d(0x3f7)+_0x29307d(0x4e1)+_0x29307d(0x4be),_0x29307d(0x782)+_0x29307d(0x7fb)+_0x29307d(0x62f),'Satukan\x20ke'+_0x29307d(0x709)+'an',_0x29307d(0x631)+_0x29307d(0x1f7)+'ta',_0x29307d(0x2ce)],'footer':_0x29307d(0x3da)},'Cara\x20Membuat\x20Bedak\x20Salicyl':{'bahan':[_0x29307d(0x1b5)+_0x29307d(0x2e8),_0x29307d(0x704),_0x29307d(0x175)+_0x29307d(0x66e),_0x29307d(0x69e)+_0x29307d(0x576)],'steps':[_0x29307d(0x784)+'sam\x20salisi'+'lat\x20dengan'+_0x29307d(0x312)+_0x29307d(0x24f)+'ikit\x20talc',_0x29307d(0x4d3)+_0x29307d(0x655)+_0x29307d(0x368),_0x29307d(0x3e5)+_0x29307d(0x70c)+_0x29307d(0x38e),_0x29307d(0x741)+_0x29307d(0x341),_0x29307d(0x1c6)+',\x20kemas'],'footer':_0x29307d(0x498)},'Cara\x20Membuat\x20Bibit\x20Nata\x20de\x20Coco':{'bahan':[_0x29307d(0x5db)+_0x29307d(0x4e0),'Air\x20masak\x20'+_0x29307d(0x406),_0x29307d(0x1c5)+'r'],'steps':[_0x29307d(0x522)+_0x29307d(0x5d6),'Saring\x20&\x20p'+_0x29307d(0x25d)+'a','Campur\x20air'+_0x29307d(0x2bf)+_0x29307d(0x81a)+'\x20gula',_0x29307d(0x266)+'l\x20bening',_0x29307d(0x2aa)+_0x29307d(0x68c)+'t',_0x29307d(0x3ee)+_0x29307d(0x635)+_0x29307d(0x454)],'footer':_0x29307d(0x7e0)},'Cara\x20Membuat\x20Blau\x20Padat':{'bahan':[_0x29307d(0x287)+_0x29307d(0x1b4),_0x29307d(0x3eb)+'arbonat\x202\x20'+'kg',_0x29307d(0x6f3)+_0x29307d(0x2e5),_0x29307d(0x53d)+_0x29307d(0x4a9),_0x29307d(0x2e9)],'steps':[_0x29307d(0x306)+_0x29307d(0x2ed)+_0x29307d(0x731),_0x29307d(0x4d9)+_0x29307d(0x5fe)+_0x29307d(0x743)+'t',_0x29307d(0x6b3)+'k',_0x29307d(0x715)+_0x29307d(0x213)+_0x29307d(0x7e3)+_0x29307d(0x171),_0x29307d(0x2ce)],'footer':'(Resep\x2010-'+'B)'},'Cara\x20Membuat\x20Cat\x20Dinding':{'bahan':['Air\x201\x20L','Pine\x20Oil\x205'+_0x29307d(0x7ee),_0x29307d(0x4b6)+'ene\x20Acryli'+'c\x201\x20kg',_0x29307d(0x7e2)+'g','Titan\x20200\x20'+'gr',_0x29307d(0x27e)+_0x29307d(0x694)+'kg',_0x29307d(0x505)+'\x20Warna'],'steps':[_0x29307d(0x5c3)+_0x29307d(0x7dd)+_0x29307d(0x583)+_0x29307d(0x5b3),_0x29307d(0x2b6)+_0x29307d(0x187)+_0x29307d(0x2c3),_0x29307d(0x497)+'lin,\x20Antif'+_0x29307d(0x728)+_0x29307d(0x650),'Diamkan\x202-'+_0x29307d(0x666),'Kemas'],'footer':_0x29307d(0x3b6)},'Cara\x20Membuat\x20Cat\x20Kayu\x20dan\x20Besi':{'bahan':[_0x29307d(0x5da)+_0x29307d(0x55f),_0x29307d(0x229),_0x29307d(0x72d)+_0x29307d(0x6ea),'MEK\x20100\x20ml','Butyl\x20Acet'+'at',_0x29307d(0x5e4)+'r','Lithopon'],'steps':['Masukkan\x20R'+'esin','Masukkan\x20p'+_0x29307d(0x422)+_0x29307d(0x73f)+'il\x20mixer',_0x29307d(0x28b)+_0x29307d(0x231)+'rna\x20perlah'+'an',_0x29307d(0x2ce)],'footer':'(Resep\x2012)'},'Cara\x20Membuat\x20Cetakan\x20Sabun\x20Dari\x20Silicon\x20Rubber':{'bahan':[_0x29307d(0x174)+_0x29307d(0x2cc),_0x29307d(0x5d3)+_0x29307d(0x66c)+'cc',_0x29307d(0x3ab)+_0x29307d(0x7ee)],'steps':[_0x29307d(0x534)+'er\x20di\x20loya'+'ng',_0x29307d(0x212)+_0x29307d(0x408)+_0x29307d(0x29c)+_0x29307d(0x7cd),'Tuang\x20ke\x20l'+_0x29307d(0x753)+'si\x20master',_0x29307d(0x476)+_0x29307d(0x22e)+_0x29307d(0x280)+'k\x20gigi',_0x29307d(0x774)+_0x29307d(0x7bb)+'ku',_0x29307d(0x56e)+'er'],'footer':_0x29307d(0x46e)},'Cara\x20Membuat\x20Compound\x20Mobil\x20Wangi':{'bahan':[_0x29307d(0x2c0)+_0x29307d(0x1ab),_0x29307d(0x1a8)+_0x29307d(0x253),_0x29307d(0x338)+_0x29307d(0x49a),_0x29307d(0x2f2)+'ml',_0x29307d(0x39a)+_0x29307d(0x623)],'steps':[_0x29307d(0x4cf)+'tearic\x20+\x20C'+_0x29307d(0x6cc),_0x29307d(0x7a7)+'icon\x20oil',_0x29307d(0x7f5)+_0x29307d(0x56a)+'m','Satukan\x20se'+_0x29307d(0x586)+'h\x20aquadest','Biarkan\x20di'+'ngin\x20dan\x20m'+_0x29307d(0x2a8)],'footer':_0x29307d(0x249)},'Cara\x20Membuat\x20Conditoner\x20Rambut':{'bahan':[_0x29307d(0x1b1)+'gr',_0x29307d(0x50a)+'gr',_0x29307d(0x5fd)+_0x29307d(0x7db),'MPG\x2010\x20cc','Armotan/Em'+'pigen',_0x29307d(0x230)+'\x20L'],'steps':[_0x29307d(0x34e)+'elehkan\x20La'+_0x29307d(0x7a0)+_0x29307d(0x815)+_0x29307d(0x595)+'n','Wadah\x20B:\x20C'+_0x29307d(0x7fd)+_0x29307d(0x5ff)+_0x29307d(0x74e)+_0x29307d(0x1b7),'Satukan\x20A\x20'+'ke\x20B,\x20mixe'+_0x29307d(0x5cb)+_0x29307d(0x29a),_0x29307d(0x18d)+_0x29307d(0x6d9)+_0x29307d(0x7c1)],'footer':'(Resep\x2015)'},'Cara\x20Membuat\x20Crayon\x20Pewarna':{'bahan':['Parafin\x20wa'+_0x29307d(0x834),_0x29307d(0x2a5)+_0x29307d(0x7bc),_0x29307d(0x2c0)+_0x29307d(0x742)],'steps':[_0x29307d(0x729)+_0x29307d(0x32b)+_0x29307d(0x1ec),_0x29307d(0x2f7)+_0x29307d(0x288)+'d,\x20aduk','Bagi\x20caira'+_0x29307d(0x1d2)+_0x29307d(0x298),'Cetak\x20sili'+_0x29307d(0x19f),'Biarkan\x20di'+_0x29307d(0x2a3)],'footer':_0x29307d(0x346)},'Cara\x20Membuat\x20Cream\x20Obat\x20Gosok':{'bahan':[_0x29307d(0x399)+_0x29307d(0x75e),'Stearic\x20ac'+_0x29307d(0x78f),_0x29307d(0x1fd)+'x',_0x29307d(0x1db)+_0x29307d(0x6ea),_0x29307d(0x3e2)+_0x29307d(0x672),_0x29307d(0x75d)+_0x29307d(0x687)],'steps':[_0x29307d(0x34e)+_0x29307d(0x19e)+_0x29307d(0x7d3)+_0x29307d(0x570)+_0x29307d(0x507),'Wadah\x20B:\x20L'+_0x29307d(0x42d)+_0x29307d(0x1cf)+_0x29307d(0x601),_0x29307d(0x57f)+'ke\x20B,\x20aduk'+_0x29307d(0x55c),'Tambah\x20Cam'+_0x29307d(0x5c0)+_0x29307d(0x354)+'mint',_0x29307d(0x2ce)],'footer':'(Resep\x2017)'},'Cara\x20Membuat\x20Day\x20Cream':{'bahan':['Stearic\x20Ac'+_0x29307d(0x219),_0x29307d(0x4f6)+_0x29307d(0x75f),_0x29307d(0x636)+_0x29307d(0x75f),_0x29307d(0x4fb)+_0x29307d(0x5f6),_0x29307d(0x1f6)+_0x29307d(0x2ba)],'steps':[_0x29307d(0x34e)+_0x29307d(0x6a3)+_0x29307d(0x627),_0x29307d(0x6f1)+_0x29307d(0x1bf)+_0x29307d(0x468)+'s','Satukan\x20B\x20'+_0x29307d(0x63f)+_0x29307d(0x55c),_0x29307d(0x2f1)+_0x29307d(0x299)+_0x29307d(0x69f),_0x29307d(0x1ef)+'top'],'footer':'(Resep\x2018)'},'Cara\x20Membuat\x20Dempul\x20Kayu':{'bahan':['Resin\x20BR\x201'+_0x29307d(0x6a8),'Thinner\x2010'+_0x29307d(0x6ea),_0x29307d(0x4f1)+_0x29307d(0x322)+_0x29307d(0x4da),_0x29307d(0x176)+_0x29307d(0x5af)],'steps':['Larutkan\x20r'+_0x29307d(0x271)+_0x29307d(0x186),_0x29307d(0x497)+'lin,\x20Bento'+_0x29307d(0x428)+_0x29307d(0x442)+_0x29307d(0x1ea),_0x29307d(0x244)+_0x29307d(0x7c3)+_0x29307d(0x7a1),_0x29307d(0x2ce)],'footer':_0x29307d(0x79e)},'Cara\x20Membuat\x20Deterjen\x20Bubuk':{'bahan':['Texaphon\x20p'+'asta\x20300\x20g'+'r',_0x29307d(0x204)+_0x29307d(0x5a2),_0x29307d(0x1cd)+_0x29307d(0x7e9),_0x29307d(0x768),_0x29307d(0x400)+_0x29307d(0x620),_0x29307d(0x1d4)],'steps':['Campur\x20bah'+_0x29307d(0x5f8)+_0x29307d(0x1e2)+_0x29307d(0x29e),_0x29307d(0x3fa)+_0x29307d(0x710)+_0x29307d(0x37b),_0x29307d(0x36a)+_0x29307d(0x441)+_0x29307d(0x262),_0x29307d(0x2ef)+_0x29307d(0x7d8)+'biru',_0x29307d(0x2ce)],'footer':'(Resep\x2020)'},'Cara\x20Membuat\x20Deterjen\x20Cair\x20Oxyclean':{'bahan':['Texapon\x201.'+_0x29307d(0x32e),_0x29307d(0x7a3)+_0x29307d(0x4a9),_0x29307d(0x2e4)+'t',_0x29307d(0x1d4),'Air\x2020\x20L',_0x29307d(0x1c1)],'steps':['Campur\x20Tex'+_0x29307d(0x1d9)+_0x29307d(0x517)+_0x29307d(0x4fc)+_0x29307d(0x41d),_0x29307d(0x4d9)+_0x29307d(0x396),_0x29307d(0x42a)+'rit,\x20Pewar'+'na,\x20Parfum',_0x29307d(0x3e5)+_0x29307d(0x614)+'02',_0x29307d(0x224)+_0x29307d(0x43c)+'lam'],'footer':_0x29307d(0x348)},'Cara\x20Membuat\x20Deterjen\x20Cair\x20Serbaguna':{'bahan':[_0x29307d(0x43f)+_0x29307d(0x32e),_0x29307d(0x3dd)+'kg','Camperlan',_0x29307d(0x19b),'PG\x20&\x20Parfu'+'m',_0x29307d(0x75c)],'steps':[_0x29307d(0x6a0)+'on\x20+\x20Garam'+'\x20+\x20air\x20sam'+_0x29307d(0x7e6),'Tambah\x20air'+'\x20bertahap',_0x29307d(0x383)+_0x29307d(0x1e1)+_0x29307d(0x3ef)+',\x20warna','Campur\x20PG+'+_0x29307d(0x2dd)+_0x29307d(0x5a8),_0x29307d(0x3e5)+'a\x20air,\x20dia'+_0x29307d(0x361)+'am'],'footer':_0x29307d(0x4bc)},'Cara\x20Membuat\x20Extoliating\x20Gel\x20Body\x20Spa\x20awww':{'bahan':['Aqua\x20DM\x2080'+_0x29307d(0x6ea),'Lactic\x20Aci'+_0x29307d(0x7d9),'Carbomer\x201'+'0\x20gr',_0x29307d(0x773),_0x29307d(0x6a5)+_0x29307d(0x4df)],'steps':[_0x29307d(0x537)+_0x29307d(0x5c4)+_0x29307d(0x24e)+_0x29307d(0x411),'Tambah\x20TEA'+_0x29307d(0x40d)+_0x29307d(0x463),_0x29307d(0x203)+_0x29307d(0x804)+_0x29307d(0x54f),'Tambah\x20Lac'+_0x29307d(0x334)+_0x29307d(0x79a)+'if',_0x29307d(0x6ad)+_0x29307d(0x61a)+'as'],'footer':_0x29307d(0x5ba)},'Cara\x20Membuat\x20Extoliating\x20Spray':{'bahan':[_0x29307d(0x532)+_0x29307d(0x62d),'Lactic\x20Aci'+'d\x20200\x20gr','Etanol/PEG'+_0x29307d(0x700),_0x29307d(0x3af)+_0x29307d(0x692)+'en'],'steps':[_0x29307d(0x203)+_0x29307d(0x804)+'+PEG-40','Masukkan\x20k'+_0x29307d(0x3b0),_0x29307d(0x6d2)+'tic\x20Acid,\x20'+_0x29307d(0x4ff)+_0x29307d(0x488),_0x29307d(0x4ce)+'ollagen\x20&\x20'+'EDTA','Kemas\x20boto'+_0x29307d(0x168)],'footer':'(Resep\x2024)'},'Cara\x20Membuat\x20Gel\x20Rambut':{'bahan':[_0x29307d(0x32a),'Carbomer\x202'+_0x29307d(0x52d),_0x29307d(0x756),_0x29307d(0x4eb),'Vitamin\x20E',_0x29307d(0x1d4)],'steps':[_0x29307d(0x537)+_0x29307d(0x5c4)+_0x29307d(0x24e)+_0x29307d(0x411),'Tambah\x20TEA'+_0x29307d(0x40d)+_0x29307d(0x463),_0x29307d(0x18d)+'fum,\x20vit\x20E'+_0x29307d(0x578),_0x29307d(0x320)+_0x29307d(0x64e)],'footer':_0x29307d(0x818)},'Cara\x20Membuat\x20Hand\x20&\x20Body\x20Lotion\x201':{'bahan':[_0x29307d(0x455)+_0x29307d(0x676),'Lilin\x20Leba'+_0x29307d(0x567),'TEA\x2050\x20ml','Parfum\x20&\x20G'+'liserin'],'steps':[_0x29307d(0x34e)+_0x29307d(0x19e)+'A+Parfum+G'+_0x29307d(0x46d),_0x29307d(0x830)+_0x29307d(0x367)+_0x29307d(0x2ab)+_0x29307d(0x17d),_0x29307d(0x3b2)+'\x20B\x20perlaha'+_0x29307d(0x746)+_0x29307d(0x821),_0x29307d(0x62e)+'3\x20jam,\x20kem'+'as'],'footer':_0x29307d(0x493)},'Cara\x20Membuat\x20Hand\x20&\x20Body\x20Lotion\x202':{'bahan':[_0x29307d(0x43d)+_0x29307d(0x173),_0x29307d(0x671)+_0x29307d(0x276),_0x29307d(0x4ad)+_0x29307d(0x7d0)+'gr',_0x29307d(0x294)+_0x29307d(0x795)+_0x29307d(0x70f)],'steps':[_0x29307d(0x70d)+_0x29307d(0x663),_0x29307d(0x3c2)+_0x29307d(0x6d5)+_0x29307d(0x510)+_0x29307d(0x53a),'Tambah\x20air'+'\x20dingin\x20&\x20'+'parfum\x20ke\x20'+'B',_0x29307d(0x661)+_0x29307d(0x63f)+'\x20homogen'],'footer':'(Resep\x2027)'},'Cara\x20Membuat\x20Hand\x20Sanitizer\x20Gel':{'bahan':[_0x29307d(0x7ea),_0x29307d(0x331)+_0x29307d(0x68b),_0x29307d(0x4cd)+_0x29307d(0x7e9),_0x29307d(0x7ad),_0x29307d(0x5b7)],'steps':[_0x29307d(0x537)+_0x29307d(0x5c4)+'arutkan\x20Ca'+_0x29307d(0x411),'Tambah\x20TEA'+_0x29307d(0x40d)+_0x29307d(0x463),_0x29307d(0x6de)+_0x29307d(0x823)+'lkohol,\x20tu'+_0x29307d(0x217),_0x29307d(0x283)+_0x29307d(0x52c)+_0x29307d(0x798)],'footer':_0x29307d(0x779)},'Cara\x20Membuat\x20Hari\x20And\x20Body\x20Mist':{'bahan':[_0x29307d(0x4b4)+'0\x20ml',_0x29307d(0x51c),_0x29307d(0x328)+'L',_0x29307d(0x754)+'ml','NP-10\x2050\x20m'+'l'],'steps':[_0x29307d(0x3e1)+_0x29307d(0x75a),_0x29307d(0x203)+_0x29307d(0x4bd)+_0x29307d(0x597),'Tambah\x20Gli'+'serin\x20&\x20Vi'+_0x29307d(0x58e),'Diamkan\x20sa'+'mpai\x20jerni'+'h'],'footer':'(Resep\x2029)'},'Cara\x20Membuat\x20Jelly\x20Parfum\x20Ruangan':{'bahan':[_0x29307d(0x7ce)+'\x20bks',_0x29307d(0x277)+_0x29307d(0x478),'EDTA\x2010\x20gr','Parfum\x20100'+_0x29307d(0x254),_0x29307d(0x5a7)],'steps':['Larutkan\x20N'+_0x29307d(0x485)+_0x29307d(0x436)+_0x29307d(0x48d),_0x29307d(0x1fc)+_0x29307d(0x43b)+_0x29307d(0x592)+_0x29307d(0x6ac),_0x29307d(0x7f5)+_0x29307d(0x182)+_0x29307d(0x4b8),'Tuang\x20ceta'+_0x29307d(0x4ec)+_0x29307d(0x425)],'footer':'(Resep\x2030)'},'Cara\x20Membuat\x20Karbel\x20Sereh\x20Putih\x20Susu':{'bahan':['Laurex\x20200'+_0x29307d(0x75f),_0x29307d(0x2c0)+_0x29307d(0x3e8),_0x29307d(0x600)+_0x29307d(0x5f6),_0x29307d(0x793)+_0x29307d(0x667)],'steps':['Wadah\x20A:\x20L'+_0x29307d(0x701)+_0x29307d(0x529)+_0x29307d(0x377)+_0x29307d(0x491),_0x29307d(0x5ca)+'eduh\x20100g\x20'+_0x29307d(0x47b)+_0x29307d(0x6e7)+'s','Satukan\x20B\x20'+'ke\x20A,\x20aduk'+_0x29307d(0x718),_0x29307d(0x4d9)+'\x20dingin\x20be'+_0x29307d(0x355)],'footer':_0x29307d(0x36b)},'Cara\x20Membuat\x20Karbol\x20Wangi':{'bahan':[_0x29307d(0x5d2),'NaOH\x20100\x20g'+'r',_0x29307d(0x6c9)+_0x29307d(0x40c),_0x29307d(0x6df)+_0x29307d(0x2d8),'Air\x2075\x20L'],'steps':['Larutkan\x20N'+_0x29307d(0x708)+_0x29307d(0x74c),_0x29307d(0x393)+'us,\x20campur'+_0x29307d(0x259)+_0x29307d(0x6f7)+'jam',_0x29307d(0x31d)+'ur\x20barus,\x20'+_0x29307d(0x6c2)+_0x29307d(0x450),_0x29307d(0x333)+_0x29307d(0x586)+'h\x20sisa\x20air'],'footer':_0x29307d(0x1b2)},'Cara\x20Membuat\x20Lem\x20Kertas':{'bahan':[_0x29307d(0x1c9)+_0x29307d(0x6fb),_0x29307d(0x1d0),'Tawas\x208\x20gr',_0x29307d(0x7dc)+_0x29307d(0x766),'TEA\x208\x20ml'],'steps':['Larutkan\x20t'+'awas\x20ke\x20ai'+_0x29307d(0x721),'Tuang\x20ke\x20t'+_0x29307d(0x3f3)+_0x29307d(0x240)+'ta','Masak\x20api\x20'+_0x29307d(0x699)+_0x29307d(0x6ce)+_0x29307d(0x564),'Aduk\x20cepat'+_0x29307d(0x6ae)+_0x29307d(0x41e)+_0x29307d(0x2cd)],'footer':_0x29307d(0x566)},'Cara\x20Membuat\x20Lem\x20Lalat':{'bahan':[_0x29307d(0x61f)+'gr',_0x29307d(0x4af)+_0x29307d(0x58b),_0x29307d(0x71b)+'gr',_0x29307d(0x3c9)+_0x29307d(0x3e7)],'steps':['Panaskan\x20A'+'rpus\x20+\x20200'+_0x29307d(0x21d)+'elapa',_0x29307d(0x3e5)+'a\x20minyak',_0x29307d(0x649)+_0x29307d(0x68f)+_0x29307d(0x6fc)+_0x29307d(0x587),_0x29307d(0x7a8)+'il\x20Eugenol'+_0x29307d(0x598)],'footer':'(Resep\x2034)'},'Cara\x20Membuat\x20Lem\x20Putih':{'bahan':['PVAC\x20873\x20g'+'r','PVA\x20108\x20gr','Natrosol\x203'+'27\x20gr',_0x29307d(0x246)+'gr',_0x29307d(0x235)],'steps':[_0x29307d(0x7b7)+_0x29307d(0x198)+_0x29307d(0x4f7),_0x29307d(0x3e5)+'a\x20air,\x20PVA'+_0x29307d(0x74a)+_0x29307d(0x679),_0x29307d(0x33e)+_0x29307d(0x80a)+_0x29307d(0x54a)+'ginkan'],'footer':'(Resep\x2035)'},'Cara\x20Membuat\x20Lem\x20Sol\x20Sepatu':{'bahan':[_0x29307d(0x539)+_0x29307d(0x6ea),_0x29307d(0x57a)+_0x29307d(0x3d3),_0x29307d(0x55a)+_0x29307d(0x3cf)],'steps':[_0x29307d(0x761)+_0x29307d(0x432)+_0x29307d(0x374)+_0x29307d(0x1e4)+'ur',_0x29307d(0x51d)+_0x29307d(0x77b)+_0x29307d(0x64c)+'ata','Tutup\x20rapa'+_0x29307d(0x16e)+_0x29307d(0x179)],'footer':_0x29307d(0x53f)},'Cara\x20Membuat\x20Lem\x20Tikus':{'bahan':[_0x29307d(0x61f)+'gr',_0x29307d(0x4af)+'apa\x20350\x20gr',_0x29307d(0x71b)+'gr','Essense\x20co'+'kelat\x2050\x20g'+'r'],'steps':[_0x29307d(0x537)+_0x29307d(0x674)+_0x29307d(0x21d)+_0x29307d(0x554),_0x29307d(0x3e5)+'a\x20minyak\x20&'+_0x29307d(0x639),_0x29307d(0x659)+'ense,\x20didi'+_0x29307d(0x357)+_0x29307d(0x6cd)],'footer':'(Resep\x2037)'},'Cara\x20Membuat\x20Lilin\x20Aroma\x20dari\x20Jelantah':{'bahan':[_0x29307d(0x7aa)+_0x29307d(0x18b),_0x29307d(0x40f)+_0x29307d(0x5ef),'Sumbu\x201\x20m',_0x29307d(0x20b)+_0x29307d(0x80d)],'steps':[_0x29307d(0x4c4)+_0x29307d(0x3f5)+_0x29307d(0x47c)+_0x29307d(0x467)+'eh','Tunggu\x20suh'+_0x29307d(0x3b3)+'sukkan\x20par'+_0x29307d(0x637),_0x29307d(0x38b)+_0x29307d(0x49c)+_0x29307d(0x22a),'Biarkan\x20me'+'madat'],'footer':'(Resep\x2038)'},'Cara\x20Membuat\x20Lotion\x20Anti\x20Nyamuk':{'bahan':[_0x29307d(0x43a)+'urex/IPM\x20('+'A)',_0x29307d(0x301)+_0x29307d(0x5bf)+_0x29307d(0x4d2)+')','Moskitox\x201'+_0x29307d(0x52d)],'steps':[_0x29307d(0x2c8)+'ahan\x20A','Campur\x20MPG'+_0x29307d(0x178)+_0x29307d(0x77a)+'A',_0x29307d(0x2f3)+_0x29307d(0x439)+_0x29307d(0x7c4),_0x29307d(0x837)+'lomethicon'+_0x29307d(0x1b8)+_0x29307d(0x195)],'footer':_0x29307d(0x6bc)},'Cara\x20Membuat\x20Lulur\x20Mandi':{'bahan':[_0x29307d(0x5e2)+_0x29307d(0x4f4)+_0x29307d(0x685),'Emulgent/P'+_0x29307d(0x4e7)+_0x29307d(0x716),_0x29307d(0x382)+'gr'],'steps':[_0x29307d(0x3be)+_0x29307d(0x4cc)+_0x29307d(0x2db)+_0x29307d(0x340),_0x29307d(0x5c2)+_0x29307d(0x7c0)+_0x29307d(0x358),_0x29307d(0x484)+'\x20A\x20bertaha'+_0x29307d(0x15f)+_0x29307d(0x520),_0x29307d(0x18d)+_0x29307d(0x30c)+'b,\x20aduk\x20ra'+'ta'],'footer':_0x29307d(0x49d)},'Cara\x20Membuat\x20Masker\x20Gelatin\x20Charcoal':{'bahan':[_0x29307d(0x71d)+_0x29307d(0x57d),_0x29307d(0x5d9)+_0x29307d(0x2d2)+'dt',_0x29307d(0x2b4)+_0x29307d(0x1fa),_0x29307d(0x54c)+_0x29307d(0x62b)],'steps':[_0x29307d(0x664)+_0x29307d(0x513),'Tambah\x20air'+_0x29307d(0x596)+_0x29307d(0x48e),_0x29307d(0x691)+_0x29307d(0x413)+'i'],'footer':_0x29307d(0x2ff)},'Cara\x20Membuat\x20Masker\x20Rambut':{'bahan':[_0x29307d(0x682)+_0x29307d(0x551),_0x29307d(0x2fa)+'l',_0x29307d(0x6e4)+_0x29307d(0x6ea),_0x29307d(0x462)+'ml',_0x29307d(0x60d)],'steps':['Lelehkan\x20l'+_0x29307d(0x33f),'Campur\x20NP-'+_0x29307d(0x56a)+_0x29307d(0x2ca)+'ilin','Tambah\x20gli'+_0x29307d(0x7f4)+_0x29307d(0x760),_0x29307d(0x641)+_0x29307d(0x2d7)],'footer':_0x29307d(0x21a)},'Cara\x20Membuat\x20Masker\x20Wajah':{'bahan':[_0x29307d(0x26c)+'r',_0x29307d(0x61d)+'r','Zaitun\x20300'+_0x29307d(0x254),_0x29307d(0x273)+_0x29307d(0x2d8),_0x29307d(0x5f5)+'cc'],'steps':[_0x29307d(0x5cd)+_0x29307d(0x3d8)+_0x29307d(0x504)+_0x29307d(0x7f9),_0x29307d(0x45c)+'per,\x20talc,'+'\x20&\x20zaitun',_0x29307d(0x18d)+_0x29307d(0x5ab)],'footer':_0x29307d(0x63b)},'Cara\x20Membuat\x20Meni\x20Cat\x20Dasar':{'bahan':[_0x29307d(0x2b8)+_0x29307d(0x535),_0x29307d(0x4fd)+'/SMT','Iron\x20Oxide'+_0x29307d(0x515),'Talc\x20100\x20g'+'r'],'steps':['Masukkan\x20R'+_0x29307d(0x342)+_0x29307d(0x79b)+'r','Tambah\x20Iro'+_0x29307d(0x336)+_0x29307d(0x166)+'seed\x20Oil',_0x29307d(0x1ed)+_0x29307d(0x5e1)],'footer':_0x29307d(0x31c)},'Cara\x20Membuat\x20Minyak\x20Angin\x20Freshcare':{'bahan':[_0x29307d(0x752)+'\x20gr',_0x29307d(0x296)+'gr',_0x29307d(0x3b9)+_0x29307d(0x20c),_0x29307d(0x52f)+_0x29307d(0x2e7)],'steps':[_0x29307d(0x257)+_0x29307d(0x238)+_0x29307d(0x3f8),'Larutkan\x20P'+_0x29307d(0x4ef)+_0x29307d(0x265)+'a','Satukan\x20se'+_0x29307d(0x586)+_0x29307d(0x7b2),'Saring\x20kai'+_0x29307d(0x647)+'emas\x20roll-'+'on'],'footer':_0x29307d(0x1c0)},'Cara\x20Membuat\x20Minyak\x20Pijat':{'bahan':['Vaselin\x2070'+_0x29307d(0x75f),_0x29307d(0x460)+'00\x20gr',_0x29307d(0x304)+'l\x20270\x20gr',_0x29307d(0x2a4)+_0x29307d(0x47a)],'steps':[_0x29307d(0x46b)+_0x29307d(0x5e7)+_0x29307d(0x386)+_0x29307d(0x74b),_0x29307d(0x78b)+_0x29307d(0x55e)+_0x29307d(0x5f7),_0x29307d(0x494)+_0x29307d(0x3a4)+_0x29307d(0x23f),_0x29307d(0x18d)+_0x29307d(0x5ab)],'footer':_0x29307d(0x7a4)},'Cara\x20Membuat\x20Minyak\x20Rambut\x20Kemiri':{'bahan':[_0x29307d(0x4fa)+_0x29307d(0x254),_0x29307d(0x3f9)+'\x20ml',_0x29307d(0x4eb),_0x29307d(0x30d)+_0x29307d(0x6ea),_0x29307d(0x81d)],'steps':['Panaskan\x20k'+_0x29307d(0x6a1)+_0x29307d(0x252)+')','Larutkan\x20T'+_0x29307d(0x292)+_0x29307d(0x445),_0x29307d(0x602)+_0x29307d(0x332)+_0x29307d(0x767),'Dinginkan,'+_0x29307d(0x207)+_0x29307d(0x165)],'footer':_0x29307d(0x1aa)},'Cara\x20Membuat\x20Minyak\x20Rambut\x20Pomade\x20Wax':{'bahan':[_0x29307d(0x3ae)+'00\x20gr',_0x29307d(0x194)+_0x29307d(0x349),_0x29307d(0x654)+'ml','Gliserin\x202'+_0x29307d(0x1b3)],'steps':[_0x29307d(0x775)+'ax',_0x29307d(0x6b6)+'seed,\x20zait'+_0x29307d(0x1f3)+'in','Angkat,\x20be'+_0x29307d(0x822)+_0x29307d(0x1e8)+'ah'],'footer':_0x29307d(0x67e)},'Cara\x20Membuat\x20Minyak\x20Rambut\x20Pomade':{'bahan':['Vaselin\x2025'+'0\x20gr',_0x29307d(0x2c0)+'id\x2025\x20gr','Parfum\x2030\x20'+'cc'],'steps':[_0x29307d(0x555)+_0x29307d(0x810)+_0x29307d(0x703)+_0x29307d(0x42b),_0x29307d(0x18d)+'fum,\x20angka'+_0x29307d(0x67a)+_0x29307d(0x1be),'Biarkan\x20pa'+_0x29307d(0x1e6)],'footer':_0x29307d(0x562)},'Cara\x20Membuat\x20Minyak\x20Telon':{'bahan':['Minyak\x20kay'+_0x29307d(0x281)+_0x29307d(0x6ea),'Minyak\x20Ada'+'s\x20300\x20ml','Minyak\x20Kel'+_0x29307d(0x780)],'steps':[_0x29307d(0x6f0)+'ketiga\x20bah'+'an',_0x29307d(0x73a)+_0x29307d(0x1ce)+_0x29307d(0x55c),_0x29307d(0x245)+_0x29307d(0x2eb)+_0x29307d(0x237)],'footer':_0x29307d(0x44c)},'Cara\x20Membuat\x20Molto\x20Pelembut\x20Pewangi\x20Cucian':{'bahan':['Supersoft\x20'+'10\x20kg',_0x29307d(0x55d)+'um\x20150\x20ml',_0x29307d(0x1bb)+'00\x20ml',_0x29307d(0x75c)],'steps':[_0x29307d(0x34c)+_0x29307d(0x60c),_0x29307d(0x750)+'fum\x20+\x20meth'+_0x29307d(0x7e7),_0x29307d(0x5ae)+_0x29307d(0x4b2)+_0x29307d(0x44b)+_0x29307d(0x556)],'footer':'(Resep\x2051)'},'Cara\x20Membuat\x20Nata\x20de\x20Coco\x20Tanpa\x20Urea':{'bahan':[_0x29307d(0x832)+_0x29307d(0x69a),_0x29307d(0x77f)+'r',_0x29307d(0x48f)+'r','Cuka\x2050\x20cc',_0x29307d(0x4d0)+'ml'],'steps':['Masak\x20air\x20'+_0x29307d(0x29d)+_0x29307d(0x316)+_0x29307d(0x220)+'g',_0x29307d(0x558)+_0x29307d(0x2c5)+_0x29307d(0x6f4)+'\x20saat\x20ding'+'in',_0x29307d(0x69d)+'0\x20hari\x20tut'+_0x29307d(0x7ef),_0x29307d(0x77d)+_0x29307d(0x3ad)+_0x29307d(0x2b0)],'footer':_0x29307d(0x3c6)},'Cara\x20Membuat\x20Night\x20Cream':{'bahan':[_0x29307d(0x6b5)+_0x29307d(0x7ca),_0x29307d(0x250)+'in','Olive\x20oil','Ekstrak\x20Ca'+'mmomile/Al'+'oe'],'steps':['Masak\x20baha'+_0x29307d(0x17c)+_0x29307d(0x318)+'i','Tambah\x20Eks'+_0x29307d(0x2b2)+_0x29307d(0x258)+_0x29307d(0x7c5),_0x29307d(0x18d)+'fum,\x20dingi'+'nkan,\x20kema'+'s'],'footer':_0x29307d(0x6bb)},'Cara\x20Membuat\x20Obat\x20Anti\x20Bau\x20Badan':{'bahan':['Tawas\x2040\x20g'+'r',_0x29307d(0x55d)+_0x29307d(0x233),'Glyserin\x206'+_0x29307d(0x745),_0x29307d(0x501)+_0x29307d(0x5f6)],'steps':[_0x29307d(0x45b)+_0x29307d(0x5c6)+_0x29307d(0x310),_0x29307d(0x81c)+'serin\x20&\x20pa'+_0x29307d(0x3a6)+_0x29307d(0x683),_0x29307d(0x508)+_0x29307d(0x56f)+_0x29307d(0x26a)+_0x29307d(0x758)],'footer':_0x29307d(0x4bf)},'Cara\x20Membuat\x20Obat\x20Kumur':{'bahan':['Eucalyptol'+_0x29307d(0x23a)+_0x29307d(0x3bd),_0x29307d(0x470)+_0x29307d(0x6ea),_0x29307d(0x6fa)+_0x29307d(0x806)],'steps':['Wadah\x20A:\x20M'+_0x29307d(0x41f)+'sial\x20+\x20Alk'+_0x29307d(0x2b3),_0x29307d(0x2cf)+'ir\x20hangat\x20'+_0x29307d(0x44f)+_0x29307d(0x321),'Satukan\x20A\x20'+_0x29307d(0x360)+_0x29307d(0x6ee)+_0x29307d(0x526)],'footer':_0x29307d(0x6c0)},'Cara\x20Membuat\x20Obat\x20Kutu\x20Rambut':{'bahan':[_0x29307d(0x3bf)+_0x29307d(0x6c8),_0x29307d(0x57b)+_0x29307d(0x49a),'Zaitun\x20120'+'\x20ml',_0x29307d(0x1d4)],'steps':['Campur\x20sem'+_0x29307d(0x1a4),'Aduk\x20rata\x20'+_0x29307d(0x2f9),_0x29307d(0x1cb)+_0x29307d(0x656)+_0x29307d(0x7e5)],'footer':'(Resep\x2056)'},'Cara\x20Membuat\x20Obat\x20Nyamuk\x20Bakar':{'bahan':[_0x29307d(0x474)+'u\x20250\x20gr',_0x29307d(0x446)+_0x29307d(0x60b),'Insect\x20pow'+_0x29307d(0x7ff),_0x29307d(0x2ad)],'steps':[_0x29307d(0x191)+_0x29307d(0x34b)+'\x20insect\x20po'+_0x29307d(0x548),_0x29307d(0x38f)+_0x29307d(0x3c1)+_0x29307d(0x286)+_0x29307d(0x547),_0x29307d(0x73c)+_0x29307d(0x7eb)+'an'],'footer':_0x29307d(0x2b7)},'Cara\x20Membuat\x20Obat\x20Nyamuk\x20Cair':{'bahan':['Minyak\x20kay'+'u\x20putih\x2050'+_0x29307d(0x745),_0x29307d(0x793)+_0x29307d(0x29b),_0x29307d(0x5f3)+'\x20cc','Kerosin\x2025'+_0x29307d(0x7ee)],'steps':['Wadah\x20A:\x20K'+'erosin\x20+\x20B'+_0x29307d(0x2a1),_0x29307d(0x5ca)+_0x29307d(0x2d5)+_0x29307d(0x1a2),_0x29307d(0x57f)+'&\x20B,\x20sarin'+_0x29307d(0x618)+'us'],'footer':_0x29307d(0x4ba)},'Cara\x20Membuat\x20Parfum\x20Badan\x20Non\x20Alkohol':{'bahan':[_0x29307d(0x754)+'ml',_0x29307d(0x211)+'l',_0x29307d(0x49f)+_0x29307d(0x323),_0x29307d(0x31e)],'steps':[_0x29307d(0x1b9)+_0x29307d(0x2bb)+'ah\x20air\x20ber'+_0x29307d(0x679),_0x29307d(0x20e)+_0x29307d(0x388),'Tambah\x20Fix'+'olite\x20samp'+_0x29307d(0x32d)],'footer':'(Resep\x2059)'},'Cara\x20Membuat\x20Parfum\x20Laundry':{'bahan':[_0x29307d(0x1bb)+'\x20L','Bibit\x20parf'+'um\x20150\x20ml',_0x29307d(0x613),_0x29307d(0x3ba)],'steps':['Campur\x20met'+_0x29307d(0x71f)+'rfum','Tambah\x20PG\x20'+_0x29307d(0x506)+_0x29307d(0x41b),_0x29307d(0x691)+_0x29307d(0x264)],'footer':_0x29307d(0x193)},'Cara\x20Membuat\x20Parfum\x20Mobil':{'bahan':[_0x29307d(0x808)+_0x29307d(0x733),_0x29307d(0x7ad)],'steps':['Campurkan\x20'+'bahan',_0x29307d(0x245)+_0x29307d(0x39e)+_0x29307d(0x4ab)],'footer':_0x29307d(0x59f)},'Cara\x20Membuat\x20Parfum\x20Oles\x20Roll\x20On':{'bahan':[_0x29307d(0x55d)+'um\x20100\x20ml',_0x29307d(0x7ad)],'steps':['Campur\x20bib'+_0x29307d(0x7e8)+'1',_0x29307d(0x300)+_0x29307d(0x275)+'roll\x20on'],'footer':'(Resep\x2062)'},'Cara\x20Membuat\x20Parfum\x20Oles':{'bahan':[_0x29307d(0x335)+'0\x20gr',_0x29307d(0x55d)+'um\x2050\x20ml',_0x29307d(0x756)],'steps':[_0x29307d(0x3f6)+_0x29307d(0x236),'Campur\x20par'+'fum\x20&\x20PG',_0x29307d(0x7d5)+_0x29307d(0x7a5)+_0x29307d(0x380)+'at'],'footer':_0x29307d(0x420)},'Cara\x20Membuat\x20Parfum\x20Pakaian':{'bahan':['Bibit\x20lily'+_0x29307d(0x603),_0x29307d(0x5fc)+_0x29307d(0x2d8),_0x29307d(0x7ad)],'steps':[_0x29307d(0x750)+'fum\x20&\x20meth'+_0x29307d(0x7e7),_0x29307d(0x53e)+_0x29307d(0x540)+'ay'],'footer':'(Resep\x2064)'},'Cara\x20Membuat\x20Pasir\x20Warna':{'bahan':[_0x29307d(0x46a)+_0x29307d(0x6f9),'Warna\x20maka'+_0x29307d(0x73e),_0x29307d(0x66d)+_0x29307d(0x5a0),_0x29307d(0x47f)],'steps':[_0x29307d(0x688)+_0x29307d(0x2ae)+'a',_0x29307d(0x471)+_0x29307d(0x629)+_0x29307d(0x6e3),_0x29307d(0x4d3)+_0x29307d(0x71e)+_0x29307d(0x1ba)],'footer':_0x29307d(0x457)},'Cara\x20Membuat\x20Pasta\x20Anti\x20Air\x20Untuk\x20Sepatu':{'bahan':['Beeswax\x2015'+_0x29307d(0x6ea),_0x29307d(0x82a)+_0x29307d(0x22b),_0x29307d(0x194)+_0x29307d(0x727)],'steps':[_0x29307d(0x3f6)+_0x29307d(0x236),_0x29307d(0x6b6)+_0x29307d(0x33d)+_0x29307d(0x772),_0x29307d(0x2f4)+'dat'],'footer':'(Resep\x2066)'},'Cara\x20Membuat\x20Pasta\x20Gigi\x20Odol':{'bahan':['NAF\x200.05\x20g'+'r',_0x29307d(0x41c)+'Phosphat\x201'+_0x29307d(0x7e9),'Alginat\x2025'+_0x29307d(0x75f),_0x29307d(0x77c)],'steps':[_0x29307d(0x486)+_0x29307d(0x3ce)+_0x29307d(0x417),_0x29307d(0x38f)+_0x29307d(0x2d6),_0x29307d(0x333)+'mua\x20bahan\x20'+_0x29307d(0x3a7)],'footer':'(Resep\x2067)'},'Cara\x20Membuat\x20Peeling\x20Cream':{'bahan':[_0x29307d(0x43d)+_0x29307d(0x4f3),_0x29307d(0x4ad)+'iokside',_0x29307d(0x524),_0x29307d(0x34d)+'r'],'steps':['Lelehkan\x20f'+_0x29307d(0x663),_0x29307d(0x81b)+'i\x20dengan\x20a'+'ir',_0x29307d(0x7f7)+_0x29307d(0x530)+_0x29307d(0x571)],'footer':_0x29307d(0x525)},'Cara\x20Membuat\x20Pelicin\x20Setrika\x20Bening':{'bahan':['Magnasoft\x20'+_0x29307d(0x3b8),_0x29307d(0x183)+_0x29307d(0x254),_0x29307d(0x59a)+'00\x20ml',_0x29307d(0x23b)],'steps':[_0x29307d(0x750)+_0x29307d(0x62c)+'nol,\x20magna'+_0x29307d(0x7a6),_0x29307d(0x4d9)+_0x29307d(0x369)+'ih'],'footer':_0x29307d(0x404)},'Cara\x20Membuat\x20Pelicin\x20Setrika\x20Putih\x20Susu':{'bahan':[_0x29307d(0x2f0)+_0x29307d(0x2af),_0x29307d(0x22f),_0x29307d(0x305)+_0x29307d(0x800),_0x29307d(0x48a)+'0\x20ml'],'steps':['Blender\x20si'+_0x29307d(0x34a)+_0x29307d(0x615)+'r',_0x29307d(0x750)+'fum\x20+\x20meta'+_0x29307d(0x5ed),_0x29307d(0x333)+_0x29307d(0x586)+_0x29307d(0x591)],'footer':'(Resep\x2070)'},'Cara\x20Membuat\x20Pembersih\x20Kaca':{'bahan':['Methanol\x203'+'\x20L',_0x29307d(0x3e6),_0x29307d(0x1e7)+_0x29307d(0x254),_0x29307d(0x23b)],'steps':['Methanol\x20+'+'\x20air',_0x29307d(0x327)+_0x29307d(0x831)+'jen',_0x29307d(0x7a2)+_0x29307d(0x827)+_0x29307d(0x791)+_0x29307d(0x6ec)],'footer':'(Resep\x2071)'},'Cara\x20Membuat\x20Pembersih\x20Kerak\x20Kamar\x20Mandi':{'bahan':[_0x29307d(0x7f8),_0x29307d(0x54c)+_0x29307d(0x30b),'Warna\x20kuni'+'ng'],'steps':['Panaskan\x20a'+'ir',_0x29307d(0x451)+'CL\x20&\x20warna'+_0x29307d(0x2c9)+'a'],'footer':_0x29307d(0x678)},'Cara\x20Membuat\x20Pembersih\x20Mesin\x20Cuci':{'bahan':[_0x29307d(0x5fa)+_0x29307d(0x3d6),_0x29307d(0x434)+_0x29307d(0x25a),'Shea\x20butte'+_0x29307d(0x242)],'steps':[_0x29307d(0x677)+_0x29307d(0x337)+_0x29307d(0x749),'Campur\x20She'+_0x29307d(0x813)+_0x29307d(0x215),_0x29307d(0x1f8)+'eringangin'+_0x29307d(0x6aa)],'footer':_0x29307d(0x2ac)},'Cara\x20Membuat\x20Pemutih\x20Pakaian\x20Sejenis\x20B@yclin':{'bahan':['Soda\x20Ash\x20L'+_0x29307d(0x261),_0x29307d(0x30a)+_0x29307d(0x4dd),_0x29307d(0x1a3)],'steps':[_0x29307d(0x713)+_0x29307d(0x58c),_0x29307d(0x503)+_0x29307d(0x401)+_0x29307d(0x5c7),_0x29307d(0x2ec)+_0x29307d(0x4b9)+_0x29307d(0x4e8)+'ya'],'footer':_0x29307d(0x260)},'Cara\x20Membuat\x20Pengelupas\x20Cat':{'bahan':[_0x29307d(0x53c)+_0x29307d(0x7ee),_0x29307d(0x4e6)+'\x20cc',_0x29307d(0x5e0)+_0x29307d(0x790)],'steps':['Campur\x20sem'+_0x29307d(0x68d)+'erlahan','Aduk\x20hingg'+_0x29307d(0x448)+_0x29307d(0x5e8)],'footer':_0x29307d(0x4d8)},'Cara\x20Membuat\x20Pengharum\x20Pengusir\x20Tikus':{'bahan':[_0x29307d(0x6c9)+_0x29307d(0x2ea),_0x29307d(0x732),'Air\x203\x20L'],'steps':[_0x29307d(0x3e0)+_0x29307d(0x225),_0x29307d(0x677)+'bol\x20+\x20kapu'+_0x29307d(0x353),_0x29307d(0x4d9)+_0x29307d(0x825)],'footer':_0x29307d(0x4cb)},'Cara\x20Membuat\x20Penghilang\x20Kutek\x20Kuku':{'bahan':[_0x29307d(0x3bb)+_0x29307d(0x254),_0x29307d(0x459)+_0x29307d(0x46c),_0x29307d(0x1a7)+'0\x20ml'],'steps':[_0x29307d(0x1bd)+_0x29307d(0x3a0)+'\x20+\x20Gliseri'+'n',_0x29307d(0x327)+_0x29307d(0x32f)+_0x29307d(0x4d4)+'m'],'footer':_0x29307d(0x421)},'Cara\x20Membuat\x20Penghitam\x20Dashboard\x20dan\x20Ban':{'bahan':[_0x29307d(0x675)+_0x29307d(0x52d),'Parafin\x2010'+_0x29307d(0x52d),'Silicon\x20oi'+_0x29307d(0x4fe),'Nigrosin\x205'+_0x29307d(0x52d)],'steps':[_0x29307d(0x714)+_0x29307d(0x63e)+'Oil+Air',_0x29307d(0x569)+_0x29307d(0x308)+_0x29307d(0x816)+_0x29307d(0x6af),_0x29307d(0x1d1)+_0x29307d(0x625)+'kecil)'],'footer':_0x29307d(0x606)},'Cara\x20Membuat\x20Pengkilap\x20Mobil\x20Tanpa\x20Silicon\x20Emulsi':{'bahan':[_0x29307d(0x338)+_0x29307d(0x49b),'Stearic\x2050'+_0x29307d(0x75f),_0x29307d(0x5ee),_0x29307d(0x773)],'steps':[_0x29307d(0x4b7)+_0x29307d(0x373)+'\x20+\x20Air','Wadah\x202:\x20O'+_0x29307d(0x35a)+_0x29307d(0x2b5)+'in',_0x29307d(0x61b)+'\x202\x20bertaha'+_0x29307d(0x453)+'ental'],'footer':'(Resep\x2079)'},'Cara\x20Membuat\x20Pengkilap\x20Mobil':{'bahan':['Silicon\x20Em'+_0x29307d(0x71c)+'l',_0x29307d(0x584)+_0x29307d(0x4fe),'Aquadest\x207'+_0x29307d(0x604)],'steps':[_0x29307d(0x3d9)+_0x29307d(0x3b1),_0x29307d(0x4d9)+_0x29307d(0x702)+_0x29307d(0x387)+_0x29307d(0x545)],'footer':_0x29307d(0x6c3)},'Cara\x20Membuat\x20Pengusir\x20Serangga':{'bahan':[_0x29307d(0x343)+'ati\x2050\x20ml',_0x29307d(0x2f2)+'ml','Air\x20hangat'+_0x29307d(0x66b),'Boraks\x2010\x20'+'gr'],'steps':[_0x29307d(0x750)+_0x29307d(0x64f)+'0',_0x29307d(0x17f)+_0x29307d(0x5e3)+_0x29307d(0x7ac),_0x29307d(0x333)+'mua,\x20diamk'+_0x29307d(0x6c4)],'footer':_0x29307d(0x4ee)},'Cara\x20Membuat\x20Plastisin\x20Mainan':{'bahan':[_0x29307d(0x751)+_0x29307d(0x75f),_0x29307d(0x2fe)+'gr','Pengawet\x205'+'\x20gr','Minyak\x202\x20s'+'dm'],'steps':[_0x29307d(0x688)+_0x29307d(0x1b6)+'m',_0x29307d(0x295)+_0x29307d(0x80b)+_0x29307d(0x747),_0x29307d(0x722)+_0x29307d(0x572)+_0x29307d(0x40b)+_0x29307d(0x298)],'footer':'(Resep\x2082)'},'Cara\x20Membuat\x20Plitur':{'bahan':[_0x29307d(0x638)+_0x29307d(0x2d8),_0x29307d(0x69c)+'ml',_0x29307d(0x4e5)+_0x29307d(0x254),'Sirlak\x2030\x20'+'gr'],'steps':['Campur\x20spi'+'ritus,\x20amo'+_0x29307d(0x3d4)+'er',_0x29307d(0x326)+_0x29307d(0x60e)+'rna,\x20aduk'],'footer':_0x29307d(0x657)},'Cara\x20Membuat\x20Sabun\x20Anti\x20Jerawat':{'bahan':[_0x29307d(0x2c2)+_0x29307d(0x3f2),_0x29307d(0x3bf)+_0x29307d(0x6c8),'Alkohol\x2050'+'\x20ml'],'steps':['Tim\x20soap\x20b'+_0x29307d(0x263),_0x29307d(0x272)+_0x29307d(0x243)+'a\x20tree\x20&\x20w'+_0x29307d(0x25e),'Cetak,\x20sem'+_0x29307d(0x809)+'ol'],'footer':_0x29307d(0x1ff)},'Cara\x20Membuat\x20Sabun\x20Batangan\x20Pembersih\x20Angus\x20Perabotan\x20Dapur':{'bahan':[_0x29307d(0x2b1)+'r',_0x29307d(0x4af)+_0x29307d(0x36d),_0x29307d(0x255)+_0x29307d(0x5ef)],'steps':[_0x29307d(0x6c6)+_0x29307d(0x5cf)+_0x29307d(0x769),'Campur\x20NaO'+_0x29307d(0x5b5)+_0x29307d(0x40a)+_0x29307d(0x3e3)+'l','Tambah\x20ser'+_0x29307d(0x4b5)+_0x29307d(0x6ca)],'footer':_0x29307d(0x4d7)},'Cara\x20Membuat\x20Sabun\x20Bubuk\x20Untuk\x20Tandon\x20Dan\x20Galon\x20Air':{'bahan':['Texapon\x20po'+_0x29307d(0x2e1)+'r',_0x29307d(0x21e)+'00\x20gr',_0x29307d(0x189)],'steps':['Campur\x20Sod'+_0x29307d(0x466)+_0x29307d(0x351)+'phate',_0x29307d(0x28b)+'exapon\x20ber'+_0x29307d(0x7b6)+'k'],'footer':'(Resep\x2087)'},'Cara\x20Membuat\x20Sabun\x20Cair\x20untuk\x20Wajah\x20Fresh\x20Cool':{'bahan':[_0x29307d(0x54e),'Betaine\x2010'+_0x29307d(0x52d),_0x29307d(0x665)+'r',_0x29307d(0x42c)+'Acid\x203\x20gr'],'steps':['SLS\x20+\x20Gara'+_0x29307d(0x50c)+'nas,\x20aduk\x20'+_0x29307d(0x2b9),_0x29307d(0x7b1)+_0x29307d(0x410)+_0x29307d(0x1d5),_0x29307d(0x3e5)+_0x29307d(0x290)+_0x29307d(0x435)],'footer':'(Resep\x2088)'},'Cara\x20Membuat\x20Sabun\x20Charcoal':{'bahan':[_0x29307d(0x2c2)+_0x29307d(0x3f2),_0x29307d(0x3db)+_0x29307d(0x362),_0x29307d(0x6e2)+'ml'],'steps':[_0x29307d(0x1d7)+_0x29307d(0x263),'Masukkan\x20c'+'harcoal\x20&\x20'+'parfum,\x20ce'+'tak'],'footer':_0x29307d(0x52e)},'Cara\x20Membuat\x20Sabun\x20Colek\x20Bening\x20Jelly\x20Krim':{'bahan':[_0x29307d(0x202)+'exapon\x201.5'+'\x20kg,\x20Garam'+_0x29307d(0x1f5)+_0x29307d(0x5ad)+',\x20STPP\x2030\x20'+_0x29307d(0x496)+_0x29307d(0x6b9)+'um\x20Lime\x20St'+'ar\x20100\x20ml,'+_0x29307d(0x73b)+'uning',_0x29307d(0x167)+_0x29307d(0x26e)+_0x29307d(0x45d)+'dingin\x205\x20l'+_0x29307d(0x82c)+'erin\x20100\x20m'+_0x29307d(0x83e)+_0x29307d(0x19a)+'r'],'alat':[_0x29307d(0x4d5)+'L',_0x29307d(0x83b)+'L','Pengaduk\x20k'+_0x29307d(0x26d)],'steps':[_0x29307d(0x307)+':\x20Larutkan'+_0x29307d(0x78c)+_0x29307d(0x409)+_0x29307d(0x227)+_0x29307d(0x1e3)+_0x29307d(0x3ca),_0x29307d(0x66a)+_0x29307d(0x239)+'r\x20ke\x20Campu'+_0x29307d(0x6a7)+'k\x20rata','Tambahkan\x20'+_0x29307d(0x352)+'uk\x20rata',_0x29307d(0x2f7)+'TPP\x20dan\x20ED'+'TA,\x20aduk\x20r'+_0x29307d(0x2d4),_0x29307d(0x66a)+_0x29307d(0x6eb)+_0x29307d(0x6b1)+_0x29307d(0x2ec)+_0x29307d(0x805)+'am',_0x29307d(0x6d8)+_0x29307d(0x617)+'n\x20air\x20ding'+'in\x20dengan\x20'+_0x29307d(0x72f)+'ada\x20bak\x2050'+_0x29307d(0x689)+'uk\x20rata',_0x29307d(0x4b1)+_0x29307d(0x826)+_0x29307d(0x68a)+_0x29307d(0x577)+_0x29307d(0x65f)+_0x29307d(0x6e0),_0x29307d(0x66a)+'air\x20panas\x20'+'sedikit\x20de'+_0x29307d(0x36e)+_0x29307d(0x748)+_0x29307d(0x330)+_0x29307d(0x480)+_0x29307d(0x2a9)+_0x29307d(0x359)+_0x29307d(0x6ff),_0x29307d(0x58f)+'n\x20Akhir:\x20C'+'ampurkan\x20C'+_0x29307d(0x6f6)+_0x29307d(0x21f)+_0x29307d(0x30e)+'\x20aduk\x20hing'+_0x29307d(0x267)+_0x29307d(0x7da),'Kemas\x20dala'+_0x29307d(0x7a9)+_0x29307d(0x223)+'\x20gram\x20atau'+_0x29307d(0x4ac)+_0x29307d(0x285)],'footer':_0x29307d(0x3de)},'Cara\x20Membuat\x20Sabun\x20Colek':{'bahan':[_0x29307d(0x83f)+_0x29307d(0x423),_0x29307d(0x4d1)+'r',_0x29307d(0x59e),_0x29307d(0x6f8)+'gr',_0x29307d(0x440)+'gr'],'steps':[_0x29307d(0x6e8)+'arutkan\x20CM'+_0x29307d(0x730),_0x29307d(0x65a)+'arutkan\x20Ca'+_0x29307d(0x5a4)+_0x29307d(0x3fd)+'h',_0x29307d(0x6c7)+_0x29307d(0x4c5)+_0x29307d(0x3c5)+_0x29307d(0x7ec)],'footer':_0x29307d(0x35d)},'Cara\x20Membuat\x20Sabun\x20Mandi\x20Batang\x20Transparan':{'bahan':[_0x29307d(0x4af)+_0x29307d(0x780),'NaOH\x2065\x20gr',_0x29307d(0x50b)+_0x29307d(0x6bf),_0x29307d(0x4b4)+_0x29307d(0x6ea),_0x29307d(0x5be)+'l'],'steps':[_0x29307d(0x6fe)+'elapa\x20+\x20la'+'rutan\x20NaOH'+_0x29307d(0x66f),_0x29307d(0x2c4)+_0x29307d(0x839)+_0x29307d(0x452),_0x29307d(0x640)+_0x29307d(0x221)+_0x29307d(0x5f1),_0x29307d(0x327)+_0x29307d(0x777)+_0x29307d(0x210)],'footer':_0x29307d(0x65b)},'Cara\x20Membuat\x20Sabun\x20Transparan':{'bahan':[_0x29307d(0x64a)+'00\x20gr',_0x29307d(0x5c9),_0x29307d(0x6b0)+'oang\x2010\x20ml'],'steps':[_0x29307d(0x1d7)+_0x29307d(0x263),_0x29307d(0x7f1)+_0x29307d(0x192)+_0x29307d(0x482)+_0x29307d(0x3c0)+'ak'],'footer':_0x29307d(0x7cf)},'Cara\x20Membuat\x20Sanitizer\x20Cair\x20Spray':{'bahan':['Methanol\x201'+'\x20L',_0x29307d(0x4b4)+_0x29307d(0x6ea),'H202\x2050\x20ml',_0x29307d(0x803)],'steps':['Campur\x20met'+_0x29307d(0x47d)+_0x29307d(0x35c)+_0x29307d(0x3cb),_0x29307d(0x4d9)+',\x20aduk\x20rat'+'a'],'footer':_0x29307d(0x553)},'Cara\x20Membuat\x20Sanitizer\x20Non\x20Alkohol':{'bahan':['BKC\x20100\x20ml',_0x29307d(0x754)+'ml',_0x29307d(0x2f2)+'ml',_0x29307d(0x269)],'steps':['Larutkan\x20B'+_0x29307d(0x662),_0x29307d(0x750)+'fum\x20+\x20NP-1'+'0',_0x29307d(0x333)+'mua,\x20tamba'+_0x29307d(0x3a5)],'footer':_0x29307d(0x3a2)},'Cara\x20Membuat\x20Semir\x20Ban\x20Mijel':{'bahan':['Jelantah\x205'+'00\x20gr',_0x29307d(0x2bc)+'0\x20gr',_0x29307d(0x6c5),_0x29307d(0x338)+'l\x20100\x20cc'],'steps':[_0x29307d(0x6c6)+'aOH\x20air\x20wa'+'rna',_0x29307d(0x5b9)+_0x29307d(0x18c)+'k\x20kental',_0x29307d(0x6b7)+'pi\x20kecil,\x20'+'tambah\x20lil'+_0x29307d(0x56d)+_0x29307d(0x215)],'footer':_0x29307d(0x736)},'Cara\x20Membuat\x20Semir\x20Jaket\x20dan\x20Tas\x20Kulit':{'bahan':[_0x29307d(0x1eb)+_0x29307d(0x52d),_0x29307d(0x194)+'l\x2050\x20gr','Pine\x20oil\x201'+_0x29307d(0x2d8)],'steps':[_0x29307d(0x3f6)+_0x29307d(0x236),_0x29307d(0x6b6)+_0x29307d(0x697)+_0x29307d(0x4c8)+'rkan\x20padat'],'footer':_0x29307d(0x4a5)},'Cara\x20Membuat\x20Semir\x20Sepatu\x20Cair':{'bahan':[_0x29307d(0x7f6)+'gr',_0x29307d(0x536)+_0x29307d(0x52d),_0x29307d(0x1a8)+_0x29307d(0x253),_0x29307d(0x82a)+_0x29307d(0x3ec)],'steps':[_0x29307d(0x17f)+_0x29307d(0x599),_0x29307d(0x3f6)+_0x29307d(0x4c3)+_0x29307d(0x6cc),'Campur\x20emu'+'lsi,\x20tamba'+_0x29307d(0x59b)+_0x29307d(0x80e)],'footer':_0x29307d(0x329)},'Cara\x20Membuat\x20Semir\x20Sepatu\x20Padat':{'bahan':[_0x29307d(0x1de)+_0x29307d(0x464),'Pigmen\x2050\x20'+'gr',_0x29307d(0x449)+_0x29307d(0x16f)],'steps':['W1:\x20Leleh\x20'+'Malam\x20Kuni'+'ng',_0x29307d(0x605)+_0x29307d(0x426)+_0x29307d(0x740)+_0x29307d(0x3b5),_0x29307d(0x363)+'\x20ke\x20W1,\x20ce'+_0x29307d(0x6a9)],'footer':_0x29307d(0x5d5)},'Cara\x20Membuat\x20Serum\x20Wajah':{'bahan':[_0x29307d(0x2f5)+_0x29307d(0x707),'Vit\x20C\x205\x20gr',_0x29307d(0x1a0)+_0x29307d(0x5eb)+'ile/Rose/L'+_0x29307d(0x72c)],'steps':[_0x29307d(0x306)+_0x29307d(0x1a4),'Simpan\x20kul'+_0x29307d(0x70b)+_0x29307d(0x5b8)+'a'],'footer':_0x29307d(0x1ee)+')'},'Cara\x20Membuat\x20Shampo\x20Hewan\x20Piaraan':{'bahan':[_0x29307d(0x829)+_0x29307d(0x52d),_0x29307d(0x6e1)+'gr',_0x29307d(0x1b0)+_0x29307d(0x695)],'steps':[_0x29307d(0x7b7)+'osol','Lelehkan\x20T'+_0x29307d(0x81f)+_0x29307d(0x35f),'Satukan,\x20t'+_0x29307d(0x757)+_0x29307d(0x381)],'footer':_0x29307d(0x735)+')'},'Cara\x20Membuat\x20Shampo\x20Rambut':{'bahan':[_0x29307d(0x5f9)+'r','Polyquat\x205'+_0x29307d(0x6ea),_0x29307d(0x38a),_0x29307d(0x181)+'ml'],'steps':[_0x29307d(0x6f2)+_0x29307d(0x7af),_0x29307d(0x495)+'yquat,\x20Lex'+'gard,\x20&\x20Ac'+'id',_0x29307d(0x18d)+_0x29307d(0x5fb)+'a'],'footer':_0x29307d(0x479)+')'},'Cara\x20Membuat\x20Shampoo\x20Mobil\x20Ice\x20Cream':{'bahan':['Texapon\x202\x20'+'kg',_0x29307d(0x828)+'kg',_0x29307d(0x5ac)+_0x29307d(0x3b8),_0x29307d(0x273)+_0x29307d(0x2d8)],'steps':[_0x29307d(0x6a0)+_0x29307d(0x44a)+_0x29307d(0x528),_0x29307d(0x383)+'perlan\x20&\x20G'+_0x29307d(0x46d),_0x29307d(0x327)+'na\x20&\x20parfu'+'m,\x20saring'],'footer':_0x29307d(0x63a)+')'},'Cara\x20Membuat\x20Shower\x20Gel':{'bahan':['SLES\x20200\x20g'+'r','Oat\x20100\x20gr',_0x29307d(0x693)+'r'],'steps':[_0x29307d(0x25f)+'LES+DEA+Pa'+'raben',_0x29307d(0x20a)+'arutkan\x20Na'+_0x29307d(0x557)+'as',_0x29307d(0x57f)+_0x29307d(0x53b)+'ah\x20Oat\x20&\x20V'+'it\x20E'],'footer':_0x29307d(0x2ee)+')'},'Cara\x20Membuat\x20Skin\x20Tonic\x20Lotion':{'bahan':[_0x29307d(0x6a4),_0x29307d(0x458)+_0x29307d(0x2d8),_0x29307d(0x18a)+'r',_0x29307d(0x470)+'0\x20ml'],'steps':[_0x29307d(0x646)+_0x29307d(0x538)+_0x29307d(0x3ac),_0x29307d(0x5a1)+_0x29307d(0x2e3)+_0x29307d(0x2f8),'Satukan,\x20t'+_0x29307d(0x819)+_0x29307d(0x7d4)],'footer':'(Resep\x20105'+')'},'Cara\x20Membuat\x20Soap\x20Base':{'bahan':['Sabun\x20paru'+_0x29307d(0x1e0),_0x29307d(0x608)+_0x29307d(0x52d),'Etanol\x20400'+_0x29307d(0x254),_0x29307d(0x30d)+_0x29307d(0x2d8)],'steps':[_0x29307d(0x4e9)+_0x29307d(0x6e9),'Tambah\x20sab'+_0x29307d(0x670)+',\x20gliserin',_0x29307d(0x630)+'s,\x20cetak'],'footer':'(Resep\x20106'+')'},'Cara\x20Membuat\x20Softergent\x20Deterjen\x20Plus\x20Pelembut\x20Pakaian':{'bahan':['Texapon\x201.'+_0x29307d(0x32e),_0x29307d(0x7a3)+_0x29307d(0x4a9),'Magnasoft\x20'+_0x29307d(0x2f6),_0x29307d(0x1dd)+'r'],'steps':[_0x29307d(0x6a0)+'on\x20+\x20Garam'+_0x29307d(0x528),_0x29307d(0x477)+_0x29307d(0x723)+_0x29307d(0x6cb)+'\x20parfum'],'footer':'(Resep\x20107'+')'},'Cara\x20Membuat\x20Soothing\x20Skin\x20Care':{'bahan':[_0x29307d(0x32a),_0x29307d(0x184)+'\x20mg','Vit\x20E\x202\x20bu'+'tir','Carbomer\x202'+_0x29307d(0x52d)],'steps':[_0x29307d(0x514)+_0x29307d(0x559)+_0x29307d(0x63d),_0x29307d(0x6de)+'arfum\x20alko'+_0x29307d(0x378)+_0x29307d(0x799),_0x29307d(0x568)+'\x20C\x20&\x20Vit\x20E'],'footer':_0x29307d(0x7d1)+')'},'Cara\x20Membuat\x20Sterno\x20Spiritus\x20Padat':{'bahan':[_0x29307d(0x675)+_0x29307d(0x75f),_0x29307d(0x6ba)+_0x29307d(0x438),_0x29307d(0x1cc)+'ml','Methanol\x202'+'00\x20ml'],'steps':[_0x29307d(0x7cc)+'Stearic\x20+\x20'+_0x29307d(0x38d)+_0x29307d(0x36c),_0x29307d(0x20d)+_0x29307d(0x63c),_0x29307d(0x509)+_0x29307d(0x7ed)+_0x29307d(0x6a9)],'footer':_0x29307d(0x552)+')'},'Cara\x20Membuat\x20Sun\x20Block\x20Tabir\x20Surya':{'bahan':[_0x29307d(0x431)+_0x29307d(0x75f),'Titanium\x20D'+_0x29307d(0x6a2)+'gr',_0x29307d(0x456)+'B'],'steps':[_0x29307d(0x70d)+_0x29307d(0x663)+_0x29307d(0x685),_0x29307d(0x6ed)+_0x29307d(0x31f)+'panas',_0x29307d(0x661)+_0x29307d(0x542)+'ah\x20UV\x20&\x20Cy'+_0x29307d(0x4a8)+'ne'],'footer':_0x29307d(0x612)+')'},'Cara\x20Membuat\x20Super\x20Pel\x20Lantai':{'bahan':[_0x29307d(0x3a3)+_0x29307d(0x7e9),'Deterjen\x201'+'00\x20ml',_0x29307d(0x3c7),_0x29307d(0x33a)+_0x29307d(0x254)],'steps':['Larutkan\x20N'+_0x29307d(0x660)+_0x29307d(0x56b),'Campur\x20BKC'+_0x29307d(0x28a)+_0x29307d(0x74d)+_0x29307d(0x26f),'Tambah\x20sis'+_0x29307d(0x533)+'warna'],'footer':_0x29307d(0x437)+')'},'Cara\x20Membuat\x20Un-yellowing\x20Midsole\x20Sepatu':{'bahan':[_0x29307d(0x55b)+_0x29307d(0x5d4),'Baking\x20sod'+_0x29307d(0x4d6),_0x29307d(0x711),_0x29307d(0x5bd)+_0x29307d(0x52d)],'steps':[_0x29307d(0x57e)+'buk\x20(1)',_0x29307d(0x750)+_0x29307d(0x64f)+_0x29307d(0x22d)+')','Satukan\x201\x20'+_0x29307d(0x3d0)],'footer':_0x29307d(0x19d)+')'},'Cara\x20Membuat\x20Vanishing\x20Cream\x20Glowing':{'bahan':['Stearic\x2050'+'\x20gr',_0x29307d(0x820)+_0x29307d(0x51e),_0x29307d(0x516)+'5\x20cc'],'steps':[_0x29307d(0x4cf)+_0x29307d(0x720),'Campur\x20Bak'+_0x29307d(0x4c2)+_0x29307d(0x57c)+_0x29307d(0x481)+'aric','Tambah\x20air'+_0x29307d(0x60a)+'n,\x20beri\x20pa'+_0x29307d(0x241)],'footer':_0x29307d(0x653)+')'},'Cara\x20Membuat\x20Water\x20Coolant\x20Radiator':{'bahan':[_0x29307d(0x796)+_0x29307d(0x500)+'ml',_0x29307d(0x230)+'\x20L',_0x29307d(0x297)+_0x29307d(0x62a)],'steps':[_0x29307d(0x796)+_0x29307d(0x5e5)+_0x29307d(0x50e)+'a',_0x29307d(0x691)+_0x29307d(0x73d)+_0x29307d(0x293)],'footer':_0x29307d(0x72b)+')'}};let state={'searchTerm':'','selectedTitle':ALL_TITLES[-0x962+0xc*-0xe9+-0x17*-0xe2],'isSidebarOpen':!![]};function renderList(){const _0x5373f7=_0x29307d,_0xf99617={'NfSqn':function(_0x338975){return _0x338975();},'BoDhD':_0x5373f7(0x45f)+'-600\x20hover'+_0x5373f7(0x447)+'50','TCfGH':_0x5373f7(0x4a0)+_0x5373f7(0x573),'YqKjN':_0x5373f7(0x487)+'t'},_0x5dcbf3=ALL_TITLES['filter'](_0x59af29=>_0x59af29[_0x5373f7(0x70a)+'e']()['includes'](state[_0x5373f7(0x17e)][_0x5373f7(0x70a)+'e']())),_0x194d1d=document[_0x5373f7(0x6b8)+_0x5373f7(0x282)](_0xf99617['YqKjN']);_0x194d1d[_0x5373f7(0x5b6)]='',_0x5dcbf3[_0x5373f7(0x39f)](_0x2a0af1=>{const _0x42946d=_0x5373f7,_0xf0048d={'OumyX':function(_0x5603a3){const _0xfa7d7e=_0x344f;return _0xf99617[_0xfa7d7e(0x4e3)](_0x5603a3);}},_0x360bbb=document[_0x42946d(0x1f1)+_0x42946d(0x76d)](_0x42946d(0x80f));_0x360bbb['className']=_0x42946d(0x7ab)+_0x42946d(0x7de)+_0x42946d(0x76a)+_0x42946d(0x81e)+_0x42946d(0x4c7)+'er\x20justify'+_0x42946d(0x228)+(state[_0x42946d(0x3d2)+_0x42946d(0x67c)]===_0x2a0af1?_0x42946d(0x3ff)+_0x42946d(0x1c2)+_0x42946d(0x5ce)+_0x42946d(0x313)+_0x42946d(0x379)+_0x42946d(0x1dc)+'-indigo-60'+'0':_0xf99617[_0x42946d(0x3cd)]),_0x360bbb['innerText']=_0x2a0af1[_0x42946d(0x40e)](_0xf99617[_0x42946d(0x5dc)],''),_0x360bbb['onclick']=()=>{const _0x3654ee=_0x42946d;state[_0x3654ee(0x3d2)+_0x3654ee(0x67c)]=_0x2a0af1,_0xf0048d[_0x3654ee(0x6d7)](renderContent),renderList();},_0x194d1d[_0x42946d(0x76e)+'d'](_0x360bbb);});}function renderContent(){const _0x47c0e5=_0x29307d,_0x2bf883={'ilttZ':_0x47c0e5(0x344)+_0x47c0e5(0x781)},_0x1b006e=RECIPE_DETAILS[state[_0x47c0e5(0x3d2)+'tle']],_0x252c6f=document[_0x47c0e5(0x6b8)+_0x47c0e5(0x282)](_0x2bf883[_0x47c0e5(0x79c)]);if(!_0x1b006e){_0x252c6f[_0x47c0e5(0x5b6)]=_0x47c0e5(0x4a6)+'\x22text-2xl\x20'+_0x47c0e5(0x36f)+_0x47c0e5(0x45f)+_0x47c0e5(0x51a)+state[_0x47c0e5(0x3d2)+_0x47c0e5(0x67c)]+('</h2><p\x20cl'+_0x47c0e5(0x429)+_0x47c0e5(0x45f)+_0x47c0e5(0x6d6)+_0x47c0e5(0x325)+_0x47c0e5(0x1f2)+_0x47c0e5(0x27a));return;}_0x252c6f['innerHTML']=_0x47c0e5(0x2c6)+_0x47c0e5(0x196)+'\x20class=\x22te'+_0x47c0e5(0x78a)+_0x47c0e5(0x7df)+'d\x20text-sla'+_0x47c0e5(0x2c7)+'4\x22>'+state[_0x47c0e5(0x3d2)+_0x47c0e5(0x67c)]+(_0x47c0e5(0x5d7)+_0x47c0e5(0x291)+'\x20\x20<div\x20cla'+_0x47c0e5(0x4c9)+_0x47c0e5(0x339)+_0x47c0e5(0x794)+_0x47c0e5(0x314)+_0x47c0e5(0x424)+_0x47c0e5(0x621)+_0x47c0e5(0x2be)+_0x47c0e5(0x291)+_0x47c0e5(0x291)+_0x47c0e5(0x4a4)+_0x47c0e5(0x2a7)+_0x47c0e5(0x7c6)+'ppercase\x20t'+'racking-wi'+_0x47c0e5(0x394)+_0x47c0e5(0x172)+_0x47c0e5(0x3e4)+_0x47c0e5(0x185)+_0x47c0e5(0x2a0)+_0x47c0e5(0x291)+_0x47c0e5(0x690)+_0x47c0e5(0x475)+'disc\x20pl-5\x20'+_0x47c0e5(0x83a)+_0x47c0e5(0x79d)+'00\x20space-y'+_0x47c0e5(0x7c8))+_0x1b006e['bahan'][_0x47c0e5(0x575)](_0x201ef4=>_0x47c0e5(0x7b0)+_0x201ef4+_0x47c0e5(0x696))[_0x47c0e5(0x76b)]('')+(_0x47c0e5(0x23c)+_0x47c0e5(0x291)+'\x20\x20</div>\x0a\x20'+'\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x47c0e5(0x83d)+_0x47c0e5(0x1e9)+'white\x20p-6\x20'+_0x47c0e5(0x1a1)+'l\x20shadow-s'+_0x47c0e5(0x42f)+'order-slat'+_0x47c0e5(0x5d0)+'\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x47c0e5(0x405)+'3\x20class=\x22f'+_0x47c0e5(0x725)+'ext-xs\x20upp'+_0x47c0e5(0x3c8)+_0x47c0e5(0x201)+_0x47c0e5(0x209)+_0x47c0e5(0x365)+_0x47c0e5(0x771)+'h\x20Pembuata'+_0x47c0e5(0x814)+_0x47c0e5(0x291)+'\x20\x20\x20\x20\x20\x20\x20<ol'+_0x47c0e5(0x4b3)+_0x47c0e5(0x289)+_0x47c0e5(0x5cc)+_0x47c0e5(0x1ad)+_0x47c0e5(0x7c2)+_0x47c0e5(0x669))+_0x1b006e['steps'][_0x47c0e5(0x575)](_0x591465=>_0x47c0e5(0x7b0)+_0x591465+_0x47c0e5(0x696))[_0x47c0e5(0x76b)]('')+('</ol>\x0a\x20\x20\x20\x20'+_0x47c0e5(0x291)+'\x20\x20</div>\x0a\x20'+_0x47c0e5(0x291)+'\x20');}function _0x344f(_0xa5a08d,_0x42c189){_0xa5a08d=_0xa5a08d-(0x1*0x10bb+-0x1de2+0xe86);const _0x387813=_0x4112();let _0x3a2db6=_0x387813[_0xa5a08d];return _0x3a2db6;}document[_0x29307d(0x6b8)+_0x29307d(0x282)]('search-inp'+'ut')[_0x29307d(0x681)]=_0x27e321=>{const _0x709f72=_0x29307d,_0x595c27={'pKwVj':function(_0x4a22fa){return _0x4a22fa();}};state[_0x709f72(0x17e)]=_0x27e321[_0x709f72(0x7d2)][_0x709f72(0x588)],_0x595c27[_0x709f72(0x7d7)](renderList);},generateMathProblem();
+        // PASTIIN SAMA DENGAN URL DEPLOYMENT APPS SCRIPT ANDA!
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyfu8Nr9nwFfdt52YfvkrdcjzjQztckwzzKWSl_1ks3ES3AdItuhXmbrgqPf-w0bgmWMQ/exec";
+
+        const ALL_TITLES = [
+            "Cara Membuat Air Aki Isi Ulang", "Cara Membuat Air Aki Zuur", "Cara Membuat Anti Noda Pakaian Vanish",
+            "Cara Membuat Asam Cuka dari Air Kelapa", "Cara Membuat Astringent Lotion", "Cara Membuat Balsam Gosok",
+            "Cara Membuat Bedak Powder", "Cara Membuat Bedak Salicyl", "Cara Membuat Bibit Nata de Coco",
+            "Cara Membuat Blau Padat", "Cara Membuat Cat Dinding", "Cara Membuat Cat Kayu dan Besi",
+            "Cara Membuat Cetakan Sabun Dari Silicon Rubber", "Cara Membuat Compound Mobil Wangi",
+            "Cara Membuat Conditoner Rambut", "Cara Membuat Crayon Pewarna", "Cara Membuat Cream Obat Gosok",
+            "Cara Membuat Day Cream", "Cara Membuat Dempul Kayu", "Cara Membuat Deterjen Bubuk",
+            "Cara Membuat Deterjen Cair Oxyclean", "Cara Membuat Deterjen Cair Serbaguna",
+            "Cara Membuat Extoliating Gel Body Spa awww", "Cara Membuat Extoliating Spray",
+            "Cara Membuat Gel Rambut", "Cara Membuat Hand & Body Lotion 1", "Cara Membuat Hand & Body Lotion 2",
+            "Cara Membuat Hand Sanitizer Gel", "Cara Membuat Hari And Body Mist", "Cara Membuat Jelly Parfum Ruangan",
+            "Cara Membuat Karbel Sereh Putih Susu", "Cara Membuat Karbol Wangi", "Cara Membuat Lem Kertas",
+            "Cara Membuat Lem Lalat", "Cara Membuat Lem Putih", "Cara Membuat Lem Sol Sepatu",
+            "Cara Membuat Lem Tikus", "Cara Membuat Lilin Aroma dari Jelantah", "Cara Membuat Lotion Anti Nyamuk",
+            "Cara Membuat Lulur Mandi", "Cara Membuat Masker Gelatin Charcoal", "Cara Membuat Masker Rambut",
+            "Cara Membuat Masker Wajah", "Cara Membuat Meni Cat Dasar", "Cara Membuat Minyak Angin Freshcare",
+            "Cara Membuat Minyak Pijat", "Cara Membuat Minyak Rambut Kemiri", "Cara Membuat Minyak Rambut Pomade",
+            "Cara Membuat Minyak Rambut Pomade Wax", "Cara Membuat Minyak Telon", "Cara Membuat Molto Pelembut Pewangi Cucian",
+            "Cara Membuat Nata de Coco Tanpa Urea", "Cara Membuat Night Cream", "Cara Membuat Obat Anti Bau Badan",
+            "Cara Membuat Obat Kumur", "Cara Membuat Obat Kutu Rambut", "Cara Membuat Obat Nyamuk Bakar",
+            "Cara Membuat Obat Nyamuk Cair", "Cara Membuat Parfum Badan Non Alkohol", "Cara Membuat Parfum Laundry",
+            "Cara Membuat Parfum Mobil", "Cara Membuat Parfum Oles", "Cara Membuat Parfum Oles Roll On",
+            "Cara Membuat Parfum Pakaian", "Cara Membuat Pasir Warna", "Cara Membuat Pasta Anti Air Untuk Sepatu",
+            "Cara Membuat Pasta Gigi Odol", "Cara Membuat Peeling Cream", "Cara Membuat Pelicin Setrika Bening",
+            "Cara Membuat Pelicin Setrika Putih Susu", "Cara Membuat Pembersih Kaca", "Cara Membuat Pembersih Kerak Kamar Mandi",
+            "Cara Membuat Pembersih Mesin Cuci", "Cara Membuat Pemutih Pakaian Sejenis B@yclin",
+            "Cara Membuat Pengelupas Cat", "Cara Membuat Pengharum Pengusir Tikus", "Cara Membuat Penghilang Kutek Kuku",
+            "Cara Membuat Penghitam Dashboard dan Ban", "Cara Membuat Pengkilap Mobil", "Cara Membuat Pengkilap Mobil Tanpa Silicon Emulsi",
+            "Cara Membuat Pengusir Serangga", "Cara Membuat Plastisin Mainan", "Cara Membuat Plitur",
+            "Cara Membuat Sabun Anti Jerawat",
+            "Cara Membuat Sabun Batangan Pembersih Angus Perabotan Dapur", "Cara Membuat Sabun Bubuk Untuk Tandon Dan Galon Air",
+            "Cara Membuat Sabun Cair untuk Wajah Fresh Cool", "Cara Membuat Sabun Charcoal", "Cara Membuat Sabun Colek",
+            "Cara Membuat Sabun Colek Bening Jelly Krim", "Cara Membuat Sabun Mandi Batang Transparan", "Cara Membuat Sabun Transparan",
+            "Cara Membuat Sanitizer Cair Spray", "Cara Membuat Sanitizer Non Alkohol", "Cara Membuat Semir Ban Mijel",
+            "Cara Membuat Semir Jaket dan Tas Kulit", "Cara Membuat Semir Sepatu Cair", "Cara Membuat Semir Sepatu Padat",
+            "Cara Membuat Serum Wajah", "Cara Membuat Shampo Hewan Piaraan", "Cara Membuat Shampo Rambut",
+            "Cara Membuat Shampoo Mobil Ice Cream", "Cara Membuat Shower Gel", "Cara Membuat Skin Tonic Lotion",
+            "Cara Membuat Soap Base", "Cara Membuat Softergent Deterjen Plus Pelembut Pakaian",
+            "Cara Membuat Soothing Skin Care", "Cara Membuat Sterno Spiritus Padat", "Cara Membuat Sun Block Tabir Surya",
+            "Cara Membuat Super Pel Lantai", "Cara Membuat Un-yellowing Midsole Sepatu",
+            "Cara Membuat Vanishing Cream Glowing", "Cara Membuat Water Coolant Radiator"
+        ];
+
+        const RECIPE_DETAILS = {
+            "Cara Membuat Air Aki Isi Ulang": {
+                bahan: ["Aqua DM 300 ml", "Air isi ulang 700 ml", "EDTA 2 gr"],
+                steps: ["Masukkan Aqua DM ke wadah", "Tambahkan Air isi ulang perlahan, aduk rata", "Masukkan EDTA, aduk rata", "Diamkan 2-3 jam", "Kemas botol biru"],
+                footer: "(Resep 1)"
+            },
+            "Cara Membuat Air Aki Zuur": {
+                bahan: ["Air isi ulang 640 ml", "Asam sulfat 360 ml", "EDTA 2 gr"],
+                steps: ["Masukkan air isi ulang ke dalam wadah", "Tambahkan Asam sulfat perlahan, aduk rata", "Masukkan EDTA, aduk rata", "Diamkan 2-3 jam", "Kemas botol merah"],
+                footer: "(Resep 2)"
+            },
+            "Cara Membuat Anti Noda Pakaian Vanish": {
+                bahan: ["H202 50% 1 L", "NP 10 100 ml", "Bibit parfum 50 ml", "Air 10 L"],
+                steps: ["Larutkan H202 dengan air, aduk rata (Hati-hati!)", "Campurkan NP-10 dengan parfum dalam gelas", "Satukan larutan parfum ke bak utama, aduk rata", "Kemas dengan botol jerigen kuat"],
+                warning: "BAHAN BERBAHAYA, JANGAN TERKENA TANGAN DAN BAGIAN TUBUH LAINNYA",
+                footer: "(Resep 3)"
+            },
+            "Cara Membuat Asam Cuka dari Air Kelapa": {
+                bahan: ["Air kelapa tua 5 L", "Starter mikroba (fermipan) 10 gr", "Gula pasir 1 kg"],
+                steps: ["Rebus air kelapa, dinginkan", "Tambah gula pasir, aduk larut", "Masukkan mikroba, aduk rata", "Fermentasi di tempat gelap (4 hari tutup, hari ke-5 buka 5 mnt)", "Hari ke-9 cek PH > 1", "Kemas botol steril"],
+                footer: "(Resep 4)"
+            },
+            "Cara Membuat Astringent Lotion": {
+                bahan: ["Sulfat zinc 4 gr", "Glycerin 40 cc", "Tawas 3 gr", "Air panas 300 cc", "Alkohol 70% 40 cc", "Bibit wangi 5 cc"],
+                steps: ["Larutkan Sulfat zinc dengan Glycerin", "Tumbuk tawas halus, larutkan ke air panas", "Satukan larutan zinc dan tawas, aduk rata", "Larutkan bibit parfum ke alkohol", "Satukan semua, aduk rata", "Diamkan 1-2 jam", "Kemas botol fliptop"],
+                footer: "(Resep 5)"
+            },
+            "Cara Membuat Balsam Gosok": {
+                bahan: ["Vaselin putih 200 gr", "Menthol Kristal 10 gr", "Kamper 10 gr", "Minyak Gandapura 50 cc", "Minyak Pepermint 10 cc", "Bibit wangi 10 cc"],
+                steps: ["Tim vaselin sampai cair", "Tumbuk Menthol & Kamper halus", "Larutkan Pepermint ke Gandapura", "Satukan semua saat di-tim, aduk rata", "Angkat, beri parfum", "Saring kain tipis, kemas"],
+                footer: "(Resep 6)"
+            },
+            "Cara Membuat Bedak Powder": {
+                bahan: ["Magnesium carbonat 50 gr", "Caoline 200 gr", "Titan dioxid 50 gr", "Tepung talc 600 gr", "Pewarna & Parfum"],
+                steps: ["Campur Magnesium + parfum", "Campur Caoline + Titan + Warna", "Satukan kedua campuran", "Tambah Talc, aduk rata", "Kemas"],
+                footer: "(Resep 8)"
+            },
+            "Cara Membuat Bedak Salicyl": {
+                bahan: ["Asam salisilat 3 gr", "Talc 97 gr", "Alkohol 70% 90 ml", "Menthol oil 1 tetes"],
+                steps: ["Larutkan asam salisilat dengan alkohol, tambah sedikit talc", "Aduk sampai benar-benar kering", "Tambah sisa talc, aduk homogen", "Tambah menthol oil", "Ayak halus, kemas"],
+                footer: "(Resep 9)"
+            },
+            "Cara Membuat Bibit Nata de Coco": {
+                bahan: ["Nanas matang 600 gr", "Air masak 300 gr", "Gula 100 gr"],
+                steps: ["Blender nanas halus", "Saring & peras airnya", "Campur air nanas + air masak + gula", "Tuang botol bening", "Tutup kain, ikat kuat", "Simpan suhu ruang 2-3 minggu"],
+                footer: "(Resep 10)"
+            },
+            "Cara Membuat Blau Padat": {
+                bahan: ["Pewarna biru 250 g", "Sodium bikarbonat 2 kg", "Dextrin 250 g", "Soda ash 1 kg", "Air 250 ml"],
+                steps: ["Campur semua bahan kering", "Tambah air sedikit demi sedikit", "Cetak kotak", "Kering anginkan lalu jemur matahari", "Kemas"],
+                footer: "(Resep 10-B)"
+            },
+            "Cara Membuat Cat Dinding": {
+                bahan: ["Air 1 L", "Pine Oil 50 cc", "Resin Styrene Acrylic 1 kg", "Kaolin 1 kg", "Titan 200 gr", "Calcium Carbonate 2 kg", "Antifoam & Warna"],
+                steps: ["Campur Calcium + Resin + Air, mixer", "Tambah pewarna bertahap", "Tambah Kaolin, Antifoam, Pine Oil", "Diamkan 2-3 jam", "Kemas"],
+                footer: "(Resep 11)"
+            },
+            "Cara Membuat Cat Kayu dan Besi": {
+                bahan: ["Acrylic Resin 100 gr", "BOP 20 ml", "Toluena 100 ml", "MEK 100 ml", "Butyl Acetat", "Talc 100 gr", "Lithopon"],
+                steps: ["Masukkan Resin", "Masukkan pelarut perlahan sambil mixer", "Masukkan Talc & Pewarna perlahan", "Kemas"],
+                footer: "(Resep 12)"
+            },
+            "Cara Membuat Cetakan Sabun Dari Silicon Rubber": {
+                bahan: ["Model master 2 bh", "Silikon RTV-48 1000 cc", "Katalis 250 cc"],
+                steps: ["Rekat master di loyang", "Campur silikon + katalis, aduk rata", "Tuang ke loyang berisi master", "Hilangkan gelembung pakai tusuk gigi", "Diamkan sampai membeku", "Lepas master"],
+                footer: "(Resep 13)"
+            },
+            "Cara Membuat Compound Mobil Wangi": {
+                bahan: ["Stearic acid 100 gr", "Carnauba wax 100 gr", "Silicon oil 100 ml", "NP-10 100 ml", "Parfum & Aquadest"],
+                steps: ["Lelehkan Stearic + Carnauba", "Tambah silicon oil", "Campur NP-10 + parfum", "Satukan semua, tambah aquadest", "Biarkan dingin dan memadat"],
+                footer: "(Resep 14)"
+            },
+            "Cara Membuat Conditoner Rambut": {
+                bahan: ["Laurex 30 gr", "Lexemul 5 gr", "Parafin Liquid 20 cc", "MPG 10 cc", "Armotan/Empigen", "Aquadest 1 L"],
+                steps: ["Wadah A: Lelehkan Laurex, Lexemul, Parafin, Paraben", "Wadah B: Campur Empigen, Armotan, MPG + Air panas", "Satukan A ke B, mixer sampai homogen", "Tambah parfum & pewarna"],
+                footer: "(Resep 15)"
+            },
+            "Cara Membuat Crayon Pewarna": {
+                bahan: ["Parafin wax 250 gr", "Pewarna Oil base", "Stearic acid 50 gr"],
+                steps: ["Tim parafin sampai 60-65°C", "Masukkan Stearic acid, aduk", "Bagi cairan ke gelas warna", "Cetak silinder", "Biarkan dingin"],
+                footer: "(Resep 16)"
+            },
+            "Cara Membuat Cream Obat Gosok": {
+                bahan: ["Parafin liquid 20 ml", "Stearic acid 15 ml", "TEA & Borax", "Aquadest 40 ml", "Minyak gandopuro", "Camphora & Mentol"],
+                steps: ["Wadah A: Larutkan TEA + Borax + Air (panas)", "Wadah B: Lelehkan Parafin + Stearic", "Satukan A ke B, aduk homogen", "Tambah Camphora, Mentol, Pepermint", "Kemas"],
+                footer: "(Resep 17)"
+            },
+            "Cara Membuat Day Cream": {
+                bahan: ["Stearic Acid 60 gr", "Lexemul 20 gr", "Beeswax 20 gr", "Aquadest 900 cc", "Aloe Vera & UV B"],
+                steps: ["Wadah A: Lelehkan fase minyak", "Wadah B: Emulgent+MPG+Air panas", "Satukan B ke A, aduk homogen", "Tambah Aloe Vera & UV B", "Kemas fliptop"],
+                footer: "(Resep 18)"
+            },
+            "Cara Membuat Dempul Kayu": {
+                bahan: ["Resin BR 106 60 gr", "Thinner 100 ml", "Kaolin/Bentonit/Lithopon", "Oker (Pewarna)"],
+                steps: ["Larutkan resin dengan thinner", "Tambah Kaolin, Bentonit, Lithopon, aduk halus", "Tambah Oker, aduk homogen", "Kemas"],
+                footer: "(Resep 19)"
+            },
+            "Cara Membuat Deterjen Bubuk": {
+                bahan: ["Texaphon pasta 300 gr", "Sodium sulfat 3 kg", "Soda ash 500 gr", "Talk 3 kg", "Biolite aktif", "Parfum"],
+                steps: ["Campur bahan kering (Sulfat, Ash, Talk)", "Tambah Texaphon, aduk rata", "Semprot parfum, angin-anginkan", "Ayak, tambah bintik biru", "Kemas"],
+                footer: "(Resep 20)"
+            },
+            "Cara Membuat Deterjen Cair Oxyclean": {
+                bahan: ["Texapon 1.5 kg", "Garam 1.75 kg", "Asam citrit", "Parfum", "Air 20 L", "H202 50%"],
+                steps: ["Campur Texapon + Garam + 1L Air sampai putih", "Tambah air 50%", "Tambah Citrit, Pewarna, Parfum", "Tambah sisa air & H202", "Saring, diamkan semalam"],
+                footer: "(Resep 21)"
+            },
+            "Cara Membuat Deterjen Cair Serbaguna": {
+                bahan: ["Texapon 4.5 kg", "Garam 4.5 kg", "Camperlan", "Acid/EDTA", "PG & Parfum", "Air 80 L"],
+                steps: ["Aduk Texapon + Garam + air sampai putih", "Tambah air bertahap", "Tambah Camperlan, Citrit, EDTA, warna", "Campur PG+Parfum, masukkan", "Tambah sisa air, diamkan semalam"],
+                footer: "(Resep 22)"
+            },
+            "Cara Membuat Extoliating Gel Body Spa awww": {
+                bahan: ["Aqua DM 800 ml", "Lactic Acid 200 gr", "Carbomer 10 gr", "TEA 5 ml", "Collagen/Caffein"],
+                steps: ["Panaskan Air + PG, larutkan Carbomer", "Tambah TEA (jadi gel), angkat", "Campur Parfum+Etanol, masukkan", "Tambah Lactic Acid & bahan aktif", "Diamkan 1-2 jam, kemas"],
+                footer: "(Resep 23)"
+            },
+            "Cara Membuat Extoliating Spray": {
+                bahan: ["Aqua DM 2.5 L", "Lactic Acid 200 gr", "Etanol/PEG-40", "Alantoin/EDTA/Collagen"],
+                steps: ["Campur Parfum+Etanol+PEG-40", "Masukkan ke Aqua DM", "Tambah Lactic Acid, Alantoin, Chloride", "Masukkan Collagen & EDTA", "Kemas botol spray"],
+                footer: "(Resep 24)"
+            },
+            "Cara Membuat Gel Rambut": {
+                bahan: ["Air 1 L", "Carbomer 20 gr", "PG 50 ml", "TEA 10 ml", "Vitamin E", "Parfum"],
+                steps: ["Panaskan Air + PG, larutkan Carbomer", "Tambah TEA (jadi gel), angkat", "Tambah parfum, vit E, pewarna", "Dinginkan 1-2 jam"],
+                footer: "(Resep 25)"
+            },
+            "Cara Membuat Hand & Body Lotion 1": {
+                bahan: ["Zaitun/Kelapa/Jojoba", "Lilin Lebah 100 gr", "TEA 50 ml", "Parfum & Gliserin"],
+                steps: ["Wadah A: Larutkan TEA+Parfum+Gliserin", "Wadah B: Panaskan semua minyak+lilin", "Tuang A ke B perlahan, mixer kencang", "Diamkan 2-3 jam, kemas"],
+                footer: "(Resep 26)"
+            },
+            "Cara Membuat Hand & Body Lotion 2": {
+                bahan: ["Lexemul CS 25 gr", "Dimethicone 5 gr", "Titanium dioksida 2 gr", "Aquadest panas & dingin"],
+                steps: ["Lelehkan fase minyak", "Wadah B: Campur Titan+MPG+Air panas", "Tambah air dingin & parfum ke B", "Satukan B ke A, aduk homogen"],
+                footer: "(Resep 27)"
+            },
+            "Cara Membuat Hand Sanitizer Gel": {
+                bahan: ["Air 2 L", "Alkohol 96% 5 L", "Carbomer 100 gr", "PG 100 ml", "TEA 20 ml"],
+                steps: ["Panaskan Air + PG, larutkan Carbomer", "Tambah TEA (jadi gel), angkat", "Larutkan parfum ke alkohol, tuang ke gel", "Aduk 15 menit, diamkan 1-2 jam"],
+                footer: "(Resep 28)"
+            },
+            "Cara Membuat Hari And Body Mist": {
+                bahan: ["Gliserin 50 ml", "Vit E 5 ml", "Aqua DM 1 L", "Parfum 50 ml", "NP-10 50 ml"],
+                steps: ["Siapkan Aqua DM", "Campur Parfum+NP-10, masukkan", "Tambah Gliserin & Vit E", "Diamkan sampai jernih"],
+                footer: "(Resep 29)"
+            },
+            "Cara Membuat Jelly Parfum Ruangan": {
+                bahan: ["Nutrijel 8 bks", "Agar-agar 8 bks", "EDTA 10 gr", "Parfum 100 ml", "Air 2.5 L"],
+                steps: ["Larutkan Nutrijel & Agar ke air, masak", "Tambah garam, didihkan, tuang ember", "Campur NP-10, Parfum, EDTA", "Tuang cetakan, biarkan padat"],
+                footer: "(Resep 30)"
+            },
+            "Cara Membuat Karbel Sereh Putih Susu": {
+                bahan: ["Laurex 200 gr", "Stearic acid 200 gr", "Tween-80 100 cc", "Minyak sereh 200 cc"],
+                steps: ["Wadah A: Lelehkan Laurex + 100g Stearic + Sereh", "Wadah B: Seduh 100g Stearic + Tween panas", "Satukan B ke A, aduk 4 menit", "Tambah air dingin bertahap"],
+                footer: "(Resep 31)"
+            },
+            "Cara Membuat Karbol Wangi": {
+                bahan: ["Arpus 1 kg", "NaOH 100 gr", "Kapur barus 100 gr", "Pine Oil 500 ml", "Air 75 L"],
+                steps: ["Larutkan NaOH ke 5L air", "Tumbuk Arpus, campur ke NaOH, diamkan 1 jam", "Tumbuk Kapur barus, larutkan ke Pine Oil", "Satukan semua, tambah sisa air"],
+                footer: "(Resep 32)"
+            },
+            "Cara Membuat Lem Kertas": {
+                bahan: ["Tepung kanji 160 gr", "Air 240 gr", "Tawas 8 gr", "Gliserine 16 ml", "TEA 8 ml"],
+                steps: ["Larutkan tawas ke air dingin", "Tuang ke tepung kanji, aduk rata", "Masak api kecil sampai kental, angkat", "Aduk cepat, tambah Gliserine & TEA"],
+                footer: "(Resep 33)"
+            },
+            "Cara Membuat Lem Lalat": {
+                bahan: ["Arpus 400 gr", "Minyak kelapa 350 gr", "Latex 200 gr", "Metil Eugenol 50 gr"],
+                steps: ["Panaskan Arpus + 200g minyak kelapa", "Tambah sisa minyak", "Masukkan Latex bertahap, aduk kencang", "Tambah Metil Eugenol, didihkan"],
+                footer: "(Resep 34)"
+            },
+            "Cara Membuat Lem Putih": {
+                bahan: ["PVAC 873 gr", "PVA 108 gr", "Natrosol 327 gr", "Resol 765 gr", "Air 927 gr"],
+                steps: ["Masak Natrosol + air (70°C)", "Tambah sisa air, PVA, PVAc bertahap", "Masukkan Resol, aduk rata, dinginkan"],
+                footer: "(Resep 35)"
+            },
+            "Cara Membuat Lem Sol Sepatu": {
+                bahan: ["Toluena 500 ml", "Crepe rubber 100 gr", "Mastic vernis 18 gr"],
+                steps: ["Rendam rubber ke Toluena sampai jadi bubur", "Masukkan Mastic vernis, aduk rata", "Tutup rapat sampai menyatu"],
+                footer: "(Resep 36)"
+            },
+            "Cara Membuat Lem Tikus": {
+                bahan: ["Arpus 400 gr", "Minyak kelapa 350 gr", "Latex 200 gr", "Essense cokelat 50 gr"],
+                steps: ["Panaskan Arpus + 200g minyak kelapa", "Tambah sisa minyak & Latex", "Tambah essense, didihkan, dinginkan"],
+                footer: "(Resep 37)"
+            },
+            "Cara Membuat Lilin Aroma dari Jelantah": {
+                bahan: ["Lilin balok 200 gr", "Jelantah 150 gr", "Sumbu 1 m", "Parfum apel 50 ml"],
+                steps: ["Tim Lilin + Jelantah + Krayon sampai leleh", "Tunggu suhu 60°C, masukkan parfum", "Tuang ke gelas berisi sumbu", "Biarkan memadat"],
+                footer: "(Resep 38)"
+            },
+            "Cara Membuat Lotion Anti Nyamuk": {
+                bahan: ["Lexemul/Laurex/IPM (A)", "MPG/Aquadest/Cyclomethicone (B)", "Moskitox 10 gr"],
+                steps: ["Lelehkan Bahan A", "Campur MPG + air panas, tuang A", "Aduk kental, tambah sisa air", "Tambah Cyclomethicone, Moskitox, parfum"],
+                footer: "(Resep 39)"
+            },
+            "Cara Membuat Lulur Mandi": {
+                bahan: ["Stearic/Lilin/Minyak (A)", "Emulgent/PG/Aquadest (B)", "Scrub 100 gr"],
+                steps: ["Lelehkan A (kecuali parfum/scrub)", "Larutkan B ke air panas", "Tuang B ke A bertahap sampai jadi gel", "Tambah parfum & scrub, aduk rata"],
+                footer: "(Resep 40)"
+            },
+            "Cara Membuat Masker Gelatin Charcoal": {
+                bahan: ["Gelatin 1/2 sdt", "Bentonite clay 1/2 sdt", "Charcoal 1/2 sdt", "Air panas 2 sdm"],
+                steps: ["Campur bahan kering", "Tambah air panas perlahan", "Aduk rata, siap pakai"],
+                footer: "(Resep 41)"
+            },
+            "Cara Membuat Masker Rambut": {
+                bahan: ["Lilin lebah 250 gr", "NP-10 20 ml", "Gliserin 20 ml", "Parfum 30 ml", "Air 500 ml"],
+                steps: ["Lelehkan lilin lebah", "Campur NP-10 + parfum, tuang lilin", "Tambah gliserin & air perlahan", "Biarkan memadat"],
+                footer: "(Resep 42)"
+            },
+            "Cara Membuat Masker Wajah": {
+                bahan: ["Kamper 4 gr", "Talc 400 gr", "Zaitun 300 ml", "Gliserin 100 ml", "Parfum 10 cc"],
+                steps: ["Tumbuk kamper, larutkan talc ke gliserin", "Campur kamper, talc, & zaitun", "Tambah parfum, kemas"],
+                footer: "(Resep 43)"
+            },
+            "Cara Membuat Meni Cat Dasar": {
+                bahan: ["Phenol resin 100 gr", "Toluen/MEK/SMT", "Iron Oxide 150 gr", "Talc 100 gr"],
+                steps: ["Masukkan Resin + pelarut, mixer", "Tambah Iron Oxide, Talc, & Linseed Oil", "Aduk halus & homogen"],
+                footer: "(Resep 44)"
+            },
+            "Cara Membuat Minyak Angin Freshcare": {
+                bahan: ["Menthol 30 gr", "Kamper 10 gr", "Gandapura 300 cc", "Pepermint 10 cc"],
+                steps: ["Tumbuk Menthol & Kamper", "Larutkan Pepermint ke Gandapura", "Satukan semua, tambah parfum", "Saring kain tipis, kemas roll-on"],
+                footer: "(Resep 45)"
+            },
+            "Cara Membuat Minyak Pijat": {
+                bahan: ["Vaselin 70 gr", "Bees Wax 100 gr", "Parafin oil 270 gr", "Olive oil 70 gr"],
+                steps: ["Lelehkan Vaselin, Wax, & Parafin (70°C)", "Tambah Olive oil, Nipagin, BHT", "Aduk kuat sampai jadi cream", "Tambah parfum, kemas"],
+                footer: "(Resep 46)"
+            },
+            "Cara Membuat Minyak Rambut Kemiri": {
+                bahan: ["Kemiri 300 ml", "Kelapa 200 ml", "TEA 10 ml", "Gliserin 40 ml", "Vit E"],
+                steps: ["Panaskan kemiri & kelapa (70°C)", "Larutkan TEA + Gliserin", "Satukan, tambah Vit E & parfum", "Dinginkan, kemas fliptop"],
+                footer: "(Resep 47)"
+            },
+            "Cara Membuat Minyak Rambut Pomade Wax": {
+                bahan: ["Bees Wax 300 gr", "Linseed oil 50 gr", "Zaitun 25 ml", "Gliserin 25 ml"],
+                steps: ["Lelehkan wax", "Tambah linseed, zaitun, gliserin", "Angkat, beri parfum, tuang wadah"],
+                footer: "(Resep 48)"
+            },
+            "Cara Membuat Minyak Rambut Pomade": {
+                bahan: ["Vaselin 250 gr", "Stearic acid 25 gr", "Parfum 30 cc"],
+                steps: ["Campur Vaselin + Stearic, panaskan", "Tambah parfum, angkat, saring kassa", "Biarkan padat"],
+                footer: "(Resep 49)"
+            },
+            "Cara Membuat Minyak Telon": {
+                bahan: ["Minyak kayu putih 500 ml", "Minyak Adas 300 ml", "Minyak Kelapa 200 ml"],
+                steps: ["Campurkan ketiga bahan", "Aduk perlahan sampai homogen", "Kemas botol roll on/fliptop"],
+                footer: "(Resep 50)"
+            },
+            "Cara Membuat Molto Pelembut Pewangi Cucian": {
+                bahan: ["Supersoft 10 kg", "Bibit parfum 150 ml", "Methanol 500 ml", "Air 80 L"],
+                steps: ["Larutkan supersoft", "Campur parfum + methanol", "Masukkan ke supersoft, tambah air warna"],
+                footer: "(Resep 51)"
+            },
+            "Cara Membuat Nata de Coco Tanpa Urea": {
+                bahan: ["Air kelapa 5 L", "Gula 250 gr", "Tauge 10 gr", "Cuka 50 cc", "Bibit 100 ml"],
+                steps: ["Masak air kelapa dkk sampai didih, saring", "Tuang loyang 2cm, campur bibit saat dingin", "Simpan 7-10 hari tutup koran", "Bilas & rendam air 2 hari"],
+                footer: "(Resep 52)"
+            },
+            "Cara Membuat Night Cream": {
+                bahan: ["Lexemul/Cosmo wax", "MPG/Glycerin", "Olive oil", "Ekstrak Cammomile/Aloe"],
+                steps: ["Masak bahan dasar sampai emulsi", "Tambah Ekstrak & Acids (Lactic dkk)", "Tambah parfum, dinginkan, kemas"],
+                footer: "(Resep 53)"
+            },
+            "Cara Membuat Obat Anti Bau Badan": {
+                bahan: ["Tawas 40 gr", "Bibit parfum 5 cc", "Glyserin 6 cc", "Aquadest 200 cc"],
+                steps: ["Hancurkan tawas, larutkan air", "Campur glyserin & parfum, satukan", "Ambil jernihnya, kemas spray gelap"],
+                footer: "(Resep 54)"
+            },
+            "Cara Membuat Obat Kumur": {
+                bahan: ["Eucalyptol/Menthol/Thymol", "Alkohol 200 ml", "Sorbitol/Saccharin"],
+                steps: ["Wadah A: Minyak esensial + Alkohol + air", "Wadah B: Air hangat + Pewarna + Sorbitol", "Satukan A ke B perlahan, biarkan jernih"],
+                footer: "(Resep 55)"
+            },
+            "Cara Membuat Obat Kutu Rambut": {
+                bahan: ["Tea tree oil 5 ml", "Mineral oil 100 ml", "Zaitun 120 ml", "Parfum"],
+                steps: ["Campur semua bahan", "Aduk rata menyatu", "Usap ke rambut, jangan dibilas"],
+                footer: "(Resep 56)"
+            },
+            "Cara Membuat Obat Nyamuk Bakar": {
+                bahan: ["Serbuk kayu 250 gr", "Kalium Nitrat 5 gr", "Insect powder 10 gr", "Lem 75 gr"],
+                steps: ["Tumbuk serbuk kayu & insect powder, ayak", "Campur Air + Lem + Serei + Tepung", "Cetak, kering anginkan"],
+                footer: "(Resep 57)"
+            },
+            "Cara Membuat Obat Nyamuk Cair": {
+                bahan: ["Minyak kayu putih 50 cc", "Minyak serai 50 cc", "Bensin 250 cc", "Kerosin 250 cc"],
+                steps: ["Wadah A: Kerosin + Bensin", "Wadah B: Serai + Kayu Putih", "Satukan A & B, saring kain halus"],
+                footer: "(Resep 58)"
+            },
+            "Cara Membuat Parfum Badan Non Alkohol": {
+                bahan: ["Parfum 50 ml", "NP-10 50 ml", "PG/Gliserin/Fixolite", "Air 1.5 L"],
+                steps: ["Parfum + NP-10, tambah air bertahap", "Tambah PG & Gliserin", "Tambah Fixolite sampai bening"],
+                footer: "(Resep 59)"
+            },
+            "Cara Membuat Parfum Laundry": {
+                bahan: ["Methanol 5 L", "Bibit parfum 150 ml", "PG 150 ml", "BKC 50 ml"],
+                steps: ["Campur methanol + parfum", "Tambah PG & BKC, tambah air", "Aduk rata, kemas"],
+                footer: "(Resep 60)"
+            },
+            "Cara Membuat Parfum Mobil": {
+                bahan: ["Parfum kopi 100 ml", "PG 100 ml"],
+                steps: ["Campurkan bahan", "Kemas botol gantung 10 ml"],
+                footer: "(Resep 61)"
+            },
+            "Cara Membuat Parfum Oles Roll On": {
+                bahan: ["Bibit parfum 100 ml", "PG 100 ml"],
+                steps: ["Campur bibit + PG 1:1", "Kocok rata di botol roll on"],
+                footer: "(Resep 62)"
+            },
+            "Cara Membuat Parfum Oles": {
+                bahan: ["Beeswax 300 gr", "Bibit parfum 50 ml", "PG 50 ml"],
+                steps: ["Lelehkan beeswax", "Campur parfum & PG", "Satukan saat cair, biarkan padat"],
+                footer: "(Resep 63)"
+            },
+            "Cara Membuat Parfum Pakaian": {
+                bahan: ["Bibit lily 100 ml", "Methanol 100 ml", "PG 100 ml"],
+                steps: ["Campur parfum & methanol", "Tambah PG, kemas spray"],
+                footer: "(Resep 64)"
+            },
+            "Cara Membuat Pasir Warna": {
+                bahan: ["Terigu kasar 250 gr", "Warna makanan", "Kalsium propionat", "Minyak"],
+                steps: ["Campur terigu & warna", "Tambah pengawet & minyak", "Aduk sampai tekstur pasir"],
+                footer: "(Resep 65)"
+            },
+            "Cara Membuat Pasta Anti Air Untuk Sepatu": {
+                bahan: ["Beeswax 150 ml", "Terpentine 75 ml", "Linseed oil 75 ml"],
+                steps: ["Lelehkan beeswax", "Tambah linseed & terpentine", "Biarkan padat"],
+                footer: "(Resep 66)"
+            },
+            "Cara Membuat Pasta Gigi Odol": {
+                bahan: ["NAF 0.05 gr", "Aluminium Phosphat 100 gr", "Alginat 25 gr", "Gliserin"],
+                steps: ["Campur Alginat & Gliserin", "Campur Air & Benzoat", "Satukan semua bahan perlahan"],
+                footer: "(Resep 67)"
+            },
+            "Cara Membuat Peeling Cream": {
+                bahan: ["Lexemul CS 20", "Titanium diokside", "AHA", "Scrub 60 gr"],
+                steps: ["Lelehkan fase minyak", "Buat emulsi dengan air", "Tambah AHA & scrub, dinginkan"],
+                footer: "(Resep 68)"
+            },
+            "Cara Membuat Pelicin Setrika Bening": {
+                bahan: ["Magnasoft 100 ml", "Parfum 100 ml", "Fixolite 100 ml", "Air 20 L"],
+                steps: ["Campur parfum, methanol, magnasoft", "Tambah air & penjernih"],
+                footer: "(Resep 69)"
+            },
+            "Cara Membuat Pelicin Setrika Putih Susu": {
+                bahan: ["Silikon emulsi 1 L", "Air 25 L", "Bibit lily 200 ml", "Metanol 300 ml"],
+                steps: ["Blender silikon emulsi + 1L air", "Campur parfum + metanol", "Satukan semua, tambah sisa air"],
+                footer: "(Resep 70)"
+            },
+            "Cara Membuat Pembersih Kaca": {
+                bahan: ["Methanol 3 L", "Acid 10 gr", "Dewisil 10 ml", "Air 20 L"],
+                steps: ["Methanol + air", "Tambah warna & deterjen", "Tambah acid & dewisil, biarkan sehari"],
+                footer: "(Resep 71)"
+            },
+            "Cara Membuat Pembersih Kerak Kamar Mandi": {
+                bahan: ["HCL 4 L", "Air panas 20 L", "Warna kuning"],
+                steps: ["Panaskan air", "Masukkan HCL & warna, aduk rata"],
+                footer: "(Resep 72)"
+            },
+            "Cara Membuat Pembersih Mesin Cuci": {
+                bahan: ["Asam karbonat 400 gr", "Karbon aktif 300 gr", "Shea butter/Oil"],
+                steps: ["Campur karbonat + karbon aktif", "Campur Shea butter + oil", "Satukan, keringanginkan, ayak"],
+                footer: "(Resep 73)"
+            },
+            "Cara Membuat Pemutih Pakaian Sejenis B@yclin": {
+                bahan: ["Soda Ash Light 1 kg", "Hypochlorit 1 kg", "Air 17 L"],
+                steps: ["Soda ash + air", "Tambah Hypochlorit + sisa air", "Diamkan semalam, ambil jernihnya"],
+                footer: "(Resep 74)"
+            },
+            "Cara Membuat Pengelupas Cat": {
+                bahan: ["Toluena 350 cc", "Butanol 50 cc", "Butil Asetat 100 cc"],
+                steps: ["Campur semua bahan perlahan", "Aduk hingga rata, kemas"],
+                footer: "(Resep 75)"
+            },
+            "Cara Membuat Pengharum Pengusir Tikus": {
+                bahan: ["Kapur barus 200 gr", "Karbol 1 L", "Air 3 L"],
+                steps: ["Haluskan kapur barus", "Campur karbol + kapur barus", "Tambah air perlahan"],
+                footer: "(Resep 76)"
+            },
+            "Cara Membuat Penghilang Kutek Kuku": {
+                bahan: ["Aseton 330 ml", "Amil Asetat 100 ml", "Gliserin 30 ml"],
+                steps: ["Campur Aseton + Amil + Gliserin", "Tambah warna, Aqua DM, & parfum"],
+                footer: "(Resep 77)"
+            },
+            "Cara Membuat Penghitam Dashboard dan Ban": {
+                bahan: ["Stearic 100 gr", "Parafin 100 gr", "Silicon oil 200 ml", "Nigrosin 50 gr"],
+                steps: ["Tim Stearic+Parafin+Oil+Air", "Wadah 2: Nigrosin+Linseed+Terpentin", "Satukan 2 ke 1 (api kecil)"],
+                footer: "(Resep 78)"
+            },
+            "Cara Membuat Pengkilap Mobil Tanpa Silicon Emulsi": {
+                bahan: ["Silicon oil 20 ml", "Stearic 50 gr", "Borax 5 gr", "TEA 5 ml"],
+                steps: ["Wadah 1: Borax + TEA + Air", "Wadah 2: Oil + Stearic + Parafin", "Tuang 1 ke 2 bertahap, mixer kental"],
+                footer: "(Resep 79)"
+            },
+            "Cara Membuat Pengkilap Mobil": {
+                bahan: ["Silicon Emulsi 250 ml", "Silicon Oil 200 ml", "Aquadest 750 ml"],
+                steps: ["Campur emulsi + oil", "Tambah air perlahan, aduk homogen"],
+                footer: "(Resep 80)"
+            },
+            "Cara Membuat Pengusir Serangga": {
+                bahan: ["Parfum melati 50 ml", "NP-10 100 ml", "Air hangat 1.3 L", "Boraks 10 gr"],
+                steps: ["Campur parfum + NP-10", "Larutkan boraks ke air hangat", "Satukan semua, diamkan 2 jam"],
+                footer: "(Resep 81)"
+            },
+            "Cara Membuat Plastisin Mainan": {
+                bahan: ["Terigu 250 gr", "Garam 250 gr", "Pengawet 5 gr", "Minyak 2 sdm"],
+                steps: ["Campur terigu + garam", "Beri air bertahap, aduk", "Tambah minyak & pengawet, beri warna"],
+                footer: "(Resep 82)"
+            },
+            "Cara Membuat Plitur": {
+                bahan: ["Spiritus 300 ml", "Amonia 30 ml", "Thinner 50 ml", "Sirlak 30 gr"],
+                steps: ["Campur spiritus, amonia, thinner", "Masukkan sirlak & warna, aduk"],
+                footer: "(Resep 83)"
+            },
+            "Cara Membuat Sabun Anti Jerawat": {
+                bahan: ["Soap Base 200 gr", "Tea tree oil 5 ml", "Alkohol 50 ml"],
+                steps: ["Tim soap base leleh", "Suhu 60°C: tambah tea tree & warna", "Cetak, semprot alkohol"],
+                footer: "(Resep 85)"
+            },
+            "Cara Membuat Sabun Batangan Pembersih Angus Perabotan Dapur": {
+                bahan: ["NaOH 225 gr", "Minyak kelapa 620 cc", "Soda Ash 150 gr"],
+                steps: ["Larutkan NaOH, diamkan 12 jam", "Campur NaOH ke minyak kelapa, aduk kental", "Tambah serai & soda ash, cetak"],
+                footer: "(Resep 86)"
+            },
+            "Cara Membuat Sabun Bubuk Untuk Tandon Dan Galon Air": {
+                bahan: ["Texapon powder 100 gr", "Soda Ash 200 gr", "TSP 80 gr"],
+                steps: ["Campur Soda Ash, TSP, Metaphosphate", "Masukkan Texapon bertahap, ayak"],
+                footer: "(Resep 87)"
+            },
+            "Cara Membuat Sabun Cair untuk Wajah Fresh Cool": {
+                bahan: ["SLS 200 gr", "Betaine 100 gr", "Garam 50 gr", "Salicylic Acid 3 gr"],
+                steps: ["SLS + Garam + Air panas, aduk kental", "Tambah Betaine & bahan aktif", "Tambah sisa air, warna, & TEA"],
+                footer: "(Resep 88)"
+            },
+            "Cara Membuat Sabun Charcoal": {
+                bahan: ["Soap Base 200 gr", "Karbon Aktif 20 gr", "Parfum 20 ml"],
+                steps: ["Tim soap base leleh", "Masukkan charcoal & parfum, cetak"],
+                footer: "(Resep 89)"
+            },
+            "Cara Membuat Sabun Colek Bening Jelly Krim": {
+                bahan: [
+                    "Bahan 1: Texapon 1.5 kg, Garam 100 gr, Air 1 liter, STPP 30 gr, EDTA 30 gr, Parfum Lime Star 100 ml, Pewarna kuning",
+                    "Bahan 2: Natrosol 300 gr, Air dingin 5 liter, Gliserin 100 ml, Air panas 20 liter"
+                ],
+                alat: ["Bak air 50L", "Bak air 25L", "Pengaduk kayu"],
+                steps: [
+                    "Campuran 1: Larutkan Texapon dengan garam pada bak 25 liter, aduk rata",
+                    "Tambahkan air 1 liter ke Campuran 1, aduk rata",
+                    "Tambahkan parfum, aduk rata",
+                    "Masukkan STPP dan EDTA, aduk rata",
+                    "Tambahkan pewarna, aduk rata. Diamkan selama 1-2 jam",
+                    "Campuran 2: Campurkan air dingin dengan gliserin pada bak 50 liter, aduk rata",
+                    "Masukkan natrosol sedikit demi sedikit sambil diaduk rata",
+                    "Tambahkan air panas sedikit demi sedikit sambil diaduk rata sampai benar-benar larut dan mengental",
+                    "Pencampuran Akhir: Campurkan Campuran 1 ke dalam Campuran 2, aduk hingga menyatu sempurna",
+                    "Kemas dalam plastik ukuran 500 gram atau mangkok sabun colek"
+                ],
+                footer: "(Resep 90)"
+            },
+            "Cara Membuat Sabun Colek": {
+                bahan: ["Caustic soda 100 gr", "STTP 100 gr", "CMC 200 gr", "ABS 1.000 gr", "Oat 1.000 gr"],
+                steps: ["Wadah 1: Larutkan CMC + ABS", "Wadah 2: Larutkan Caustic, STTP, Soda ash", "Campur wadah 2 ke 1, tambah Oat & parfum"],
+                footer: "(Resep 91)"
+            },
+            "Cara Membuat Sabun Mandi Batang Transparan": {
+                bahan: ["Minyak kelapa 200 ml", "NaOH 65 gr", "Asam stearat 70 gr", "Gliserin 50 ml", "Susu 100 ml"],
+                steps: ["Panaskan kelapa + larutan NaOH susu", "Tambah lelehan stearat (90°C)", "Tambah alkohol, TEA, gliserin", "Tambah warna & parfum, cetak"],
+                footer: "(Resep 92)"
+            },
+            "Cara Membuat Sabun Transparan": {
+                bahan: ["Cip Soap 200 gr", "Madu 2 sdm", "Sari bengkoang 10 ml"],
+                steps: ["Tim soap base leleh", "Tambah sari bengkoang, madu, parfum, cetak"],
+                footer: "(Resep 93)"
+            },
+            "Cara Membuat Sanitizer Cair Spray": {
+                bahan: ["Methanol 1 L", "Gliserin 50 ml", "H202 50 ml", "Air 100 ml"],
+                steps: ["Campur methanol, parfum, gliserin, H202", "Tambah air, aduk rata"],
+                footer: "(Resep 94)"
+            },
+            "Cara Membuat Sanitizer Non Alkohol": {
+                bahan: ["BKC 100 ml", "Parfum 50 ml", "NP-10 100 ml", "EDTA 10 gr"],
+                steps: ["Larutkan BKC ke air", "Campur parfum + NP-10", "Satukan semua, tambah EDTA"],
+                footer: "(Resep 95)"
+            },
+            "Cara Membuat Semir Ban Mijel": {
+                bahan: ["Jelantah 500 gr", "Parafin 100 gr", "NaOH 75 gr", "Silicon oil 100 cc"],
+                steps: ["Larutkan NaOH air warna", "Tambah jelantah, aduk kental", "Panaskan api kecil, tambah lilin, tambah oil"],
+                footer: "(Resep 96)"
+            },
+            "Cara Membuat Semir Jaket dan Tas Kulit": {
+                bahan: ["Beeswax 500 gr", "Linseed oil 50 gr", "Pine oil 100 ml"],
+                steps: ["Lelehkan beeswax", "Tambah linseed & pine oil, biarkan padat"],
+                footer: "(Resep 97)"
+            },
+            "Cara Membuat Semir Sepatu Cair": {
+                bahan: ["Borax 150 gr", "Beeswax 150 gr", "Carnauba wax 100 gr", "Terpentine 1 L"],
+                steps: ["Larutkan borax", "Lelehkan beeswax + carnauba", "Campur emulsi, tambah terpen & pigmen"],
+                footer: "(Resep 98)"
+            },
+            "Cara Membuat Semir Sepatu Padat": {
+                bahan: ["Malam Kuning 1 kg", "Pigmen 50 gr", "Terpentin 1 L"],
+                steps: ["W1: Leleh Malam Kuning", "W2: Campur Pigmen + Linseed + Terpentin", "Satukan W2 ke W1, cetak"],
+                footer: "(Resep 99)"
+            },
+            "Cara Membuat Serum Wajah": {
+                bahan: ["Aloe vera 100 gr", "Vit C 5 gr", "Essensial oil Chamomile/Rose/Lavender"],
+                steps: ["Campur semua bahan", "Simpan kulkas, kemas botol kaca"],
+                footer: "(Resep 100)"
+            },
+            "Cara Membuat Shampo Hewan Piaraan": {
+                bahan: ["Texafon 100 gr", "Asuntol 2 gr", "Glycerin & Parfum"],
+                steps: ["Masak Natrosol", "Lelehkan Texafon+Glycerin", "Satukan, tambah NaCl & Asuntol"],
+                footer: "(Resep 101)"
+            },
+            "Cara Membuat Shampo Rambut": {
+                bahan: ["SLES 120 gr", "Polyquat 50 ml", "Acid 30 gr", "Lexgard 3 ml"],
+                steps: ["SLES + NaCl + Air", "Tambah Polyquat, Lexgard, & Acid", "Tambah parfum & warna"],
+                footer: "(Resep 102)"
+            },
+            "Cara Membuat Shampoo Mobil Ice Cream": {
+                bahan: ["Texapon 2 kg", "Garam 1.5 kg", "Camperlan 100 ml", "Gliserin 100 ml"],
+                steps: ["Aduk Texapon + Garam + Air", "Tambah Camperlan & Gliserin", "Tambah warna & parfum, saring"],
+                footer: "(Resep 103)"
+            },
+            "Cara Membuat Shower Gel": {
+                bahan: ["SLES 200 gr", "Oat 100 gr", "Vit E 20 gr"],
+                steps: ["Wadah A: SLES+DEA+Paraben", "Wadah B: Larutkan NaCl air panas", "Satukan A ke B, tambah Oat & Vit E"],
+                footer: "(Resep 104)"
+            },
+            "Cara Membuat Skin Tonic Lotion": {
+                bahan: ["TEA 40 ml", "Glyserin 200 ml", "Mentol 4 gr", "Alkohol 200 ml"],
+                steps: ["Wadah A: Mentol + TEA + Air", "Wadah B: Glyserin + Alkohol", "Satukan, tambah talc & parfum"],
+                footer: "(Resep 105)"
+            },
+            "Cara Membuat Soap Base": {
+                bahan: ["Sabun parut 750 gr", "Stearat 250 gr", "Etanol 400 ml", "Gliserin 400 ml"],
+                steps: ["Lelehkan stearat", "Tambah sabun, etanol, gliserin", "Mixer halus, cetak"],
+                footer: "(Resep 106)"
+            },
+            "Cara Membuat Softergent Deterjen Plus Pelembut Pakaian": {
+                bahan: ["Texapon 1.5 kg", "Garam 1.75 kg", "Magnasoft 20 ml", "STPP 100 gr"],
+                steps: ["Aduk Texapon + Garam + Air", "Tambah STPP, Magnasoft, warna, parfum"],
+                footer: "(Resep 107)"
+            },
+            "Cara Membuat Soothing Skin Care": {
+                bahan: ["Air 1 L", "Vit C 1000 mg", "Vit E 2 butir", "Carbomer 20 gr"],
+                steps: ["Buat gel Carbomer + TEA", "Larutkan parfum alkohol, masuk gel", "Tambah Vit C & Vit E"],
+                footer: "(Resep 108)"
+            },
+            "Cara Membuat Sterno Spiritus Padat": {
+                bahan: ["Stearic 10 gr", "Soda api 14 ml", "Alkohol 7 ml", "Methanol 200 ml"],
+                steps: ["P1: Leleh Stearic + Soda api + Alkohol", "P2: Methanol 50°C", "Satukan P2 ke P1, cetak"],
+                footer: "(Resep 109)"
+            },
+            "Cara Membuat Sun Block Tabir Surya": {
+                bahan: ["Stearic 60 gr", "Titanium Dioxide 50 gr", "Anti UV A/B"],
+                steps: ["Lelehkan fase minyak (A)", "Campur fase air (B) panas", "Satukan B ke A, tambah UV & Cyclomethicone"],
+                footer: "(Resep 110)"
+            },
+            "Cara Membuat Super Pel Lantai": {
+                bahan: ["Natrosol 500 gr", "Deterjen 100 ml", "BKC 100 ml", "Parfum 200 ml"],
+                steps: ["Larutkan Natrosol air hangat", "Campur BKC + parfum, satukan ke Natrosol", "Tambah sisa air & pewarna"],
+                footer: "(Resep 111)"
+            },
+            "Cara Membuat Un-yellowing Midsole Sepatu": {
+                bahan: ["Oxalic acid 100 gr", "Baking soda 100 gr", "STPP 50 gr", "Enzim AR 50 gr"],
+                steps: ["Campur serbuk (1)", "Campur parfum + NP-10 + air (2)", "Satukan 1 dan 2"],
+                footer: "(Resep 112)"
+            },
+            "Cara Membuat Vanishing Cream Glowing": {
+                bahan: ["Stearic 50 gr", "Baking soda 5 gr", "Glycerin 15 cc"],
+                steps: ["Lelehkan Stearic", "Campur Baking soda + Glycerin, tuang Stearic", "Tambah air, dinginkan, beri parfum"],
+                footer: "(Resep 113)"
+            },
+            "Cara Membuat Water Coolant Radiator": {
+                bahan: ["Propilen glikol 100 ml", "Aquadest 1 L", "Fluorescein 1 gr"],
+                steps: ["Propilen glikol + larutan warna", "Aduk rata, saring, kemas"],
+                footer: "(Resep 114)"
+            }
+        };
+
+        let currentMathResult = 0;
+        let loggedUser = null;
+        let isUserAdmin = false;
+
+        let state = {
+            searchTerm: "",
+            selectedTitle: ALL_TITLES[0],
+            isExpanded: true
+        };
+
+        // --- MATH CAPTCHA GENERATOR ---
+        function generateMathProblem() {
+            const num1 = Math.floor(Math.random() * 15) + 5;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const isAddition = Math.random() > 0.5;
+
+            if (isAddition) {
+                currentMathResult = num1 + num2;
+                document.getElementById('math-question').innerText = `${num1} + ${num2} =`;
+            } else {
+                currentMathResult = num1 - num2;
+                document.getElementById('math-question').innerText = `${num1} - ${num2} =`;
+            }
+        }
+
+        // --- LOGIN HANDLER ---
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('login-email').value.trim();
+            const answerInput = parseInt(document.getElementById('math-answer').value, 10);
+            const errorEl = document.getElementById('login-error');
+            const btn = document.getElementById('btn-login');
+
+            errorEl.classList.add('hidden');
+
+            if (answerInput !== currentMathResult) {
+                errorEl.innerText = "Jawaban matematika salah. Silakan coba lagi!";
+                errorEl.classList.remove('hidden');
+                generateMathProblem();
+                document.getElementById('math-answer').value = '';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Memverifikasi...";
+
+            try {
+                const response = await fetch(`${GAS_WEB_APP_URL}?action=login&email=${encodeURIComponent(emailInput)}`, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+                const res = await response.json();
+
+                if (res.status === 'success') {
+                    loggedUser = res.email;
+                    isUserAdmin = (res.role === 'admin');
+                    
+                    document.getElementById('login-modal').classList.add('hidden');
+                    document.getElementById('app').classList.remove('hidden');
+                    document.getElementById('user-display').innerText = loggedUser;
+                    
+                    if (isUserAdmin) {
+                        document.getElementById('btn-admin-panel').classList.remove('hidden');
+                    }
+                    
+                    renderSidebarAccordion();
+                    renderContent();
+                } else {
+                    errorEl.innerText = res.message || "Email tidak terdaftar!";
+                    errorEl.classList.remove('hidden');
+                    generateMathProblem();
+                }
+            } catch (err) {
+                errorEl.innerText = "Gagal terhubung ke server Apps Script.";
+                errorEl.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Masuk / Verifikasi";
+            }
+        }
+
+        function logout() {
+            loggedUser = null;
+            isUserAdmin = false;
+            document.getElementById('app').classList.add('hidden');
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('login-email').value = '';
+            document.getElementById('math-answer').value = '';
+            generateMathProblem();
+        }
+
+        // --- MOBILE SIDEBAR DRAWER ---
+        function openMobileSidebar() {
+            document.getElementById('sidebar').classList.remove('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.remove('hidden');
+        }
+
+        function closeMobileSidebar() {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.add('hidden');
+        }
+
+        function toggleCollapseAll() {
+            state.isExpanded = !state.isExpanded;
+            document.getElementById('btn-toggle-collapse').innerText = state.isExpanded ? "Tutup Semua" : "Buka Semua";
+            renderSidebarAccordion();
+        }
+
+        // --- RENDER SIDEBAR MATERI (COLLAPSIBLE ACCORDION) ---
+        function renderSidebarAccordion() {
+            const container = document.getElementById('recipe-list-container');
+            container.innerHTML = '';
+
+            const filteredTitles = ALL_TITLES.filter(t => 
+                t.toLowerCase().includes(state.searchTerm.toLowerCase())
+            );
+
+            if (filteredTitles.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 py-4 text-center">Resep tidak ditemukan.</p>`;
+                return;
+            }
+
+            const accordionBox = document.createElement('div');
+            accordionBox.className = "rounded-2xl border border-slate-100 bg-slate-50/50 overflow-hidden";
+
+            accordionBox.innerHTML = `
+                <button onclick="toggleCollapseAll()" class="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-slate-700 bg-slate-100/70 hover:bg-slate-100 transition-colors">
+                    <span>Daftar Formula (${filteredTitles.length})</span>
+                    <svg class="w-4 h-4 text-slate-400 transition-transform duration-200 ${state.isExpanded ? 'rotate-180' : ''}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="${state.isExpanded || state.searchTerm !== '' ? 'block' : 'hidden'} p-1 space-y-1 bg-white">
+                    ${filteredTitles.map(title => `
+                        <button onclick="selectRecipe('${title}')" class="w-full text-left px-3 py-2.5 text-xs rounded-xl transition-all ${state.selectedTitle === title ? 'bg-indigo-50 text-indigo-700 font-semibold border-l-4 border-indigo-600' : 'text-slate-600 hover:bg-slate-50'}">
+                            ${title.replace("Cara Membuat ", "")}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(accordionBox);
+        }
+
+        function selectRecipe(title) {
+            state.selectedTitle = title;
+            renderSidebarAccordion();
+            renderContent();
+            closeMobileSidebar(); // Tutup drawer otomatis di HP saat item diklik
+        }
+
+        // --- RENDER CONTENT MATERI ---
+        function renderContent() {
+            const data = RECIPE_DETAILS[state.selectedTitle];
+            const container = document.getElementById('recipe-container');
+
+            if (!data) {
+                container.innerHTML = `
+                    <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 shadow-sm text-center">
+                        <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-2">${state.selectedTitle}</h2>
+                        <p class="text-xs md:text-sm text-slate-400">Materi resep lengkap belum diunggah ke database.</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 shadow-sm space-y-6">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-600 uppercase tracking-wider">Formula & Panduan</span>
+                        <h2 class="text-xl md:text-3xl font-extrabold text-slate-900 mt-1">${state.selectedTitle}</h2>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 md:p-5 rounded-2xl border border-slate-100">
+                        <h3 class="font-bold text-xs uppercase tracking-widest text-slate-700 mb-3 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-indigo-600"></span> Komposisi Bahan
+                        </h3>
+                        <ul class="list-disc pl-5 text-xs md:text-sm text-slate-600 space-y-1.5">
+                            ${data.bahan.map(b => `<li>${b}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-xs uppercase tracking-widest text-slate-700 mb-3 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-indigo-600"></span> Langkah Pembuatan
+                        </h3>
+                        <ol class="list-decimal pl-5 text-xs md:text-sm text-slate-600 space-y-2">
+                            ${data.steps.map(s => `<li>${s}</li>`).join('')}
+                        </ol>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400">
+                        <span>${data.footer || ''}</span>
+                        <button onclick="window.print()" class="text-indigo-600 hover:underline font-semibold">Cetak / Simpan PDF</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- SEARCH INPUT EVENT ---
+        document.getElementById('search-input').oninput = (e) => {
+            state.searchTerm = e.target.value;
+            renderSidebarAccordion();
+        };
+
+        // --- ADMIN PANEL FUNCTIONS ---
+        function openAdminPanel() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            loadAdminUserList();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        async function loadAdminUserList() {
+            const container = document.getElementById('admin-user-list');
+            container.innerHTML = `<p class="text-xs text-slate-400 py-4 text-center">Memuat daftar email...</p>`;
+
+            try {
+                const res = await fetch(`${GAS_WEB_APP_URL}?action=getUsers&adminEmail=${encodeURIComponent(loggedUser)}`);
+                const data = await res.json();
+
+                if (data.status === 'success') {
+                    container.innerHTML = '';
+                    data.data.forEach(user => {
+                        const div = document.createElement('div');
+                        div.className = "flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-xs";
+                        div.innerHTML = `
+                            <span class="font-semibold text-slate-700 truncate max-w-[180px]">${user.email} ${user.role === 'admin' ? '<b class="text-indigo-600">(Admin)</b>' : ''}</span>
+                            <div class="flex items-center gap-1 shrink-0">
+                                <button onclick="editUser('${user.email}')" class="px-2 py-1 text-slate-500 hover:text-indigo-600 font-medium">Edit</button>
+                                ${user.email !== 'bandardeterjen@gmail.com' ? `<button onclick="deleteUser('${user.email}')" class="px-2 py-1 text-red-500 hover:text-red-700 font-medium">Hapus</button>` : ''}
+                            </div>
+                        `;
+                        container.appendChild(div);
+                    });
+                } else {
+                    container.innerHTML = `<p class="text-xs text-red-500">${data.message}</p>`;
+                }
+            } catch (err) {
+                container.innerHTML = `<p class="text-xs text-red-500">Gagal mengambil data.</p>`;
+            }
+        }
+
+        async function addNewUser() {
+            const input = document.getElementById('new-user-email');
+            const targetEmail = input.value.trim();
+            if (!targetEmail) return;
+
+            await fetch(GAS_WEB_APP_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: 'addUser', adminEmail: loggedUser, targetEmail: targetEmail })
+            });
+
+            input.value = '';
+            loadAdminUserList();
+        }
+
+        async function editUser(oldEmail) {
+            const newEmail = prompt("Masukkan email baru:", oldEmail);
+            if (!newEmail || newEmail.trim() === oldEmail) return;
+
+            await fetch(GAS_WEB_APP_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: 'editUser', adminEmail: loggedUser, oldEmail: oldEmail, newEmail: newEmail.trim() })
+            });
+
+            loadAdminUserList();
+        }
+
+        async function deleteUser(targetEmail) {
+            if (!confirm(`Yakin ingin menghapus ${targetEmail}?`)) return;
+
+            await fetch(GAS_WEB_APP_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: 'deleteUser', adminEmail: loggedUser, targetEmail: targetEmail })
+            });
+
+            loadAdminUserList();
+        }
+
+        // Init Captcha on Load
+        generateMathProblem();
     </script>
 </body>
 </html>
