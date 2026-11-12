@@ -1,0 +1,1154 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123c91">
+
+<title>Kursus Sabun dan Parfum | Pelatihan Formulasi Kimia Industri</title>
+
+<meta name="description" content="Kursus formulasi sabun dan parfum online dan offline. Belajar membuat deterjen, parfum laundry, softener, sabun cuci piring, karbol dan 100+ resep kimia industri. Lokasi Bogor dan Purwokerto.">
+
+<style>
+:root {
+  --blue: #123c91;
+  --blue-dark: #09265e;
+  --orange: #ff941e;
+  --light: #f4f7fc;
+  --white: #ffffff;
+  --dark: #17233b;
+  --muted: #64748b;
+  --green: #159b55;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+  line-height: 1.65;
+  background: white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 90%;
+  max-width: 1150px;
+  margin: auto;
+}
+
+section {
+  padding: 75px 0;
+}
+
+.section-title {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 42px;
+}
+
+.section-title h2 {
+  font-size: clamp(26px, 4vw, 36px);
+  color: var(--blue);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.section-title p {
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  color: var(--orange);
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* NAVBAR */
+
+header {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 72px;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 900;
+  color: var(--blue);
+}
+
+.logo span {
+  color: var(--orange);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: var(--orange);
+}
+
+.nav-button {
+  background: var(--orange);
+  padding: 11px 20px;
+  border-radius: 5px;
+  color: #17233b;
+}
+
+/* HERO */
+
+.hero {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255,148,30,.25), transparent 30%),
+    linear-gradient(120deg, var(--blue-dark), var(--blue));
+  color: white;
+  padding: 95px 0;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.hero-label {
+  display: inline-block;
+  background: rgba(255,255,255,.13);
+  border: 1px solid rgba(255,255,255,.25);
+  padding: 8px 15px;
+  border-radius: 30px;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 53px);
+  line-height: 1.13;
+  margin-bottom: 22px;
+}
+
+.hero h1 span {
+  color: var(--orange);
+}
+
+.hero-description {
+  font-size: 17px;
+  color: #e0eaff;
+  margin-bottom: 30px;
+  max-width: 590px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 23px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-orange {
+  background: var(--orange);
+  color: #17233b;
+}
+
+.btn-white {
+  background: white;
+  color: var(--blue);
+}
+
+.hero-note {
+  margin-top: 23px;
+  font-size: 13px;
+  color: #d1dcf5;
+}
+
+.hero-visual {
+  background: rgba(255,255,255,.09);
+  border: 1px solid rgba(255,255,255,.18);
+  padding: 27px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.hero-visual h3 {
+  font-size: 23px;
+  margin: 10px 0;
+}
+
+.product-visual {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.product-visual div {
+  background: white;
+  color: var(--blue);
+  border-radius: 7px;
+  padding: 19px 8px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.visual-icon {
+  display: block;
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+/* HIGHLIGHTS */
+
+.highlights {
+  background: var(--light);
+  padding: 25px 0;
+}
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 15px;
+  text-align: center;
+}
+
+.highlight-item {
+  padding: 12px;
+  font-weight: bold;
+  color: var(--blue);
+  font-size: 14px;
+}
+
+/* ABOUT */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.about-box {
+  background: var(--light);
+  border-left: 5px solid var(--orange);
+  padding: 30px;
+}
+
+.about-box h3 {
+  color: var(--blue);
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.check-list {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.check-list li {
+  padding: 7px 0;
+}
+
+.check-list li::before {
+  content: "✓";
+  color: var(--green);
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* MATERIAL */
+
+.material-section {
+  background: var(--light);
+}
+
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.material-card {
+  background: white;
+  padding: 27px;
+  border: 1px solid #e5eaf3;
+  border-radius: 8px;
+  transition: .2s;
+}
+
+.material-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.07);
+}
+
+.material-card .icon {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.material-card h3 {
+  color: var(--blue);
+  margin-bottom: 15px;
+  font-size: 19px;
+}
+
+.material-card ul {
+  list-style: none;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.material-card li {
+  padding: 5px 0;
+}
+
+.material-card li::before {
+  content: "• ";
+  color: var(--orange);
+  font-weight: bold;
+}
+
+/* PRICING */
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 25px;
+  max-width: 850px;
+  margin: auto;
+}
+
+.price-card {
+  border: 1px solid #e1e6ef;
+  border-radius: 10px;
+  padding: 35px;
+  position: relative;
+  background: white;
+  box-shadow: 0 8px 25px rgba(0,0,0,.05);
+}
+
+.price-card.featured {
+  border: 2px solid var(--orange);
+}
+
+.price-badge {
+  background: var(--orange);
+  color: #17233b;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 7px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 0 8px 0 8px;
+}
+
+.price-card h3 {
+  color: var(--blue);
+  font-size: 22px;
+}
+
+.price {
+  color: var(--blue);
+  font-size: 49px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 15px 0 5px;
+}
+
+.price small {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.price-description {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.price-card ul {
+  list-style: none;
+  margin: 20px 0 25px;
+}
+
+.price-card li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f2f6;
+  font-size: 14px;
+}
+
+.price-card li::before {
+  content: "✓";
+  color: var(--green);
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.price-card .btn {
+  width: 100%;
+}
+
+/* OFFLINE */
+
+.offline-section {
+  background: var(--blue);
+  color: white;
+}
+
+.offline-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.offline-section h2 {
+  font-size: 34px;
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.offline-section p {
+  color: #dce7ff;
+}
+
+.offline-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.offline-features div {
+  background: rgba(255,255,255,.1);
+  padding: 15px;
+  border-left: 3px solid var(--orange);
+  font-size: 14px;
+}
+
+.location-box {
+  background: white;
+  color: var(--blue);
+  padding: 30px;
+  border-radius: 9px;
+}
+
+.location-box h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.location-item {
+  background: var(--light);
+  padding: 20px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  border-left: 4px solid var(--orange);
+}
+
+/* BONUS */
+
+.bonus-section {
+  background: #fff8ee;
+}
+
+.bonus-box {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border: 2px solid var(--orange);
+  padding: 40px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.bonus-number {
+  font-size: clamp(55px, 9vw, 85px);
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1.1;
+}
+
+.bonus-box h2 {
+  color: var(--blue);
+  margin: 10px 0;
+  font-size: 28px;
+}
+
+/* CONSULTATION */
+
+.consult-section {
+  background: var(--light);
+}
+
+.consult-box {
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid #e6ebf2;
+}
+
+.consult-box h2 {
+  color: var(--blue);
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+/* TARGET */
+
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+}
+
+.target-item {
+  padding: 20px;
+  background: var(--light);
+  border-radius: 6px;
+  font-weight: bold;
+  color: var(--blue);
+  text-align: center;
+}
+
+/* CTA */
+
+.final-cta {
+  background: linear-gradient(120deg, var(--blue-dark), var(--blue));
+  color: white;
+  text-align: center;
+}
+
+.final-cta h2 {
+  font-size: clamp(28px,4vw,40px);
+  margin-bottom: 15px;
+}
+
+.final-cta p {
+  color: #dce7ff;
+  margin-bottom: 25px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #091b3e;
+  color: white;
+  padding: 35px 0;
+  text-align: center;
+}
+
+footer strong {
+  font-size: 20px;
+}
+
+footer p {
+  color: #c6d2e9;
+  font-size: 13px;
+  margin-top: 7px;
+}
+
+/* WHATSAPP FLOAT */
+
+.wa-float {
+  position: fixed;
+  bottom: 22px;
+  right: 20px;
+  z-index: 999;
+  background: #20b96b;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 50px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.2);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 800px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    padding: 65px 0;
+  }
+
+  .hero-grid,
+  .about-grid,
+  .offline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    max-width: 500px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .highlight-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .material-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .target-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media(max-width: 550px) {
+  section {
+    padding: 55px 0;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .material-grid,
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .price-card {
+    padding: 28px 23px;
+  }
+
+  .offline-features {
+    grid-template-columns: 1fr;
+  }
+
+  .bonus-box,
+  .consult-box {
+    padding: 27px 20px;
+  }
+
+  .target-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wa-float {
+    bottom: 14px;
+    right: 12px;
+    padding: 12px 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header>
+  <div class="container navbar">
+    <a href="#" class="logo">KURSUS <span>SABUN & PARFUM</span></a>
+
+    <nav class="nav-links">
+      <a href="#materi">Materi</a>
+      <a href="#harga">Harga</a>
+      <a href="#lokasi">Lokasi</a>
+      <a href="#bonus">Bonus</a>
+      <a href="#kontak" class="nav-button">Daftar Sekarang</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="hero-label">
+        PELATIHAN FORMULASI KIMIA INDUSTRI
+      </div>
+
+      <h1>
+        Belajar Membuat <span>Sabun & Parfum</span>,
+        Kembangkan Usaha Anda!
+      </h1>
+
+      <p class="hero-description">
+        Pelajari cara membuat berbagai produk kimia industri,
+        mulai dari deterjen, parfum laundry, softener, sabun cuci
+        piring, karbol hingga berbagai produk pembersih lainnya.
+        Cocok untuk pemula maupun calon pengusaha.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#harga" class="btn btn-orange">
+          LIHAT HARGA KURSUS
+        </a>
+
+        <a href="#materi" class="btn btn-white">
+          PILIH MATERI
+        </a>
+      </div>
+
+      <p class="hero-note">
+        ✓ Online & Offline &nbsp; ✓ Bonus 100+ Resep
+        &nbsp; ✓ Konsultasi Gratis
+      </p>
+    </div>
+
+    <div class="hero-visual">
+      <div style="font-size:48px">🧪</div>
+      <h3>Soap & Perfume Making</h3>
+      <p>Belajar formulasi, praktik produksi, dan kembangkan produk sendiri.</p>
+
+      <div class="product-visual">
+        <div><span class="visual-icon">🧴</span>Deterjen Cair</div>
+        <div><span class="visual-icon">🌸</span>Parfum Laundry</div>
+        <div><span class="visual-icon">🫧</span>Sabun Cuci Piring</div>
+        <div><span class="visual-icon">✨</span>Softener</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<div class="highlights">
+  <div class="container highlight-grid">
+    <div class="highlight-item">✓ Praktik Langsung</div>
+    <div class="highlight-item">✓ 100+ Resep Bonus</div>
+    <div class="highlight-item">✓ Konsultasi WhatsApp</div>
+    <div class="highlight-item">✓ Bisa Pilih Materi</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+  <div class="container about-grid">
+
+    <div>
+      <span class="tag">TENTANG PELATIHAN</span>
+      <h2 style="font-size:32px;color:#123c91;line-height:1.3">
+        Dari Belajar Formulasi hingga Mengembangkan Produk Sendiri
+      </h2>
+
+      <p style="margin-top:18px;color:#64748b">
+        Ingin memiliki keterampilan membuat produk sabun dan parfum?
+        Atau ingin memulai usaha produksi kebutuhan laundry dan
+        rumah tangga dengan merek sendiri?
+      </p>
+
+      <p style="margin-top:12px;color:#64748b">
+        Pelatihan ini dirancang agar peserta memahami bahan baku,
+        komposisi, fungsi bahan, teknik pencampuran, dan proses
+        pembuatan berbagai produk kimia industri.
+      </p>
+    </div>
+
+    <div class="about-box">
+      <h3>Kenapa Mengikuti Pelatihan Ini?</h3>
+      <ul class="check-list">
+        <li>Bisa memilih materi sesuai kebutuhan.</li>
+        <li>Cocok untuk pemula tanpa latar belakang kimia.</li>
+        <li>Belajar mengenal fungsi bahan baku.</li>
+        <li>Memahami teknik formulasi produk.</li>
+        <li>Mendapatkan bonus 100+ resep.</li>
+        <li>Bisa konsultasi gratis melalui WhatsApp.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- MATERIAL -->
+<section class="material-section" id="materi">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="tag">PILIH MATERI</span>
+      <h2>Beragam Produk yang Bisa Anda Pelajari</h2>
+      <p>
+        Pilih materi sesuai minat, kebutuhan pribadi, maupun
+        rencana pengembangan usaha Anda.
+      </p>
+    </div>
+
+    <div class="material-grid">
+
+      <div class="material-card">
+        <div class="icon">🌸</div>
+        <h3>Produk Laundry & Pewangi</h3>
+        <ul>
+          <li>Parfum Laundry</li>
+          <li>Pelicin Setrika</li>
+          <li>Softener Laundry</li>
+          <li>Deterjen Cair Laundry</li>
+          <li>Deterjen Bubuk</li>
+        </ul>
+      </div>
+
+      <div class="material-card">
+        <div class="icon">🧼</div>
+        <h3>Produk Kebersihan Rumah</h3>
+        <ul>
+          <li>Sabun Cuci Piring</li>
+          <li>Handsoap / Sabun Tangan</li>
+          <li>Karbol</li>
+          <li>Sabun Pel Lantai</li>
+          <li>Pembersih Kamar Mandi</li>
+          <li>Pembersih Kaca</li>
+        </ul>
+      </div>
+
+      <div class="material-card">
+        <div class="icon">🚘</div>
+        <h3>Produk Otomotif</h3>
+        <ul>
+          <li>Shampoo Mobil</li>
+          <li>Shampoo Motor</li>
+          <li>Pembersih Kendaraan</li>
+          <li>Produk perawatan otomotif lainnya</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:30px;color:#64748b">
+      <strong>Dan masih banyak lagi!</strong>
+      Konsultasikan materi yang ingin Anda pelajari sebelum mendaftar.
+    </p>
+
+    <div style="text-align:center;margin-top:20px">
+      <a class="btn btn-orange"
+         href="https://wa.me/6285773009666?text=Halo%2C%20saya%20ingin%20menanyakan%20materi%20kursus%20sabun%20dan%20parfum.">
+        TANYAKAN MATERI VIA WHATSAPP
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="harga">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="tag">INVESTASI PEMBELAJARAN</span>
+      <h2>Pilih Program Kursus Anda</h2>
+      <p>
+        Pilih metode belajar yang paling sesuai dengan waktu,
+        kebutuhan, dan lokasi Anda.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- OFFLINE -->
+      <div class="price-card">
+        <h3>Kursus Offline</h3>
+        <div class="price">$69</div>
+        <div class="price-description">
+          Praktik langsung bersama instruktur.
+        </div>
+
+        <ul>
+          <li>Praktik pembuatan produk langsung.</li>
+          <li>Mendapatkan bahan praktik.</li>
+          <li>Hasil praktik dapat dibawa pulang.</li>
+          <li>Penjelasan fungsi bahan baku.</li>
+          <li>Teknik formulasi dan produksi.</li>
+          <li>Bonus 100+ resep kimia industri.</li>
+          <li>Konsultasi gratis melalui WhatsApp.</li>
+        </ul>
+
+        <a class="btn btn-orange"
+           href="https://wa.me/6285773009666?text=Halo%2C%20saya%20ingin%20mendaftar%20Kursus%20Offline%20Sabun%20dan%20Parfum%20seharga%20US%2469.">
+          DAFTAR KURSUS OFFLINE
+        </a>
+      </div>
+
+      <!-- ONLINE -->
+      <div class="price-card featured">
+        <div class="price-badge">PILIHAN HEMAT</div>
+
+        <h3>Kursus Online</h3>
+        <div class="price">$29</div>
+        <div class="price-description">
+          Belajar fleksibel dari mana saja.
+        </div>
+
+        <ul>
+          <li>Materi pembelajaran formulasi.</li>
+          <li>Panduan komposisi bahan baku.</li>
+          <li>Teknik pembuatan berbagai produk.</li>
+          <li>Bonus 100+ resep kimia industri.</li>
+          <li>Konsultasi gratis melalui WhatsApp.</li>
+          <li>Belajar tanpa harus datang ke lokasi.</li>
+        </ul>
+
+        <a class="btn btn-orange"
+           href="https://wa.me/6285773009666?text=Halo%2C%20saya%20ingin%20mendaftar%20Kursus%20Online%20Sabun%20dan%20Parfum%20seharga%20US%2429.">
+          DAFTAR KURSUS ONLINE
+        </a>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:25px;font-size:13px;color:#64748b">
+      Pembayaran peserta Indonesia dapat dilakukan dalam rupiah
+      berdasarkan kurs yang berlaku saat pendaftaran.
+    </p>
+
+  </div>
+</section>
+
+<!-- OFFLINE LOCATION -->
+<section class="offline-section" id="lokasi">
+  <div class="container offline-grid">
+
+    <div>
+      <span class="tag" style="color:#ffb44f">
+        PENGALAMAN PRAKTIK LANGSUNG
+      </span>
+
+      <h2>Belajar, Praktik, dan Bawa Pulang Hasil Produksi Anda!</h2>
+
+      <p>
+        Khusus program offline, peserta mendapatkan kesempatan
+        melakukan praktik pembuatan produk secara langsung.
+        Bahan praktik disediakan dan hasil praktik dapat dibawa pulang.
+      </p>
+
+      <div class="offline-features">
+        <div>🧪 Praktik langsung</div>
+        <div>📦 Bahan praktik tersedia</div>
+        <div>🧴 Hasil dibawa pulang</div>
+        <div>💬 Konsultasi WhatsApp</div>
+      </div>
+    </div>
+
+    <div class="location-box">
+      <h3>Lokasi Pelatihan Offline</h3>
+
+      <div class="location-item">
+        📍 BOGOR<br>
+        <small>Jawa Barat</small>
+      </div>
+
+      <div class="location-item">
+        📍 PURWOKERTO<br>
+        <small>Jawa Tengah</small>
+      </div>
+
+      <p style="font-size:13px;color:#64748b;margin-top:15px">
+        Hubungi kami untuk informasi jadwal dan lokasi praktik.
+      </p>
+
+      <a class="btn btn-orange"
+         style="width:100%;margin-top:15px"
+         href="https://wa.me/6285773009666?text=Halo%2C%20saya%20ingin%20menanyakan%20jadwal%20dan%20lokasi%20kursus%20offline.">
+        TANYAKAN JADWAL
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- BONUS -->
+<section class="bonus-section" id="bonus">
+  <div class="container">
+
+    <div class="bonus-box">
+      <span class="tag">BONUS EKSKLUSIF PESERTA</span>
+
+      <div class="bonus-number">100+</div>
+
+      <h2>RESEP KIMIA INDUSTRI</h2>
+
+      <p style="color:#64748b;margin:15px auto;max-width:650px">
+        Dapatkan kumpulan lebih dari 100 resep formulasi kimia
+        industri sebagai referensi untuk belajar, mengembangkan
+        variasi produk, dan memperluas peluang usaha Anda.
+      </p>
+
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:25px">
+        <span class="tag" style="background:#fff1dc;padding:8px 12px;color:#a85c00">
+          FORMULASI PRODUK
+        </span>
+        <span class="tag" style="background:#fff1dc;padding:8px 12px;color:#a85c00">
+          PENGEMBANGAN USAHA
+        </span>
+        <span class="tag" style="background:#fff1dc;padding:8px 12px;color:#a85c00">
+          REFERENSI PRODUKSI
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consult-section">
+  <div class="container">
+
+    <div class="consult-box">
+      <div style="font-size:45px">💬</div>
+
+      <h2>Konsultasi Gratis via WhatsApp</h2>
+
+      <p style="color:#64748b">
+        Proses belajar tidak berhenti setelah pelatihan selesai.
+        Anda dapat berkonsultasi mengenai formulasi, bahan baku,
+        proses produksi, dan pengembangan produk melalui WhatsApp.
+      </p>
+
+      <a href="https://wa.me/6285773009666?text=Halo%2C%20saya%20ingin%20konsultasi%20mengenai%20pelatihan%20sabun%20dan%20parfum."
+         class="btn btn-orange"
+         style="margin-top:22px">
+        CHAT WHATSAPP SEKARANG
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TARGET PESERTA -->
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <span class="tag">UNTUK SIAPA PELATIHAN INI?</span>
+      <h2>Siapa Pun Bisa Mulai Belajar!</h2>
+      <p>
+        Tidak harus memiliki latar belakang pendidikan kimia.
+        Pelatihan ini terbuka untuk berbagai kalangan.
+      </p>
+    </div>
+
+    <div class="target-grid">
+      <div class="target-item">👨‍🔬 Pemula</div>
+      <div class="target-item">🏭 Calon Pengusaha</div>
+      <div class="target-item">🧺 Pemilik Laundry</div>
+      <div class="target-item">🏪 Pelaku UMKM</div>
+      <div class="target-item">📦 Reseller Produk</div>
+      <div class="target-item">💡 Pengembang Produk</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="kontak">
+  <div class="container">
+
+    <span class="tag" style="color:#ffb44f">
+      SAATNYA MEMULAI LANGKAH BARU
+    </span>
+
+    <h2>Belajar Membuat Produk,<br>
+    Kembangkan Peluang Usaha!</h2>
+
+    <p>
+      Pilih kursus online atau praktik langsung secara offline.
+      Tentukan materi yang ingin Anda pelajari dan mulai sekarang.
+    </p>
+
+    <a href="https://wa.me/6285773009666?text=Halo%2C%20saya%20tertarik%20mengikuti%20pelatihan%20formulasi%20sabun%20dan%20parfum.%20Mohon%20informasi%20pendaftaran."
+       class="btn btn-orange">
+      DAFTAR MELALUI WHATSAPP
+    </a>
+
+    <p style="margin-top:25px;font-weight:bold;color:white">
+      WhatsApp: 085773009666
+    </p>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <strong>KURSUS SABUN & PARFUM</strong>
+
+    <p>Pelatihan Formulasi Kimia Industri</p>
+
+    <p>Bogor • Purwokerto • Online</p>
+
+    <p>WhatsApp: 085773009666</p>
+
+    <p style="margin-top:20px">
+      Developed By Wahyudi
+    </p>
+
+    <p>&copy; <span id="year"></span> Kursus Sabun & Parfum. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float"
+   href="https://wa.me/6285773009666?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20kursus%20sabun%20dan%20parfum."
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Hubungi kami melalui WhatsApp">
+   ☎ WhatsApp
+</a>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>
